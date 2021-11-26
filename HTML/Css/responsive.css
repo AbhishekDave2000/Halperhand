@@ -1,0 +1,39 @@
+@media only screen and (max-width: 924px) {
+
+.Home .header .navbar{
+    display: none;
+}
+.Home .header .btnbar{
+    display: block;
+    font-size: 3rem;
+    color: #fff;
+}
+}
+
+@media only screen and (max-width: 500px) {
+
+    .Home .header .navbar{
+        display: none;
+    }
+    .Home .header .btnbar{
+        display: block;
+        font-size: 3rem;
+        color: #fff;
+    }
+
+    
+.Home .text h2{
+    font-size: 3rem;
+    color: #fff;
+}
+.Home .text ul li{
+    font-size: 2rem;
+    color: #fff;
+    list-style: none;
+}  
+
+}
+
+
+    
+    
