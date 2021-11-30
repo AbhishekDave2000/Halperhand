@@ -442,9 +442,9 @@ body{
   }
   @media only screen and (max-width: 1000px) and (min-width: 751px) {
 
-        #navbar-nav{
-            min-width: 800px;
-        }
+        .navbar{
+        height: 100px;
+    }
         #faqimg{
             width: 100vw;
             height: 370px;
@@ -556,16 +556,13 @@ body{
             height: 50px;
         }
         #input-t-1{
-            width: 400px;
             font-size: 20px;
-            height: 40px;
             margin-bottom: 5px;
             text-align: center;
         }
         #new-btn{
-            width: 150px;
-            height: 40px;
-            font-size: 20px;    
+            font-size: 20px; 
+            margin-left: 0;
         }
     
 
@@ -635,10 +632,9 @@ body{
         width: 100vw;
     }
     #input-t-1{
-        width: 200px;
         border-radius: 30px;
         font-size: 16px;
-        height: 30px;
+        
         margin-bottom: 5px;
         margin-left: 0;
         margin-right: 0;
@@ -649,11 +645,10 @@ body{
         flex-direction: column;
     }
     #new-btn{
-        width: 150px;
-        height: 30px;
         border-radius: 30px;
         font-size: 16px;
         padding: 0;
+        margin-left: 0;
     }
     .footer{
         height: 550px; 
