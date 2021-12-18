@@ -1,0 +1,538 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* * {
+    outline: 1px solid #f00 !important;
+  } */
+/* navbar start */
+.navbar{
+    background-color: #525252;
+    width: 100%;
+    height: 64px;
+    padding:0;
+    height: 64px;
+}
+.navbar-brand img{
+    height: 54px;
+    margin-top: 6px;
+    margin-bottom: 4px;
+    margin-left: 15px;
+    width: 73px;
+}
+.navbar .navbar-nav {
+    position: absolute;
+    right: 15px;
+}
+.navbar .navbar-nav .rounded-link{
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 6px  22px;
+}
+.navbar .navbar-nav .rounded-link{
+    background-color: #00607287;
+}
+
+.navbar .navbar-nav li a{
+    color: #ffffff !important;
+    font-size: 13px;
+}
+#collapsibleNavbar ul{
+    background-color: #525252;
+}
+.navbar .navbar-nav{
+    align-items: end;
+}
+.navbar .navbar-nav li{
+    margin-left: 11px;
+    margin-right: 11px;
+    margin-top: 0;
+    text-align: end;
+    align-items: end;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+#faq-img{
+    height: 370px;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+#faq-img img{
+    width: 100%;
+    height: 100%;
+}
+
+/* navbar end */
+
+#words{
+    font-size: 36px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.67;
+    letter-spacing: normal;
+    text-align: center;
+    color: #4f4f4f;
+    font-family: Roboto;
+}
+.Rectangle-5-copy-6{
+    height: 1px;
+    background-color: #ccc;
+    width: 62px;
+    margin-top: 14px;
+    margin-left: 7px;
+    margin-right: 7px;   
+}
+.star-logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 18px;  
+}
+
+/* Word Main Div */
+
+#word-main {
+    padding-top: 39px;
+}
+
+.content1 {
+    width: 90%;
+    margin-top: 38px;
+    text-align: center;
+    font-size: 17px;
+    font-family: Roboto;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: center;
+    color: #646464;
+}
+
+/*  Our Story Div */ 
+
+
+#story{
+    padding-top: 78px;
+    font-size: 36px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.67;
+    letter-spacing: normal;
+    text-align: center;
+    color: #4f4f4f;
+    font-family: Roboto;
+}
+
+.content2 {
+    width: 90%;
+    margin-top: 38px;
+    text-align: center;
+    font-size: 17px;
+    font-family: Roboto;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: center;
+    color: #646464;
+    margin-bottom: 40px;
+}
+
+/* Main Div End */
+
+/* news letter */
+.new-head{
+    margin-top: 55px; 
+    width: 449px;
+    font-family: Roboto;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 38px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    color: #353548;
+    font-family: Roboto;
+}
+.yourname div{
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+#input-t-1{
+    width: 233px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: Roboto;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.29;
+    letter-spacing: normal;
+    text-align: left;
+    color: #565656;
+    border: solid 1px #565656;
+    height: 40px;
+}
+#new-btn{
+    width: 88px;
+    height: 40px;
+    border: 0px;
+    margin-left: 0px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    background-color: #ff7b6d;
+    border-radius: 20px;
+    margin-left: 20px;
+    color: white;
+              
+}
+/* news letter end */
+
+/* footer start */
+.footer{
+    height: 195px;
+    background-color: #111;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    margin: 0;
+    margin-top: 53px;  
+    overflow: hidden;
+}
+.footer .div1{
+    display: flex;
+    flex-direction: row;
+    height: 131px;
+}
+.footer .div1 .fimg{
+    width: 20%;
+}
+.footer img{
+    width: 106px;
+    height: 78px;
+    margin-left: 121px;
+    margin-top: 27px;
+}
+.footer .div1 .footer-list{
+    width: 50%;
+    height: 12px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.14;
+    letter-spacing: normal;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 65px;
+    justify-content: center;
+    align-items: center;
+}
+.footer-list ul{
+    list-style: none;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.footer-list ul li{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.footer-list ul li a{
+    text-decoration: none;
+    color: white;
+}
+.fi{
+    width: 20%;
+    margin-top: 65px;
+    text-align: center;
+}
+#fi1{
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 10px;
+    margin-top: 0;
+}
+#fi2{
+    width: 9px;
+    height: 18px;
+    margin-left: 10px;
+    margin-right: 15px;
+    margin-top: 0;
+}
+
+.footer .div2{
+    height: 64px;
+    text-align: center;
+}
+.div2 span{
+    width: 775px;
+    height: 14px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    color: #f1f1f1;
+    position: relative;
+    top: 25px;
+}
+.Rectangle-12-copy-2 {
+   width: 84.6vw;
+   height: 1px;
+   margin-right: auto;
+   margin-left: auto;
+   background-color: #424242;
+ }
+
+/* footer end */
+
+.Rectangle-12-copy-2 {
+    width: 84.6vw;
+    height: 1px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #424242;
+  }
+
+  @media screen and (max-width: 1250px)
+  {
+      .navbar{
+          height: 100px;
+      }
+      .navbar-brand img{
+          height: 75px;
+          margin-top: 6px;
+          margin-bottom: 4px;
+          margin-left: 15px;
+          width: 95px;
+      }
+      .navbar .navbar-nav li a{
+          color: #ffffff !important;
+          font-size: 14.5px;
+      }
+      .Rectangle-21 {
+         width: 73.1vw;
+         height: 1px;
+         background-color: #dcdcdc;
+         margin-top: 51px;
+         margin-right: auto;
+         margin-left: auto;
+       }
+    }
+ 
+    @media only screen and (max-width: 1000px) and (min-width: 751px) {
+ 
+     #navbar-nav{
+         min-width: 800px;
+     }
+     #faqimg{
+         width: 100vw;
+         height: 370px;
+     }
+     #faq-img{
+         background-size: cover;
+         background-repeat: repeat-x;
+     }
+     .footer{
+         height: 500px; 
+     }
+     .footer .div1{
+         display: flex;
+         flex-direction: column;
+         height: 500px;
+         text-align: center;
+         align-items: center;
+     }
+     .footer img{
+         width: 150px;
+         height: 100px;
+         margin-top: 27px;
+         margin-right: auto;
+         margin-left: auto;
+     }
+     .footer .div1 .footer-list{
+         width: 100%;
+         height: 40px;
+         font-size: 16px;
+     }
+     .footer .div2{
+         height: 160px;
+         margin-top: 5px;
+         padding-left: 15px;
+         padding-right: 15px;
+     }
+     .div2 span{
+         height: 40px;
+         font-family: Roboto;
+         font-size: 18px;
+         position: relative;
+         top: 30px;
+     }
+     .news-letter{
+         width: 100vw;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+     }
+     .yourname div{
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+     }
+     .new-head{
+         margin-top: 55px; 
+         width: 449px;
+         font-size: 24px;
+         height: 50px;
+     }
+     #input-t-1{
+         margin-bottom: 8px;
+         text-align: center;
+     }
+     #new-btn{
+        margin-left: 0 !important;  
+     }
+     #word-main{
+         width: 100vw;
+     }
+ 
+ 
+ }
+ 
+ @media only screen and (max-width: 750px){
+    #word-main{
+        width: 100vw;
+    }
+    #word-main .container{
+        width: 100%;
+    }
+    #word-main .container p{
+        width: 100%;
+    }
+    .navbar-toggler{
+    border: solid white;
+     color: white;
+ }
+ .navbar{
+     height: 160px;
+ }
+ .navbar-brand img{
+     height: 100px;
+     margin-top: 6px;
+     margin-bottom: 4px;
+     margin-left: 15px;
+     width: 140px;
+ }
+ .navbar .navbar-nav li a{
+     color: #ffffff !important;
+     font-size: 14.5px;
+ }
+ .news-letter{
+     width: 100vw;
+     display: flex;
+     flex-direction: column;
+ }
+ #faq-img{
+     height: 250px;
+ }
+ p{
+     width: 80vw;
+ }
+ .new-head{
+     margin-top: 55px; 
+     font-family: Roboto;
+     font-size: 20px;
+     height: 50px;
+     width: 100vw;
+ }
+ #input-t-1{
+     /* width: 250px; */
+     border-radius: 30px;
+     font-size: 16px;
+     /* height: 30px; */
+     margin-bottom: 5px;
+     margin-left: 0;
+     margin-right: 0;
+     text-align: center;
+ }
+ .yourname .form-group{
+     display: flex;
+     flex-direction: column;
+ }
+ #new-btn{
+     border-radius: 30px;
+     padding: 0;
+     margin-left: 0 !important;
+ }
+ .footer{
+     height: 550px; 
+ }
+ .footer .div1{
+     display: flex;
+     flex-direction: column;
+     height: 400px;
+     text-align: center;
+     align-items: center;
+ }
+ .fimg{
+     justify-content: center;
+     align-items: center;
+ }
+ .footer img{
+     width: 70px;
+     height: 50px;
+     margin-top: 27px;
+     margin-right: auto;
+     margin-left: auto;
+ }
+ .footer .div1 .footer-list{
+     width: 80%;
+     height: 40px;
+ }
+ .footer .div1 .footer-list ul{
+     flex-direction: column;
+ }
+ .fi{
+     flex-direction: row;
+     position: relative;
+     top: 80px;
+     width: 50%;
+ }
+
+ 
+ .footer .div2{
+     height: 150px;
+     margin-top: 30px;
+     padding-right: 20px;
+     padding-left: 20px;
+ }
+ .div2 span{
+     height: 40px;
+     font-family: Roboto;
+     font-size: 13px;
+     position: relative;
+     top: 30px;
+ }
+ 
+ }
