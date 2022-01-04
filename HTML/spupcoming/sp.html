@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <title>Service Provide > Upcoming services</title>
+    <link rel="stylesheet" href="sp.css">
+</head>
+
+<body>
+
+    <!-- navbar -->
+    <section class="navigation">
+        <div class="container-lg-fluid">
+            <nav class="navbar navbar-expand-xl">
+                <!-- Brand -->
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../Img/logo/white-logo-transparent-background.png" alt="">
+                </a>
+                <!-- Img/logo/white-logo-transparent-background.png -->
+
+
+                <!-- Navbar links -->
+                <div class="nav-sp">
+                    <!-- Toggler/collapsibe Button -->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon">
+                            <i class="fas fa-bars"></i>
+                        </span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <ul class="navbar-nav ms-auto mb-lg-0">
+                            <!-- <li class="nav-item" style="width: 111px; text-align: center;">
+                                <a class="nav-link rounded-link" href="#">Book now</a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link a" href="prices.html">Prices & services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link a" href="#">Warranty</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link a" href="#">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link a" href="../contact/contact.html">Contact us</a>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 sidebar-ul-navbar">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Dashbord</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">New Service</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">upcoming Service</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Service Schedule</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Service History</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">My Ratings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Block Customer</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="float-right-notification">
+                        <ul>
+                            <li class="nav-item dropdown" id="notification">
+                                <a class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false" href="#"><img
+                                        src="images/notification.png" alt="" srcset=""></a>
+                                <div class="Ellipse-5">0</div>
+
+                                <div class="dropdown-menu dropdown-menu1" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item" id="user-1">
+                                <a class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false" href="#">
+                                    <img src="images/user.png" alt="" srcset="">
+                                    <img src="images/sp-arrow-down.png" class="Forma-1-copy">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+                        </ul>
+
+
+                    </div>
+
+                </div>
+
+            </nav>
+        </div>
+
+    </section>
+    <!-- navbar end -->
+
+
+    <!-- name header -->
+    <div class="container-fluid name-header">
+        <span class="Welcome-name">
+            Welcome,
+            <span class="text-style-1">Abhihshek!</span>
+        </span>
+    </div>
+    
+    <!-- name header end -->
+
+    <!-- content -->
+    <section class="upcomingservice">
+        <div class="container content">
+            <nav class="navbar-expand-md sidebar-main">
+                <aside class="container__sidebar">
+                    <div class="collapse navbar-collapse sidebar-div-menu" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 sidebar-ul">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Dashbord</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">New Service</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">upcoming Service</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Service Schedule</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Service History</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">My Ratings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Block Customer</a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+            </nav>
+
+            <main class="container__main">
+                <div class="container-fluid head-us">
+                    <span class="upcoming-heading">Upcoming Services</span>
+                </div>
+                <table id="example" class="table-data" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="serviceid">Service ID <img src="images/sort.png" alt="" class="sorting-img"></th>
+                            <th class="servicedata">Service data <img src="images/sort.png" alt="" class="sorting-img">
+                            </th>
+                            <th class="customerdetail">Customer details <img src="images/sort.png" alt=""
+                                    class="sorting-img"></th>
+                            <th class="servicedistance">Distance <img src="images/sort.png" alt="" class="sorting-img">
+                            </th>
+                            <th class="serviceaction">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="serviceid">323431</td>
+                            <td class="servicedata"><img src="images/calendar2.png" alt=""> <span>09/04/2018</span> <br>
+                                <img src="images/layer-14.png" alt=""> 12:00 - 18:00
+                            </td>
+                            <td class="customerdetail">David Bough <br>
+                                <img src="images/layer-15.png" alt=""> Musterstrabe 5,12345 Bonn
+
+                            </td>
+                            <td class="servicedistance">15km</td>
+                            <td class="serviceaction"><button class="btn btn-danger btn-rounded-17"
+                                    value="Cancel">Cancel</button></td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="serviceid">323432</td>
+                            <td class="servicedata"><img src="images/calendar2.png" alt=""> <span>09/04/2018</span> <br>
+                                <img src="images/layer-14.png" alt=""> 12:00 - 18:00
+                            </td>
+                            <td class="customerdetail">David Bough <br>
+                                <img src="images/layer-15.png" alt=""> Musterstrabe 5,12345 Bonn
+
+                            </td>
+                            <td class="servicedistance">15km</td>
+                            <td class="serviceaction"><button class="btn btn-danger btn-rounded-17"
+                                    value="Cancel">Cancel</button></td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="serviceid">323433</td>
+                            <td class="servicedata"><img src="images/calendar2.png" alt=""> <span>09/04/2018</span> <br>
+                                <img src="images/layer-14.png" alt=""> 12:00 - 18:00
+                            </td>
+                            <td class="customerdetail">David Bough <br>
+                                <img src="images/layer-15.png" alt=""> Musterstrabe 5,12345 Bonn
+
+                            </td>
+                            <td class="servicedistance">15km</td>
+                            <td class="serviceaction"><button class="btn btn-danger btn-rounded-17"
+                                    value="Cancel">Cancel</button></td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="serviceid">323434</td>
+                            <td class="servicedata"><img src="images/calendar2.png" alt=""> <span>09/04/2018</span> <br>
+                                <img src="images/layer-14.png" alt=""> 12:00 - 18:00
+                            </td>
+                            <td class="customerdetail">David Bough <br>
+                                <img src="images/layer-15.png" alt=""> Musterstrabe 5,12345 Bonn
+
+                            </td>
+                            <td class="servicedistance">15km</td>
+                            <td class="serviceaction"><button class="btn btn-danger btn-rounded-17"
+                                    value="Cancel">Cancel</button></td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="serviceid">323435</td>
+                            <td class="servicedata"><img src="images/calendar2.png" alt=""> <span>09/04/2018</span> <br>
+                                <img src="images/layer-14.png" alt=""> 12:00 - 18:00
+                            </td>
+                            <td class="customerdetail">David Bough <br>
+                                <img src="images/layer-15.png" alt=""> Musterstrabe 5,12345 Bonn
+
+                            </td>
+                            <td class="servicedistance">15km</td>
+                            <td class="serviceaction"><button class="btn btn-danger btn-rounded-17"
+                                    value="Cancel">Cancel</button></td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="serviceid">323436</td>
+                            <td class="servicedata"><img src="images/calendar2.png" alt=""> <span>09/04/2018</span> <br>
+                                <img src="images/layer-14.png" alt=""> 12:00 - 18:00
+                            </td>
+                            <td class="customerdetail">David Bough <br>
+                                <img src="images/layer-15.png" alt=""> Musterstrabe 5,12345 Bonn
+
+                            </td>
+                            <td class="servicedistance">15km</td>
+                            <td class="serviceaction"><button class="btn btn-danger btn-rounded-17"
+                                    value="Cancel">Cancel</button></td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="serviceid">323437</td>
+                            <td class="servicedata"><img src="images/calendar2.png" alt=""> <span>09/04/2018</span> <br>
+                                <img src="images/layer-14.png" alt=""> 12:00 - 18:00
+                            </td>
+                            <td class="customerdetail">David Bough <br>
+                                <img src="images/layer-15.png" alt=""> Musterstrabe 5,12345 Bonn
+
+                            </td>
+                            <td class="servicedistance">15km</td>
+                            <td class="serviceaction"><button class="btn btn-danger btn-rounded-17"
+                                    value="Cancel">Cancel</button></td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="serviceid">323438</td>
+                            <td class="servicedata"><img src="images/calendar2.png" alt=""> <span>09/04/2018</span> <br>
+                                <img src="images/layer-14.png" alt=""> 12:00 - 18:00
+                            </td>
+                            <td class="customerdetail">David Bough <br>
+                                <img src="images/layer-15.png" alt=""> Musterstrabe 5,12345 Bonn
+
+                            </td>
+                            <td class="servicedistance">15km</td>
+                            <td class="serviceaction"><button class="btn btn-danger btn-rounded-17"
+                                    value="Cancel">Cancel</button></td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="serviceid">323439</td>
+                            <td class="servicedata"><img src="images/calendar2.png" alt=""> <span>09/04/2018</span> <br>
+                                <img src="images/layer-14.png" alt=""> 12:00 - 18:00
+                            </td>
+                            <td class="customerdetail">David Bough <br>
+                                <img src="images/layer-15.png" alt=""> Musterstrabe 5,12345 Bonn
+
+                            </td>
+                            <td class="servicedistance">15km</td>
+                            <td class="serviceaction"><button class="btn btn-danger btn-rounded-17"
+                                    value="Cancel">Cancel</button></td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="serviceid">323440</td>
+                            <td class="servicedata"><img src="images/calendar2.png" alt=""> <span>09/04/2018</span> <br>
+                                <img src="images/layer-14.png" alt=""> 12:00 - 18:00
+                            </td>
+                            <td class="customerdetail">David Bough <br>
+                                <img src="images/layer-15.png" alt=""> Musterstrabe 5,12345 Bonn
+
+                            </td>
+                            <td class="servicedistance">15km</td>
+                            <td class="serviceaction"><button class="btn btn-danger btn-rounded-17"
+                                    value="Cancel">Cancel</button></td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+            </main>
+        </div>
+    </section>
+    <!-- content end -->
+
+
+    <!-- footer start -->
+    <section class="footer">
+        <div class="div1">
+            <!-- <div class="fimg"> -->
+            <img src="../Img/white-logo-transparent-background.png" alt="" srcset="">
+            <!-- </div> -->
+            <div class="footer-list">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about/about_us.html">About</a></li>
+                    <li><a href="">Testimonials</a></li>
+                    <li><a href="../faq/faq.html">FAQs</a></li>
+                    <li><a href="">Insurance Policy</a></li>
+                    <li><a href="">Impressum</a></li>
+                </ul>
+            </div>
+            <div class="fi">
+                <a href=""><img id="fi2" src="../Img/forma-1_5.png" alt="facebook" srcset=""></a>
+                <a href=""><img id="fi1" src="../Img/forma-1_3.png" alt="insta" srcset=""></a>
+            </div>
+        </div>
+        <div class="Rectangle-12-copy-2"></div>
+        <div class="div2">
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula
+                aliquam
+                <a href="">Privacy Policy</a> </span>
+        </div>
+    </section>
+    <!-- footer end -->
+
+
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/ae6d6e0254.js" crossorigin="anonymous"></script>
+    <!-- Data Table -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "order": [[3, "desc"]],
+                "bPaginate": false, //hide pagination
+                "bFilter": false, //hide Search bar
+                "bInfo": false, // hide showing entries
+
+            });
+        });
+    </script>
+</body>
+
+</html>
