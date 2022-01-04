@@ -5,37 +5,32 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script defer src="https://pro.fontawesome.com/releases/v5.10.0/js/all.js"
     integrity="sha384-G/ZR3ntz68JZrH4pfPJyRbjW+c0+ojii5f+GYiYwldYU69A+Ejat6yIfLSxljXxD"
     crossorigin="anonymous"></script>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-
-  <link rel="stylesheet" href="Css/responsive.css">
-  <!--favicon-->
-  <link rel="apple-touch-icon" sizes="152x152" href="Img/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="Img/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="Img/favicon/favicon-16x16.png">
-  <link rel="manifest" href="Img/favicon/site.webmanifest">
-  <link rel="mask-icon" href="Img/favicon/safari-pinned-tab.svg" color="#333333">
-  <meta name="msapplication-TileColor" content="#333333">
-  <meta name="theme-color" content="#333333">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
   <link rel="stylesheet" href="Css/style.css">
-  <title>Home</title>
+
+
+  <script>
+    window.addEventListener("scroll", function () {
+      var nav = document.querySelector("nav");
+      nav.classList.toggle("sticky", window.scrollY > 50);
+    })
+  </script>
 
 </head>
 
 <body>
+
   <!-- navbar start -->
-  <nav class="navbar fixed-top navbar-expand-xl navbar-light">
+  <nav class="navbar fixed-top navbar-expand-xl navbar-light" id="navbar">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
         <img src="Img/logo/white-logo-transparent-background.png" alt="">
@@ -44,28 +39,29 @@
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-lg-0">
           <li class="nav-item" style="width: 161px; text-align: center;">
             <a class="nav-link rounded-link" href="#">Book a Cleaner</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="prices/prices.html">Prices</a>
+            <a class="nav-link" href="./prices/prices.html">Prices</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Our Guarantee</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Blog</a>
+            <a class="nav-link" href="#blog-1">Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contact/contact.html">Contact us</a>
+            <a class="nav-link" href="./contact/contact.html">Contact us</a>
           </li>
           <li class="nav-item" style="width: 97px; text-align: center;">
             <a class="nav-link rounded-link" href="#">Login</a>
           </li>
           <li class="nav-item" style="width: 161px; text-align: center;">
-            <a class="nav-link rounded-link" href="serviceprovider/sprovider.html">Become a Helper</a>
+            <a class="nav-link rounded-link" href="./serviceprovider/sprovider.html">Become a Helper</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -93,8 +89,10 @@
 
   <!-- Home Section -->
   <section class="home" id="home" style="padding: 0px;">
-    <div class="home-content">
-      <div class="home-text">
+
+    <div class="home-content container-fluid">
+
+      <div class="home-text container-fluid">
         <h1 class="title">Lorem ipsum text</h1>
 
         <ul class="List">
@@ -103,9 +101,11 @@
           <li><i class="fas fa-check pl-1"></i>Lorem ipsum dolor sit amet consectetur adipisicing</li>
         </ul>
       </div>
+
       <div class="text-center button">
         <button class="">Let's Book a Cleaner</button>
       </div>
+
       <div class="payment-process">
         <div class="payment-process-box text-center">
           <div class="icon-box">
@@ -122,8 +122,8 @@
           </div>
           <h6>Select your plan</h6>
         </div>
-        <div class="arrow icon-box">
-          <img src="Img/Home/country-flag/step-arrow-1.png" alt="arrow-flip" class="rotateImg">
+        <div class="arrow icon-box" >
+          <img src="Img/step-arrow-1-copy.png" alt="arrow-flip" class="rotateImg">
         </div>
         <div class="payment-process-box text-center">
           <div class="icon-box">
@@ -132,7 +132,7 @@
           <h6>Pay securely online</h6>
         </div>
         <div class="arrow icon-box">
-          <img src="Img/Home/country-flag/step-arrow-1.png" alt="arrow">
+          <img src="img/Home/country-flag/step-arrow-1.png" alt="arrow">
         </div>
         <div class="payment-process-box text-center">
           <div class="icon-box">
@@ -141,11 +141,13 @@
           <h6>Enjoy amzing service</h6>
         </div>
       </div>
-      <div class="darr">
+
+      <div class="darr container-fluid">
         <a href="#helperland">
           <img src="Img/Home/shape-1.svg" alt="down-arrow" class="down-arrow">
         </a>
       </div>
+
     </div>
   </section>
   <!-- home section end -->
@@ -189,13 +191,17 @@
 
   <!-- our blog -->
   <section id="Blog" class="blog  m-5 p-5">
+
     <div class="container mindiv">
-      <div class="row frist">
+      <div class="row frist container">
+
         <div class="blog-text col-md-6 col-sm-12 col-12">
+
           <div class="head-text">
             <h2>Lorem ipsum dolor sit amet,</h2>
             <h2>consectetur</h2>
           </div>
+
           <div class="body-text">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quas?</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.. Lorem ipsum dolor sit amet consectetur
@@ -203,17 +209,22 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quas? Lorem ipsum dolor sit amet
               consectetur adipisicing elit.</p>
           </div>
+
         </div>
+
         <div class="bog-img col-md-6 col-sm-12 col-12">
-          <img src="Img/Home/blog-image/group-25.png" class="img1" alt="">
-          <img src="Img/Home/blog-image/group-26.png" class="img2" alt="">
-          <img src="Img/Home/blog-image/group-27.png" class="img3" alt="">
+          <!-- <img src="Img/Home/blog-image/group-25.png" class="img1" alt="">
+          <img src="Img/Home/blog-image/group-26.png" class="img2" alt=""> -->
+          <img src="Img/group-36.png" class="img1" alt="">
         </div>
+
       </div>
     </div>
-    <div class="text-center headeing ourblog">Our Blog</div>
+
+    <div class="text-center headeing ourblog" id="blog-1">Our Blog</div>
+
     <div class="" id="card2">
-      <div class="col-md-4 col-sm-12 d-flex justify-content-center innercard">
+      <div class="col-md-4  col-sm-12 d-flex justify-content-center innercard">
         <div class="card">
           <img class="card-img-top" src="Img/Home/blog-image/group-28.png" alt="Card image cap">
           <div class="card-body">
@@ -226,7 +237,8 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 col-sm-12 d-flex justify-content-center innercard">
+
+      <div class="col-md-4  col-sm-12 d-flex justify-content-center innercard">
         <div class="card">
           <img class="card-img-top" src="Img/Home/blog-image/group-29.png" alt="Card image cap">
           <div class="card-body">
@@ -238,6 +250,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-md-4 col-sm-12 d-flex justify-content-center innercard">
         <div class="card">
           <img class="card-img-top" src="Img/Home/blog-image/group-30.png" alt="Card image cap">
@@ -250,150 +263,149 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
   <!-- our blog end -->
 
-  <!-- what customer say -->
-  <section class="say">
-    <div class="max-width" style="padding-left: 150px; padding-right: 150px;">
-      <div class="heading" style="margin-bottom: 60px;">
-        <p class="heding-text">What Our Customers say</p>
-      </div>
-      <div class="review">
-        <div class="col-md-3 people" style="background-color: white;">
-          <div class="media-all">
-            <div class="media d-flex align-items-center p-3">
-              <img class="mr-3" src="Img/Home/section-4/group-31.png" alt="Generic placeholder image">
-              <div class="media-body pl-15">
-                <h5 class="mt-0">Lary Watson</h5>
-                Manchester
-              </div>
-              <span class="top-message"><a href=""><img src="Img/message.png" alt="" srcset=""></a></span>
+ <!-- what customer say -->
+ <section class="say" id="testis">
+
+  <div class="max-width">
+
+    <div class="heading" style="margin-bottom: 60px;">
+      <p class="heding-text">What Our Customers say</p>
+    </div>
+
+    <div class="review">
+
+      <div class="col-md-3 people" style="background-color: white;">
+        <div class="media-all">
+          <div class="media d-flex align-items-center p-3">
+            <img class="mr-3" src="Img/Home/section-4/group-31.png" alt="Generic placeholder image">
+            <div class="media-body pl-15">
+              <h5 class="mt-0">Lary Watson</h5>
+              Manchester
             </div>
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ullam corporis adipisci aut dolor,
-              officia
-              laudantium quidem tempora in vero!
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit autem voluptas illo eligendi. Vero
-              illum impedit alias earum p
-            </p>
-            <p><a href="" class="blog-read">Read More<img class="shape-2" src="./Img/shape-2.png" alt="arrow"
-                  srcset=""></a></p>
           </div>
-        </div>
-        <div class="col-md-3 people" style="background-color: white;">
-          <div class="media-all">
-            <div class="media d-flex align-items-center p-3">
-              <img class="mr-3" src="Img/Home//section-4/group-32.png" alt="Generic placeholder image">
-              <div class="media-body pl-15">
-                <h5 class="mt-0">John Smith</h5>
-                Manchester
-              </div>
-              <span class="top-message"><a href=""><img src="Img/message.png" alt="" srcset=""></a></span>
-            </div>
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ullam corporis adipisci aut dolor,
-              officia
-              laudantium quidem tempora in vero!
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit autem voluptas illo eligendi. Vero
-              illum impedit alias earum p
-            </p>
-            <p><a href="" class="blog-read">Read More<img class="shape-2" src="./Img/shape-2.png" alt="arrow"
-                  srcset=""></a></p>
-          </div>
-        </div>
-        <div class="col-md-3 people" style="background-color: white;">
-          <div class="media-all">
-            <div class="media d-flex align-items-center p-3">
-              <img class="mr-3" src="Img/Home/section-4/group-33.png" alt="Generic placeholder image">
-              <div class="media-body pl-15">
-                <h5 class="mt-0">Lars Johnson</h5>
-                Manchester
-              </div>
-              <span class="top-message"><a href=""><img src="Img/message.png" alt="" srcset=""></a></span>
-            </div>
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ullam corporis adipisci aut dolor,
-              officia
-              laudantium quidem tempora in vero!
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit autem voluptas illo eligendi. Vero
-              illum impedit alias earum p
-            </p>
-            <p><a href="" class="blog-read">Read More<img class="shape-2" src="./Img/shape-2.png" alt="arrow"
-                  srcset=""></a></p>
-          </div>
+          <span class="top-message"><a href=""><img src="Img/message.png" alt="" srcset=""></a></span>
+          <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ullam corporis adipisci aut dolor,
+            officia
+            laudantium quidem tempora in vero!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit autem voluptas illo eligendi. Vero
+            illum impedit alias earum p
+          </p>
+          <p><a href="" class="blog-read">Read More<img class="shape-2" src="./Img/shape-2.png" alt="arrow"
+                srcset=""></a></p>
         </div>
       </div>
 
-      <div class="newsletter text-center">
-        <div class="new-head">GET OUR NEWSLETTER</div>
-        <div id="news-id">
-          <form class="yourname">
-            <div class="form-group row">
-              <div class="col-md-3 text-box" style="margin-right: 50px;">
-                <input type="text" class="form-control" id="input-t-1" placeholder="Input">
-              </div>
-              <button id="new-btn" class="col-md-2 col-form-label button-submit">Submit</button>
+      <div class="col-md-3 people" style="background-color: white;">
+        <div class="media-all">
+          <div class="media d-flex align-items-center p-3">
+            <img class="mr-3" src="Img/Home//section-4/group-32.png" alt="Generic placeholder image">
+            <div class="media-body pl-15">
+              <h5 class="mt-0">John Smith</h5>
+              Manchester
             </div>
-          </form>
+          </div>
+          <span class="top-message"><a href=""><img src="Img/message.png" alt="" srcset=""></a></span>
+          <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ullam corporis adipisci aut dolor,
+            officia
+            laudantium quidem tempora in vero!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit autem voluptas illo eligendi. Vero
+            illum impedit alias earum p
+          </p>
+          <p><a href="" class="blog-read">Read More<img class="shape-2" src="./Img/shape-2.png" alt="arrow"
+                srcset=""></a></p>
+        </div>
+      </div>
+
+      <div class="col-md-3 people" style="background-color: white;">
+        <div class="media-all">
+          <div class="media d-flex align-items-center p-3">
+            <img class="mr-3" src="Img/Home/section-4/group-33.png" alt="Generic placeholder image">
+            <div class="media-body pl-15">
+              <h5 class="mt-0">Lars Johnson</h5>
+              Manchester
+            </div>
+          </div>
+          <span class="top-message"><a href=""><img src="Img/message.png" alt="" srcset=""></a></span>
+          <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ullam corporis adipisci aut dolor,
+            officia
+            laudantium quidem tempora in vero!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit autem voluptas illo eligendi. Vero
+            illum impedit alias earum p
+          </p>
+          <p><a href="" class="blog-read">Read More<img class="shape-2" src="./Img/shape-2.png" alt="arrow"
+                srcset=""></a></p>
         </div>
       </div>
     </div>
-    <div class="up-arr">
-      <a href="#"><img src="Img/forma-1_4.png" alt="" srcset=""></a>
-    </div>
-    <a href="#">
-      <div class="link-clock">
-        <img src="Img/layer-598.png" alt="" srcset="">
-      </div>
-    </a>
-  </section>
-  <!-- what customer say end -->
 
-  <!-- footer start -->
-  <section class="footer">
-    <div class="div1">
-      <div class="fimg">
-        <img src="./Img/white-logo-transparent-background.png" alt="" srcset="">
+    <!-- <div class="newsletter text-center">
+      <div class="new-head">GET OUR NEWSLETTER</div>
+      <div id="news-id">
+        <form class="yourname">
+          <div class="form-group row">
+            <div class="col-md-3 text-box" style="margin-right: 50px;">
+              <input type="text" class="form-control" id="input-t-1" placeholder="Input">
+            </div>
+            <button id="new-btn" class="col-md-2 col-form-label button-submit">Submit</button>
+          </div>
+        </form>
       </div>
+    </div> -->
+
+  </div>
+
+  <!-- <div class="up-arr">
+    <a href="#"><img src="Img/forma-1_4.png" alt="" srcset=""></a>
+  </div>
+  <a href="#">
+    <div class="link-clock">
+      <img src="Img/layer-598.png" alt="" srcset="">
+    </div>
+  </a> -->
+</section>
+<!-- what customer say end --> 
+
+
+<!-- footer start -->
+<section class="footer">
+  <div class="div1">
+      <!-- <div class="fimg"> -->
+      <img src="Img/white-logo-transparent-background.png" alt="" srcset="">
+      <!-- </div> -->
       <div class="footer-list">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about/about_us.html">About</a></li>
-          <li><a href="">Testimonials</a></li>
-          <li><a href="faq/faq.html">FAQs</a></li>
-          <li><a href="">Insurance Policy</a></li>
-          <li><a href="">Impressum</a></li>
-        </ul>
+          <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="./about/about_us.html">About</a></li>
+              <li><a href="#testis">Testimonials</a></li>
+              <li><a href="./faq/faq.html">FAQs</a></li>
+              <li><a href="">Insurance Policy</a></li>
+              <li><a href="">Impressum</a></li>
+          </ul>
       </div>
       <div class="fi">
-        <a href=""><img id="fi2" src="./Img/forma-1_5.png" alt="facebook" srcset=""></a>
-        <a href=""><img id="fi1" src="./Img/forma-1_3.png" alt="insta" srcset=""></a>
+          <a href=""><img id="fi2" src="Img/forma-1_5.png" alt="facebook" srcset=""></a>
+          <a href=""><img id="fi1" src="Img/forma-1_3.png" alt="insta" srcset=""></a>
       </div>
-    </div>
-    <div class="div2">
-      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula aliquam
-        <a href="">Privacy Policy</a> </span>
-      <a href="" class="ok-btm-a">
-        <div class="ok-btn">
-          <p>OK!</p>
-        </div>
-      </a>
-    </div>
-  </section>
-  <!-- footer end -->
-
-
-  <!-- java script start-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-    crossorigin="anonymous"></script>
-  <script src="js/main.js"></script>
-  <!-- java script end-->
+  </div>
+  <!-- <div class="Rectangle-12-copy-2"></div> -->
+  <div class="div2">
+      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula
+          aliquam
+          <a href="">Privacy Policy</a> </span>
+  </div>
+</section>
+<!-- footer end -->
 </body>
 
 </html>
