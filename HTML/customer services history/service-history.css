@@ -156,6 +156,7 @@
     text-align: center;
     padding-top: 44px;
     padding-bottom: 46px;
+    border-bottom: 1px solid #e1e1e1;
 }
 .Welcome-name {
     font-family: Roboto;
