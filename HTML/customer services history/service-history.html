@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer > services History</title>
+    <link rel="stylesheet" href="service-history.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+
+<body>
+
+    <!-- navbar -->
+    <section class="navigation">
+        <div class="container-lg-fluid">
+            <nav class="navbar navbar-expand-xl">
+                <!-- Brand -->
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../Img/logo/white-logo-transparent-background.png" alt="">
+                </a>
+                <!-- Img/logo/white-logo-transparent-background.png -->
+
+
+                <!-- Navbar links -->
+                <div class="nav-sp">
+                    <!-- Toggler/collapsibe Button -->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon">
+                            <i class="fas fa-bars"></i>
+                        </span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <ul class="navbar-nav ms-auto mb-lg-0">
+                            <li class="nav-item" style="width: 111px; text-align: center;">
+                                <a class="nav-link rounded-link" href="#">Book now</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link a" href="prices.html">Prices & services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link a" href="#">Warranty</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link a" href="#">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link a" href="../contact/contact.html">Contact us</a>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 sidebar-ul-navbar">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Dashbord</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Service History</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Service Schedule</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Favourite Pros</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Invoices</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Notifications</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="float-right-notification">
+                        <ul>
+                            <li class="nav-item dropdown" id="notification">
+                                <a class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false" href="#"><img
+                                        src="images/notification.png" alt="" srcset=""></a>
+                                <div class="Ellipse-5">0</div>
+                                <div class="dropdown-menu dropdown-menu1" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <!-- <div class="dropdown-divider"></div> -->
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item" id="user-1">
+                                <a class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false" href="#">
+                                    <img src="images/user.png" alt="" srcset="">
+                                    <img src="images/sp-arrow-down.png" class="Forma-1-copy">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <!-- <div class="dropdown-divider"></div> -->
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+                        </ul>
+
+
+                    </div>
+
+                </div>
+
+            </nav>
+        </div>
+
+    </section>
+    <!-- navbar end -->
+
+    <!-- name header -->
+    <section>
+        <div class="container-fluid name-header">
+            <span class="Welcome-name">
+                Welcome,
+                <span class="text-style-1">Abhihshek!</span>
+            </span>
+        </div>
+    </section>
+    <!-- name header end -->
+
+    <!-- content -->
+    <section class="customerservicehistory">
+        <div class="container content">
+            <nav class="navbar-expand-md sidebar-main">
+                <aside class="container__sidebar">
+                    <div class="collapse navbar-collapse sidebar-div-menu" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 sidebar-ul">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Dashbord</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Service History</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Service Schedule</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Favourite Pros</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Invoices</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Notifications</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Block Customer</a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </aside>
+            </nav>
+
+            <main class="container__main">
+                <div class="container-fluid service-button">
+                    <span class="Service-History-span">
+                        Service History
+                        <!-- <img src="images/sort.png" alt="" class="sorting-img"> -->
+                    </span>
+                    <!-- <img src="images/sort.png" alt="" class="sorting-img"> -->
+                    <button class="export-button">
+                        Export
+                    </button>
+                </div>
+
+                <table id="example" class="table-data" style="width:100%">
+                    <!-- <thead class="sort-btn-thead">
+                        <th class="sort-btn"> <img src="images/sort.png" alt=""
+                            class="sorting-img"></th>
+                    </thead> -->
+                    <thead>
+                        <tr>
+                            
+                            <th class="servicedetail">Service Detail <img src="images/sort.png" alt=""
+                                    class="sorting-img"></th>
+                            <th class="serviceprovider">Service Provider <img src="images/sort.png" alt=""
+                                    class="sorting-img">
+                            </th>
+                            <th class="payment">Payment <img src="images/sort.png" alt="" class="sorting-img"></th>
+                            <th class="servicestatus">Status <img src="images/sort.png" alt="" class="sorting-img">
+                            </th>
+                            <th class="Ratesp">Rate SP</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="servicedetail">
+                                <img src="images/calendar.png" alt="">
+                                <span>31/03/2018<br></span>12:00 - 18:00
+                            </td>
+                            <td class="serviceprovider">
+                                <div class="cap-div">
+                                    <img class="cap" src="images/cap.png" alt="cap">
+                                </div>
+                                <span>Lyum Watson <br>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con-e"></i>
+                                    4
+                                </span>
+                            </td>
+                            <td class="payment-text">
+                                <i class="fas fa-euro-sign"></i> 63<br>
+                            </td>
+                            <td class="servicestatus">
+                                <span class="status completed">Completed</span>
+                            </td>
+                            <td class="ratesp-text">
+                                <button class="btn btn-rounded-17" value="Cancel">Rate SP</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="servicedetail">
+                                <img src="images/calendar.png" alt="">
+                                <span>31/03/2018<br></span>12:00 - 18:00
+                            </td>
+                            <td class="serviceprovider">
+                                <div class="cap-div">
+                                    <img class="cap" src="images/cap.png" alt="cap">
+                                </div>
+                                <span>Lyum Watson <br>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con-e"></i>
+                                    4
+                                </span>
+                            </td>
+                            <td class="payment-text">
+                                <i class="fas fa-euro-sign"></i> 63<br>
+                            </td>
+                            <td class="servicestatus">
+                                <span class="status completed">Completed</span>
+                            </td>
+                            <td class="ratesp-text">
+                                <button class="btn btn-rounded-17" value="Cancel">Rate SP</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="servicedetail">
+                                <img src="images/calendar.png" alt="">
+                                <span>31/03/2018<br></span>12:00 - 18:00
+                            </td>
+                            <td class="serviceprovider">
+                                <div class="cap-div">
+                                    <img class="cap" src="images/cap.png" alt="cap">
+                                </div>
+                                <span>Lyum Watson <br>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con-e"></i>
+                                    4
+                                </span>
+                            </td>
+                            <td class="payment-text">
+                                <i class="fas fa-euro-sign"></i> 63<br>
+                            </td>
+                            <td class="servicestatus">
+                                <span class="status cancelled">Cencelled</span>
+                            </td>
+                            <td class="ratesp-text">
+                                <button class="btn btn-rounded-17" value="Cancel">Rate SP</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="servicedetail">
+                                <img src="images/calendar.png" alt="">
+                                <span>31/03/2018<br></span>12:00 - 18:00
+                            </td>
+                            <td class="serviceprovider">
+                                <div class="cap-div">
+                                    <img class="cap" src="images/cap.png" alt="cap">
+                                </div>
+                                <span>Lyum Watson <br>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con-e"></i>
+                                    4
+                                </span>
+                            </td>
+                            <td class="payment-text">
+                                <i class="fas fa-euro-sign"></i> 63<br>
+                            </td>
+                            <td class="servicestatus">
+                                <span class="status completed">Completed</span>
+                            </td>
+                            <td class="ratesp-text">
+                                <button class="btn btn-rounded-17" value="Cancel">Rate SP</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="servicedetail">
+                                <img src="images/calendar.png" alt="">
+                                <span>31/03/2018<br></span>12:00 - 18:00
+                            </td>
+                            <td class="serviceprovider">
+                                <div class="cap-div">
+                                    <img class="cap" src="images/cap.png" alt="cap">
+                                </div>
+                                <span>Lyum Watson <br>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con-e"></i>
+                                    4
+                                </span>
+                            </td>
+                            <td class="payment-text">
+                                <i class="fas fa-euro-sign"></i> 63<br>
+                            </td>
+                            <td class="servicestatus">
+                                <span class="status completed">Completed</span>
+                            </td>
+                            <td class="ratesp-text">
+                                <button class="btn btn-rounded-17" value="Cancel">Rate SP</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="servicedetail">
+                                <img src="images/calendar.png" alt="">
+                                <span>31/03/2018<br></span>12:00 - 18:00
+                            </td>
+                            <td class="serviceprovider">
+                                <div class="cap-div">
+                                    <img class="cap" src="images/cap.png" alt="cap">
+                                </div>
+                                <span>Lyum Watson <br>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con-e"></i>
+                                    4
+                                </span>
+                            </td>
+                            <td class="payment-text">
+                                <i class="fas fa-euro-sign"></i> 63<br>
+                            </td>
+                            <td class="servicestatus">
+                                <span class="status completed">Completed</span>
+                            </td>
+                            <td class="ratesp-text">
+                                <button class="btn btn-rounded-17" value="Cancel">Rate SP</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="servicedetail">
+                                <img src="images/calendar.png" alt="">
+                                <span>31/03/2018<br></span>12:00 - 18:00
+                            </td>
+                            <td class="serviceprovider">
+                                <div class="cap-div">
+                                    <img class="cap" src="images/cap.png" alt="cap">
+                                </div>
+                                <span>Lyum Watson <br>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con-e"></i>
+                                    4
+                                </span>
+                            </td>
+                            <td class="payment-text">
+                                <i class="fas fa-euro-sign"></i> 63<br>
+                            </td>
+                            <td class="servicestatus">
+                                <span class="status completed">Completed</span>
+                            </td>
+                            <td class="ratesp-text">
+                                <button class="btn btn-rounded-17" value="Cancel">Rate SP</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="servicedetail">
+                                <img src="images/calendar.png" alt="">
+                                <span>31/03/2018<br></span>12:00 - 18:00
+                            </td>
+                            <td class="serviceprovider">
+                                <div class="cap-div">
+                                    <img class="cap" src="images/cap.png" alt="cap">
+                                </div>
+                                <span>Lyum Watson <br>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con-e"></i>
+                                    4
+                                </span>
+                            </td>
+                            <td class="payment-text">
+                                <i class="fas fa-euro-sign"></i> 63<br>
+                            </td>
+                            <td class="servicestatus">
+                                <span class="status completed">Completed</span>
+                            </td>
+                            <td class="ratesp-text">
+                                <button class="btn btn-rounded-17" value="Cancel">Rate SP</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="servicedetail">
+                                <img src="images/calendar.png" alt="">
+                                <span>31/03/2018<br></span>12:00 - 18:00
+                            </td>
+                            <td class="serviceprovider">
+                                <div class="cap-div">
+                                    <img class="cap" src="images/cap.png" alt="cap">
+                                </div>
+                                <span>Lyum Watson <br>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con-e"></i>
+                                    4
+                                </span>
+                            </td>
+                            <td class="payment-text">
+                                <i class="fas fa-euro-sign"></i> 63<br>
+                            </td>
+                            <td class="servicestatus">
+                                <span class="status completed">Completed</span>
+                            </td>
+                            <td class="ratesp-text">
+                                <button class="btn btn-rounded-17" value="Cancel">Rate SP</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="servicedetail">
+                                <img src="images/calendar.png" alt="">
+                                <span>31/03/2018<br></span>12:00 - 18:00
+                            </td>
+                            <td class="serviceprovider">
+                                <div class="cap-div">
+                                    <img class="cap" src="images/cap.png" alt="cap">
+                                </div>
+                                <span>Lyum Watson <br>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con"></i>
+                                    <i class="fas fa-star i-con-e"></i>
+                                    4
+                                </span>
+                            </td>
+                            <td class="payment-text">
+                                <i class="fas fa-euro-sign"></i> 63<br>
+                            </td>
+                            <td class="servicestatus">
+                                <span class="status completed">Completed</span>
+                            </td>
+                            <td class="ratesp-text">
+                                <button class="btn btn-rounded-17" value="Cancel">Rate SP</button>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+                <div class="container-fluid pagination-div">
+                    <div class="container-fluid">
+                        <span class="span-show">
+                            show
+                        </span>
+                        <div class="btn-group">
+                            <!-- <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                10
+                            </button> -->
+                            <select class="form-select" aria-label="form-select-sm example">
+                                <option selected>10</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                            </select>
+                        </div>
+                        <span class="span-entries">
+                            entries
+                        </span>
+                        <span class="span-TR">
+                            Total Records: 10
+                        </span>
+                    </div>
+
+                    <nav class="pagination-nav" aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <i class="fas fa-caret-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <i class="fas fa-chevron-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <i class="fas fa-caret-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </main>
+        </div>
+    </section>
+    <!-- content end -->
+
+    <!-- footer start -->
+    <section class="footer">
+        <div class="div1">
+            <!-- <div class="fimg"> -->
+            <img src="../Img/white-logo-transparent-background.png" alt="" srcset="">
+            <!-- </div> -->
+            <div class="footer-list">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about/about_us.html">About</a></li>
+                    <li><a href="">Testimonials</a></li>
+                    <li><a href="../faq/faq.html">FAQs</a></li>
+                    <li><a href="">Insurance Policy</a></li>
+                    <li><a href="">Impressum</a></li>
+                </ul>
+            </div>
+            <div class="fi">
+                <a href=""><img id="fi2" src="../Img/forma-1_5.png" alt="facebook" srcset=""></a>
+                <a href=""><img id="fi1" src="../Img/forma-1_3.png" alt="insta" srcset=""></a>
+            </div>
+        </div>
+        <div class="Rectangle-12-copy-2"></div>
+        <div class="div2">
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula
+                aliquam
+                <a href="">Privacy Policy</a> </span>
+        </div>
+    </section>
+    <!-- footer end -->
+
+
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/ae6d6e0254.js" crossorigin="anonymous"></script>
+    <!-- Data Table -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "order": [[3, "desc"]],
+                "bPaginate": false, //hide pagination
+                "bFilter": false, //hide Search bar
+                "bInfo": false, // hide showing entries
+
+            });
+        });
+    </script>
+
+</body>
+
+</html>
