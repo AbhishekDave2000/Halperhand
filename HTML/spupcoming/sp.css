@@ -207,6 +207,7 @@
     font-weight: bold;
 }
 .head-us{
+    display: none;
     padding: 10px;
 }
 .container__main table{
@@ -428,6 +429,10 @@ table thead{
         overflow-x: auto;
         /* width: 847px; */
         /* margin-left: 30px; */
+    }
+    .head-us{
+        display: block;
+        padding: 10px;
     }
     .serviceaction{
         text-align: center;
