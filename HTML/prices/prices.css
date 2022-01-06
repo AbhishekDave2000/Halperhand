@@ -7,19 +7,13 @@
   } */
 /* navbar start */
     .navigation{
-        /* width: 1519px; */
-        width: 100vw;
         padding: 0;
         margin: 0;
     }
     .navbar{
         background-color: #525252;
-        /* width: 1519px; */
-        width: 100vw;
         height: 64px;
         padding:0;
-        height: 64px;
-        margin: 0;
     }
     .navbar-brand img{
         height: 54px;
@@ -66,7 +60,7 @@
     #faq-img{
         height: 370px;
         /* width: 1519px; */
-        width: 100vw;
+        /* width: 100vw; */
         margin: 0 !important;
         padding: 0 !important;
         background-image: url('images/group-18.png');
@@ -79,10 +73,6 @@
 
 
 /* price container */
-.prices{
-    /* width: 1519px; */
-    width: 100vw;
-}
 .prices .container-fluid{
     padding-top: 50px;
 }
@@ -287,7 +277,7 @@
 /* cleaning includes */
 .cleaning{
     background-color: #f6f6f6;
-    width: 100vw;
+    /* width: 100vw; */
     margin-top: 61px;
     padding-bottom: 82px;
 }
@@ -466,13 +456,6 @@
 
 
 /* news letter */
-.news-letter{
-    /* width: 1536px; */
-      width: 100vw;
- }
- .newsletter{
-     width: 100vw;
- }
  .new-head{
      margin-top: 55px; 
      width: 449px;
@@ -530,7 +513,7 @@
  /* footer start */
  .footer{
      /* width: 1536px; */
-     width: 100vw;
+     /* width: 100vw; */
      height: 195px;
      background-color: #111;
      display: flex;
