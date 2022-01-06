@@ -97,9 +97,12 @@
     top: -45px;
     left: 36px;
     color: white;
-    font-size: 13px;
+    /* font-size: 13px; */
     text-align: center;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #user-1{
       margin-left: 0px;
