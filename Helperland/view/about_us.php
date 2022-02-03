@@ -17,11 +17,12 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="Css/about_us.css">
-  <link rel="stylesheet" href="Css/uparr.css">
-  <link rel="stylesheet" href="Css/loginmodal.css">
+  <link rel="stylesheet" href="assets/Css/about_us.css">
+  <link rel="stylesheet" href="assets/Css/uparr.css">
+  <link rel="stylesheet" href="assets/Css/loginmodal.css">
+  <link rel="stylesheet" href="assets/Css/loginnavbar.css">
 
-  <script src="js/uparr.js"></script>
+  <script src="assets/js/uparr.js"></script>
 
   <title>About us</title>
 </head>
@@ -29,8 +30,8 @@
 <body>
   <?php
   include 'includes/uparr.php';
-  include 'modal/loginmodal.html';
-  include 'modal/forgotpassmodal.html';
+  include 'modal/loginmodal.php';
+  include 'modal/forgotpassmodal.php';
   ?>
 
   <!-- navbar start -->
@@ -54,7 +55,7 @@
     <div class="star-logo">
       <div class="Rectangle-5-copy-6"></div>
       <div>
-        <img src="Img/faq/forma-1.png" alt="forma-1">
+        <img src="assets/Img/faq/forma-1.png" alt="forma-1">
       </div>
       <div class="Rectangle-5-copy-6"></div>
     </div>
@@ -65,7 +66,6 @@
       <p>We have a number of experienced cleaners to help you make cleaning out or shifting your home an easy affair.</p>
     </div>
 
-
     <div id="story">
       Our Story
     </div>
@@ -73,7 +73,7 @@
     <div class="star-logo">
       <div class="Rectangle-5-copy-6"></div>
       <div>
-        <img src="Img/faq/forma-1.png" alt="forma-1">
+        <img src="assets/Img/faq/forma-1.png" alt="forma-1">
       </div>
       <div class="Rectangle-5-copy-6"></div>
     </div>

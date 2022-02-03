@@ -1,10 +1,11 @@
 <?php
-include("../model/contactModel.php");
-include("./phpmailer/mail.php");
-include("../controller/validation/contactValidator.php");
+include("model/contactModel.php");
+include("phpmailer/mail.php");
+include("controller/validation/contactValidator.php");
 class contactController
 {
     public $post;
+    public $base_url = "localhost/Tatvasoft/Halperland/";
     public function __construct($post)
     {
         $this->post = $post;
@@ -14,8 +15,6 @@ class contactController
         //validate the data
         $validate = new contactValidator($this->post);
         $errors = $validate->Validator();
-        // print_r($errors);
-        // exit();
 
         if (!count($errors) > 0) {
             //attachment file
@@ -27,14 +26,14 @@ class contactController
 
                 if(!count($filerrors) > 0) {
                     $filename = $_FILES['attachment']['name'];
-                    $filepath = "../assets/attachments/" . $filename;
+                    $filepath = "assets/attachments/" . $filename;
                     $temp_file_path = $_FILES['attachment']['tmp_name'];
                     if (!move_uploaded_file($temp_file_path, $filepath)) {
-                        header("Location: ../errors.php?error=file not uploaded!");
+                        header("Location: errors.php?error=file not uploaded!");
                         exit();
                     }
                 }else{
-                    header("Location: ../errors.php?error=File is not validated!");  
+                    header("Location: errors.php?error=File is not validated!");  
                 }
             }
 
@@ -48,11 +47,11 @@ class contactController
                 $this->contactMail();
             }
             //redirect to contact page
-            header("Location: ../view/contact.php");
+            header('Location: ?controller=Default&function=contactpage');
             exit();
         }
         else{
-            header("Location: ../errors.php?error=Form is not validated!");
+            header("Location: errors.php?error=Form is not validated!");
             exit();
         }
     }

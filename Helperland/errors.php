@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php require("config.php"); ?>
 
 <head>
     <meta charset="UTF-8">
@@ -13,14 +14,14 @@
     <div class="container mt-3">
         <?php if (isset($_GET["error"])) { ?>
             <div class="alert alert-danger" role="alert">
-                <?=$_GET["error"]?>
+                <?= $_GET["error"] ?>
             </div>
         <?php
         } else {
             echo "<h1>try again!!</h1>";
         }
         ?>
-        <a href="views/home.php">Back to the HomePage</a>
+        <a href="<?= Config::base_url . '?controller=Default&function=homepage' ?>">Back to the HomePage</a>
     </div>
 </body>
 

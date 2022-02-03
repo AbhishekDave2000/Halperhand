@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.modal-dialog-rcmodal{
+    width: 600px;
+    color: #424242;
+}
+.model-dialog{
+    color: #424242;
+    font-family: Roboto;
+}
+.modal-title{
+    color: #646464;
+}
+.modal-header{
+    color: #5c5c5c;
+    border-bottom: 0px !important;
+}
+.MCrcmodal{
+    padding: 20px;
+}
+.MHrc{
+    border: 0px;
+    color: #5c5c5c;
+    padding-left: 0;
+}
+.MHrc button{
+    font-family: Roboto;
+    font-size: 16px;
+}
+.MBrc{
+    padding-top: 10px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+.modatl-time{
+    margin: 0;
+    padding: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #bdbdbd;
+}
+.modal-duration span{
+    font-weight: 500;
+}
+.service-info-heading,
+.address-detail-head,
+.heading-comments{
+    font-weight: 500;
+}
+.service-info{
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid #bdbdbd;
+}
+.modal-amount{
+    color: #1d7a8c;
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+}
+.service-address-modal,
+.comments-div{
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid #bdbdbd;
+}
+
+.cross{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    margin-right: 5px;
+}
+.comment-body{
+    display: flex;
+    align-items: center;
+}
+.rc-btn-div{
+    justify-content: left;
+    padding-left: 0;
+}
+.Reschedule-btn,
+.Reschedule-btn:hover{
+    background-color: #1d7a8c;
+    color: white;
+    border-radius: 23px;
+    height: 43px;
+}
+.Cancel-btn,
+.Cancel-btn:hover{
+    color: white;
+    border-radius: 23px;
+    height: 43px;
+    background-color: rgb(255, 110, 85);
+}
+.Cancel-btn i{
+    margin-right: 5px;
+}
+
+
+
+/* second modal */
+.reshedule-request-modal-dialog{
+    width: 420px;
+    color: #424242;  
+}
+.Reschedule-form-label,
+.cancel-form-label{
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.Update-btn-reschedule,
+.Update-btn-reschedule:hover{
+    background-color: #1d7a8c;
+    color: white;
+    border-radius: 23px;
+    height: 43px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 360px;
+}
+.btn-row{
+    display: flex;
+    justify-content: center;
+}
+
+
+/* third modal */
+.cancel-modal{
+    width: 350px;
+}
+.cancel-btn-modal,
+.cancel-btn-modal:hover{
+    background-color: #1d7a8c;
+    color: white;
+    border-radius: 23px;
+    height: 43px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    /* width: 250px; */
+    width: 100%;
+}
+
+
+/* add address modal */
+/* .add-address-modal{
+    position: fixed;
+    top: 10% !important;
+} */
+.addressMD{
+    max-width: 600px;
+    min-width: 300px;
+}
+.addressMC{
+    width: 800px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.btn-row-add{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.new-address-btn,.new-address-btn:hover{
+    background-color: #1d7a8c;
+    color: white;
+    border-radius: 23px;
+    height: 40px;
+    max-width: 550px;
+    min-width: 280px;
+}

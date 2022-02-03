@@ -3,6 +3,6 @@
     
 <a href="#">
     <div class="myDiv" id="testdiv">
-      <img src="Img/Home/forma-1_4.png" alt="">
+      <img src="assets/Img/Home/forma-1_4.png" alt="">
     </div>
 </a>

@@ -18,11 +18,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="Css/faq.css">
-    <link rel="stylesheet" href="Css/uparr.css">
-    <link rel="stylesheet" href="Css/loginmodal.css">
+    <link rel="stylesheet" href="assets/Css/faq.css">
+    <link rel="stylesheet" href="assets/Css/uparr.css">
+    <link rel="stylesheet" href="assets/Css/loginmodal.css">
+    <link rel="stylesheet" href="assets/Css/loginnavbar.css">
 
-    <script src="js/uparr.js"></script>
+    <script src="assets/js/uparr.js"></script>
 
     <title>FAQs</title>
 </head>
@@ -31,8 +32,8 @@
 
     <?php
     include 'includes/uparr.php';
-    include 'modal/loginmodal.html';
-    include 'modal/forgotpassmodal.html';
+    include 'modal/loginmodal.php';
+    include 'modal/forgotpassmodal.php';
     ?>
 
     <!-- navbar start -->
@@ -57,7 +58,7 @@
                 <div class="star-logo">
                     <div class="Rectangle-5-copy-6"></div>
                     <div>
-                        <img src="Img/faq/forma-1.png" alt="forma-1">
+                        <img src="assets/Img/faq/forma-1.png" alt="forma-1">
                     </div>
                     <div class="Rectangle-5-copy-6"></div>
                 </div>
@@ -91,7 +92,7 @@
                                     <div class="card-header" id="headingOne">
                                         <h2 class="mb-0">
                                             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                <img src="Img/faq/vector-smart-object.png" alt="" srcset="">
+                                                <img src="assets/Img/faq/vector-smart-object.png" alt="" srcset="">
 
                                             </button>
                                             What's included in a cleaning?
@@ -108,7 +109,7 @@
                                     <div class="card-header" id="headingTwo">
                                         <h2 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                <img src="Img/faq/vector-smart-object.png" alt="" srcset="">
+                                                <img src="assets/Img/faq/vector-smart-object.png" alt="" srcset="">
                                             </button>
                                             Which Helperland professional will come to my place?
                                         </h2>
@@ -123,7 +124,7 @@
                                     <div class="card-header" id="headingThree">
                                         <h2 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                <img src="Img/faq/vector-smart-object.png" alt="" srcset="">
+                                                <img src="assets/Img/faq/vector-smart-object.png" alt="" srcset="">
                                             </button>
                                             Can I skip or reschedule bookings?
                                         </h2>
@@ -138,7 +139,7 @@
                                     <div class="card-header" id="headingfour">
                                         <h2 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
-                                                <img src="Img/faq/vector-smart-object.png" alt="" srcset="">
+                                                <img src="assets/Img/faq/vector-smart-object.png" alt="" srcset="">
                                             </button>
                                             Do I need to be home for the booking?
                                         </h2>
@@ -159,7 +160,7 @@
                                     <div class="card-header" id="headingethirty">
                                         <h2 class="mb-0">
                                             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapsethirty" aria-expanded="true" aria-controls="collapsethirty">
-                                                <img src="Img/faq/vector-smart-object.png" alt="" srcset="">
+                                                <img src="assets/Img/faq/vector-smart-object.png" alt="" srcset="">
                                             </button>
                                             How much do service providers earn?
                                         </h2>
@@ -175,7 +176,7 @@
                                     <div class="card-header" id="headingthirtyone">
                                         <h2 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsethirtyone" aria-expanded="false" aria-controls="collapsethirtyone">
-                                                <img src="Img/faq/vector-smart-object.png" alt="" srcset="">
+                                                <img src="assets/Img/faq/vector-smart-object.png" alt="" srcset="">
                                             </button>
                                             What support do you provide to the service providers?
                                         </h2>

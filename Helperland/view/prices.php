@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -19,11 +25,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="Css/prices.css">
-    <link rel="stylesheet" href="Css/uparr.css">
-    <link rel="stylesheet" href="Css/loginmodal.css">
+    <link rel="stylesheet" href="assets/Css/prices.css">
+    <link rel="stylesheet" href="assets/Css/uparr.css">
+    <link rel="stylesheet" href="assets/Css/loginmodal.css">
+    <link rel="stylesheet" href="assets/Css/loginnavbar.css">
 
-    <script src="js/uparr.js"></script>
+    <script src="assets/js/uparr.js"></script>
 
     <title>Prices</title>
 </head>
@@ -32,8 +39,8 @@
 
         <?php
             include 'includes/uparr.php';
-            include 'modal/loginmodal.html';
-            include 'modal/forgotpassmodal.html';
+            include 'modal/loginmodal.php';
+            include 'modal/forgotpassmodal.php';
         ?>
 
     <!-- navbar start -->
@@ -57,7 +64,7 @@
                 <div class="star-logo">
                     <div class="Rectangle-5-copy-6"></div>
                     <div>
-                        <img src="Img/prices/forma-1.png" alt="forma-1">
+                        <img src="assets/Img/prices/forma-1.png" alt="forma-1">
                     </div>
                     <div class="Rectangle-5-copy-6"></div>
                 </div>
@@ -75,9 +82,9 @@
                         </div>
                         <div class="one-body-2">
                             <ul>
-                                <li><img src="Img/prices/forma-1_5.png" alt="">Lower prices </li>
-                                <li><img src="Img/prices/forma-1_5.png" alt="">Easy online & secure payment</li>
-                                <li><img src="Img/prices/forma-1_5.png" alt="">Easy amendment</li>
+                                <li><img src="assets/Img/prices/forma-1_5.png" alt="">Lower prices </li>
+                                <li><img src="assets/Img/prices/forma-1_5.png" alt="">Easy online & secure payment</li>
+                                <li><img src="assets/Img/prices/forma-1_5.png" alt="">Easy amendment</li>
                             </ul>
                         </div>
                     </div>
@@ -93,7 +100,7 @@
                     <div class="star-logo">
                         <div class="Rectangle-5-copy-6"></div>
                         <div>
-                            <img src="Img/prices/forma-1.png" alt="forma-1">
+                            <img src="assets/Img/prices/forma-1.png" alt="forma-1">
                         </div>
                         <div class="Rectangle-5-copy-6"></div>
                     </div>
@@ -103,7 +110,7 @@
                     <div class="service-row-1" id="service-row">
                         <div>
                             <div>
-                                <img src="Img/prices/forma-1_3.png" alt="">
+                                <img src="assets/Img/prices/forma-1_3.png" alt="">
                             </div>
                             <span class="Inside-cabinets">
                                 Inside cabinets
@@ -114,7 +121,7 @@
                         </div>
                         <div>
                             <div>
-                                <img src="Img/prices/shape-1.png" alt="">
+                                <img src="assets/Img/prices/shape-1.png" alt="">
                             </div>
                             <span class="Inside-fridge">
                                 Inside fridge
@@ -125,7 +132,7 @@
                         </div>
                         <div>
                             <div>
-                                <img src="Img/prices/forma-1_4.png" alt="">
+                                <img src="assets/Img/prices/forma-1_4.png" alt="">
                             </div>
                             <span class="Inside-oven">
                                 Inside oven
@@ -136,7 +143,7 @@
                         </div>
                         <div>
                             <div>
-                                <img src="Img/prices/forma-1_2.png" alt="">
+                                <img src="assets/Img/prices/forma-1_2.png" alt="">
                             </div>
                             <span class="Laundry-wash-dry">
                                 Laundry wash & dry
@@ -147,7 +154,7 @@
                         </div>
                         <div>
                             <div>
-                                <img src="Img/prices/forma-1_6.png" alt="">
+                                <img src="assets/Img/prices/forma-1_6.png" alt="">
                             </div>
                             <span class="Interior-windows">
                                 Interior windows
@@ -172,56 +179,56 @@
             <div class="star-logo">
                 <div class="Rectangle-5-copy-6"></div>
                 <div>
-                    <img src="Img/prices/forma-1.png" alt="forma-1">
+                    <img src="assets/Img/prices/forma-1.png" alt="forma-1">
                 </div>
                 <div class="Rectangle-5-copy-6"></div>
             </div>
 
             <div class="container cleaning-card">
                 <div class="card">
-                    <img class="card-img-top" src="Img/prices/group-18_3.png" alt="Card image cap">
+                    <img class="card-img-top" src="assets/Img/prices/group-18_3.png" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Bedroom and Living Room</h5>
                         <ul>
-                            <li><img src="Img/prices/vector-smart-object.png" alt="">Dust all accessible surfaces</li>
-                            <li><img src="Img/prices/vector-smart-object.png" alt="">Wipe down all mirrors and glass
+                            <li><img src="assets/Img/prices/vector-smart-object.png" alt="">Dust all accessible surfaces</li>
+                            <li><img src="assets/Img/prices/vector-smart-object.png" alt="">Wipe down all mirrors and glass
                                 fixtures</li>
-                            <li><img src="Img/prices/vector-smart-object.png" alt="">Clean all floor surfaces</li>
-                            <li><img src="Img/prices/vector-smart-object.png" alt="">Take out garbage and recycling
+                            <li><img src="assets/Img/prices/vector-smart-object.png" alt="">Clean all floor surfaces</li>
+                            <li><img src="assets/Img/prices/vector-smart-object.png" alt="">Take out garbage and recycling
                             </li>
 
                         </ul>
                     </div>
                 </div>
                 <div class="card">
-                    <img class="card-img-top" src="Img/prices/group-18_4.png" alt="Card image cap">
+                    <img class="card-img-top" src="assets/Img/prices/group-18_4.png" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Bathrooms</h5>
                         <ul>
-                            <li><img src="Img/prices/vector-smart-object.png" alt="">Wash and sanitize the toilet,
+                            <li><img src="assets/Img/prices/vector-smart-object.png" alt="">Wash and sanitize the toilet,
                                 shower, tub, sink</li>
-                            <li><img src="Img/prices/vector-smart-object.png" alt="">Dust all accessible surfaces</li>
-                            <li><img src="Img/prices/vector-smart-object.png" alt="">Wipe down all mirrors and glass
+                            <li><img src="assets/Img/prices/vector-smart-object.png" alt="">Dust all accessible surfaces</li>
+                            <li><img src="assets/Img/prices/vector-smart-object.png" alt="">Wipe down all mirrors and glass
                                 fixtures</li>
-                            <li><img src="Img/prices/vector-smart-object.png" alt="">Clean all floor surfaces</li>
-                            <li><img src="Img/prices/vector-smart-object.png" alt="">Take out garbage and recycling
+                            <li><img src="assets/Img/prices/vector-smart-object.png" alt="">Clean all floor surfaces</li>
+                            <li><img src="assets/Img/prices/vector-smart-object.png" alt="">Take out garbage and recycling
                             </li>
 
                         </ul>
                     </div>
                 </div>
                 <div class="card">
-                    <img class="card-img-top" src="Img/prices/group-18_2.png" alt="Card image cap">
+                    <img class="card-img-top" src="assets/Img/prices/group-18_2.png" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Kitchen</h5>
                         <ul>
-                            <li><img src="Img/prices/vector-smart-object.png" alt="">Dust all accessible surfaces</li>
-                            <li><img src="Img/prices/vector-smart-object.png" alt="">Empty sink and load up dishwasher
+                            <li><img src="assets/Img/prices/vector-smart-object.png" alt="">Dust all accessible surfaces</li>
+                            <li><img src="assets/Img/prices/vector-smart-object.png" alt="">Empty sink and load up dishwasher
                             </li>
-                            <li><img src="Img/prices/vector-smart-object.png" alt="">Wipe down exterior of stove, oven
+                            <li><img src="assets/Img/prices/vector-smart-object.png" alt="">Wipe down exterior of stove, oven
                                 and fridge</li>
-                            <li><img src="Img/prices/vector-smart-object.png" alt="">Clean all floor surfaces</li>
-                            <li><img src="Img/prices/vector-smart-object.png" alt="">Take out garbage and recycling
+                            <li><img src="assets/Img/prices/vector-smart-object.png" alt="">Clean all floor surfaces</li>
+                            <li><img src="assets/Img/prices/vector-smart-object.png" alt="">Take out garbage and recycling
                             </li>
                         </ul>
                     </div>
@@ -240,7 +247,7 @@
         <div class="star-logo">
             <div class="Rectangle-5-copy-6"></div>
             <div>
-                <img src="Img/prices/forma-1.png" alt="forma-1">
+                <img src="assets/Img/prices/forma-1.png" alt="forma-1">
             </div>
             <div class="Rectangle-5-copy-6"></div>
         </div>
@@ -268,7 +275,7 @@
             </div>
 
             <div class="why-card-1" id="why-img">
-                <img src="Img/prices/the-best-img-1.png" alt="">
+                <img src="assets/Img/prices/the-best-img-1.png" alt="">
             </div>
             
             <div class="why-card-1 card-1" id="card-3">

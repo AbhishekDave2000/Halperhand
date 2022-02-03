@@ -1,5 +1,5 @@
 <?php
-    include("../config.php");
+    include("config.php");
     class DBConnection{
         public $conn;
         public function Connection()

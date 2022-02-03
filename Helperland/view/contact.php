@@ -6,6 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script defer src="https://pro.fontawesome.com/releases/v5.10.0/js/all.js" integrity="sha384-G/ZR3ntz68JZrH4pfPJyRbjW+c0+ojii5f+GYiYwldYU69A+Ejat6yIfLSxljXxD" crossorigin="anonymous"></script>
@@ -13,12 +20,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="Css/contact.css">
-    <link rel="stylesheet" href="Css/uparr.css">
-    <link rel="stylesheet" href="Css/loginmodal.css">
+    <link rel="stylesheet" href="assets/Css/contact.css">
+    <link rel="stylesheet" href="assets/Css/uparr.css">
+    <link rel="stylesheet" href="assets/Css/loginmodal.css">
+    <link rel="stylesheet" href="assets/Css/loginnavbar.css">
 
-    <script src="js/uparr.js"></script>
-    <script src="js/contactform.js"></script>
+    <script src="assets/js/uparr.js"></script>
+    <script src="assets/js/contactform.js"></script>
 
     <title>Contact us</title>
 </head>
@@ -27,8 +35,8 @@
 
     <?php
     include 'includes/uparr.php';
-    include 'modal/loginmodal.html';
-    include 'modal/forgotpassmodal.html';
+    include 'modal/loginmodal.php';
+    include 'modal/forgotpassmodal.php';
     ?>
 
     <!-- navbar start -->
@@ -52,7 +60,7 @@
             <div class="star-logo">
                 <div class="Rectangle-5-copy-6"></div>
                 <div>
-                    <img src="Img/contact/forma-1-copy-5.png" alt="forma-1">
+                    <img src="assets/Img/contact/forma-1-copy-5.png" alt="forma-1">
                 </div>
                 <div class="Rectangle-5-copy-6"></div>
             </div>
@@ -61,7 +69,7 @@
         <div class="container" id="contact-details">
             <div class="contacts">
                 <div class="contacts-image">
-                    <img src="Img/contact/forma-1_2.png" alt="">
+                    <img src="assets/Img/contact/forma-1_2.png" alt="">
                 </div>
                 <div class="contacts-text">
                     1111 Lorem ipsum text 100, <br> Lorem ipsum AB
@@ -69,7 +77,7 @@
             </div>
             <div class="contacts">
                 <div class="contacts-image">
-                    <img src="Img/contact/phone-call.png" alt="">
+                    <img src="assets/Img/contact/phone-call.png" alt="">
                 </div>
                 <div class="contacts-text">
                     +49 (40) 123 56 7890 <br>
@@ -78,7 +86,7 @@
             </div>
             <div class="contacts">
                 <div class="contacts-image" style="padding-top: 7px;">
-                    <img src="Img/contact/vector-smart-object.png" alt="">
+                    <img src="assets/Img/contact/vector-smart-object.png" alt="">
                 </div>
                 <div class="contacts-text">
                     info@helperland.com
@@ -93,7 +101,7 @@
                 Get in touch with us
             </span>
             <!-- action="../controller/contactController.php" -->
-            <form id="first_form" action="../controller/contactController.php" method="post" enctype="multipart/form-data">
+            <form id="first_form" action="<?= $base_url.'?controller=contact&function=insertContact' ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col">
                         <input type="text" name="firstname" id="firstname" class="form-control" placeholder="First name">

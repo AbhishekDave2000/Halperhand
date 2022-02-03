@@ -1,0 +1,73 @@
+.nav-notification{
+    display: none;
+}
+
+.float-right-notification ul{
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+    height: 58px;
+    padding-top: 12px;
+    padding-bottom: 0px;
+}
+.float-right-notification ul li{
+    position: relative;
+}
+.dropdown-menu::before{
+    position: absolute;
+    content: "";
+    border-width: 0 9px 14px 9px;
+    border-style: solid;
+    border-color: transparent transparent #ccc transparent;
+    top: -14px;
+    right: 24px;
+}
+.dropdown-menu::after{
+    position: absolute;
+    top: 0;
+    content: "";
+    border-width: 0 8px 12px 8px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    top: -12px;
+    right: 25px;
+}
+
+#notification{
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+.Ellipse-5 {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #ff1616;
+    position: relative;
+    top: -45px;
+    left: 36px;
+    color: white;
+    text-align: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#user-1{
+      margin-left: 0px;
+      margin-right: 0px;
+  }
+.Forma-1-copy {
+    width: 11px;
+    height: 6px;
+    object-fit: contain;
+}
+.dropdown-menu1{
+    position: absolute;
+    top: 60px;
+    left: -115px;
+}
+.dropdown-menu2{
+    position: absolute;
+    top: 60px;
+    left: -110px;
+}

@@ -1,0 +1,27 @@
+.fpasssection{
+    width: 100%;
+}
+.fpasssection .container-fluid{
+    padding: 20px;
+    display: flex;
+    justify-content: center;  
+}
+.fpasssection .container-fluid form{
+    width: 500px;
+    color: #838383;
+}
+.fpasssection .container-fluid form .row{
+    padding: 10px;
+}
+.btn-div{
+    display: flex;
+    align-items: center;
+    padding-left: 15px !important;
+}
+.set-pass,.set-pass:hover{
+    background-color: #1d7a8c;
+    color: white;
+    width: fit-content;
+    padding: 5px 30px;
+    border-radius: 25px;
+}
