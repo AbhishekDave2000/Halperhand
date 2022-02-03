@@ -26,7 +26,7 @@
               </div>
               <div class="row">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="check" value="1" id="gridCheck" <?php if(isset($_COOKIE['check'])){ ?> checked <?php } ?>>
+                  <input class="form-check-input" type="checkbox" name="Check" value="1" id="gridCheck" <?php if(isset($_COOKIE['check'])){ ?> checked <?php } ?>>
                   <label class="form-check-label" for="gridCheck">
                     Remember me
                   </label>

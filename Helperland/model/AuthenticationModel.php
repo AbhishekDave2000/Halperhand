@@ -25,15 +25,19 @@ class AuthenticationModel{
     }
 
     public function SignupModel(){
+        $isApproved = 0;
         $firstname  = trim($this->data['firstname']);
         $lastname = trim($this->data['lastname']);
         $email = trim($this->data['email']);
         $phone = trim($this->data['phone']);
         $password = trim($this->data['password']);
         $UserTypeId = $this->data['UserTypeId'];
+        if($UserTypeId == 1){
+            $isApproved = 1;
+        }
 
-        $sql = "INSERT INTO user (FirstName,LastName,Email,Password,Mobile, UserTypeId) 
-                            VALUES ('$firstname' , '$lastname', '$email','$password', '$phone', $UserTypeId)";
+        $sql = "INSERT INTO user (FirstName,LastName,Email,Password,Mobile, UserTypeId, CreatedDate, IsApproved) 
+                            VALUES ('$firstname' , '$lastname', '$email','$password', '$phone', $UserTypeId, now(), $isApproved)";
 
         $result = $this->conn->query($sql);
         return $result;

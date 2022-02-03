@@ -12,6 +12,7 @@ class AuthenticationController
         $this->auth = new AuthenticationModel($_POST);
     }
 
+
     //login controller
     public function Login()
     {
@@ -26,31 +27,27 @@ class AuthenticationController
             if ($result['Email'] == $email && $result['Password'] == $pass) {
                 if ($result['UserTypeId'] == 1 || $result['UserTypeId'] == 2 && $result['IsApproved'] == 1) {
                     $_SESSION['user'] = $result;
-
-                    header("Location:" . Config::base_url . "?controller=Default&function=homepage");
-                    
                     if ($check == 1) {
                         setcookie('user', $email, time() + (86400 * 30), "/");
                         setcookie('pass', $pass, time() + (86400 * 30), "/");
                         setcookie('check', $check, time() + (86400 * 30), "/");
                     }
+                    header("Location:" . Config::base_url . "?controller=Default&function=homepage");
                     exit();
                 } else {
-                    header("Location: errors.php?error=You are not approved yet try contaction admin!");
+                    header("Location: errors.php?error=You are not approved wait till you get approved!");
                     exit();
                 }
-            }
-        } elseif ($result['Email'] != $email || $result['Password'] == $pass) {
-
+            } else {
 ?>
-            <script>
-                alert('Incorrect email or password please try again with correct ones!');
-                window.location.href = "<?= Config::base_url . '?controller=Default&function=homepage' ?>";
-            </script>
-        <?php
-            exit();
+                <script>
+                    alert('Incorrect email or password please try again with correct ones!');
+                    window.location.href = "<?= Config::base_url . '?controller=Default&function=homepage' ?>";
+                </script>
+            <?php
+            }
         } else {
-        ?>
+            ?>
             <script>
                 alert('You can not login please register yourself!');
                 window.location.href = "<?= Config::base_url . '?controller=Default&function=homepage' ?>";
@@ -74,6 +71,7 @@ class AuthenticationController
                     header("Location: " . Config::base_url . '?controller=Default&function=homepage');
                     exit;
                 } else {
+                    // error page redirect remaining
                     echo "fail";
                     exit;
                 }
@@ -100,7 +98,7 @@ class AuthenticationController
 
             //send session data
             $_SESSION['email'] = $email;
-            
+
             // header("Location :".Config::base_url."?controller=Default&function=homepage");
             // include(Config::base_url."?controller=Default&function=homepage");
             // exit();
@@ -108,8 +106,8 @@ class AuthenticationController
             header("Location: errors.php?error=This email is not registered please try with registered email!");
             exit;
         }
-        
     }
+
 
     //password set function
     public function setPass()
@@ -136,8 +134,9 @@ class AuthenticationController
                 </script>
 <?php
             }
-        }else{
-            header("Location:".Config::base_url."?controller=Default&function=homepage");
+        } else {
+            header("Location: errors.php?error= Session has been expired please try again!");
+            // header("Location:" . Config::base_url . "?controller=Default&function=homepage");
             exit();
         }
     }
