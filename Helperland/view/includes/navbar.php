@@ -69,8 +69,8 @@
                                     </span>
                                 </div>
                                 <div class="dropdown-divider" style="display: block;"></div>
-                                <a class="dropdown-item" href="#">My Dashboard</a>
-                                <a class="dropdown-item" href="#">My Settings</a>
+                                <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function=customerDash&parameter=dashboard' ?>">My Dashboard</a>
+                                <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function=customerDash&parameter=mysetting' ?>">My Settings</a>
                                 <a class="dropdown-item" href="<?= $base_url . '?controller=Authentication&function=Logout' ?>">Logout</a>
                             </div>
                         </li>

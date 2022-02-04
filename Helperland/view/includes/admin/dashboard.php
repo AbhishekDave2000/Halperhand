@@ -24,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#Reschedule-cancle">
             <td class="dashserviceid">
                 <span>12313</span>
             </td>

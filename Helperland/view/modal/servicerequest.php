@@ -74,18 +74,14 @@
 
 </div>
 
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Reschedule-cancle">
-    Launch demo modal
-</button> -->
 
 <!-- Modal -->
 <div class="modal fade" id="Reschedule-cancle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-rcmodal">
         <div class="modal-content MCrcmodal">
             <div class="modal-header MHrc">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <h5 class="modal-title" id="exampleModalLabel">Service Detail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body MBrc">
                 <div class="container-fluid modatl-time">
