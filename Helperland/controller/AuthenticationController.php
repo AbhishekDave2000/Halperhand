@@ -17,11 +17,24 @@ class AuthenticationController
     public function Login()
     {
         $result = "";
+        $check = 0;
         if (isset($_POST['Login'])) {
-            $email = $_POST['Email'];
-            $pass = $_POST['Password'];
-            $check = $_POST['check'];
-            $result = $this->auth->LoginModel();
+            $validator = new userValidator($_POST);
+            $err = $validator->loginValidateor();
+            if (count($err) > 0) {
+                $_SESSION['error'] = $err;
+                header("Location: errors.php?error=");
+                exit();
+            } else {
+                $email = $_POST['Email'];
+                $pass = $_POST['Password'];
+                if (isset($_POST['check'])) {
+                    $check = $_POST['check'];
+                } else {
+                    $check = 0;
+                }
+                $result = $this->auth->LoginModel();
+            }
         }
         if ($result) {
             if ($result['Email'] == $email && $result['Password'] == $pass) {
@@ -35,24 +48,16 @@ class AuthenticationController
                     header("Location:" . Config::base_url . "?controller=Default&function=homepage");
                     exit();
                 } else {
-                    header("Location: errors.php?error=You are not approved wait till you get approved!");
+                    header("Location: errors.php?error=You are not approved wait till you get approval!");
                     exit();
                 }
-            } else {
-?>
-                <script>
-                    alert('Incorrect email or password please try again with correct ones!');
-                    window.location.href = "<?= Config::base_url . '?controller=Default&function=homepage' ?>";
-                </script>
-            <?php
+            } elseif ($result['Email'] != $email || $result['Password'] != $pass) {
+                header("Location: errors.php?error=Incorrect email or password please try again with correct ones!");
+                exit();
             }
         } else {
-            ?>
-            <script>
-                alert('You can not login please register yourself!');
-                window.location.href = "<?= Config::base_url . '?controller=Default&function=homepage' ?>";
-            </script>
-            <?php
+            header("Location: errors.php?error=You can not login please register yourself!");
+            exit();
         }
     }
 
@@ -71,7 +76,6 @@ class AuthenticationController
                     header("Location: " . Config::base_url . '?controller=Default&function=homepage');
                     exit;
                 } else {
-                    // error page redirect remaining
                     echo "fail";
                     exit;
                 }
@@ -88,20 +92,16 @@ class AuthenticationController
     {
         //email user select from database
         $result = $this->auth->forgotPasswordModel();
-
         //user exist validate
         $email = $_POST['email'];
         if ($result['Email'] == $email) {
             //send mail
             $url = Config::base_url . '?controller=Default&function=forgotPasspage';
             sendmail($email, 'This is link for Setting new password in Helperland!', 'Click here: ' . $url);
-
             //send session data
             $_SESSION['email'] = $email;
-
-            // header("Location :".Config::base_url."?controller=Default&function=homepage");
-            // include(Config::base_url."?controller=Default&function=homepage");
-            // exit();
+            header('Location: ?controller=Default&function=homepage');
+            exit();
         } else {
             header("Location: errors.php?error=This email is not registered please try with registered email!");
             exit;
@@ -127,16 +127,11 @@ class AuthenticationController
                     exit;
                 }
             } else {
-            ?>
-                <script>
-                    alert('Enter Same passwords in both fields!');
-                    window.location.href = "<?= Config::base_url . '?controller=Default&function=forgotPasspage' ?>";
-                </script>
-<?php
+                header("Location: errors.php?error=Enter Same passwords in both fields!");
+                exit;
             }
         } else {
-            header("Location: errors.php?error= Session has been expired please try again!");
-            // header("Location:" . Config::base_url . "?controller=Default&function=homepage");
+            header("Location:" . Config::base_url . "?controller=Default&function=homepage");
             exit();
         }
     }

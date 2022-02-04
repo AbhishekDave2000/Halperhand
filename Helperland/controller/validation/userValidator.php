@@ -76,6 +76,22 @@ class userValidator{
         }
     }
 
+    public function loginValidateor(){
+        $email = $this->data['Email'];
+        $pass = $this->data['Password'];
+        if(empty($email)){
+            $this->addErrors("email","Email can not be empty!");
+        }else{
+            if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+                $this->addErrors("email","email must be valid email");
+            }
+        }
+        if(empty($pass)){
+            $this->addErrors("password","Password can not be empty!");
+        }
+        return $this->errors;
+    }
+
     public function policyValidator($policy){
         if(empty($policy)){
             $this->addErrors("agree","Click on the checkbox");

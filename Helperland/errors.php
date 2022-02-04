@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require("config.php"); ?>
+<?php require("config.php");
+session_start(); ?>
 
 <head>
     <meta charset="UTF-8">
@@ -15,6 +16,22 @@
         <?php if (isset($_GET["error"])) { ?>
             <div class="alert alert-danger" role="alert">
                 <?= $_GET["error"] ?>
+                <?php
+                    $email = "";
+                    $pass = "";
+                    if(isset($_SESSION['error'])){
+                        if (isset($_SESSION['error']['email'])) {
+                            $email = $_SESSION['error']['email'];
+                            echo $email;
+                        }
+                        echo "  ";
+                        if($_SESSION['error']['password']){
+                            $pass = $_SESSION['error']['password'];
+                            echo $pass;
+                        }
+                        unset($_SESSION['error']);
+                    } 
+                ?>
             </div>
         <?php
         } else {

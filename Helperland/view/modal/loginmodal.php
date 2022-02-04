@@ -1,5 +1,5 @@
 <?php
-  $base_url = "http://localhost/Tatvasoft/Helperland/";
+  $base_url = "http://localhost/Halperhand/Helperland/";
   // include("controller/AuthenticationController.php");
 ?>
 
@@ -17,16 +17,16 @@
           <form action="<?= $base_url.'?controller=Authentication&function=Login'?>" method="post">
             <div class="col">
               <div class="row">
-                <input type="text" class="form-control" name="Email" placeholder="Email" aria-label="Email" value="<?php if(isset($_COOKIE['user'])){echo $_COOKIE['user'];} ?>" >
+                <input type="text" class="form-control" name="Email" placeholder="Email" aria-label="Email" value="<?php if(isset($_COOKIE['user'])){echo $_COOKIE['user'];} ?>" required>
                 <i class="fa fa-user" aria-hidden="true"></i>
               </div>
               <div class="row">
-                <input type="password" class="form-control" name="Password" placeholder="Password" aria-label="Password" value="<?php if(isset($_COOKIE['pass'])){echo $_COOKIE['pass'];} ?>">
+                <input type="password" class="form-control" name="Password" placeholder="Password" aria-label="Password" value="<?php if(isset($_COOKIE['pass'])){echo $_COOKIE['pass'];} ?>" required>
                 <i class="fas fa-lock" aria-hidden="true"></i>
               </div>
               <div class="row">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="Check" value="1" id="gridCheck" <?php if(isset($_COOKIE['check'])){ ?> checked <?php } ?>>
+                  <input class="form-check-input" type="checkbox" name="check" value="1" id="gridCheck" <?php if(isset($_COOKIE['check'])){ ?> checked <?php } ?>>
                   <label class="form-check-label" for="gridCheck">
                     Remember me
                   </label>

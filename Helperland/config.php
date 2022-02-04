@@ -28,7 +28,7 @@ class Config{
 
 
     /* ----------------Base url path----------------------- */
-    const base_url = "http://localhost/Tatvasoft/Helperland/";
+    const base_url = "http://localhost/Halperhand/Helperland/";
 }
 
 ?>

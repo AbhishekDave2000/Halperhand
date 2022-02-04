@@ -16,7 +16,7 @@ class AuthenticationModel{
         $password = trim($this->data['Password']);
 
         $sql = "SELECT * FROM user WHERE Email = '$email' 
-                                   AND Password = '$password'";
+                                   OR Password = '$password'";
                                    
         $result = $this->conn->query($sql);
         if($result->num_rows > 0){
@@ -25,7 +25,6 @@ class AuthenticationModel{
     }
 
     public function SignupModel(){
-        $isApproved = 0;
         $firstname  = trim($this->data['firstname']);
         $lastname = trim($this->data['lastname']);
         $email = trim($this->data['email']);
@@ -33,11 +32,14 @@ class AuthenticationModel{
         $password = trim($this->data['password']);
         $UserTypeId = $this->data['UserTypeId'];
         if($UserTypeId == 1){
-            $isApproved = 1;
+            $approved = 1;
+        }elseif($UserTypeId == 2){
+            $approved = 0;
         }
+        // $approved = $this->data['IsApproved'];
 
         $sql = "INSERT INTO user (FirstName,LastName,Email,Password,Mobile, UserTypeId, CreatedDate, IsApproved) 
-                            VALUES ('$firstname' , '$lastname', '$email','$password', '$phone', $UserTypeId, now(), $isApproved)";
+                            VALUES ('$firstname' , '$lastname', '$email','$password', '$phone', $UserTypeId, now(), $approved)";
 
         $result = $this->conn->query($sql);
         return $result;
@@ -63,5 +65,3 @@ class AuthenticationModel{
         return $result;
     }
 }
-
-?>

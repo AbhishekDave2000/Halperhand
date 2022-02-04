@@ -61,11 +61,12 @@ class contactController
         $message = $this->post['message'];
         $name = $this->post['firstname'] . " " . $this->post['lastname'];
         $filepath = $_POST['filepath'];
-        $html = "<h1>You have message from: {$name}</h1>
+        $html = "
+                <p style='font-size:18px;'>You have message from: {$name}</p>
                 <hr>
-                <h2> The subject of message is: {$subject}</h3>
-                <p>{$message}</p>";
-        sendmail(Config::ADMIN_EMAIL, "Abhishek", $html, $filepath);
+                <p style='font-size:18px;'> The subject of message is: {$subject}</p>
+                <p style='font-size:16px;'>{$message}</p>";
+        sendmail(Config::ADMIN_EMAIL, $name, $html, $filepath);
     }
 }
 
