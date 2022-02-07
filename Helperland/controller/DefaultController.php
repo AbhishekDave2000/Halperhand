@@ -28,6 +28,9 @@ class DefaultController{
     public function ForgotPasspage(){
         include("view/forgotpasspage.php");
     }
+    public function BookNowpage(){
+        include("view/bookservice.php");
+    }
     public function customerDash($parameter){
         $para = $_GET['parameter']; 
         include("view/service-history.php");

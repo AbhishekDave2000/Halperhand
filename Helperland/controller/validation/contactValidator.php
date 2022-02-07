@@ -94,9 +94,9 @@ class contactValidator{
         }
     
         public function isFileValidate($file){
-            echo "0";
+            // echo "0";
             if(isset($file[self::$filefield])){
-                echo "1";
+                // echo "1";
                 $file_arr = $file[self::$filefield];
                 $file_extension = strtolower(pathinfo($file_arr["name"], PATHINFO_EXTENSION));
                 if($file_arr['size'] >= Config::FILE_MAX_SIZE){
@@ -106,8 +106,8 @@ class contactValidator{
                     return ["file-extension", "File Type is not acceptable"];
                 }
             }
-            echo "3";
-            exit();
+            // echo "3";
+            // exit();
             return [];
         }
 

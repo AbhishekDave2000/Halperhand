@@ -104,10 +104,10 @@
             <form id="first_form" action="<?= $base_url.'?controller=contact&function=insertContact' ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col">
-                        <input type="text" name="firstname" id="firstname" class="form-control" placeholder="First name">
+                        <input type="text" name="firstname" id="c-first-name" class="form-control" placeholder="First name">
                     </div>
                     <div class="col">
-                        <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last name">
+                        <input type="text" name="lastname" id="c-last-name" class="form-control" placeholder="Last name">
                     </div>
                 </div>
 
@@ -117,11 +117,11 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">+49</div>
                             </div>
-                            <input type="tel" name="phonenumber" id="phone" class="form-control" placeholder="Mobile Number">
+                            <input type="tel" name="phonenumber" id="c-phone-no" class="form-control" placeholder="Mobile Number">
                         </div>
                     </div>
                     <div class="col">
-                        <input type="email" name="email" class="form-control" id="email" placeholder="Email Address">
+                        <input type="email" name="email" class="form-control" id="c-email-id" placeholder="Email Address">
                     </div>
                 </div>
 
@@ -138,7 +138,7 @@
 
                 <div class="row">
                     <div class="col">
-                        <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+                        <textarea class="form-control" name="message" id="c-contact-message" rows="3"></textarea>
                     </div>
                 </div>
 
@@ -151,7 +151,7 @@
 
                 <div class="row">
                     <div class="form-check">
-                        <input class="form-check-input" name="agree" type="checkbox" id="agreed" required>
+                        <input class="form-check-input" name="agree" type="checkbox" id="c-agreed-terms" required>
                         <label class="form-check-label" for="flexCheckDefault">
                             I hearby agree that my data entered into the contact form will be store electronically.
                         </label>
@@ -160,7 +160,7 @@
 
                 <div class="row">
                     <div class="col">
-                        <button type="submit" id="submit" name="submit" value="submit">Submit</button>
+                        <button type="submit" id="c-submit" name="submit" value="submit">Submit</button>
                     </div>
                 </div>
             </form>

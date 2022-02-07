@@ -10,10 +10,10 @@
           <form action="<?= $base_url.'?controller=Authentication&function=forgotPassword' ?>" method="POST">
             <div class="col">
               <div class="row">
-                <input type="text" name="email" class="form-control" placeholder="Email Address" aria-label="Email">
+                <input type="text" name="email" id="F-send-Email" class="form-control" placeholder="Email Address" aria-label="Email">
               </div>
               <div class="row">
-                <button type="submit" name="send" value="send" class="btn">Send</button>
+                <button type="submit" name="send" value="send" id="E-send" class="btn">Send</button>
               </div>
               <div class="row">
                 <span class="login-link"><a href="#" data-bs-toggle="modal"

@@ -20,26 +20,26 @@ class contactController
             //attachment file
             $filepath = "";
             $filename = "";
+
             if (isset($_FILES['attachment'])) {
                 $filerrors = $validate->isFileValidate($_FILES);
-                print_r($filerrors);
-
-                if(!count($filerrors) > 0) {
+                if (!count($filerrors) > 0) {
                     $filename = $_FILES['attachment']['name'];
                     $filepath = "assets/attachments/" . $filename;
                     $temp_file_path = $_FILES['attachment']['tmp_name'];
                     if (!move_uploaded_file($temp_file_path, $filepath)) {
+                        exit;
                         header("Location: errors.php?error=file not uploaded!");
                         exit();
                     }
-                }else{
-                    header("Location: errors.php?error=File is not validated!");  
+                } else {
+                    header("Location: errors.php?error=File is not valid!");
                 }
             }
-
             //insert data into table
             $_POST['filepath'] = $filepath;
             $_POST['filename'] = $filename;
+
             $contactus = new contactModel($_POST);
             $result = $contactus->insertContactData();
             if ($result) {
@@ -49,8 +49,7 @@ class contactController
             //redirect to contact page
             header('Location: ?controller=Default&function=contactpage');
             exit();
-        }
-        else{
+        } else {
             header("Location: errors.php?error=Form is not validated!");
             exit();
         }
@@ -61,11 +60,11 @@ class contactController
         $message = $this->post['message'];
         $name = $this->post['firstname'] . " " . $this->post['lastname'];
         $filepath = $_POST['filepath'];
-        $html = "
-                <p style='font-size:18px;'>You have message from: {$name}</p>
+        $html = "<p style='font-size:18px;'>You have message from: {$name}</p>
                 <hr>
                 <p style='font-size:18px;'> The subject of message is: {$subject}</p>
                 <p style='font-size:16px;'>{$message}</p>";
+
         sendmail(Config::ADMIN_EMAIL, $name, $html, $filepath);
     }
 }

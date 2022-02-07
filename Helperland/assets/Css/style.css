@@ -132,15 +132,24 @@ body{
     margin-right: 1rem;
 }
 
-.home .home-content .button button{
+.home .home-content .button {
     border: 1px solid white;
     background-color: #00607287;
-    color: white;
     border-radius: 27px;
-    font-size: 18px;
-    margin-top: 16px;
     width: 225px;
     height: 54px;
+}
+.home .home-content .button a,
+.home .home-content .button a:hover{
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 27px;
+    color: white;
+    width: 225px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .home .home-content .payment-process{

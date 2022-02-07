@@ -62,7 +62,7 @@
         </ul>
       </div>
       <div class="text-center button">
-        <button class="">Let's Book a Cleaner</button>
+        <a href="<?= $base_url . '?controller=Default&function=BookNowpage' ?>">Let's Book a Cleaner</a>
       </div>
       <div class="payment-process">
         <div class="payment-process-box text-center">

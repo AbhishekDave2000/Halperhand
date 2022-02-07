@@ -1,3 +1,16 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="assets/js/userValidator.js"></script>
+<style>
+  .error {
+    color: red;
+    margin-left: 5px;
+    display: inline;
+  }
+  label.error {
+    display: inline !important;
+  }
+</style>
+
 <?php
   $base_url = "http://localhost/Halperhand/Helperland/";
   // include("controller/AuthenticationController.php");
@@ -17,11 +30,11 @@
           <form action="<?= $base_url.'?controller=Authentication&function=Login'?>" method="post">
             <div class="col">
               <div class="row">
-                <input type="text" class="form-control" name="Email" placeholder="Email" aria-label="Email" value="<?php if(isset($_COOKIE['user'])){echo $_COOKIE['user'];} ?>" required>
+                <input type="text" class="form-control" id="login-Email" name="Email" placeholder="Email" aria-label="Email" value="<?php if(isset($_COOKIE['user'])){echo $_COOKIE['user'];} ?>">
                 <i class="fa fa-user" aria-hidden="true"></i>
               </div>
               <div class="row">
-                <input type="password" class="form-control" name="Password" placeholder="Password" aria-label="Password" value="<?php if(isset($_COOKIE['pass'])){echo $_COOKIE['pass'];} ?>" required>
+                <input type="password" class="form-control" id="login-Password" name="Password" placeholder="Password" aria-label="Password" value="<?php if(isset($_COOKIE['pass'])){echo $_COOKIE['pass'];} ?>">
                 <i class="fas fa-lock" aria-hidden="true"></i>
               </div>
               <div class="row">
@@ -33,7 +46,7 @@
                 </div>
               </div>
               <div class="row">
-                <button type="submit" name="Login" value="Login" class="btn">Login</button>
+                <button type="submit" name="Login" id="login-btn" value="Login" class="btn">Login</button>
               </div>
               <div class="row">
                 <p><a href="" data-bs-toggle="modal" data-bs-target="#forgotpass" data-bs-dismiss="modal">Forgot Password</a></p>

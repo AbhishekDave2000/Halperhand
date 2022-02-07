@@ -33,14 +33,14 @@ $(document).ready(function () {
                 return false;
             }
         }
-        
-        if(phonenumber.length < 1){
+
+        if (phonenumber.length < 1) {
             $('#phone-div').after('<span class="error">This field is required</span>');
             return false;
-        }else if (phonenumber.length < 10 && phonenumber.length > 1) {
+        } else if (phonenumber.length < 10 && phonenumber.length > 1) {
             $('#phone-div').after('<span class="error">Phone number is shorter than 10 numbers</span>');
             return false;
-        }else{
+        } else {
             var regexp = /[0-9]{10}/;
             var validPhonenumber = regexp.test(phonenumber);
             if (!validPhonenumber) {
@@ -49,31 +49,111 @@ $(document).ready(function () {
             }
         }
 
-        if(password.length < 1){
+        if (password.length < 1) {
             $('#password').after('<span class="error">This field is required</span>');
             return false;
-        }else if(password.length > 1 && password.length <7){
+        } else if (password.length > 1 && password.length < 7) {
             $('#password').after('<span class="error">Password must be greater than 8 character!</span>');
             return false;
         }
 
-        if(cpassword.length < 1){
+        if (cpassword.length < 1) {
             $('#cpassword').after('<span class="error">This field is required</span>');
             return false;
-        }else if(cpassword.length > 1 && cpassword.length <7){
+        } else if (cpassword.length > 1 && cpassword.length < 7) {
             $('#cpassword').after('<span class="error">Password must be greater than 8 character!</span>');
             return false;
         }
 
-        if(password != cpassword){
+        if (password != cpassword) {
             $('.pass').after('<span class="error">Both Passwords must be same!</span>');
             return false;
         }
 
-        if(!agreed){
+        if (!agreed) {
             $('.agree-div').after('<span class="error">You have to first agree to our terms and condition!</span>');
             return false;
         }
 
+    });
+});
+
+$(document).ready(function () {
+    $('#login-btn').click(function () {
+        var Lemail = $('#login-Email').val();
+        var Lpass = $('#login-Password').val();
+
+        $(".error").remove();
+
+        if (Lemail.length < 1) {
+            $('#login-Email').after('<span class="error">This field is required</span>');
+            return false;
+        } else {
+            var regEx = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            var validEmail = regEx.test(Lemail);
+            if (!validEmail) {
+                $('#login-Email').after('<span class="error">Enter a valid email</span>');
+                return false;
+            }
+        }
+
+        if (Lpass.length < 1) {
+            $('#login-Password').after('<span class="error">This field is required</span>');
+            return false;
+        } else if (Lpass.length > 1 && Lpass.length < 7) {
+            $('#login-Password').after('<span class="error">Password must be greater than 8 character!</span>');
+            return false;
+        }
+    });
+});
+
+$(document).ready(function(){
+    $('#E-send').click(function(){
+        var Semail = $('#F-send-Email').val();
+
+        $(".error").remove();
+
+        if (Semail.length < 1) {
+            $('#F-send-Email').after('<span class="error">This field is required</span>');
+            return false;
+        } else {
+            var regEx = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            var validEmail = regEx.test(Semail);
+            if (!validEmail) {
+                $('#F-send-Email').after('<span class="error">Enter a valid email</span>');
+                return false;
+            }
+        }
+    });
+});
+
+
+$(document).ready(function(){
+    $('#set-new-Pass-btn').click(function(){
+        var newpass = $('#set-new-Pass').val();
+        var newcpass = $('#set-confirm-Pass').val();
+
+        $(".error").remove();
+
+        if (newpass.length < 1) {
+            $('#set-new-Pass').after('<span class="error">This field is required</span>');
+            return false;
+        } else if (newpass.length > 1 && newpass.length < 7) {
+            $('#set-new-Pass').after('<span class="error">Password must be greater than 8 character!</span>');
+            return false;
+        }
+
+        if (newcpass.length < 1) {
+            $('#set-confirm-Pass').after('<span class="error">This field is required</span>');
+            return false;
+        } else if (newcpass.length > 1 && newcpass.length < 7) {
+            $('#set-confirm-Pass').after('<span class="error">Password must be greater than 8 character!</span>');
+            return false;
+        }
+
+        if (newpass != newcpass) {
+            $('.pass').after('<span class="error">Both Passwords must be same!</span>');
+            return false;
+        }
     });
 });
