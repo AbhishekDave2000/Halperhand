@@ -21,13 +21,13 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
 
-        <div class="modal-header">
+        <div class="modal-header l-m-h">
           <h5 class="modal-title" id="staticBackdropLabel">Login to your account</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <div class="modal-body">
-          <form action="<?= $base_url.'?controller=Authentication&function=Login'?>" method="post">
+        <div class="modal-body l-m-b">
+          <form action="<?= $base_url.'?controller=Authentication&function=Login'?>" method="post" id="login-form-modal">
             <div class="col">
               <div class="row">
                 <input type="text" class="form-control" id="login-Email" name="Email" placeholder="Email" aria-label="Email" value="<?php if(isset($_COOKIE['user'])){echo $_COOKIE['user'];} ?>">

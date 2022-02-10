@@ -12,7 +12,7 @@
               <div class="row">
                 <input type="text" name="email" id="F-send-Email" class="form-control" placeholder="Email Address" aria-label="Email">
               </div>
-              <div class="row">
+              <div class="row pt-4 send-btn-div">
                 <button type="submit" name="send" value="send" id="E-send" class="btn">Send</button>
               </div>
               <div class="row">

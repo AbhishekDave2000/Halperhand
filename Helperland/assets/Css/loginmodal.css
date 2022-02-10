@@ -4,47 +4,48 @@ textarea:focus,button:focus
 {
     box-shadow: none !important;
 }
-.modal-dialog{
-    width: 300px;
+#login-model .modal-dialog{
+    width: 350px;
     color: #838383;
 }
 #login-model .modal-dialog .modal-content{
     padding: 20px;
 }
-.modal-header{
+#login-model .modal-dialog .modal-content .modal-header{
     border: 0px;
     color: #838383;
 }
-.modal-header .modal-title{
-    font-size: 20px !important;
+#login-model .modal-dialog .modal-content .modal-header .modal-title{
+    font-weight: 600;
+    font-size: 22px !important;
 }
-.modal-header button{
+#login-model .modal-dialog .modal-content .modal-header button{
     font-family: Roboto;
-    font-size: 16px;
+    font-size: 18px;
 }
-.modal-body{
+#login-model .modal-dialog .modal-content .modal-body{
     padding-top: 10px;
     padding-bottom: 0px;
     min-width: 100%;
 }
-.modal-body .col .row .form-control
-,.modal-body .col .row .form-check,
-.modal-body .col .row button
+#login-model .modal-dialog .modal-content .modal-body .col .row .form-control
+,#login-model .modal-dialog .modal-content .modal-body .col .row .form-check,
+#login-model .modal-dialog .modal-content .modal-body .col .row button
 {
     margin: 10px 0px;
     font-family: Roboto;
-    font-size: 16px;
+    font-size: 18px;
 }
-.modal-body .col .row{
-    position: relative;
+#login-model .modal-dialog .modal-content .modal-body .col .row{
+    position: relative !important;
 }
-.modal-body .col .row .fa-user, .modal-body .col .row .fa-lock {
+#login-model .modal-dialog .modal-content .modal-body .col .row .fa-user, .modal-body .col .row .fa-lock {
     position: absolute;
     font-size: 47px;
     right: 5px;
     top: 5px;
 }
-.modal-body .col .row button{
+#login-model .modal-dialog .modal-content .modal-body .col .row button{
     background-color: #1d7a8c;
     color: white;
     border-radius: 23px;
@@ -53,17 +54,17 @@ textarea:focus,button:focus
 .modal-body .col .row p a,
 .modal-body .col .row span a
 {
-    font-size: 16px;
+    font-size: 18px;
     color: #1d7a8c;
     text-decoration: none;
 }
-.modal-body .col .row p,
-.modal-body .col .row span
+#login-model .modal-dialog .modal-content .modal-body .col .row p,
+#login-model .modal-dialog .modal-content .modal-body .col .row span
 {
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
 }
-.modal-body .col .row p{
+#login-model .modal-dialog .modal-content .modal-body .col .row p{
     margin-bottom: 0;
     margin-top: 20px;
 }
@@ -75,13 +76,53 @@ textarea:focus,button:focus
 /* forgotpassword */
 .fpass .modal-dialog{
     width: 320px !important;
+    color: #838383;
 }
 .fpass .modal-dialog .modal-content{
-    width: 320px !important;
+    padding: 20px;
 }
-.forgot-body{
-    width: 280px !important;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 30px;
+.fpass .modal-dialog .modal-content .modal-header{
+    border: 0px;
+    color: #838383;
+}
+.fpass .modal-dialog .modal-content .modal-header .modal-title{
+    font-weight: 600 !important;
+    font-size: 22px !important;
+}
+.fpass .modal-dialog .modal-content .modal-header button{
+    font-family: Roboto;
+    font-size: 18px !important;
+}
+.fpass .modal-dialog .modal-content .modal-body .col .row .form-control
+.fpass .modal-dialog .modal-content .modal-body .col .row button
+{
+    margin: 10px 0px;
+    font-family: Roboto;
+    font-size: 18px !important;
+}
+.fpass .modal-dialog .modal-content .modal-body .col .row button{
+    background-color: #1d7a8c;
+    color: white;
+    border-radius: 23px;
+    height: 43px;
+}
+.modal-body .col .row p a,
+.modal-body .col .row span a
+{
+    font-size: 18px;
+    color: #1d7a8c;
+    text-decoration: none;
+}
+.fpass .modal-dialog .modal-content .modal-body .col .row p,
+.fpass .modal-dialog .modal-content .modal-body .col .row span
+{
+    text-align: center;
+    font-size: 18px;
+}
+.fpass .modal-dialog .modal-content .modal-body .col .row p{
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+.login-link{
+    padding-top: 15px;
 }

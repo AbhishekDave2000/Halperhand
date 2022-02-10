@@ -12,7 +12,6 @@ class AuthenticationController
         $this->auth = new AuthenticationModel($_POST);
     }
 
-
     //login controller
     public function Login()
     {
@@ -94,12 +93,13 @@ class AuthenticationController
         $result = $this->auth->forgotPasswordModel();
         //user exist validate
         $email = $_POST['email'];
+        
         if ($result['Email'] == $email) {
-            //send mail
-            $url = Config::base_url . '?controller=Default&function=forgotPasspage';
-            sendmail($email, 'This is link for Setting new password in Helperland!', 'Click here: ' . $url);
             //send session data
             $_SESSION['email'] = $email;
+            //send mail
+            $url = Config::base_url . '?controller=Default&function=forgotPasspage';
+            sendmail( $email , 'This is link for Setting new password in Helperland!', 'Click here: ' . $url);
             header('Location: ?controller=Default&function=homepage');
             exit();
         } else {

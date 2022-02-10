@@ -34,9 +34,9 @@
 <body>
 
     <?php
-    include 'includes/uparr.php';
-    include 'modal/loginmodal.php';
-    include 'modal/forgotpassmodal.php';
+        include 'includes/uparr.php';
+        include 'modal/loginmodal.php';
+        include 'modal/forgotpassmodal.php';
     ?>
 
     <!-- navbar start -->
