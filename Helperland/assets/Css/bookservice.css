@@ -8,11 +8,16 @@ input,select,button,textarea,a{
     margin-left: 5px;
     display: inline;
 }
-
+.session-var{
+    display: none;
+}
 /* modal login */
 .l-m-h,.l-m-b{
     padding-left: 0 !important;
     padding-right: 0 !important;
+}
+.l-m-h .btn-close,.f-m-h .btn-close{
+    display: none;
 }
 #login-model .modal-dialog .modal-content .modal-body .col .row .fa-user, .modal-body .col .row .fa-lock {
     position: absolute !important;
@@ -751,7 +756,7 @@ input,select,button,textarea,a{
     padding: 15px 10px;
     margin-left: 0;
     margin-right: 0;
-    width: 130px;
+    width: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -765,6 +770,8 @@ input,select,button,textarea,a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: fit-content;
+    text-align: center;
 }
 .avatar-pro img{
     height: 30px;
@@ -782,6 +789,16 @@ input,select,button,textarea,a{
     font-size: 18px;
     background-color: white;
     border-radius: 3px;
+    margin-top: 3px;
+}
+.fav-pro-main-div{
+    display: flex;
+    flex-wrap: wrap;
+}
+.fav-pro-main-div .form-check input[type="radio"]:checked + .form-check-label>p{
+    border: 1px solid transparent;
+    color: white;
+    background-color: green;
 }
 /* third tab end */
 
@@ -961,6 +978,61 @@ input,select,button,textarea,a{
 
 /* =====footer end===== */
 
+/* complete booking modal */
+.cb-mh{
+    border: 0;
+}
+.cb-mc,.cb-md{
+    width: 320px;
+}
+.cb-logo{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgb(13, 128, 13);
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cb-logo-fail{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* display: none; */
+}
+.cb-mb .container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+    color: #646464;
+}
+/* #book-fail-msg{
+    display: none;
+} */
+.message-of-booking{
+    color: #646464;
+    font-size: 20px;
+    text-align: center;
+}
+#booking-ok-btn{
+    background: #1D7A8C;
+    border-radius: 25px;
+    color: white;
+    font-style: Roboto;
+    font-size: 20px;
+    padding: 5px 25px;
+}
+/* complete booking modal */
 
 @media(max-width: 1250px){
     .footer{
@@ -1030,38 +1102,6 @@ input,select,button,textarea,a{
         top: 320px;
         right: 65px;
     }
-
-
-    /* .navbar-toggler{
-        border-color: white ;
-        height: 40px;
-        width: 40px;
-        margin-right: 12px;
-        margin-top: 13px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .navbar-toggler .navbar-toggler-icon{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .navbar-toggler .navbar-toggler-icon i{
-        color: white;
-    }
-    .navbar-nav{
-        position: absolute;
-        height: 50vh;
-        width: 250px;
-        z-index: 1000000;
-        right: 0;
-        top: 64px;
-        display: flex;
-        align-items: center !important;
-        border-bottom: 1px solid white;
-        padding-top: 20px;
-    } */
     .container-fluid .upcoming-heading{
         display:block;
         text-align: left;

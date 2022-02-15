@@ -50,7 +50,7 @@
               </div>
               <div class="row">
                 <p><a href="" data-bs-toggle="modal" data-bs-target="#forgotpass" data-bs-dismiss="modal">Forgot Password</a></p>
-                <span>Don't have an account?<a href="<?= $base_url.'?controller=Default&function=CustomerSignup'?>"> Create
+                <span>Don't have an account?<a class="forgot-modal-link" href="<?= $base_url.'?controller=Default&function=CustomerSignup'?>"> Create
                     an account</a></span>
               </div>
             </div>

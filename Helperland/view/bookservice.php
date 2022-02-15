@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php $base_url = Config::base_url; ?>
 
+<?php
+
+$isLogin = true;
+if (!isset($_SESSION['user'])) {
+    $isLogin = false;
+}
+
+// if not set  
+$base_url = Config::base_url;
+?>
 <head>
     <title>Book Now</title>
     <meta charset="utf-8">
@@ -14,9 +23,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="assets/js/booknow.js"></script>
 
     <!-- <script src="assets/js/booknow.js"></script> -->
@@ -26,15 +37,21 @@
     <link rel="stylesheet" href="assets/Css/loginnavbar.css">
 
     <script src="assets/js/uparr.js"></script>
+
 </head>
 
 <body>
 
     <?php
-    include 'includes/uparr.php';
-    include 'modal/loginmodal.php';
-    include 'modal/forgotpassmodal.php';
+        include 'includes/uparr.php';
+        include 'modal/loginmodal.php';
+        include 'modal/forgotpassmodal.php';
+        include 'modal/completeBooking.php';
     ?>
+
+    <!-- session var -->
+    <div id="user-session-val" class="session-var" style="padding-top: 70px;"><?php print_r($_SESSION['user']['UserId']); ?></div>
+    <!-- session var end -->
 
     <!-- navbar -->
     <section class="navigation">
@@ -121,7 +138,6 @@
             </ul>
             <div class="tab-content" id="myTabContent">
 
-
                 <!-- first tab content================ -->
                 <div class="tab-pane fade show active" id="servicesetup" role="tabpanel" aria-labelledby="home-tab">
                     <form action="<?= $base_url . '?controller=booknow&function=postalCodeCheck'; ?>" method="POST" id="postal-Form" class="check-form first-step-form">
@@ -155,7 +171,7 @@
                                             <input type="date" id="service-date" class="form-control" name="date-of-cleaning">
                                         </div>
                                         <div class="col">
-                                            <select class="form-select" id="service-start-time" aria-label="">
+                                            <select class="form-select" name="service-start-time" id="service-start-time" aria-label="">
                                                 <option value="8:00">8:00</option>
                                                 <option value="9:00">9:00</option>
                                                 <option value="10:00">10:00</option>
@@ -174,7 +190,7 @@
                                 <div class="col-md-6 hlc">
                                     <label for="howlongcleaing" class="form-label">How long do you need a cleaner to
                                         stay?</label>
-                                    <select class="form-select" id="service-hour-select" aria-label="Default select example">
+                                    <select class="form-select" name="service-hours-select" id="service-hour-select" aria-label="Default select example">
                                         <!-- <option>Hours</option> -->
                                         <option value="3">3.0 Hrs</option>
                                         <option value="3.5">3.5 Hrs</option>
@@ -197,7 +213,7 @@
                             <div class="service-row-1" id="service-row">
 
                                 <div class="form-check extra-service-check">
-                                    <input class="form-check-input" type="checkbox" value="Inside cabinets" id="first-check">
+                                    <input class="form-check-input" name="extra-cabinates" type="checkbox" value="1" id="first-check">
                                     <label class="form-check-label Inside-cabinets-click" for="first-check">
                                         <div>
                                             <img src="assets/Img/bookservice/3.png" alt="" class="grey-img">
@@ -210,7 +226,7 @@
                                 </div>
 
                                 <div class="form-check extra-service-check">
-                                    <input class="form-check-input" type="checkbox" value="Inside oven" id="second-check">
+                                    <input class="form-check-input" name="extra-oven" type="checkbox" value="2" id="second-check">
                                     <label class="form-check-label Inside-oven-click" for="second-check">
                                         <div>
                                             <img src="assets/Img/bookservice/4.png" alt="" class="grey-img">
@@ -223,7 +239,7 @@
                                 </div>
 
                                 <div class="form-check extra-service-check">
-                                    <input class="form-check-input" type="checkbox" value="Laundry wash & dry" id="third-check">
+                                    <input class="form-check-input" name="extra-laundry" type="checkbox" value="3" id="third-check">
                                     <label class="form-check-label Laundry-click" for="third-check">
                                         <div>
                                             <img src="assets/Img/bookservice/2.png" alt="" class="grey-img">
@@ -236,7 +252,7 @@
                                 </div>
 
                                 <div class="form-check extra-service-check">
-                                    <input class="form-check-input" type="checkbox" value="Interior windows" id="fourth-check">
+                                    <input class="form-check-input" type="checkbox" name="extra-window" value="4" id="fourth-check">
                                     <label class="form-check-label windows-click" for="fourth-check">
                                         <div>
                                             <img src="assets/Img/bookservice/1.png" alt="" class="grey-img">
@@ -249,7 +265,7 @@
                                 </div>
 
                                 <div class="form-check extra-service-check">
-                                    <input class="form-check-input" type="checkbox" value="Inside cabinets" id="fifth-check">
+                                    <input class="form-check-input" type="checkbox" name="extra-fridge" value="5" id="fifth-check">
                                     <label class="form-check-label cabinets-click" for="fifth-check">
                                         <div>
                                             <img src="assets/Img/bookservice/5.png" alt="" class="grey-img">
@@ -266,9 +282,9 @@
 
                         <div class="container comments-div">
                             <label for="Comments" class="form-label">Comments</label>
-                            <textarea class="form-control" id="service-comments" aria-label="With textarea"></textarea>
+                            <textarea class="form-control" name="service-comments-text" id="service-comments" aria-label="With textarea"></textarea>
                             <div class="form-check">
-                                <input class="form-check-input" id="petathome" type="checkbox" id="gridCheck">
+                                <input class="form-check-input" name="pets-at-home" id="petathome" type="checkbox" value="1">
                                 <label class="form-check-label" for="gridCheck">
                                     I have pets at home
                                 </label>
@@ -276,7 +292,7 @@
                         </div>
 
                         <div class="container continue-button">
-                            <button type="submit" id="submit-step2" class="btn">Continue</button>
+                            <button type="submit" name="step-2-submit" id="submit-step2" class="btn">Continue</button>
                         </div>
                     </form>
                 </div>
@@ -285,25 +301,19 @@
                 <!-- third tab start=========>>>>>>>> -->
                 <div class="tab-pane fade" id="yourdeatil" role="tabpanel" aria-labelledby="contact-tab">
 
-                    <form action="">
+                    <form action="" method="POST" class="your-detail-form">
                         <div class="container Address-show-div">
-                            <label for="Entercontactdetails" class="form-label">Enter your contact detail, so we can
+                            <label for="Entercontactdetails" id="H" class="form-label">Enter your contact detail, so we can
                                 serve
                                 you in better way!</label>
-                            <div class="container address-detail">
-                                <input type="radio" name="address-radio" class="radio-btn-address">
-                                <div class="container detail-of-address">
-                                    <span><strong>Address : </strong>112-ABC,XYZ</span><br>
-                                    <span><strong>Phone Numebr :</strong>3216543215</span>
-                                </div>
-                            </div>
-
-                            <div class="container address-detail">
-                                <input type="radio" name="address-radio" class="radio-btn-address">
-                                <div class="container detail-of-address">
-                                    <span><strong>Address : </strong>112-ABC,XYZ</span><br>
-                                    <span><strong>Phone Numebr :</strong>3216543215</span>
-                                </div>
+                            <div id="address-div-wrap">
+                                <!-- <div class="container address-detail">
+                                    <input type="radio" name="address-radio" class="radio-btn-address">
+                                    <div class="container detail-of-address">
+                                        <span><strong>Address : </strong><span class="addressline1-2"></span></span><br>
+                                        <span><strong>Phone Numebr :</strong><span class="address-phone-no"></span></span>
+                                    </div>
+                                </div> -->
                             </div>
 
                             <div class="add-select-radio pb-3"></div>
@@ -317,42 +327,43 @@
 
                             <div class="collapse add-address" id="collapseExample">
                                 <div class="card card-body">
-                                    <form action="" method="post">
+                                    <form action="" role="form" method="POST" class="add-address-form" id="Add-new-Address-form">
+                                        <input type="hidden" id="useremailid" name="email-id" value="<?=$_SESSION['user']['Email']; ?>">
                                         <div class="row">
                                             <div class="col">
-                                                <label for="inputEmail4" class="form-label">Street Name</label>
-                                                <input type="text" class="form-control" placeholder="Street Name" aria-label="Street Name">
+                                                <label class="form-label">Street Name</label>
+                                                <input type="text" id="stnm" class="form-control streetname-address" placeholder="Street Name" aria-label="Street Name">
                                             </div>
                                             <div class="col">
-                                                <label for="inputEmail4" class="form-label">House Number</label>
-                                                <input type="text" class="form-control" placeholder="House Number" aria-label="House Number">
+                                                <label class="form-label">House Number</label>
+                                                <input type="text" id="housenm" class="form-control houseno-address" placeholder="House Number" aria-label="House Number">
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col">
-                                                <label for="inputEmail4" class="form-label">Postal Code</label>
-                                                <input type="text" name="form-address-postal" id="address-postalcode" class="form-control" placeholder="Postal Code" aria-label="Postal Code">
+                                                <label class="form-label">Postal Code</label>
+                                                <input type="text"  name="form-address-postal" id="address-postalcode" class="form-control postalcode-address" placeholder="Postal Code" aria-label="Postal Code">
                                             </div>
                                             <div class="col">
-                                                <label for="inputEmail4" class="form-label">City</label>
-                                                <input type="text" class="form-control" placeholder="City" aria-label="City">
+                                                <label class="form-label">City</label>
+                                                <input type="text" id="citynm" class="form-control city-name-address" placeholder="City" aria-label="City">
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col col-md-6">
-                                                <label for="inputEmail4" class="form-label">Phone Numbe</label>
-                                                <div class="input-group flex-nowrap">
+                                                <label class="form-label">Phone Number</label>
+                                                <div class="input-group flex-nowrap phone-number-address">
                                                     <span class="input-group-text" id="addon-wrapping">+49</span>
-                                                    <input type="tel" class="form-control" placeholder="Phone Number" aria-label="Phone Number" aria-describedby="addon-wrapping">
+                                                    <input type="tel" id="phnm" class="form-control" placeholder="Phone Number" aria-label="Phone Number" aria-describedby="addon-wrapping">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col button-div-col">
-                                                <button type="submit" class="btn save-address save-address-btn">Save</button>
+                                                <button type="button" name="save-address" value="save-address" class="btn save-address save-address-btn">Save</button>
 
                                                 <a class="btn cancle-address-btn" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                     Cancle
@@ -364,30 +375,27 @@
                             </div>
 
                             <div class="container favourite-pro-select">
-                                <label for="Entercontactdetails" class="form-label fv-pro-label">Your Favourite Dervice
+                                <label for="Entercontactdetails" class="form-label fv-pro-label">Your Favourite Service
                                     Provider</label>
                                 <hr>
 
                                 <div class="container choose-fav-pro">
                                     <h6>You Can Choose Your Favourite Provider From Below</h6>
-                                    <div>
-                                        <div class="form-check avatar-card-select">
-                                            <input class="form-check-input" type="checkbox" value="Sandip Patel" id="fav-pro">
-                                            <label class="form-check-label" for="fav-pro">
+                                    <div class="d-flex fav-pro-main-div">
+                                        <!-- <div class="form-check avatar-card-select mr-1">
+                                            <input class="form-check-input" type="radio" id="fp-1" name="favrioute-provider">
+                                            <label class="form-check-label" for="fp-1">
                                                 <div class="avatar-pro">
                                                     <img src="assets/Img/bookservice/cap.png" alt="">
                                                 </div>
                                                 <span class="avatar-pro-name">Sandip Patel</span>
                                                 <p class="select-pro-btn">Select</p>
                                             </label>
-                                        </div>
-                                        <!-- <div class="container avatar-card">
-                                            
                                         </div> -->
                                     </div>
                                 </div>
                             </div>
-
+                            <input type="hidden" name="customer-userid" id="customer-user-input-id">
                             <hr>
                             <div class="container continue-button">
                                 <button type="submit" id="submit-step3" class="btn">Continue</button>
@@ -600,3 +608,11 @@
 </body>
 
 </html>
+
+<?php if (!$isLogin) { ?>
+    <script>
+        $(document).ready(function() {
+            $('#login-model').modal('show');
+        });
+    </script>
+<?php } ?>

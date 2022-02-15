@@ -1,8 +1,8 @@
 <!-- Modal Forgotpassword -->
-<div class="modal fade fpass" id="forgotpass" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade fpass" id="forgotpass" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header f-m-h">
           <h2 class="modal-title" id="exampleModalLabel">Forgot password</h2>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
