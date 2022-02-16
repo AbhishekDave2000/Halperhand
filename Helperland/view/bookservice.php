@@ -108,28 +108,28 @@ $base_url = Config::base_url;
         <div class="container book-process">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active servicesetup-tab" id="servicesetup-tab" data-bs-toggle="tab" data-bs-target="#servicesetup" type="button" role="tab" aria-controls="home" aria-selected="true">
+                    <a class="servicesetup-tab nav-link active" id="servicesetup-tab" data-bs-toggle="tab" data-bs-target="#servicesetup" type="button" role="tab" aria-controls="home" aria-selected="true">
                         <img class="grey" src="assets/Img/bookservice/setup-service.png" alt="">
                         <img class="white" src="assets/Img/bookservice/setup-service-white.png" alt="">
                         <span>Setup Service</span>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link scheduleplane-tab" id="scheduleplane-tab" data-bs-toggle="tab" data-bs-target="#scheduleplan" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                    <a class="scheduleplane-tab nav-link" id="scheduleplane-tab" data-bs-toggle="tab" data-bs-target="#scheduleplan" type="button" role="tab" aria-controls="profile" aria-selected="false">
                         <img class="grey" src="assets/Img/bookservice/schedule.png" alt="">
                         <img class="white" src="assets/Img/bookservice/schedule-white.png" alt="">
                         <span>Schedule Plan</span>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link yourdeatil-tab" id="yourdeatil-tab" data-bs-toggle="tab" data-bs-target="#yourdeatil" type="button" role="tab" aria-controls="contact" aria-selected="false">
+                    <a class="yourdeatil-tab nav-link" id="yourdeatil-tab" data-bs-toggle="tab" data-bs-target="#yourdeatil" type="button" role="tab" aria-controls="contact" aria-selected="false">
                         <img class="grey" src="assets/Img/bookservice/details.png" alt="">
                         <img class="white" src="assets/Img/bookservice/details-white.png" alt="">
                         <span>Your Details</span>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link makepayment-tab" id="makepayment-tab" data-bs-toggle="tab" data-bs-target="#makepayment" type="button" role="tab" aria-controls="makepayment" aria-selected="false">
+                    <a class="makepayment-tab nav-link" id="makepayment-tab" data-bs-toggle="tab" data-bs-target="#makepayment" type="button" role="tab" aria-controls="makepayment" aria-selected="false">
                         <img class="grey" src="assets/Img/bookservice/setup-service.png" alt="">
                         <img class="white" src="assets/Img/bookservice/setup-service-white.png" alt="">
                         <span>Setup Service</span>
@@ -162,7 +162,7 @@ $base_url = Config::base_url;
                     <form action="<?= $base_url . '?controller=booknow&function=bookNow'; ?>" class="Schedule-form">
 
                         <div class="container timing-div">
-                            <div class="row first-row-second-tab">
+                            <div class="row first-row-second-tab pb-2">
 
                                 <div class="col-md-6 wcn">
                                     <div class="row">
@@ -172,16 +172,26 @@ $base_url = Config::base_url;
                                         </div>
                                         <div class="col">
                                             <select class="form-select" name="service-start-time" id="service-start-time" aria-label="">
-                                                <option value="8:00">8:00</option>
-                                                <option value="9:00">9:00</option>
-                                                <option value="10:00">10:00</option>
-                                                <option value="11:00">11:00</option>
-                                                <option value="12:00">12:00</option>
-                                                <option value="13:00">13:00</option>
-                                                <option value="14:00">14:00</option>
-                                                <option value="15:00">15:00</option>
-                                                <option value="16:00">16:00</option>
-                                                <option value="17:00">17:00</option>
+                                                <option value="8.0">8:00</option>
+                                                <option value="8.5">8:30</option>
+                                                <option value="9.0">9:00</option>
+                                                <option value="9.5">9:30</option>
+                                                <option value="10.0">10:00</option>
+                                                <option value="10.5">10:30</option>
+                                                <option value="11.0">11:00</option>
+                                                <option value="11.5">11:30</option>
+                                                <option value="12.0">12:00</option>
+                                                <option value="12.5">12:30</option>
+                                                <option value="13.0">13:00</option>
+                                                <option value="13.5">13:30</option>
+                                                <option value="14.0">14:00</option>
+                                                <option value="14.5">14:30</option>
+                                                <option value="15.0">15:00</option>
+                                                <option value="15.5">15:30</option>
+                                                <option value="16.0">16:00</option>
+                                                <option value="16.5">16:30</option>
+                                                <option value="17.0">17:00</option>
+                                                <option value="17.5">17:30</option>
                                             </select>
                                         </div>
                                     </div>
@@ -291,7 +301,7 @@ $base_url = Config::base_url;
                             </div>
                         </div>
 
-                        <div class="container continue-button">
+                        <div class="container continue-button ">
                             <button type="submit" name="step-2-submit" id="submit-step2" class="btn">Continue</button>
                         </div>
                     </form>

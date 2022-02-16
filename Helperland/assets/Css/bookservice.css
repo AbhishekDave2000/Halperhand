@@ -11,6 +11,11 @@ input,select,button,textarea,a{
 .session-var{
     display: none;
 }
+#myTab .nav-link{
+    pointer-events: none;
+    border-left: 1px solid white;
+}
+
 /* modal login */
 .l-m-h,.l-m-b{
     padding-left: 0 !important;
@@ -1153,9 +1158,6 @@ input,select,button,textarea,a{
         width: inherit;
     }
     .prices-modal-button{
-        display: block;
-    }
-    #prices-block{
         display: block;
     }
     .modal-prices-title{

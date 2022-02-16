@@ -1,10 +1,27 @@
 $(document).ready(function () {
-    $('#s1,#s2,#s3,#s4,#s5').hide();
-    $('#postal-alert').hide();
-    $('.s').hide();
-    $('#myTab .nav-item .nav-link').attr('disabled', true);
-    $('#myTab .nav-item .nav-link').click(function(){
-        $('#myTab .nav-item .nav-link').nextAll().addClass('filled');
+
+    $('#s1,#s2,#s3,#s4,#s5,#postal-alert,.s').hide();
+    
+    function setClickableOnNavTabs() {
+        var clslist = document.getElementById("myTab").getElementsByClassName("nav-link");
+        for (var i = 0; i < clslist.length; i++) {
+            if (clslist[i].classList.contains("filled")) {
+                clslist[i].style.pointerEvents = "auto";
+            } else {
+                clslist[i].style.pointerEvents = "none";
+            }
+        }
+    }
+    $(".nav-link").on("click", function () {
+        var navtabs = ["servicesetup-tab", "scheduleplane-tab", "yourdeatil-tab", "makepayment-tab"];
+        for (var i = 0; i < navtabs.length; i++) {
+            if (!$(this).is($("." + navtabs[i]))) {
+                if (i >= navtabs.indexOf(this.className.split(" ")[0])) {
+                    $("." + navtabs[i]).removeClass("filled");
+                }
+            }
+        }
+        setClickableOnNavTabs();
     });
 
     //after step1
@@ -41,9 +58,11 @@ $(document).ready(function () {
                         $('#postal-alert').show();
                     }
                 }
+
             });
         }
         e.preventDefault();
+        setClickableOnNavTabs();
     });
 
     //after step2
@@ -58,7 +77,7 @@ $(document).ready(function () {
             "yourdeatil"
         );
 
-        
+
         var sess_var = $('#user-session-val').text();
         var postalcode = $('#postalcode').val();
         $.ajax({
@@ -131,6 +150,7 @@ $(document).ready(function () {
             }
         });
         e.preventDefault();
+        setClickableOnNavTabs();
     });
 
     // after step3
@@ -141,6 +161,7 @@ $(document).ready(function () {
             switchTheTab("yourdeatil-tab", "makepayment-tab", "yourdeatil", "makepayment");
         }
         e.preventDefault();
+        setClickableOnNavTabs();
     });
 
     // after step4
@@ -153,12 +174,12 @@ $(document).ready(function () {
                 type: "post",
                 data: data,
                 success: function (result) {
-                    if (result == 0 ) {
+                    if (result == 0) {
                         $('#complete-booking-modal').modal("show");
                         $('#book-success-msg,.cb-logo,.service-request-show-div').hide();
                         $('#book-fail-msg,.cb-logo-fail').show();
                         $('#submit-step4').text("Complete Booking").prop('disabled', false);
-                    } else if (result != 0){
+                    } else if (result != 0) {
                         $('#complete-booking-modal').modal("show");
                         $('#book-fail-msg,.cb-logo-fail,.c-b-m-close-btn').hide();
                         $('#book-success-msg,.cb-logo,.service-request-show-div').show();
@@ -167,13 +188,14 @@ $(document).ready(function () {
                         $('#booking-ok-btn').on("click", function () {
                             window.location.href = "?controller=Default&function=BookNowpage";
                         });
-                    }else{
+                    } else {
                         alert("Something went wrong! Try Agian!");
                     }
                 }
             });
         }
         e.preventDefault();
+        setClickableOnNavTabs();
     });
 
     // show address function
@@ -199,9 +221,9 @@ $(document).ready(function () {
     window.payment = 54;
     window.checkCount = 3.0;
     function setDefaultValue() {
-        
+
         var tomorrowDate = getTommorrowDate();
-        var service_start = "8:00";
+        var service_start = "8.0";
         var working_hour = '3';
         var total_payment = "54";
         var total_time = '3.0';
@@ -213,7 +235,7 @@ $(document).ready(function () {
         $(".service-row-1 .form-check input:checkbox").prop("checked", false);
         $("#service-comments").val("");
         $("#petathome").prop("checked", false);
-        
+
         // set default in payment summary
         $('.duration-date').html($('#service-date').val());
         $('.duration-time').html($('#service-start-time').val());
@@ -228,27 +250,39 @@ $(document).ready(function () {
             $('.duration-date').html($('#service-date').val());
             $('.duration-time').html($('#service-start-time').val());
         });
-        $('.extra-check-box,#service-hour-select').each(function(){
-                var $that = $(this);
-                $that.click(function(){
+        $('.extra-check-box,#service-hour-select,#service-start-time').each(function () {
+            var $that = $(this);
+            $that.click(function () {
 
                 // same class
                 var values = [];
-                $('.extra-check-box').each(function(){
-                var $this = $(this);
-                if ($this.is(':checked')) {
-                    values.push($this.val());
-                }
+                $('.extra-check-box').each(function () {
+                    var $this = $(this);
+                    if ($this.is(':checked')) {
+                        values.push($this.val());
+                    }
                 });
-                // console.log(values);
-                select_service_hours = $('#service-hour-select').val();
-                total_service_hours = parseFloat(select_service_hours) + parseFloat(values.length / 2);
+                extra_service_time = parseFloat(values.length / 2);
+                service_start_time = $('#service-start-time').val();
+                select_service_hours = parseFloat($('#service-hour-select').val());
+                total_service_hours = select_service_hours + extra_service_time;
                 total_payment = parseFloat(total_service_hours) * 18;
+                service_end_time = parseFloat(service_start_time) + select_service_hours + extra_service_time;
+
                 $('.total-hours').text(parseFloat(total_service_hours) + " Hrs");
                 $('.t_payment').html(total_payment);
                 $('.basic-service-hours').html($('#service-hour-select').val() + " Hrs");
+                if (parseFloat(service_end_time) > 21) {
+                    $(".error").remove();
+                    $('.first-row-second-tab').after("<span class='error'>Service provider must be able to complete service till 9:00PM !</span>");
+                    $('#submit-step2').prop('disabled', true);
+                } else {
+                    $(".error").remove();
+                    $('#submit-step2').prop('disabled', false);
+                }
             });
         });
+
     }
 
     function ectracheck() {
@@ -378,7 +412,6 @@ $(document).ready(function () {
     function switchTheTab(from1, to1, from2, to2) {
         // from 1
         $("." + from1).addClass("filled");
-        $("." + from1).attr("disabled",false);
         $("." + from1).removeClass("active");
         $("." + from1 + ".filled").attr("aria-selected", "false");
         $("#" + from2).removeClass("show active");
