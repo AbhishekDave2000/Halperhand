@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $('#s1,#s2,#s3,#s4,#s5').hide();
     $('#postal-alert').hide();
     $('.s').hide();
     $('#myTab .nav-item .nav-link').attr('disabled', true);
@@ -56,6 +57,8 @@ $(document).ready(function () {
             "scheduleplan",
             "yourdeatil"
         );
+
+        
         var sess_var = $('#user-session-val').text();
         var postalcode = $('#postalcode').val();
         $.ajax({
@@ -162,7 +165,7 @@ $(document).ready(function () {
                         $('#submit-step4').text("Complete Booking").prop('disabled', false);
                         $('#s-r-id').text(result);
                         $('#booking-ok-btn').on("click", function () {
-                            window.location.href = "?controller=Default&function=homepage";
+                            window.location.href = "?controller=Default&function=BookNowpage";
                         });
                     }else{
                         alert("Something went wrong! Try Agian!");
@@ -196,6 +199,7 @@ $(document).ready(function () {
     window.payment = 54;
     window.checkCount = 3.0;
     function setDefaultValue() {
+        
         var tomorrowDate = getTommorrowDate();
         var service_start = "8:00";
         var working_hour = '3';
@@ -209,7 +213,7 @@ $(document).ready(function () {
         $(".service-row-1 .form-check input:checkbox").prop("checked", false);
         $("#service-comments").val("");
         $("#petathome").prop("checked", false);
-
+        
         // set default in payment summary
         $('.duration-date').html($('#service-date').val());
         $('.duration-time').html($('#service-start-time').val());
@@ -220,94 +224,69 @@ $(document).ready(function () {
         ectracheck();
 
         // set value in payment summary after clicks
-        $('#service-date').on("click", function () {
+        $('#service-date,#service-start-time').on("click", function () {
             $('.duration-date').html($('#service-date').val());
-        });
-        $('#service-start-time').on("click", function () {
             $('.duration-time').html($('#service-start-time').val());
         });
-        $('#service-hour-select').on("click", function () {
-            window.checkCount = parseFloat($('#service-hour-select').val());
-            $('.basic-service-hours').html($('#service-hour-select').val() + " Hrs");
-            $('.total-hours').html(window.checkCount + " Hrs");
-            window.payment = window.checkCount * 18;
-            $('.t_payment').html(window.payment);
+        $('.extra-check-box,#service-hour-select').each(function(){
+                var $that = $(this);
+                $that.click(function(){
+
+                // same class
+                var values = [];
+                $('.extra-check-box').each(function(){
+                var $this = $(this);
+                if ($this.is(':checked')) {
+                    values.push($this.val());
+                }
+                });
+                // console.log(values);
+                select_service_hours = $('#service-hour-select').val();
+                total_service_hours = parseFloat(select_service_hours) + parseFloat(values.length / 2);
+                total_payment = parseFloat(total_service_hours) * 18;
+                $('.total-hours').text(parseFloat(total_service_hours) + " Hrs");
+                $('.t_payment').html(total_payment);
+                $('.basic-service-hours').html($('#service-hour-select').val() + " Hrs");
+            });
         });
-        $('.t_payment').html(window.payment);
     }
 
     function ectracheck() {
         // extra service calculation
         $('.Inside-cabinets-click').on("click", function () {
-            $('.t_payment').html(window.payment);
             if ($('.s1').hasClass('show-service')) {
-                window.checkCount = window.checkCount - 0.5;
-                window.payment = window.checkCount * 18;
                 $('.s1').removeClass('show-service');
             } else {
-                window.checkCount = window.checkCount + 0.5;
-                window.payment = window.checkCount * 18;
                 $('.s1').addClass('show-service');
             }
-            $('#service-hour-select').val(window.checkCount);
-            $('.t_payment').html(window.payment);
-            $('.total-hours').text(window.checkCount + " Hrs");
         });
         $('.Inside-oven-click').on("click", function () {
             if ($('.s2').hasClass('show-service')) {
                 $('.s2').removeClass('show-service');
-                window.checkCount = window.checkCount - 0.5;
-                window.payment = window.checkCount * 18;
             } else {
                 $('.s2').addClass('show-service');
-                window.checkCount = window.checkCount + 0.5;
-                window.payment = window.checkCount * 18;
             }
-            $('#service-hour-select').val(window.checkCount);
-            $('.t_payment').html(window.payment);
-            $('.total-hours').text(window.checkCount + " Hrs");
         });
         $('.Laundry-click').on("click", function () {
             if ($('.s3').hasClass('show-service')) {
                 $('.s3').removeClass('show-service');
-                window.checkCount = window.checkCount - 0.5;
-                window.payment = window.checkCount * 18;
             } else {
                 $('.s3').addClass('show-service');
-                window.checkCount = window.checkCount + 0.5;
-                window.payment = window.checkCount * 18;
             }
-            $('#service-hour-select').val(window.checkCount);
-            $('.t_payment').html(window.payment);
-            $('.total-hours').text(window.checkCount + " Hrs");
         });
         $('.windows-click').on("click", function () {
             if ($('.s4').hasClass('show-service')) {
                 $('.s4').removeClass('show-service');
-                window.checkCount = window.checkCount - 0.5;
-                window.payment = window.checkCount * 18;
             } else {
                 $('.s4').addClass('show-service');
-                window.checkCount = window.checkCount + 0.5;
-                window.payment = window.checkCount * 18;
             }
-            $('#service-hour-select').val(window.checkCount);
-            $('.t_payment').html(window.payment);
-            $('.total-hours').text(window.checkCount + " Hrs");
         });
         $('.cabinets-click').on("click", function () {
             if ($('.s5').hasClass('show-service')) {
                 $('.s5').removeClass('show-service');
-                window.checkCount = window.checkCount - 0.5;
-                window.payment = window.checkCount * 18;
             } else {
                 $('.s5').addClass('show-service');
-                window.checkCount = window.checkCount + 0.5;
-                window.payment = window.checkCount * 18;
             }
-            $('#service-hour-select').val(window.checkCount);
-            $('.t_payment').html(window.payment);
-            $('.total-hours').text(window.checkCount + " Hrs");
         });
         // extra service calculation end
     }

@@ -137,13 +137,13 @@ class ServiceModel
         $UserId = $_POST['customer-userid'];
         $ServiceStartDate = $_POST['date-of-cleaning'];  
         $ZipCode = $_POST['postalcode'];
-        $ServiceHours = $_POST['service-hours'];
+        $ServiceHours = $_POST['service-hours-select'];
         $ExtraHours = $_POST['extra-hours'];
-        $SubTotal = $_POST['service-hours-select'];
+        $SubTotal = $_POST['service-hours'];
         $TotalCost = $_POST['total-cost'];
         $Comments = $_POST['service-comments-text'];
         $HasPets = $_POST['pets-at-home'];
-        $AddressId = $_POST['address-radio'];
+
         $sql = "INSERT INTO servicerequest 
                     (UserId, ServiceStartDate, ZipCode, ServiceHourlyRate, ServiceHours, ExtraHours, SubTotal, TotalCost, Comments, PaymentDue, HasPets, Status, CreatedDate, PaymentDone) 
                 VALUES 
@@ -186,7 +186,7 @@ class ServiceModel
         $sql = "INSERT INTO servicerequestextra (`ServiceRequestId`, `ServiceExtraId`) 
                 VALUES ($id, $extra)";
         $result = $this->conn->query($sql);
-        // return $result;
+        return $result;
     }
 
 }

@@ -213,7 +213,7 @@ $base_url = Config::base_url;
                             <div class="service-row-1" id="service-row">
 
                                 <div class="form-check extra-service-check">
-                                    <input class="form-check-input" name="extra-cabinates" type="checkbox" value="1" id="first-check">
+                                    <input class="form-check-input extra-check-box" name="extra-cabinates" type="checkbox" value="1" id="first-check">
                                     <label class="form-check-label Inside-cabinets-click" for="first-check">
                                         <div>
                                             <img src="assets/Img/bookservice/3.png" alt="" class="grey-img">
@@ -226,7 +226,7 @@ $base_url = Config::base_url;
                                 </div>
 
                                 <div class="form-check extra-service-check">
-                                    <input class="form-check-input" name="extra-oven" type="checkbox" value="2" id="second-check">
+                                    <input class="form-check-input extra-check-box" name="extra-oven" type="checkbox" value="2" id="second-check">
                                     <label class="form-check-label Inside-oven-click" for="second-check">
                                         <div>
                                             <img src="assets/Img/bookservice/4.png" alt="" class="grey-img">
@@ -239,7 +239,7 @@ $base_url = Config::base_url;
                                 </div>
 
                                 <div class="form-check extra-service-check">
-                                    <input class="form-check-input" name="extra-laundry" type="checkbox" value="3" id="third-check">
+                                    <input class="form-check-input extra-check-box" name="extra-laundry" type="checkbox" value="3" id="third-check">
                                     <label class="form-check-label Laundry-click" for="third-check">
                                         <div>
                                             <img src="assets/Img/bookservice/2.png" alt="" class="grey-img">
@@ -252,7 +252,7 @@ $base_url = Config::base_url;
                                 </div>
 
                                 <div class="form-check extra-service-check">
-                                    <input class="form-check-input" type="checkbox" name="extra-window" value="4" id="fourth-check">
+                                    <input class="form-check-input extra-check-box" type="checkbox" name="extra-window" value="4" id="fourth-check">
                                     <label class="form-check-label windows-click" for="fourth-check">
                                         <div>
                                             <img src="assets/Img/bookservice/1.png" alt="" class="grey-img">
@@ -265,7 +265,7 @@ $base_url = Config::base_url;
                                 </div>
 
                                 <div class="form-check extra-service-check">
-                                    <input class="form-check-input" type="checkbox" name="extra-fridge" value="5" id="fifth-check">
+                                    <input class="form-check-input extra-check-box" type="checkbox" name="extra-fridge" value="5" id="fifth-check">
                                     <label class="form-check-label cabinets-click" for="fifth-check">
                                         <div>
                                             <img src="assets/Img/bookservice/5.png" alt="" class="grey-img">
@@ -480,23 +480,23 @@ $base_url = Config::base_url;
                                     <td class="service-name" colspan="2" style="font-weight: 600;">Extras</td>
                                 </tr>
                                 <tr id="s1" class="s1">
-                                    <td class="service-name">Inside cabinets (extra)</td>
+                                    <td class="service-name">Inside cabinets</td>
                                     <td class="service-hours">30 Mins</td>
                                 </tr>
                                 <tr id="s2" class="s2">
-                                    <td class="service-name">Inside oven (extra)</td>
+                                    <td class="service-name">Inside oven</td>
                                     <td class="service-hours">30 Mins</td>
                                 </tr>
                                 <tr id="s3" class="s3">
-                                    <td class="service-name">Inside Laundry wash & dry (extra)</td>
+                                    <td class="service-name">Inside Laundry wash & dry</td>
                                     <td class="service-hours">30 Mins</td>
                                 </tr>
                                 <tr id="s4" class="s4">
-                                    <td class="service-name">Interior windows (extra)</td>
+                                    <td class="service-name">Interior windows</td>
                                     <td class="service-hours">30 Mins</td>
                                 </tr>
                                 <tr id="s5" class="s5">
-                                    <td class="service-name">Inside Fridge (extra)</td>
+                                    <td class="service-name">Inside Fridge</td>
                                     <td class="service-hours">30 Mins</td>
                                 </tr>
                             </tbody>

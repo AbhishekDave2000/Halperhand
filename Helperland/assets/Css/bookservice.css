@@ -394,13 +394,13 @@ input,select,button,textarea,a{
     font-weight: 500;
     text-decoration: none;
 }
-#s1,#s2,#s3,#s4,#s5{
-    display: none;
-}
 .fa-euro-sign{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+#s1,#s2,#s3,#s4,#s5{
+    display: none;
 }
 .show-service{
     display:table-row !important;

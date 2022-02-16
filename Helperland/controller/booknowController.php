@@ -100,8 +100,8 @@ class booknowController
         }
         $_POST['service-hourly-rate'] = 18;
         $_POST['extra-hours'] = $count;
-        $_POST['service-hours'] = $_POST['service-hours-select'] - $_POST['extra-hours'];
-        $_POST['total-cost'] = $_POST['service-hours-select'] * 18;
+        $_POST['service-hours'] = $_POST['service-hours-select'] + $_POST['extra-hours'];
+        $_POST['total-cost'] = $_POST['service-hours'] * 18;
 
         // send all the data to model addrequestmodel *** FIRST STEP
         $m = new ServiceModel($_POST);
@@ -115,14 +115,15 @@ class booknowController
             for ($i = 0; $i < count($extra); $i++) {
                 if ($extra[$i] != 0) {
                     $e = $serviceextra->addExtraServices($extra[$i]);
-                    if(!$e){
-                        echo 0;
-                    }
-                }
+                } 
+            }if(!$e){
+                echo 0;
+                exit;
             }
 
             if (!$res) {
                 echo 0;
+                exit;
             } else {
                 // Send Mail to provider *** FOURTH STEP
                 $Date = $_POST['date-of-cleaning'];
@@ -151,9 +152,11 @@ class booknowController
                     }
                 }
                 echo $result;
+                exit;
             }
         } else {
             echo 0;
+            exit;
         }
     }
 }
