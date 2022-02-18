@@ -2,6 +2,9 @@
 /* *{
     border: 1px solid red;
 } */
+input,button,select,textarea{
+    box-shadow: none !important;  
+}
 /* navbar start */
 .navigation{
     position: sticky;
@@ -10,7 +13,6 @@
 }
 .navbar{
     background-color: #525252;
-    /* width: 100vw; */
     height: 64px;
     padding:0;
     height: 64px;
@@ -35,7 +37,7 @@
 .nav-sp .sidebar-ul-navbar{
     display: none;
 }
-.navbar .navbar-nav li a{
+.navbar .navbar-nav li a,.navbar .navbar-nav li a:hover{
     color: #ffffff !important;
     font-size: 17px;
 }
@@ -98,7 +100,6 @@
     top: -45px;
     left: 36px;
     color: white;
-    /* font-size: 13px; */
     text-align: center;
     margin: 0;
     display: flex;
@@ -126,7 +127,6 @@
 }
 /* navbar end */
 
-
 /* name header */
 .name-header{
     height: 119px;
@@ -152,9 +152,7 @@
   .Welcome-name .text-style-1 {
     font-weight: bold;
   }
-  
 /* name header end */
-
 
 /* content */
 .upcomingservice{
@@ -179,10 +177,8 @@
     height: 54px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     width: 262px;
-    /* padding-top: 6px;
-    padding-left: 6px; */
 }
-.sidebar-ul li a{
+.sidebar-ul li a,.sidebar-ul li a:hover{
     text-decoration: none;
     color: white;
     width: 100%;
@@ -195,10 +191,7 @@
     background: #146371;
 }
 .container__main {
-    /* Take the remaining width */
     flex: 1;
-
-    /* Make it scrollable */
     overflow: auto;
     width: 847px;
     margin-left: 30px;
@@ -216,16 +209,13 @@
     padding: 10px;
 }
 .container__main table{
-    /* max-width: 850px !important; */
-    /* min-width: 720px; */
-    border: 1px solid rgb(161, 157, 157);
+    border: 1px solid rgb(192, 192, 192);
 }
 .btn-rounded-17{
     border-radius: 17px;
 }
 .table-main-div{
     overflow-x: auto;
-    /* max-width: 845px !important; */
 }
 .btn-rounded-17{
     border-radius: 17px;
@@ -247,7 +237,7 @@ table tbody tr td,table thead tr th{
     height: 50px;
 }
 table thead tr,table tbody tr{
-    border-bottom: 0.2px solid gray;
+    border-bottom: 1px solid rgb(219, 219, 219);
 }
 table tbody tr td{
     padding: 8px 10px 8px 10px;
@@ -255,25 +245,273 @@ table tbody tr td{
 table thead{
     background-color: #e1e1e1;
 }
-.serviceid{
-    width: 120px;
-}
-.servicedata{
-    width: 140px;
-}
 .servicedata span{
     font-weight: bold;
 }
-.customerdetail{
-    width: 270px;
-}
-.servicedistance{
-    width: 140px;
-}
-.serviceaction{
-    width: 100px;
-}
 /* content end */
+
+/* new service request */
+.head-filter-nsr{
+    display: flex;
+    align-items: center;
+}
+.head-filter-nsr .row .col{
+    padding-left: 0;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    font-family: Roboto;
+    font-size: 20px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.63;
+    letter-spacing: normal;
+    text-align: left;
+    color: #646464;
+}
+.distance-filter-select{
+    min-width: 115px;
+    color: #646464;
+}
+#pah-filter:checked{
+    background-color: #2c94a8 !important;
+    border: 0;
+}
+#pah-filter-label{
+    min-width: 200px;
+    font-size: 16px;
+}
+.serviceactions-body .btn{
+    background-color: #22707e;
+    color: white;
+}
+/* new service request end*/
+
+/* service history */
+.service-button{
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Roboto;
+    font-size: 20px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.63;
+    letter-spacing: normal;
+    color: #646464;
+}
+.export-button{
+    width: 70px;
+    height: 34px;
+    background: #146371;
+    border-radius: 17px;
+    padding: 4px 8px;
+    opacity: 1;
+    color: white;
+    font-size: 16px;
+    border: 0px;
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ps-head{
+    min-width: 170px;
+}
+.ph-col-select{
+    color: #646464;
+}
+.serviceprovider{
+    display: flex;
+    margin: 0 !important;
+    color: #646464;
+    height: fit-content;
+}
+.i-con{
+    color: #ecb91c;
+}
+.i-con-e{
+    color: #d4d4d4;
+}
+/* service history end */
+
+/* my ratings */
+.data-of-myrating{
+    color: #555555;
+}
+.c-s-r-d{
+    font-weight: 600;
+}
+.sorting-logo{
+    color: #646464;
+}
+.comments-heading{
+    font-weight: 600;
+    font-size: 18px;
+    font-family: Roboto;
+}
+.customer-rating-main-div{
+    border: 1px solid rgb(197, 197, 197);
+}
+.data-of-myrating{
+    padding: 0;
+}
+.customer-comments-main-div{
+    display: flex;
+    flex-direction: column;
+}
+.comments-heading-div{
+    font-weight: 600;
+    font-size: 20px;
+}
+.rc-divider-line{
+    margin: 6px 0px;
+}
+.data-mr-row{
+    flex-wrap: wrap;
+}
+.data-mr-row .col{
+    min-width: 230px;
+}
+/* my ratings end */
+
+/* block customer */
+.fav-pro-main-div{
+    display: flex;
+    flex-wrap: wrap;
+}
+.fav-pro-card{
+    width: 300px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: roboto;
+}
+.fav-pro-card .row{
+    text-align: center;
+}
+.avtar-fav-pro-card{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 1px solid #aaaaaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.avtar-fav-pro-card img{
+    height: 27px;
+    width: 37px;
+}
+.fav-pro-card .row span{
+    color: #646464; 
+}
+.remove-fav-pro-btn,.remove-fav-pro-btn:hover{
+    background-color: #146371;
+    color: white;
+    padding: 5px 20px;
+    font-size: 18px;
+    border-radius: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+.block-fav-pro-btn,.block-fav-pro-btn:hover{
+    background-color: #ff6b6b;
+    color: white;
+    padding: 3px 15px;
+    font-size: 17px;
+    border-radius: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+/* block customer end */
+
+/* my-settings */
+/*----------- Setting -----------*/
+.div-content .nav-tabs .nav-item.show .nav-link,.div-content .nav-tabs .nav-link.active{
+    border-width: 3px;
+    border-color: #fff #fff #29626d;
+}
+.div-content .nav-link,.div-content .nav-link:hover{
+    opacity: 0.9;
+    font-size: 22px;
+    color: #525252;
+}
+.div-content .nav-tabs button{
+    width: 33%;
+}
+.a-s-text{
+    color: greenyellow;
+}
+.a-s-heading{
+    font-size: 20px;
+}
+
+/* my-settings end */
+
+/* pagination */
+.pagination-div{
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    height: fit-content;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    /* z-index: -1; */
+}
+.pagination-div div{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.dropdown-toggle{
+    background-color: white;
+    color: #646464;
+    opacity: 1;
+}
+.pagination{
+    display: flex;
+    flex-direction: row;
+}
+.pagination-div .container-fluid span{
+    color: #646464;
+    opacity: 1;
+    font-size: 14px;
+    font-family: Roboto;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+}
+.page-link{
+    border-radius: 50% !important;
+    text-decoration: none;
+    color: #777777 !important;
+    opacity: 1;
+    width: 38px;
+    height: 38px;
+    margin-right: 5px;
+    margin-left: 5px;
+    text-align: center;
+}
+.page-link:active,
+.page-link:focus
+{
+    background-color: #1d7a8c;
+    color: white !important;
+}
+/* pagination div end */
 
 
 /* footer start */
@@ -432,10 +670,7 @@ table thead{
     }
     .container__main {
         flex: 1;
-        /* overflow: auto; */
         overflow-x: auto;
-        /* width: 847px; */
-        /* margin-left: 30px; */
     }
     .head-us{
         display: block;
@@ -446,7 +681,6 @@ table thead{
         border-bottom: 0px;
     }
     .footer{
-        /* height: 500px; */
         display: flex;
         height: fit-content;
         flex-direction: column;   
@@ -518,7 +752,6 @@ table thead{
         align-items: center;
     }
     tbody tr{
-        /* border: 1px solid #e1e1e1; */
         border: 0 !important;
         width: 95%;
         display: flex;
@@ -534,4 +767,20 @@ table thead{
         width: 100% !important;
     }
 }   
-
+@media(max-width: 740px){
+    .data-mr-row{
+        flex-direction: column;
+    }
+    .data-mr-row .col{
+        padding-bottom: 8px;
+    }
+}
+@media(max-width: 450px){
+    .service-button {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .service-history-head{
+        padding-bottom: 8px;
+    }
+}

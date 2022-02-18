@@ -35,7 +35,8 @@ class DefaultController{
         $para = $_GET['parameter']; 
         include("view/service-history.php");
     }
-    public function providerDash(){
+    public function providerDash($parameter){
+        $para = $_GET['parameter']; 
         include("view/sp.php");
     }
     public function adminDash(){

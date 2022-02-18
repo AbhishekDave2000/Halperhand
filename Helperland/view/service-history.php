@@ -38,7 +38,6 @@
                 </a>
                 <!-- assets/Img/logo/white-logo-transparent-background.png -->
 
-
                 <!-- Navbar links -->
                 <div class="nav-sp">
                     <!-- Toggler/collapsibe Button -->
@@ -65,7 +64,6 @@
                                 <a class="nav-link" href="<?= $base_url . '?controller=Default&function=contactpage' ?>">Contact us</a>
                             </li>
                         </ul>
-
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 sidebar-ul-navbar">
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="#">Dashbord</a>
@@ -87,7 +85,6 @@
                             </li>
                         </ul>
                     </div>
-
                     <div class="float-right-notification">
                         <ul>
                             <li class="nav-item dropdown" id="notification">
@@ -100,7 +97,6 @@
                                     <a class="dropdown-item" href="#">Something else here</a>
                                 </div>
                             </li>
-
                             <li class="nav-item" id="user-1">
                                 <a class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
                                     <img src="assets/Img/customer services history/user.png" alt="" srcset="">
@@ -114,15 +110,10 @@
                                 </div>
                             </li>
                         </ul>
-
-
                     </div>
-
                 </div>
-
             </nav>
         </div>
-
     </section>
     <!-- navbar end -->
 
@@ -169,23 +160,23 @@
 
             <main class="container__main">
                 <?php
-                switch ($para) {
-                    case 'dashboard':
-                        include("includes/admin/dashboard.php");
-                        break;
-                    case 'service-history':
-                        include("includes/admin/servicehistory.php");
-                        break;
-                    case 'mysetting';
-                        include("includes/admin/mysetting.php");
-                        break;
-                    case 'favpros';
-                        include("includes/admin/favpros.php");
-                        break;
-                    default:
-                        echo "<h2>404 This page does not exist!</h2>";
-                        break;
-                }
+                    switch ($para) {
+                        case 'dashboard':
+                            include("includes/customer/dashboard.php");
+                            break;
+                        case 'service-history':
+                            include("includes/customer/servicehistory.php");
+                            break;
+                        case 'mysetting':
+                            include("includes/customer/mysetting.php");
+                            break;
+                        case 'favpros':
+                            include("includes/customer/favpros.php");
+                            break;
+                        default:
+                            echo "<h2>404 This page does not exist!</h2>";
+                            break;
+                    }
                 ?>
             </main>
         </div>
@@ -221,7 +212,6 @@
         </div>
     </section>
     <!-- footer end -->
-
 
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
