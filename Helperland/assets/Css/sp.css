@@ -167,8 +167,7 @@ input,button,select,textarea{
 .container__sidebar {
     width: 262px;
     background-color: #1d7a8c;
-    height: 712px;
-    
+    height: 100%;
 }
 .sidebar-ul{
     flex-direction: column !important;
@@ -454,7 +453,49 @@ table thead{
 .a-s-heading{
     font-size: 20px;
 }
-
+.avatar-basic-main-div{
+    display: flex;
+    color: #525252;
+    font-size: 22px;
+    align-items: center;
+}
+.basic-detail-head{
+    border-bottom: 1px solid #8b8b8b;
+}
+.avatar-image-os-user{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.avatar-slecting-div{
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gender-radio-div{
+    display: flex;
+    align-items: center;
+}
+.gender-radio-div .form-check .form-check-input{
+    margin-top: 5px;
+}
+.avtar-select-div .form-check input{
+    display: none;
+}
+.save-btn-mysetting,.save-btn-mysetting:hover{
+    background-color: #146371;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+}
 /* my-settings end */
 
 /* pagination */
