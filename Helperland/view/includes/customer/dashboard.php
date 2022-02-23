@@ -14,46 +14,59 @@
                     </thead> -->
     <thead>
         <tr>
-            <th class="">Service Id</th>
-            <th class="">Service Date</th>
-            <th class="">Service Provider</th>
-            <th class="">Payment</th>
+            <th>Service Id</th>
+            <th>Service Date</th>
+            <th>Service Provider</th>
+            <th>Payment</th>
             <th class="sction-head-dash">Action</th>
         </tr>
     </thead>
     <tbody class="dashboard-data">
-        <?php 
-            for($i=0; $i<count($result); $i++){
+        <?php
+        foreach ($result as $val) {
         ?>
-        <tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#Reschedule-cancle">
-            <td class="dashserviceid">
-                <span><?= $result[$i]['ServiceRequestId']; ?></span>
-            </td>
-            <td class="dashservicedate" style="flex-direction:column;">
-                <span><img src="assets/Img/customer services history/calendar2.png" alt=""> <?= substr($result[$i]['ServiceStartDate'],0,10); ?></span><br>
-                <span><img src="assets/Img/customer services history/layer-14.png" alt=""> <?= substr($result[$i]['ServiceStartDate'],11,5).' to '.floatval(substr($result[$i]['ServiceStartDate'],11,5))+$result[$i]['SubTotal']; ?></span>
-            </td>
-            <td class="serviceprovider">
-                <div class="cap-div">
-                    <img class="cap" src="assets/Img/customer services history/cap.png" alt="cap">
-                </div>
-                <span>Lyum Watson <br>
-                    <i class="fas fa-star i-con"></i>
-                    <i class="fas fa-star i-con"></i>
-                    <i class="fas fa-star i-con"></i>
-                    <i class="fas fa-star i-con"></i>
-                    <i class="fas fa-star i-con-e"></i>
-                    4
-                </span>
-            </td>
-            <td class="payment-text">
-                <i class="fas fa-euro-sign"></i> 63<br>
-            </td>
-            <td class="dash-action">
-                <button type="button" data-bs-dismiss="modal" data-bs-toggle="modal" class="btn reshedule-btn" data-bs-target="#Reschedule-Request">Reshedule</button>
-                <button type="button" data-bs-dismiss="modal" data-bs-toggle="modal" class="btn cancel-btn" data-bs-target="#cancel-request">Cancel</button>
-            </td>
-        </tr>
+            <tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#Reschedule-cancle">
+                <td class="dashserviceid">
+                    <span><?= $val['ServiceRequestId']; ?></span>
+                </td>
+                <td class="dashservicedate" style="flex-direction:column;">
+                    <span>
+                        <img src="assets/Img/customer services history/calendar2.png" alt=""> <?= substr($val['ServiceStartDate'], 0, 10); ?>
+                    </span>
+                    <br>
+                    <span>
+                        <img src="assets/Img/customer services history/layer-14.png" alt="">
+                        <?php $endtime = str_replace('.5', ':30', floatval(substr($val['ServiceStartDate'], 11, 5)) + $val['SubTotal']);
+                        if (strlen($endtime) == 2) {
+                            $endtime .= ':00';
+                        }
+                        ?>
+                        <?= substr($val['ServiceStartDate'], 11, 5) . ' to ' . $endtime; ?>
+                    </span>
+                </td>
+                <td class="serviceprovider">
+                    <?php if ($val['FirstName'] != "") { ?>
+                        <div class="cap-div">
+                            <img class="cap" src="assets/Img/customer services history/cap.png" alt="cap">
+                        </div>
+                        <span><?= $val['FirstName'] . ' ' . $val['LastName']; ?> <br>
+                            <i class="fas fa-star i-con"></i>
+                            <i class="fas fa-star i-con"></i>
+                            <i class="fas fa-star i-con"></i>
+                            <i class="fas fa-star i-con"></i>
+                            <i class="fas fa-star i-con-e"></i>
+                            4
+                        </span>
+                    <?php } ?>
+                </td>
+                <td class="payment-text">
+                    <i class="fas fa-euro-sign"></i> <?= $val['TotalCost']; ?><br>
+                </td>
+                <td class="dash-action">
+                    <a href="#" type="button" data-bs-dismiss="modal" data-bs-toggle="modal" class="btn reshedule-btn" data-bs-target="#Reschedule-Request">Reshedule</a>
+                    <a href="#" type="button" data-bs-dismiss="modal" data-bs-toggle="modal" class="btn cancel-btn" data-bs-target="#cancel-request">Cancel</a>
+                </td>
+            </tr>
         <?php } ?>
     </tbody>
 </table>
@@ -65,10 +78,16 @@
         </span>
         <div class="btn-group">
             <select class="form-select" aria-label="form-select-sm example">
-                <option selected>10</option>
+                <option value="5" selected>5</option>
                 <option value="10">10</option>
+                <option value="15">15</option>
                 <option value="20">20</option>
+                <option value="25">25</option>
                 <option value="30">30</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="150">150</option>
+                <option value="200">200</option>
             </select>
         </div>
         <span class="span-entries">

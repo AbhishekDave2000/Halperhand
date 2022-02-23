@@ -33,6 +33,8 @@ class DefaultController{
     }
     public function customerDash($parameter){
         $para = $_GET['parameter']; 
+        include("controller/customerDashController.php");
+        $c = new customerDashController();
         include("view/customerDash.php");
     }
     public function providerDash($parameter){

@@ -162,14 +162,11 @@
 
             <main class="container__main">
                 <?php
-                include("controller/customerDashController.php");
-                $c = new customerDashController();
                 switch ($para) {
                     case 'dashboard':
                         $_POST['userid'] = $_SESSION['user']['UserId'];
                         $c->getServiceRequestData();
                         break;
-                        // include("includes/customer/dashboard.php");
                     case 'service-history':
                         include("includes/customer/servicehistory.php");
                         break;
