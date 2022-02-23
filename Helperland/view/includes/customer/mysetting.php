@@ -8,35 +8,36 @@
 <div class="tab-content setting-tab-content" id="nav-tabContent">
 
     <div class="tab-pane fade show active" id="nav-detail" role="tabpanel" aria-labelledby="nav-home-tab">
-        <form action="" method="post">
+        <form action="<?= Config::base_url . '?controller=customerDash&function=myDetailUpdate' ?>" method="post">
             <div class="container-fluid pt-2 pb-4" style="border-bottom: 1px solid #acacac;">
                 <div class="row pt-3">
+                    <input type="hidden" name="user-logged-in-id" id="user-logged-in-id" value="<?= $_SESSION['user']['UserId']; ?>">
                     <div class="col-md-4 pt-2 pl-0">
-                        <label for="" class="form-label">First name</label>
-                        <input type="text" class="form-control" id="">
+                        <label class="form-label">First name</label>
+                        <input type="text" class="form-control my-setting-FN" name="FirstName" placeholder="First Name">
                     </div>
                     <div class="col-md-4 pl-0 pt-2">
-                        <label for="" class="form-label">Last name</label>
-                        <input type="password" class="form-control" id="">
+                        <label class="form-label">Last name</label>
+                        <input type="text" class="form-control my-setting-LN" name="LastName" placeholder="Last Name">
                     </div>
                     <div class="col-md-4 pl-0 pt-2">
-                        <label for="" class="form-label">E-mail address</label>
-                        <input type="email" class="form-control" id="">
+                        <label class="form-label">E-mail address</label>
+                        <input type="email" class="form-control my-setting-Email" name="EmailAddress" placeholder="Email">
                     </div>
                 </div>
                 <div class="row pt-3">
-                    <div class="col-md-4 pt-2 pl-0">
+                    <div class="col-md-4 pt-2 pl-0 phone-no-div">
                         <label class="form-label" for="autoSizingInputGroup">Mobile number</label>
                         <div class="input-group">
                             <div class="input-group-text">+49</div>
-                            <input type="tel" class="form-control" id="autoSizingInputGroup" placeholder="">
+                            <input type="tel" class="form-control my-setting-Phone" name="Phone" id="autoSizingInputGroup" placeholder="Phone Number">
                         </div>
                     </div>
                     <div class="col-md-4 pl-0 pt-2">
-                        <label for="" class="form-label">Date Of Birth</label>
+                        <label class="form-label">Date Of Birth</label>
                         <div class="row dob-div-row">
                             <div class="col-md-3">
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select my-setting-DOB-D" name="DOB_Date" aria-label="Default select example">
                                     <option value="01">1</option>
                                     <option value="02">2</option>
                                     <option value="03">3</option>
@@ -71,7 +72,7 @@
                                 </select>
                             </div>
                             <div class="col-md-5">
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select my-setting-DOB-M" name="DOB_Month" aria-label="Default select example">
                                     <option value="01">January</option>
                                     <option value="02">February</option>
                                     <option value="03">March</option>
@@ -87,7 +88,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select my-setting-DOB-Y" name="DOB_Year" aria-label="Default select example">
                                     <option value="2022">2022</option>
                                     <option value="2021">2021</option>
                                     <option value="2020">2020</option>
@@ -220,8 +221,8 @@
             <div class="container-fluid pt-3 pb-3">
                 <div class="row pt-3 pl-0">
                     <div class="col-md-3 pl-0">
-                    <label class="form-label" for="autoSizingInputGroup">My Preffered Language</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <label class="form-label" for="autoSizingInputGroup">My Preffered Language</label>
+                        <select class="form-select my-setting-Language" name="Language" aria-label="Default select example">
                             <option value="Afrikaans">Afrikaans</option>
                             <option value="Albanian">Albanian</option>
                             <option value="Arabic">Arabic</option>
@@ -298,14 +299,14 @@
                     </div>
                 </div>
                 <div class="row pt-3 pl-0">
-                    <button type="submit" class="btn detail-save-btn" value="save" name="save">Save</button>
+                    <button type="submit" class="btn detail-save-btn" value="save" name="Save_Detail">Save</button>
                 </div>
             </div>
         </form>
     </div>
 
     <div class="tab-pane fade pt-4" id="nav-address" role="tabpanel" aria-labelledby="nav-profile-tab">
-        <table id="" class="table-data set-address-table" style="width:100%">
+        <table class="table-data set-address-table" style="width:100%">
             <thead>
                 <tr>
                     <th class="set-address-head">Address</th>
@@ -339,28 +340,29 @@
     </div>
 
     <div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-contact-tab">
-        <form action="" method="post" class="pt-1">
+        <form action="<?= Config::base_url . '?controller=customerDash&function=myPasswordUpdate' ?>" method="post" class="pt-1">
+        <input type="hidden" name="user-logged-in-id" id="user-logged-id" value="<?= $_SESSION['user']['UserId']; ?>">
             <div class="row pt-3">
                 <div class="col-md-4">
-                    <label for="" class="form-label">Old Password</label>
-                    <input type="password" name="oldpass" class="form-control" id="" placeholder="Old Password">
+                    <label class="form-label">Old Password</label>
+                    <input type="password" name="oldpass" class="form-control oldpass" placeholder="Old Password">
                 </div>
             </div>
             <div class="row pt-3">
                 <div class="col-md-4">
-                    <label for="" class="form-label">New Password</label>
-                    <input type="password" name="newpass" class="form-control" id="" placeholder="Password">
+                    <label class="form-label">New Password</label>
+                    <input type="password" name="newpass" class="form-control newpass" placeholder="Password">
                 </div>
             </div>
             <div class="row pt-3">
                 <div class="col-md-4">
-                    <label for="" class="form-label">Confirm Password</label>
-                    <input type="text" name="cpass" class="form-control" id="" placeholder="Confirm Password">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" name="cpass" class="form-control cnewpass" placeholder="Confirm Password">
                 </div>
             </div>
             <div class="row pt-3">
                 <div class="col-md-4">
-                    <button type="submit" name="save" value="save" class="btn save-pass-btn">
+                    <button type="submit" name="save-password" value="save" class="btn save-pass-btn">
                         Save
                     </button>
                 </div>

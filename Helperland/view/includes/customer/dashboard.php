@@ -1,9 +1,7 @@
 <div class="container-fluid service-button" style="padding-bottom: 5px;">
     <span class="Service-History-span">
         Current Service Request
-        <!-- <img src="images/sort.png" alt="" class="sorting-img"> -->
     </span>
-    <!-- <img src="images/sort.png" alt="" class="sorting-img"> -->
     <button class="add-service-button">
         Add new Service Request
     </button>
@@ -23,14 +21,17 @@
             <th class="sction-head-dash">Action</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="dashboard-data">
+        <?php 
+            for($i=0; $i<count($result); $i++){
+        ?>
         <tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#Reschedule-cancle">
             <td class="dashserviceid">
-                <span>12313</span>
+                <span><?= $result[$i]['ServiceRequestId']; ?></span>
             </td>
             <td class="dashservicedate" style="flex-direction:column;">
-                <span><img src="assets/Img/customer services history/calendar2.png" alt=""> 31/03/2018</span><br>
-                <span><img src="assets/Img/customer services history/layer-14.png" alt=""> 12:00 - 18:00</span>
+                <span><img src="assets/Img/customer services history/calendar2.png" alt=""> <?= substr($result[$i]['ServiceStartDate'],0,10); ?></span><br>
+                <span><img src="assets/Img/customer services history/layer-14.png" alt=""> <?= substr($result[$i]['ServiceStartDate'],11,5).' to '.floatval(substr($result[$i]['ServiceStartDate'],11,5))+$result[$i]['SubTotal']; ?></span>
             </td>
             <td class="serviceprovider">
                 <div class="cap-div">
@@ -53,7 +54,7 @@
                 <button type="button" data-bs-dismiss="modal" data-bs-toggle="modal" class="btn cancel-btn" data-bs-target="#cancel-request">Cancel</button>
             </td>
         </tr>
-
+        <?php } ?>
     </tbody>
 </table>
 
@@ -63,10 +64,6 @@
             show
         </span>
         <div class="btn-group">
-            <!-- <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                10
-                            </button> -->
             <select class="form-select" aria-label="form-select-sm example">
                 <option selected>10</option>
                 <option value="10">10</option>
@@ -81,7 +78,6 @@
             Total Records: 10
         </span>
     </div>
-
     <nav class="pagination-nav" aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">

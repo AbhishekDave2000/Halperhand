@@ -1,5 +1,6 @@
 <?php
-    include("config.php");
+    require_once("config.php");
+    // include("config.php");
     class DBConnection{
         public $conn;
         public function Connection()

@@ -5,7 +5,14 @@ textarea:focus,button:focus
 {
     box-shadow: none !important;
 }
-
+.error {
+    color: red;
+    margin-left: 5px;
+    display: inline;
+  }
+  label.error {
+    display: inline !important;
+  }
 /* navbar start */
 .navbar{
     background-color: #525252;

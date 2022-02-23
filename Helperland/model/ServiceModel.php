@@ -109,7 +109,7 @@ class ServiceModel
 
     public function getFavProForEmail(){
         $pro_id = $_POST['favrioute-provider'];
-
+        
         $sql = "SELECT * FROM favoriteandblocked fb
                     JOIN user u
                         ON fb.TargetUserId = u.UserId
@@ -135,7 +135,8 @@ class ServiceModel
 
     public function addServiceRequest(){
         $UserId = $_POST['customer-userid'];
-        $ServiceStartDate = $_POST['date-of-cleaning'];  
+        // $ServiceStartDate = $_POST['date-of-cleaning']; 
+        $ServiceStartDate = $_POST['service-start-date-time'];  
         $ZipCode = $_POST['postalcode'];
         $ServiceHours = $_POST['service-hours-select'];
         $ExtraHours = $_POST['extra-hours'];

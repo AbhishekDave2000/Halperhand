@@ -69,8 +69,12 @@
                                     </span>
                                 </div>
                                 <div class="dropdown-divider" style="display: block;"></div>
-                                <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function=customerDash&parameter=dashboard' ?>">My Dashboard</a>
-                                <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function=customerDash&parameter=mysetting' ?>">My Settings</a>
+                                <?php
+                                    if($_SESSION['user']['UserTypeId'] == 1){ $function = 'customerDash'; $parameter = 'dashboard'; $setting = 'mysetting';}
+                                    else if($_SESSION['user']['UserTypeId'] == 2){ $function = 'providerDash'; $parameter = 'new-service-request'; $setting='my-setting';}  
+                                ?>
+                                <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function='.$function.'&parameter='.$parameter ?>">My Dashboard</a>
+                                <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function=customerDash&parameter='.$setting ?>">My Settings</a>
                                 <a class="dropdown-item" href="<?= $base_url . '?controller=Authentication&function=Logout' ?>">Logout</a>
                             </div>
                         </li>
@@ -78,8 +82,6 @@
                 </div>
             <?php } ?>
         </div>
-
-
     </div>
 </nav>
 <!-- navbar end -->

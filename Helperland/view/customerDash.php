@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer > services History</title>
-
+    <title>Customer Dashboard</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -22,12 +22,14 @@
     <link rel="stylesheet" href="assets/Css/servicerequestmodal.css">
 
     <script src="assets/js/uparr.js"></script>
+    <script src="assets/js/customerDash.js"></script>
 </head>
 
 <body>
+    <div class="userid-div" style="display: none;"><?= $_SESSION['user']['UserId'];?></div>
     <?php include("view/modal/servicerequest.php"); ?>
     <?php include("view/includes/uparr.php"); ?>
-
+    <?php $base_url = Config::base_url; ?>
     <!-- navbar -->
     <section class="navigation">
         <div class="container-lg-fluid">
@@ -52,30 +54,30 @@
                                 <a class="nav-link rounded-link" href="#">Book now</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= $base_url . '?controller=Default&function=pricespage' ?>">Prices & Service</a>
+                                <a class="nav-link" href="<?= Config::base_url . '?controller=Default&function=pricespage' ?>">Prices & Service</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Our Guarantee</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= $base_url . '?controller=Default&function=homepage' ?>#Blog">Blog</a>
+                                <a class="nav-link" href="<?= Config::base_url . '?controller=Default&function=homepage' ?>#Blog">Blog</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= $base_url . '?controller=Default&function=contactpage' ?>">Contact us</a>
+                                <a class="nav-link" href="<?= Config::base_url . '?controller=Default&function=contactpage' ?>">Contact us</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 sidebar-ul-navbar">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#">Dashbord</a>
+                                <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=customerDash&parameter=dashboard' ?>">Dashbord</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#">Service History</a>
+                                <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=customerDash&parameter=service-history' ?>">Service History</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#">Service Schedule</a>
+                                <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=customerDash&parameter=dashboard' ?>">Service Schedule</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#">Favourite Pros</a>
+                                <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=customerDash&parameter=favpros' ?>">Favourite Pros</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="#">Invoices</a>
@@ -160,23 +162,27 @@
 
             <main class="container__main">
                 <?php
-                    switch ($para) {
-                        case 'dashboard':
-                            include("includes/customer/dashboard.php");
-                            break;
-                        case 'service-history':
-                            include("includes/customer/servicehistory.php");
-                            break;
-                        case 'mysetting':
-                            include("includes/customer/mysetting.php");
-                            break;
-                        case 'favpros':
-                            include("includes/customer/favpros.php");
-                            break;
-                        default:
-                            echo "<h2>404 This page does not exist!</h2>";
-                            break;
-                    }
+                include("controller/customerDashController.php");
+                $c = new customerDashController();
+                switch ($para) {
+                    case 'dashboard':
+                        $_POST['userid'] = $_SESSION['user']['UserId'];
+                        $c->getServiceRequestData();
+                        break;
+                        // include("includes/customer/dashboard.php");
+                    case 'service-history':
+                        include("includes/customer/servicehistory.php");
+                        break;
+                    case 'mysetting':
+                        include("includes/customer/mysetting.php");
+                        break;
+                    case 'favpros':
+                        include("includes/customer/favpros.php");
+                        break;
+                    default:
+                        echo "<h2>404 This page does not exist!</h2>";
+                        break;
+                }
                 ?>
             </main>
         </div>

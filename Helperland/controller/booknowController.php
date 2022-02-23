@@ -102,7 +102,14 @@ class booknowController
         $_POST['extra-hours'] = $count;
         $_POST['service-hours'] = $_POST['service-hours-select'] + $_POST['extra-hours'];
         $_POST['total-cost'] = $_POST['service-hours'] * 18;
-
+        $time_str = $_POST['service-start-time'];
+        if (preg_match("/.5/", $time_str))
+        {
+            $time = str_replace('.5',':3',$time_str);
+        }else{
+            $time = str_replace('.',':',$time_str);
+        }   
+        $_POST['service-start-date-time'] = $_POST['date-of-cleaning'].' '.$time.'0:00.000';
         // send all the data to model addrequestmodel *** FIRST STEP
         $m = new ServiceModel($_POST);
         $result = $m->addServiceRequest();

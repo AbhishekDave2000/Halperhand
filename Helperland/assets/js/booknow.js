@@ -191,6 +191,7 @@ $(document).ready(function () {
                     } else {
                         alert("Something went wrong! Try Agian!");
                     }
+                    // console.log(result);
                 }
             });
         }

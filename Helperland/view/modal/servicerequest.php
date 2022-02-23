@@ -261,7 +261,7 @@
     <div class="modal-dialog modal-dialog-centered addressMD">
         <div class="modal-content addressMC">
             <div class="modal-header addressMH">
-                <h5 class="modal-title" id="">Add New Address</h5>
+                <h5 class="modal-title">Add New Address</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body addressMB">
@@ -269,21 +269,21 @@
                     <div class="row pb-3">
                         <div class="col-md-6">
                             <label for="" class="form-label">Street Name</label>
-                            <input type="text" class="form-control" id="" placeholder="Street Name">
+                            <input type="text" class="form-control" placeholder="Street Name">
                         </div>
                         <div class="col-md-6">
                             <label for="" class="form-label">House Number</label>
-                            <input type="text" class="form-control" id="" placeholder="House Number">
+                            <input type="text" class="form-control" placeholder="House Number">
                         </div>
                     </div>
                     <div class="row pb-3">
                         <div class="col-md-6">
                             <label for="" class="form-label">Postal Code</label>
-                            <input type="text" class="form-control" id="" placeholder="Postal Code">
+                            <input type="text" class="form-control" placeholder="Postal Code">
                         </div>
                         <div class="col-md-6">
                             <label for="" class="form-label">City</label>
-                            <input type="text" class="form-control" id="" placeholder="City">
+                            <input type="text" class="form-control" placeholder="City">
                         </div>
                     </div>
                     <div class="row pb-3">
@@ -291,7 +291,7 @@
                             <label for="" class="form-label">Phone Number</label>
                             <div class="input-group">
                                 <div class="input-group-text">+49</div>
-                                <input type="tel" class="form-control" id="" placeholder="Phone Number">
+                                <input type="tel" class="form-control" placeholder="Phone Number">
                             </div>
                         </div>
                     </div>

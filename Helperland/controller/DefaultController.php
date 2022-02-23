@@ -33,11 +33,11 @@ class DefaultController{
     }
     public function customerDash($parameter){
         $para = $_GET['parameter']; 
-        include("view/service-history.php");
+        include("view/customerDash.php");
     }
     public function providerDash($parameter){
         $para = $_GET['parameter']; 
-        include("view/sp.php");
+        include("view/providerDash.php");
     }
     public function adminDash(){
         include("view/usermanagement.php");
