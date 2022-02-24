@@ -7,7 +7,7 @@
     </button>
 </div>
 
-<table id="example" class="table-data" style="width:100%">
+<table id="example" class="table-data dashboard-data-table" style="width:100%">
     <thead>
         <tr>
             <th>Service Id</th>
@@ -23,7 +23,7 @@
         foreach ($result as $val) {
         ?>
             <tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#Reschedule-cancle">
-                <input type="hidden" name="service-details" value="<?php print_r($val); ?>">
+                <input type="hidden" name="service-details" value='<?php echo json_encode($val); ?>'>
                 <td class="dashserviceid">
                     <span><?= $val['ServiceRequestId']; ?></span>
                 </td>
@@ -34,12 +34,11 @@
                     <br>
                     <span>
                         <img src="assets/Img/customer/layer-14.png" alt="">
-                        <?php $endtime = str_replace('.5', ':30', floatval(substr($val['ServiceStartDate'], 11, 5)) + $val['SubTotal']);
-                        if (strlen($endtime) == 2) {
-                            $endtime .= ':00';
-                        }
+                        <?php
+                            $endtime = str_replace(".5",":30",str_replace(".0",":00", floatval(str_replace(":00",".0",str_replace(":30",".5",substr($val['ServiceStartDate'], 11, 5)))) + $val['SubTotal']));
+                            if(strlen($endtime) == 2){$endtime = $endtime.":00";}
+                            echo  substr($val['ServiceStartDate'], 11, 5) . ' to ' . $endtime; 
                         ?>
-                        <?= substr($val['ServiceStartDate'], 11, 5) . ' to ' . $endtime; ?>
                     </span>
                 </td>
                 <td class="serviceprovider d-flex">

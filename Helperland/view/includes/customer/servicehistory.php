@@ -10,13 +10,10 @@
 <table id="example" class="table-data" style="width:100%">
     <thead>
         <tr>
-
-            <th>Service Detail <img src="assets/Img/customer/sort.png" alt="" class="sorting-img"></th>
-            <th>Service Provider <img src="assets/Img/customer/sort.png" alt="" class="sorting-img">
-            </th>
-            <th>Payment <img src="assets/Img/customer/sort.png" alt="" class="sorting-img"></th>
-            <th>Status <img src="assets/Img/customer/sort.png" alt="" class="sorting-img">
-            </th>
+            <th>Service Detail</th>
+            <th>Service Provider</th>
+            <th>Payment</th>
+            <th>Status</th>
             <th>Rate SP</th>
         </tr>
     </thead>

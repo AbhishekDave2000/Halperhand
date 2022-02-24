@@ -3,6 +3,14 @@
     width: 600px;
     color: #424242;
 }
+.modal-content {
+    top: 30px;
+}
+@media(max-width:720px){
+    .modal-dialog-rcmodal{
+        width: 96%;
+    }
+}
 .model-dialog{
     color: #424242;
     font-family: Roboto;
@@ -30,6 +38,7 @@
     padding-top: 10px;
     padding-bottom: 0px;
     padding-left: 0px;
+    padding-right: 0;
 }
 .modatl-time{
     margin: 0;
@@ -60,7 +69,18 @@
     padding: 10px 0px 10px 0px;
     border-bottom: 1px solid #bdbdbd;
 }
-
+.check{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgb(112, 205, 50);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-right: 5px;
+}
 .cross{
     width: 20px;
     height: 20px;

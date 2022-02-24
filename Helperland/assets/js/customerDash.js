@@ -1,60 +1,7 @@
 $(document).ready(function () {
 
     var id = $('.userid-div').html();
-    // $.ajax({
-    //     url: 'localhost/Halperhand/Helperland/?controller=customerDash&function=getServiceRequestData',
-    //     type: 'post',
-    //     data: {
-    //         id: id
-    //     },
-    //     success: function (result) {
-    //         var data = JSON.parse(result);
-    //         htmldata = '';
-    //         data.forEach(function (dt) {
-    //             var time = dt.ServiceStartDate.substr(11, 5).replace(':', '.');
-    //             var endtime = (parseFloat(time) + parseFloat(dt.SubTotal)).toString().replace('.', ':').replace(':3', ':30').replace(':5', ':30');
-    //             if (!endtime.match(':')) {
-    //                 endtime = endtime + ':00';
-    //             }
-    //             if (dt.FirstName == null) { dt.FirstName = '' }
-    //             if (dt.LastName == null) { dt.LastName = '' }
-    //             if (dt.Ratings == undefined) { dt.Ratings = '' }
-    //             var date = convertDate(dt.ServiceStartDate.substr(0, 10));
-    //             htmldata += `<tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#Reschedule-cancle">
-    //                             <td class="dashserviceid">
-    //                                 <span>${dt.ServiceRequestId}</span>
-    //                             </td>
-    //                             <td class="dashservicedate" style="flex-direction:column;">
-    //                                 <span><img src="assets/Img/customer services history/calendar2.png" alt=""> ${date}</span><br>
-    //                                 <span><img src="assets/Img/customer services history/layer-14.png" alt=""> ${time} - ${endtime}</span>
-    //                             </td>
-    //                             <td class="serviceprovider">
-    //                                 <div class="cap-div">
-    //                                     <img class="cap" src="assets/Img/customer services history/cap.png" alt="cap">
-    //                                 </div>
-                                    
-    //                                 <span>${dt.FirstName}  ${dt.LastName} <br>
-    //                                     <i class="fas fa-star i-con"></i>
-    //                                     <i class="fas fa-star i-con"></i>
-    //                                     <i class="fas fa-star i-con"></i>
-    //                                     <i class="fas fa-star i-con"></i>
-    //                                     <i class="fas fa-star i-con-e"></i>
-    //                                     ${dt.Ratings}
-    //                                 </span>
-    //                             </td>
-    //                             <td class="payment-text">
-    //                                 <i class="fas fa-euro-sign"></i> ${dt.TotalCost}<br>
-    //                             </td>
-    //                             <td class="dash-action">
-    //                                 <button type="button" data-bs-dismiss="modal" value="${dt.ServiceRequestId}" data-bs-toggle="modal" class="btn reshedule-btn" data-bs-target="#Reschedule-Request">Reshedule</button>
-    //                                 <button type="button" data-bs-dismiss="modal" value="${dt.ServiceRequestId}" data-bs-toggle="modal" class="btn cancel-btn" data-bs-target="#cancel-request">Cancel</button>
-    //                             </td>
-    //                         </tr>`;
-    //         });
-    //         $('.dashboard-data').html(htmldata);
-    //     }
-    // });
-
+    
     function convertDate(dateString) {
         var p = dateString.split(/\D/g)
         return [p[2], p[1], p[0]].join("-")
@@ -97,6 +44,48 @@ $(document).ready(function () {
             return false;
         }
     });
+
+    $('.dashboard-data-table').on('click', function(e){
+        const service = $(e.target).closest('tr').find("input").val();
+        serviceDetailsPopup(JSON.parse(service));
+    });
+
+    function serviceDetailsPopup(service){
+        console.log(service);
+        extrahtml ="";
+        var extra = ["Inside Cabinates","Inside Oven","Laundry wash & dry","Interior Windows","Inside Fridge"];
+        var elength = service.ServiceExtraId.length;
+        for(var i=0; i<elength; i++){
+            if(i != elength-1){
+                extrahtml += extra[i] + '  ,  ';
+            }else{
+                extrahtml += extra[i] + '.';
+            }
+        }
+        var date = service.ServiceStartDate.substr(8,2) + '/' + service.ServiceStartDate.substr(5,2) +'/'+service.ServiceStartDate.substr(0,4);
+        var stime = service.ServiceStartDate.substr(11,5);
+        var endtime =  (parseFloat(service.ServiceStartDate.substr(11,5).replace(":30",".50").replace(":",".")) + parseFloat(service.SubTotal)).toString().replace(".5",":30");
+        if(endtime.length == 2){ endtime = endtime+":00"; }
+        // set the values
+        $('.s-start-date').text(date);
+        $('.start-end-time-service').text(stime+" to "+endtime);
+        $('.model-service-duration').text(service.SubTotal.replace(".5",":3").replace(".",":"));
+        $('.modal-s-id').text(service.ServiceRequestId);
+        $('.extra-service-modal-show').text(extrahtml);
+        $('.modal-totalcost-show').text(service.TotalCost);
+        $('.address-modal-show-detail').text(service.AddressLine1+" "+service.AddressLine2+" "+service.City+" "+service.State+".");
+        $('.billing-address-ddetail-show').text(service.AddressLine1+" "+service.AddressLine2+" "+service.City+" "+service.State+".");
+        $('.mobile-no-modal-show').text(service.Mobile);
+        $('.email-modal-show').text(service.Email);
+        $('.comment-body-modal-show').text(service.Comments);
+        if(service.HasPets == 0){
+            $('.hpts').hide();
+            $('.nhpets').show();
+        }else{
+            $('.nhpets').hide();
+            $('.hpts').show();
+        }
+    }
 
     $('.detail-save-btn').on("click",function(){
         var fname = $('.my-setting-FN').val();

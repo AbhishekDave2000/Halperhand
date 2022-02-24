@@ -361,6 +361,8 @@ table thead{
     display: flex;
     justify-content: right;
     width: fit-content;
+    height: 52px;
+    align-items: center;
 }
 .reshedule-btn,
 .reshedule-btn:hover,
@@ -881,4 +883,7 @@ table thead{
     border-radius: 50%;
     border: 1px solid #e1e1e1;
     transform: rotate(180deg);
+}
+.dataTables_wrapper .dataTables_length select {
+    color: black;
 }
