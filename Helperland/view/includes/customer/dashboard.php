@@ -2,9 +2,9 @@
     <span class="Service-History-span">
         Current Service Request
     </span>
-    <button class="add-service-button">
+    <a href="<?= Config::base_url . '?controller=Default&function=BookNowpage' ?>" class="add-service-button">
         Add new Service Request
-    </button>
+    </a>
 </div>
 
 <table id="example" class="table-data dashboard-data-table" style="width:100%">
@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody class="dashboard-data">
-        
+
         <?php
         foreach ($result as $val) {
         ?>
@@ -35,25 +35,35 @@
                     <span>
                         <img src="assets/Img/customer/layer-14.png" alt="">
                         <?php
-                            $endtime = str_replace(".5",":30",str_replace(".0",":00", floatval(str_replace(":00",".0",str_replace(":30",".5",substr($val['ServiceStartDate'], 11, 5)))) + $val['SubTotal']));
-                            if(strlen($endtime) == 2){$endtime = $endtime.":00";}
-                            echo  substr($val['ServiceStartDate'], 11, 5) . ' to ' . $endtime; 
+                        $endtime = str_replace(".5", ":30", str_replace(".0", ":00", floatval(str_replace(":00", ".0", str_replace(":30", ".5", substr($val['ServiceStartDate'], 11, 5)))) + $val['SubTotal']));
+                        if (strlen($endtime) == 2) {
+                            $endtime = $endtime . ":00";
+                        }
+                        echo  substr($val['ServiceStartDate'], 11, 5) . ' to ' . $endtime;
                         ?>
                     </span>
                 </td>
                 <td class="serviceprovider d-flex">
-                    <?php if(isset($val['FullName'])){ ?>
-                    <div class="cap-div">
-                        <img class="cap" src="assets/Img/customer/cap.png" alt="cap">
-                    </div>
-                    <span><?= $val['FullName']; ?> <br>
-                        <i class="fas fa-star i-con"></i>
-                        <i class="fas fa-star i-con"></i>
-                        <i class="fas fa-star i-con"></i>
-                        <i class="fas fa-star i-con"></i>
-                        <i class="fas fa-star i-con-e"></i>
-                        <?php if(isset($val['AvarageRating'])){echo substr($val['AvarageRating'],0,3);} ?>
-                    </span>
+                    <?php if (isset($val['FullName'])) { ?>
+                        <div class="cap-div">
+                            <img class="cap" src="assets/Img/customer/cap.png" alt="cap">
+                        </div>
+                        <span><?= $val['FullName']; ?> <br>
+                            <?php for ($i = 0; $i < substr($val['AvarageRating'], 0, 1); $i++) { ?>
+                                <i class="fas fa-star i-con"></i>
+                                <?php }
+                            if (substr($val['AvarageRating'], 2, 1) != 0) {
+                                for ($i = 0; $i < 1; $i++) { ?>
+                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                <?php }
+                            }
+                            for ($i = 0; $i < (4 - substr($val['AvarageRating'], 0, 1)); $i++) { ?>
+                                <i class="fas fa-star i-con-e"></i>
+                            <?php } ?>
+                            <?php if (isset($val['AvarageRating'])) {
+                                echo substr($val['AvarageRating'], 0, 3);
+                            } ?>
+                        </span>
                     <?php } ?>
                 </td>
                 <td class="payment-text">

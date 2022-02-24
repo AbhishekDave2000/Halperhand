@@ -150,7 +150,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="form-check">
+                    <div class="form-check" style="margin-left: 12px;">
                         <input class="form-check-input" name="agree" type="checkbox" id="c-agreed-terms" required>
                         <label class="form-check-label" for="flexCheckDefault">
                             I hearby agree that my data entered into the contact form will be store electronically.

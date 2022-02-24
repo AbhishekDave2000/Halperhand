@@ -13,6 +13,9 @@
 .float-right-notification ul li{
     position: relative;
 }
+.dropdown-menu{
+    box-shadow: 1px 1px 8px grey;
+}
 .dropdown-menu::before{
     position: absolute;
     content: "";

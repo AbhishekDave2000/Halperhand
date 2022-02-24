@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+.dropdown-menu{
+    box-shadow: 1px 1px 8px grey;
+}
 input:focus,select:focus,
 textarea:focus,button:focus
 {
@@ -306,8 +308,8 @@ table thead{
     margin-top: 4px;
     margin-left: 3px;
 }
-.i-con{
-    color: #ecb91c;
+.i-con,.fa-star-half-stroke{
+    color: #ecb91c !important;
 }
 .i-con-e{
     color: #d4d4d4;
@@ -322,20 +324,28 @@ table thead{
     letter-spacing: normal;
     color: #1d7a8c;
 }
-.servicestatus .completed{
+.servicestatus .status{
     font-size: 13px;
-    background-color: #67b644;
     color: white;
     text-align: center;
     padding: 5px 10px 7px;
     border-radius: 3px;
-}
-.servicestatus .cancelled{
     height: 22px;
-    padding: 5px 10px 7px;
+}
+/* .servicestatus .status-s0{
+    background-color: red;
+}
+.servicestatus .status-s1{
+    background-color: #67b644;
+}
+.servicestatus .status-s2{
+    background-color: #67b644;
+} */
+.servicestatus .status-s3{
     background-color: #ff6b6b;
-    color: white;
-    border-radius: 3px;
+}
+.servicestatus .status-s4{
+    background-color: #67b644;
 }
 .ratesp-text .btn,
 .ratesp-text .btn:hover{
@@ -344,9 +354,8 @@ table thead{
     font-size: 14px;
 }
 
-
 /* dashboard  page*/
-.add-service-button{
+.add-service-button,.add-service-button:hover{
     background: #146371;
     border-radius: 23px;
     opacity: 1;
@@ -356,6 +365,7 @@ table thead{
     justify-content: center;
     align-items: center;
     padding: 8px 15px;
+    text-decoration: none;
 }
 .dash-action{
     display: flex;
@@ -821,7 +831,6 @@ table thead{
     }
     
  }
-
 
 #example_wrapper .bottom {
     padding: 10px 0;

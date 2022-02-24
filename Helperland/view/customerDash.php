@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="assets/Css/service-history.css">
     <link rel="stylesheet" href="assets/Css/uparr.css">
@@ -52,7 +53,7 @@
                     <div class="collapse navbar-collapse" id="collapsibleNavbar">
                         <ul class="navbar-nav ms-auto mb-lg-0">
                             <li class="nav-item" style="width: 111px; text-align: center;">
-                                <a class="nav-link rounded-link" href="#">Book now</a>
+                                <a class="nav-link rounded-link" href="<?= Config::base_url . '?controller=Default&function=BookNowpage' ?>">Book now</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?= Config::base_url . '?controller=Default&function=pricespage' ?>">Prices & Service</a>
@@ -102,14 +103,30 @@
                             </li>
                             <li class="nav-item" id="user-1">
                                 <a class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                                    <img src="assets/Img/customer/user.png" alt="" srcset="">
-                                    <img src="assets/Img/customer/sp-arrow-down.png" class="Forma-1-copy">
+                                    <img src="assets/Img/spupcoming/user.png" alt="" srcset="">
+                                    <img src="assets/Img/spupcoming/sp-arrow-down.png" class="Forma-1-copy">
                                 </a>
-                                <div class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="<?= Config::base_url . '?controller=Default&function=customerDash&parameter=dashboard' ?>">My Dashboard</a>
-                                    <a class="dropdown-item" href="<?= Config::base_url . '?controller=Default&function=customerDash&parameter=mysetting' ?>">My Setting</a>
-                                    <a class="dropdown-item" href="#">Logout</a>
-                                    <!-- <div class="dropdown-divider"></div> -->
+                                <div class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown" style="width: 180px;">
+                                    <div class="label">
+                                        <span style="padding-left: 15px;padding-bottom: 15px; font-size:medium ;">Welcome,<br>
+                                            <span style="padding-left: 15px; font-weight:600; font-size:medium;"><?= $_SESSION['user']['FirstName']; ?></span>
+                                        </span>
+                                    </div>
+                                    <div class="dropdown-divider" style="display: block;"></div>
+                                    <?php
+                                    if ($_SESSION['user']['UserTypeId'] == 1) {
+                                        $function = 'customerDash';
+                                        $parameter = 'dashboard';
+                                        $setting = 'mysetting';
+                                    } else if ($_SESSION['user']['UserTypeId'] == 2) {
+                                        $function = 'providerDash';
+                                        $parameter = 'new-service-request';
+                                        $setting = 'my-setting';
+                                    }
+                                    ?>
+                                    <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function=' . $function . '&parameter=' . $parameter ?>">My Dashboard</a>
+                                    <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function=customerDash&parameter=' . $setting ?>">My Settings</a>
+                                    <a class="dropdown-item" href="<?= $base_url . '?controller=Authentication&function=Logout' ?>">Logout</a>
                                 </div>
                             </li>
                         </ul>
