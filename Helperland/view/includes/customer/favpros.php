@@ -3,7 +3,7 @@
     <div class="card fav-pro-card pb-4 m-4">
         <div class="row pb-2 pt-4">
             <div class="avtar-fav-pro-card">
-                <img src="assets/Img/customer services history/cap.png" alt="avatar" srcset="">
+                <img src="assets/Img/customer/cap.png" alt="avatar" srcset="">
             </div>
         </div>
         <div class="row pt-3">
@@ -28,7 +28,7 @@
     <div class="card fav-pro-card pb-4 m-4">
         <div class="row pb-2 pt-4">
             <div class="avtar-fav-pro-card">
-                <img src="assets/Img/customer services history/cap.png" alt="avatar" srcset="">
+                <img src="assets/Img/customer/cap.png" alt="avatar" srcset="">
             </div>
         </div>
         <div class="row pt-3">

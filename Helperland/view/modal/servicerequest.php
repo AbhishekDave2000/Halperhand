@@ -7,7 +7,7 @@
             <div class="modal-header rate-sp-modal-header">
                 <div class="name-sp d-flex">
                     <div class="cap-div">
-                        <img class="cap" src="assets/Img/customer services history/cap.png" alt="cap">
+                        <img class="cap" src="assets/Img/customer/cap.png" alt="cap">
                     </div>
                     <span>Lyum Watson <br>
                         <i class="fas fa-star i-con"></i>

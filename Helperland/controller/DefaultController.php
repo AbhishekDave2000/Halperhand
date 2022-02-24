@@ -2,7 +2,7 @@
 include("controller/AuthenticationController.php");
 class DefaultController{
     public function __construct(){
-        // header ('Location: view/home.php');
+        
     }
     public function homepage(){
         include("view/home.php");

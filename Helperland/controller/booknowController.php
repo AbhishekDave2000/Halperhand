@@ -85,31 +85,35 @@ class booknowController
 
     public function addServiceRequest()
     {
-        $e = array('extra-cabinates','extra-oven','extra-laundry','extra-window','extra-fridge','pets-at-home');
-        for($i = 0; $i < count($e); $i++){
-            if(!isset($_POST[$e[$i]])){
-                $_POST[$e[$i]] = 0;
-            }
+        // $e = array('extra-cabinates', 'extra-oven', 'extra-laundry', 'extra-window', 'extra-fridge', 'pets-at-home');
+        // for ($i = 0; $i < count($e); $i++) {
+        //     if (!isset($_POST[$e[$i]])) {
+        //         $_POST[$e[$i]] = 0;
+        //     }
+        // }
+        // $extra = array($_POST['extra-cabinates'], $_POST['extra-oven'], $_POST['extra-laundry'], $_POST['extra-window'], $_POST['extra-fridge']);
+        // $count = 0;
+        // for ($i = 0; $i < count($extra); $i++) {
+        //     if ($extra[$i] != 0) {
+        //         $count += 0.5;
+        //     }
+        // }
+        if(!isset($_POST['pets-at-home'])){
+            $_POST['pets-at-home'] = 0;
         }
-        $extra = array($_POST['extra-cabinates'], $_POST['extra-oven'], $_POST['extra-laundry'], $_POST['extra-window'], $_POST['extra-fridge']);
-        $count = 0;
-        for ($i = 0; $i < count($extra); $i++) {
-            if ($extra[$i] != 0) {
-                $count += 0.5;
-            }
-        }
+        $extra = $_POST['extra'];
+        $count = count($extra)*0.5;
         $_POST['service-hourly-rate'] = 18;
         $_POST['extra-hours'] = $count;
         $_POST['service-hours'] = $_POST['service-hours-select'] + $_POST['extra-hours'];
         $_POST['total-cost'] = $_POST['service-hours'] * 18;
         $time_str = $_POST['service-start-time'];
-        if (preg_match("/.5/", $time_str))
-        {
-            $time = str_replace('.5',':3',$time_str);
-        }else{
-            $time = str_replace('.',':',$time_str);
-        }   
-        $_POST['service-start-date-time'] = $_POST['date-of-cleaning'].' '.$time.'0:00.000';
+        if (preg_match("/.5/", $time_str)) {
+            $time = str_replace('.5', ':3', $time_str);
+        } else {
+            $time = str_replace('.', ':', $time_str);
+        }
+        $_POST['service-start-date-time'] = $_POST['date-of-cleaning'] . ' ' . $time . '0:00.000';
         // send all the data to model addrequestmodel *** FIRST STEP
         $m = new ServiceModel($_POST);
         $result = $m->addServiceRequest();
@@ -119,11 +123,8 @@ class booknowController
 
             // add extra services of last service request *** THIRD STEP
             $serviceextra = new ServiceModel($result);
-            for ($i = 0; $i < count($extra); $i++) {
-                if ($extra[$i] != 0) {
-                    $e = $serviceextra->addExtraServices($extra[$i]);
-                } 
-            }if(!$e){
+            $e = $serviceextra->addExtraServices($_POST['extra']);
+            if (!$e) {
                 echo 0;
                 exit;
             }

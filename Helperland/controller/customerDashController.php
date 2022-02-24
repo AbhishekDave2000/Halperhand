@@ -9,11 +9,10 @@ class customerDashController{
         $this->model = new customerDashModel();
     }
 
-    public function getServiceRequestData(){
+    public function getServiceRequestData($status){
         $id = $_POST['userid'];
-        $result = $this->model->getServiceRequestDataModel($id);
-        // echo json_encode($result);
-        include 'view/includes/customer/dashboard.php';
+        $result = $this->model->getServiceRequestDataModel($id,$status);
+        return $result;
     }
 
     public function getMyDetail(){
@@ -62,7 +61,4 @@ class customerDashController{
         }
     }
 
-
 }
-
-?>

@@ -15,6 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/Css/service-history.css">
     <link rel="stylesheet" href="assets/Css/uparr.css">
@@ -26,7 +27,7 @@
 </head>
 
 <body>
-    <div class="userid-div" style="display: none;"><?= $_SESSION['user']['UserId'];?></div>
+    <div class="userid-div" style="display: none;"><?= $_SESSION['user']['UserId']; ?></div>
     <?php include("view/modal/servicerequest.php"); ?>
     <?php include("view/includes/uparr.php"); ?>
     <?php $base_url = Config::base_url; ?>
@@ -90,7 +91,7 @@
                     <div class="float-right-notification">
                         <ul>
                             <li class="nav-item dropdown" id="notification">
-                                <a class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><img src="assets/Img/customer services history/notification.png" alt="" srcset=""></a>
+                                <a class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><img src="assets/Img/customer/notification.png" alt="" srcset=""></a>
                                 <div class="Ellipse-5">0</div>
                                 <div class="dropdown-menu dropdown-menu1" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">Action</a>
@@ -101,8 +102,8 @@
                             </li>
                             <li class="nav-item" id="user-1">
                                 <a class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                                    <img src="assets/Img/customer services history/user.png" alt="" srcset="">
-                                    <img src="assets/Img/customer services history/sp-arrow-down.png" class="Forma-1-copy">
+                                    <img src="assets/Img/customer/user.png" alt="" srcset="">
+                                    <img src="assets/Img/customer/sp-arrow-down.png" class="Forma-1-copy">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="<?= Config::base_url . '?controller=Default&function=customerDash&parameter=dashboard' ?>">My Dashboard</a>
@@ -162,13 +163,15 @@
 
             <main class="container__main">
                 <?php
+                $_POST['userid'] = $_SESSION['user']['UserId'];
                 switch ($para) {
                     case 'dashboard':
-                        $_POST['userid'] = $_SESSION['user']['UserId'];
-                        $c->getServiceRequestData();
+                        $result = $c->getServiceRequestData('(0,1,2)');
+                        include 'view/includes/customer/dashboard.php';
                         break;
                     case 'service-history':
-                        include("includes/customer/servicehistory.php");
+                        $result = $c->getServiceRequestData('(3,4)');
+                        include "view/includes/customer/servicehistory.php";
                         break;
                     case 'mysetting':
                         include("includes/customer/mysetting.php");
@@ -227,17 +230,32 @@
     <script>
         $(document).ready(function() {
             $('#example').DataTable({
-                "order": [
-                    [3, "desc"]
-                ],
-                "bPaginate": false, //hide pagination
+                "dom": '<"top"i>rt<"bottom"flp><"clear">',
+                "columnDefs": [{
+                    "orderable": false,
+                    "targets": 5
+                }],
                 "bFilter": false, //hide Search bar
-                "bInfo": false, // hide showing entries
-
+                "pagingType": "full_numbers",
+                paging: true,
+                "pagingType": "full_numbers",
+                // bFilter: false,
+                ordering: true,
+                searching: false,
+                info: true,
+                "columnDefs": [{
+                    "orderable": false,
+                    "targets": 4
+                }],
+                "oLanguage": {
+                    "sInfo": "Total Records: _TOTAL_"
+                },
+                "dom": '<"top">rt<"bottom"lip><"clear">',
+                responsive: true,
+                "order": []
             });
         });
     </script>
-
 </body>
 
 </html>

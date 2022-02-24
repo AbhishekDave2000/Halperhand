@@ -144,11 +144,15 @@ class ServiceModel
         $TotalCost = $_POST['total-cost'];
         $Comments = $_POST['service-comments-text'];
         $HasPets = $_POST['pets-at-home'];
+        $sprovider = 'null';
+        if(isset($_POST['favrioute-provider'])){
+            $sprovider = $_POST['favrioute-provider']; 
+        }
 
         $sql = "INSERT INTO servicerequest 
-                    (UserId, ServiceStartDate, ZipCode, ServiceHourlyRate, ServiceHours, ExtraHours, SubTotal, TotalCost, Comments, PaymentDue, HasPets, Status, CreatedDate, PaymentDone) 
+                    (UserId, ServiceStartDate, ZipCode, ServiceHourlyRate, ServiceHours, ExtraHours, SubTotal, TotalCost, Comments, PaymentDue, HasPets, Status, CreatedDate, PaymentDone, ServiceProviderId) 
                 VALUES 
-                    ( $UserId, '$ServiceStartDate', '$ZipCode', 18, $ServiceHours, $ExtraHours, $SubTotal, $TotalCost, '$Comments', 0, $HasPets, 0, now(), 1)";
+                    ( $UserId, '$ServiceStartDate', '$ZipCode', 18, $ServiceHours, $ExtraHours, $SubTotal, $TotalCost, '$Comments', 0, $HasPets, 0, now(), 1, $sprovider)";
         $result = $this->conn->query($sql);
         if($result){
             $last_id = $this->conn->insert_id;
@@ -166,7 +170,6 @@ class ServiceModel
         if($result->num_rows > 0){
             $address = $result->fetch_assoc();
         }
-
         // add Address to servicerequest table
         $Aline1 = $address['AddressLine1'];
         $ALine2 = $address['AddressLine2'];
@@ -181,11 +184,12 @@ class ServiceModel
         return $result;
     }
 
-    public function addExtraServices($extra){
+    public function addExtraServices($data){
         // Add ExtraServices into table
         $id = $this->data;
+        $extarid = implode("",$data);
         $sql = "INSERT INTO servicerequestextra (`ServiceRequestId`, `ServiceExtraId`) 
-                VALUES ($id, $extra)";
+                VALUES ($id, $extarid)";
         $result = $this->conn->query($sql);
         return $result;
     }

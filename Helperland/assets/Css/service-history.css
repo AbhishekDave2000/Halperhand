@@ -273,25 +273,26 @@ table tbody tr td,table thead tr th{
     color: #646464;
     opacity: 1;
     padding-left: 10px;
-    height: 50px;
 }
 table tbody tr td{
     padding: 8px 10px 8px 10px;
 }
-table thead tr,table tbody tr{
-    border-bottom: 1px solid rgba(184, 184, 184, 0.5);
+.dataTables_info{
+    padding-top: 0 !important;
+}
+table.dataTable {
+    border-collapse: collapse;
+    border-spacing: 1px;
+}
+table.dataTable tbody .even, table.dataTable tbody .odd{
+    background-color: #fff;
+    border-bottom: 1px solid #e1e1e1 !important;
 }
 table thead{
     background-color: #e1e1e1;
 }
 .servicedetail{
     color: #646464;
-}
-.serviceprovider{
-    display: flex;
-    margin: 0 !important;
-    color: #646464;
-    height: fit-content;
 }
 .serviceprovider .cap-div{
     width: 44px;
@@ -302,6 +303,8 @@ table thead{
     justify-content: center;
     align-items: center;
     margin-right: 6px;
+    margin-top: 4px;
+    margin-left: 3px;
 }
 .i-con{
     color: #ecb91c;
@@ -325,12 +328,14 @@ table thead{
     color: white;
     text-align: center;
     padding: 5px 10px 7px;
+    border-radius: 3px;
 }
 .servicestatus .cancelled{
     height: 22px;
     padding: 5px 10px 7px;
     background-color: #ff6b6b;
     color: white;
+    border-radius: 3px;
 }
 .ratesp-text .btn,
 .ratesp-text .btn:hover{
@@ -534,61 +539,6 @@ table thead{
     width: fit-content;
 }
 /* fav pros end */
-
-/* pagination */
-.pagination-div{
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 20px;
-    height: fit-content;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    /* z-index: -1; */
-}
-.pagination-div div{
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}
-.dropdown-toggle{
-    background-color: white;
-    color: #646464;
-    opacity: 1;
-}
-.pagination{
-    display: flex;
-    flex-direction: row;
-}
-.pagination-div .container-fluid span{
-    color: #646464;
-    opacity: 1;
-    font-size: 14px;
-    font-family: Roboto;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.71;
-    letter-spacing: normal;
-}
-.page-link{
-    border-radius: 50% !important;
-    text-decoration: none;
-    color: #777777 !important;
-    opacity: 1;
-    width: 38px;
-    height: 38px;
-    margin-right: 5px;
-    margin-left: 5px;
-    text-align: center;
-}
-.page-link:active,
-.page-link:focus
-{
-    background-color: #1d7a8c;
-    color: white !important;
-}
 /* content end */
 
 /* footer start */
@@ -806,7 +756,7 @@ table thead{
         min-width: 120px;
     }
  }
- @media(max-width:770px){
+ @media(max-width:820px){
     .set-address-table tbody,.set-address-table{
         border: 0px !important;
     }
@@ -853,19 +803,6 @@ table thead{
     .ratesp-text{
         text-align: center;
     }
-    .pagination-div{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: -1;
-    }
-    .pagination-div div{
-        text-align: center;
-        justify-content: center;
-        padding-bottom: 10px;
-        padding-top: 10px;
-    }
     .setting-nav-tabs  .nav-link{
         width: 33%;
     }
@@ -882,4 +819,66 @@ table thead{
     }
     
  }
- 
+
+
+#example_wrapper .bottom {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.paginate_button {
+    border-radius: 50% !important;
+}
+.paginate_button:hover {
+    background: #1D7A8C !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+    background: #1D7A8C !important;
+    color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate {
+    float: right;
+    text-align: right;
+    padding-top: 0.25em;
+}
+.dataTables_paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0px !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled{
+    cursor: default;
+    color: #666 !important;
+    border: 1px solid transparent;
+    background: transparent;
+    box-shadow: none;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.first {
+    content: url(../Img/customer/first-page.png);
+    padding: 15px 14px 14px 16px;
+    border-radius: 50%;
+    border: 1px solid #e1e1e1;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous {
+    content: url(../img/customer/keyboard-right-arrow-button-copy.png);
+    padding: 15px 14px 14px 16px;
+    border-radius: 50%;
+    border: 1px solid #e1e1e1;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.next {
+    content: url(../img/customer/keyboard-right-arrow-button-copy.png);
+    padding: 15px 14px 14px 16px;
+    border-radius: 50%;
+    border: 1px solid #e1e1e1;
+    transform: rotate(180deg);
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.last {
+    content: url(../img/customer/first-page.png);
+    padding: 15px 14px 14px 16px;
+    border-radius: 50%;
+    border: 1px solid #e1e1e1;
+    transform: rotate(180deg);
+}
