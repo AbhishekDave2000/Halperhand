@@ -85,24 +85,17 @@ class booknowController
 
     public function addServiceRequest()
     {
-        // $e = array('extra-cabinates', 'extra-oven', 'extra-laundry', 'extra-window', 'extra-fridge', 'pets-at-home');
-        // for ($i = 0; $i < count($e); $i++) {
-        //     if (!isset($_POST[$e[$i]])) {
-        //         $_POST[$e[$i]] = 0;
-        //     }
-        // }
-        // $extra = array($_POST['extra-cabinates'], $_POST['extra-oven'], $_POST['extra-laundry'], $_POST['extra-window'], $_POST['extra-fridge']);
-        // $count = 0;
-        // for ($i = 0; $i < count($extra); $i++) {
-        //     if ($extra[$i] != 0) {
-        //         $count += 0.5;
-        //     }
-        // }
         if(!isset($_POST['pets-at-home'])){
             $_POST['pets-at-home'] = 0;
         }
-        $extra = $_POST['extra'];
-        $count = count($extra)*0.5;
+        
+        if(!isset($_POST['extra'])){
+            $_POST['extra'] = [0];
+            $count = 0;
+        }else{
+            $extra = $_POST['extra'];
+            $count = count($extra)*0.5;
+        }
         $_POST['service-hourly-rate'] = 18;
         $_POST['extra-hours'] = $count;
         $_POST['service-hours'] = $_POST['service-hours-select'] + $_POST['extra-hours'];
@@ -127,16 +120,14 @@ class booknowController
             if (!$e) {
                 echo 0;
                 exit;
-            }
-
-            if (!$res) {
+            }else if (!$res) {
                 echo 0;
                 exit;
             } else {
                 // Send Mail to provider *** FOURTH STEP
                 $Date = $_POST['date-of-cleaning'];
-                $time = $_POST['service-hours-select'];
-                $start_time = $_POST['service-start-time'];
+                $time = str_replace(".",":",str_replace(".5",":30",($_POST['service-hours-select']+$count)));
+                $start_time = str_replace(".",":",str_replace(".5",":30",$_POST['service-start-time']));
                 if ($_POST['pets-at-home'] == 1) {
                     $pets = "<span style='color:green; font-size:16px;'>Customer Has Pets</span>";
                 } else {

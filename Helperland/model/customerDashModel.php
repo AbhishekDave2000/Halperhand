@@ -14,11 +14,13 @@ class customerDashModel
     public function getServiceRequestDataModel($id, $status)
     {
         $sql = "SELECT sr.ServiceRequestId,sr.UserId,sr.ServiceStartDate,sr.ZipCode,sr.ServiceHourlyRate,sr.ServiceHours,sr.ExtraHours,sr.SubTotal,
-                sr.TotalCost,sr.Comments,sr.ServiceProviderId,sr.SPAcceptedDate,sr.HasPets,sr.Status,sr.HasIssue,sra.AddressLine1,sra.AddressLine2,sra.City,sra.State,sra.PostalCode,sra.Mobile,sra.Email,sre.ServiceExtraId FROM `servicerequest` AS sr 
+                sr.TotalCost,sr.Comments,sr.ServiceProviderId,sr.SPAcceptedDate,sr.HasPets,sr.Status,sr.HasIssue,sra.AddressLine1,sra.AddressLine2,sra.City,sra.State,sra.PostalCode,sra.Mobile,sra.Email,sre.ServiceExtraId,CONCAT(u.FirstName,' ',u.LastName) as FullName FROM `servicerequest` AS sr 
                 JOIN servicerequestaddress AS sra
                     ON sra.ServiceRequestId = sr.ServiceRequestId
                 LEFT JOIN servicerequestextra AS sre
                     ON sra.ServiceRequestId = sre.ServiceRequestId
+                LEFT JOIN user as u
+                    ON sr.ServiceProviderId = u.UserId
                 WHERE sr.UserId = '$id' AND sr.Status IN $status";
         $result = $this->conn->query($sql);
         $services = [];
@@ -50,6 +52,38 @@ class customerDashModel
             $result = [];
         }
         return $result;
+    }
+
+    public function resheduleDateAndTimeModel($data)
+    {
+        $id = $data['service-id'];
+        $date = $data['rescheduled-date'] . " " . $data['rescheduled-time'] . ":00.000";
+        $sql = "UPDATE servicerequest SET ServiceStartDate = '$date' WHERE ServiceRequestId = '$id'";
+        return $this->conn->query($sql);
+    }
+
+    public function cancelServiceRequestModel($data)
+    {
+        $id = $data['service-id'];
+        $issue = $data['Has-issue-text'];
+        $sql = "UPDATE servicerequest SET HasIssue = '$issue', Status = 3 WHERE ServiceRequestId = '$id'";
+        return $this->conn->query($sql);
+    }
+
+    public function rateServiceProviderModel($data)
+    {
+        $frate = $data['ota-rate'];
+        $srate = $data['Friendly-rate'];
+        $trate = $data['Qos-rate'];
+        $comments = $data['rate-comments'];
+        $ratefrom = $data['c-id'];
+        $rateto = $data['sp-id'];
+        $srid = $data['sr-id'];
+        $rate = floatval(($frate + $srate + $trate) / 3);
+
+        $sql = "INSERT INTO rating (`ServiceRequestId`, `RatingFrom`, `RatingTo`, `Ratings`, `Comments`, `RatingDate`, `OnTimeArrival`, `Friendly`, `QualityOfService`) 
+                VALUES ( $srid, $ratefrom, $rateto, $rate, '$comments', now(), '$frate', '$srate', '$trate' )";
+        return $this->conn->query($sql);
     }
 
     public function getMyDetailModel($id)
@@ -97,5 +131,4 @@ class customerDashModel
             return False;
         }
     }
-    
 }

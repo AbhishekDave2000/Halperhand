@@ -10,6 +10,7 @@
 <table id="example" class="table-data" style="width:100%">
     <thead>
         <tr>
+            <th>Service Id</th>
             <th>Service Detail</th>
             <th>Service Provider</th>
             <th>Payment</th>
@@ -22,6 +23,10 @@
         foreach ($result as $val) {
         ?>
             <tr>
+                <input type="hidden" name="service-details" class="all-service-detail-input" value='<?php echo json_encode($val); ?>'>
+                <td class="dashserviceid pl-5">
+                    <span><?= $val['ServiceRequestId']; ?></span>
+                </td>
                 <td class="servicedetail">
                     <img src="assets/Img/customer/calendar.png" alt="">
                     <span><?= substr($val['ServiceStartDate'], 0, 10); ?></span><br>
@@ -44,16 +49,18 @@
                             <?php for ($i = 0; $i < substr($val['AvarageRating'], 0, 1); $i++) { ?>
                                 <i class="fas fa-star i-con"></i>
                                 <?php }
-                            if (substr($val['AvarageRating'], 2, 1) != 0) {
-                                for ($i = 0; $i < 1; $i++) { ?>
+                            $star = 0;
+                            if (substr($val['AvarageRating'], 2, 1) != "") {
+                                $star = 1;
+                                for ($i = 0; $i <$star; $i++) { ?>
                                     <i class="fa-solid fa-star-half-stroke"></i>
                                 <?php }
-                            }
-                            for ($i = 0; $i < (4 - substr($val['AvarageRating'], 0, 1)); $i++) { ?>
+                            } 
+                            for ($i = 0; $i < (5 - (floatval(substr($val['AvarageRating'], 0, 1)) + $star)); $i++) { ?>
                                 <i class="fas fa-star i-con-e"></i>
                             <?php } ?>
                             <?php if (isset($val['AvarageRating'])) {
-                                echo substr($val['AvarageRating'], 0, 3);
+                                echo substr($val['AvarageRating'], 0, 4);
                             } ?>
                         </span>
                     <?php } ?>
@@ -71,7 +78,7 @@
                     </span>
                 </td>
                 <td class="ratesp-text">
-                    <button class="btn btn-rounded-17" value="Cancel" data-bs-toggle="modal" data-bs-target="#RateSP">Rate SP</button>
+                    <button class="btn btn-rounded-17 Rate-Service-Provider-btn" id="Rate-Service-Provider-btn" value="Cancel" data-bs-toggle="modal" data-bs-target="#RateSP">Rate SP</button>
                 </td>
             </tr>
         <?php } ?>

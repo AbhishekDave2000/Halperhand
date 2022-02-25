@@ -6,54 +6,76 @@
 
             <div class="modal-header rate-sp-modal-header">
                 <div class="name-sp d-flex">
-                    <div class="cap-div">
+                    <div class="cap-div cap-div-avatar-modal">
                         <img class="cap" src="assets/Img/customer/cap.png" alt="cap">
                     </div>
-                    <span>Lyum Watson <br>
-                        <i class="fas fa-star i-con"></i>
-                        <i class="fas fa-star i-con"></i>
-                        <i class="fas fa-star i-con"></i>
-                        <i class="fas fa-star i-con"></i>
-                        <i class="fas fa-star i-con-e"></i>
-                        4
-                    </span>
+                    <div style="display: flex; flex-direction:column;">
+                        <span class="sp-rate-name" style="font-size: 18px;"></span>
+                        <span>
+                            <span class="rating-of-sp"></span>
+                            <span class="ratings-sp-no"></span>
+                        </span>
+                    </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
-                <h5 class="modal-title" id="exampleModalLabel">Rate your service provider</h5>
+                <h5 class="modal-title pl-2" id="exampleModalLabel" style="width: 100%;">Rate your service provider</h5>
             </div>
 
-            <form action="">
+            <form action="" method="POST" class="s-p-rate-form">
                 <div class="modal-body rate-sp-modal-body">
+                    <input type="hidden" name="c-id" value="<?= $_SESSION['user']['UserId'] ?>">
+                    <input type="hidden" name="sp-id" class="sp_rating_name">
+                    <input type="hidden" name="sr-id" class="sp_service_id">
                     <div class="col">
                         <div class="row">
                             <span>
                                 <div class="Quali">On time arrival</div>
-                                <i class="fas fa-star i-con"></i>
-                                <i class="fas fa-star i-con"></i>
-                                <i class="fas fa-star i-con"></i>
-                                <i class="fas fa-star i-con"></i>
-                                <i class="fas fa-star i-con-e"></i>
+                                <div class="rate">
+                                    <input type="radio" id="ota-star5" name="ota-rate" class="OTA-rate" value="5" />
+                                    <label for="ota-star5" title="text">5 stars</label>
+                                    <input type="radio" id="ota-star4" name="ota-rate" class="OTA-rate" value="4" />
+                                    <label for="ota-star4" title="text">4 stars</label>
+                                    <input type="radio" id="ota-star3" name="ota-rate" class="OTA-rate" value="3" />
+                                    <label for="ota-star3" title="text">3 stars</label>
+                                    <input type="radio" id="ota-star2" name="ota-rate" class="OTA-rate" value="2" />
+                                    <label for="ota-star2" title="text">2 stars</label>
+                                    <input type="radio" id="ota-star1" name="ota-rate" class="OTA-rate" value="1" />
+                                    <label for="ota-star1" title="text">1 star</label>
+                                </div>
                             </span>
                         </div>
                         <div class="row">
                             <span>
                                 <div class="Quali">Friendly</div>
-                                <i class="fas fa-star i-con"></i>
-                                <i class="fas fa-star i-con"></i>
-                                <i class="fas fa-star i-con"></i>
-                                <i class="fas fa-star i-con"></i>
-                                <i class="fas fa-star i-con-e"></i>
+                                <div class="rate">
+                                    <input type="radio" id="Friendly-star5" name="Friendly-rate" class="F-rate" value="5" />
+                                    <label for="Friendly-star5" title="text">5 stars</label>
+                                    <input type="radio" id="Friendly-star4" name="Friendly-rate" class="F-rate" value="4" />
+                                    <label for="Friendly-star4" title="text">4 stars</label>
+                                    <input type="radio" id="Friendly-star3" name="Friendly-rate" class="F-rate" value="3" />
+                                    <label for="Friendly-star3" title="text">3 stars</label>
+                                    <input type="radio" id="Friendly-star2" name="Friendly-rate" class="F-rate" value="2" />
+                                    <label for="Friendly-star2" title="text">2 stars</label>
+                                    <input type="radio" id="Friendly-star1" name="Friendly-rate" class="F-rate" value="1" />
+                                    <label for="Friendly-star1" title="text">1 star</label>
+                                </div>
                             </span>
                         </div>
                         <div class="row">
                             <span>
                                 <div class="Quali">Quality of service</div>
-                                <i class="fas fa-star i-con"></i>
-                                <i class="fas fa-star i-con"></i>
-                                <i class="fas fa-star i-con"></i>
-                                <i class="fas fa-star i-con"></i>
-                                <i class="fas fa-star i-con-e"></i>
+                                <div class="rate">
+                                    <input type="radio" id="Qos-star5" name="Qos-rate" class="QOS-rate" value="5" />
+                                    <label for="Qos-star5" title="text">5 stars</label>
+                                    <input type="radio" id="Qos-star4" name="Qos-rate" class="QOS-rate" value="4" />
+                                    <label for="Qos-star4" title="text">4 stars</label>
+                                    <input type="radio" id="Qos-star3" name="Qos-rate" class="QOS-rate" value="3" />
+                                    <label for="Qos-star3" title="text">3 stars</label>
+                                    <input type="radio" id="Qos-star2" name="Qos-rate" class="QOS-rate" value="2" />
+                                    <label for="Qos-star2" title="text">2 stars</label>
+                                    <input type="radio" id="Qos-star1" name="Qos-rate" class="QOS-rate" value="1" />
+                                    <label for="Qos-star1" title="text">1 star</label>
+                                </div>
                             </span>
                         </div>
                     </div>
@@ -61,10 +83,10 @@
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Feedback on the service
                                 provider</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" name="rate-comments" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                         <div class="mb-3">
-                            <button type="submit" value="submit" class="btn mb-3">Submit</button>
+                            <button type="submit" id="rating-submit-btn-pro" class="btn mb-3 rating-submit-btn">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -137,7 +159,7 @@
                     </span>
                     <span class="comment-body nhpets pt-2">
                         <div class="check">
-                        <i class="fa fa-check"></i>
+                            <i class="fa fa-check"></i>
                         </div>
                         <span>I have pets at home</span>
                     </span>
@@ -166,40 +188,40 @@
             </div>
 
             <div class="modal-body">
-                <form action="">
+                <form action="" method="POST" id="reshedule-service-form">
                     <label for="form" class="Reschedule-form-label">Select New Date And Time</label>
-                    <div class="row">
+                    <div class="row reschedule-dat-div">
+                        <input type="hidden" name="service-id" class="service-id-input">
                         <div class="col-md-6">
-                            <input type="date" class="form-control" placeholder="DD/MM/YYYY" aria-label="Date">
+                            <input type="date" id="rdate" name="rescheduled-date" class="form-control" placeholder="DD/MM/YYYY" aria-label="Date">
                         </div>
                         <div class="col-md-6">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Time</option>
-                                <option value="8:00 AM">8:00 AM</option>
-                                <option value="8:30 AM">8:30 AM</option>
-                                <option value="9:00 AM">9:00 AM</option>
-                                <option value="9:30 AM">9:30 AM</option>
-                                <option value="10:00 AM">10:00 AM</option>
-                                <option value="10:30 AM">10:30 AM</option>
-                                <option value="11:00 AM">11:00 AM</option>
-                                <option value="11:30 AM">11:30 AM</option>
-                                <option value="12:00 PM">12:00 PM</option>
-                                <option value="12:30 PM">12:30 PM</option>
-                                <option value="1:00 PM">1:00 PM</option>
-                                <option value="1:30 PM">1:30 PM</option>
-                                <option value="2:00 PM">2:00 PM</option>
-                                <option value="2:30 PM">2:30 PM</option>
-                                <option value="3:00 PM">3:00 PM</option>
-                                <option value="3:30 PM">3:30 PM</option>
-                                <option value="4:00 PM">4:00 PM</option>
-                                <option value="4:30 PM">4:30 PM</option>
-                                <option value="5:00 PM">5:00 PM</option>
-                                <option value="5:30 PM">5:30 PM</option>
-                                <option value="6:00 PM">6:00 PM</option>
-                                <option value="6:30 PM">6:30 PM</option>
-                                <option value="7:00 PM">7:00 PM</option>
-                                <option value="7:30 PM">7:30 PM</option>
-                                <option value="8:00 PM">8:00 PM</option>
+                            <select class="form-select" name="rescheduled-time" id="service-reshedule-time" aria-label="Default select example">
+                                <option value="8:00">8:00 AM</option>
+                                <option value="8:30">8:30 AM</option>
+                                <option value="9:00">9:00 AM</option>
+                                <option value="9:30">9:30 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="10:30">10:30 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="11:30">11:30 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="12:30">12:30 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="13:30">1:30 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="14:30">2:30 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="15:30">3:30 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                                <option value="16:30">4:30 PM</option>
+                                <option value="17:00">5:00 PM</option>
+                                <option value="17:30">5:30 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                                <option value="18:30">6:30 PM</option>
+                                <option value="19:00">7:00 PM</option>
+                                <option value="19:30">7:30 PM</option>
+                                <option value="20:00">8:00 PM</option>
                             </select>
                         </div>
                     </div>
@@ -222,9 +244,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form action="" class="cancel-sr-form">
+                    <input type="hidden" name="service-id" class="service-id-input">
                     <label for="form" class="cancel-form-label">Why you want to cancel the request?</label>
-                    <textarea class="form-control" aria-label="With textarea"></textarea>
+                    <textarea name="Has-issue-text" class="form-control" aria-label="With textarea"></textarea>
                     <button type="submit" class="btn cancel-btn-modal">Cancel Now</button>
                 </form>
             </div>

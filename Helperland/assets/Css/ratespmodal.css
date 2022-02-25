@@ -55,9 +55,9 @@
     background-color: #1d7a8c;
     color: white;
     border-radius: 23px;
-    height: 43px;
+    height: 35px;
+    font-size: 18px;
     width: 100px;
-    font-size: 22px;
     display: flex;
     justify-content: center;
     align-items: center;

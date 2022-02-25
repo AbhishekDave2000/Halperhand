@@ -6,7 +6,7 @@
         Add new Service Request
     </a>
 </div>
-
+<div class="alert" id="change-sservice-dt-div" role="alert"></div>
 <table id="example" class="table-data dashboard-data-table" style="width:100%">
     <thead>
         <tr>
@@ -23,8 +23,8 @@
         foreach ($result as $val) {
         ?>
             <tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#Reschedule-cancle">
-                <input type="hidden" name="service-details" value='<?php echo json_encode($val); ?>'>
-                <td class="dashserviceid">
+                <input type="hidden" name="service-details" class="all-service-detail-input" value='<?php echo json_encode($val); ?>'>
+                <td class="dashserviceid pl-5">
                     <span><?= $val['ServiceRequestId']; ?></span>
                 </td>
                 <td class="dashservicedate" style="flex-direction:column;">
@@ -52,16 +52,18 @@
                             <?php for ($i = 0; $i < substr($val['AvarageRating'], 0, 1); $i++) { ?>
                                 <i class="fas fa-star i-con"></i>
                                 <?php }
-                            if (substr($val['AvarageRating'], 2, 1) != 0) {
+                            $star = 0;
+                            if (substr($val['AvarageRating'], 2, 1) != "") {
+                                $star = 1;
                                 for ($i = 0; $i < 1; $i++) { ?>
                                     <i class="fa-solid fa-star-half-stroke"></i>
                                 <?php }
                             }
-                            for ($i = 0; $i < (4 - substr($val['AvarageRating'], 0, 1)); $i++) { ?>
+                            for ($i = 0; $i < (5 - (floatval(substr($val['AvarageRating'], 0, 1)) + $star)); $i++) { ?>
                                 <i class="fas fa-star i-con-e"></i>
                             <?php } ?>
                             <?php if (isset($val['AvarageRating'])) {
-                                echo substr($val['AvarageRating'], 0, 3);
+                                echo substr($val['AvarageRating'], 0, 4);
                             } ?>
                         </span>
                     <?php } ?>

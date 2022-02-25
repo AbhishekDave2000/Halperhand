@@ -21,6 +21,30 @@ class customerDashController{
         echo json_encode($result);
     }
 
+    public function resheduleDateAndTime(){
+        $result = $this->model->resheduleDateAndTimeModel($_POST);
+        print_r($result);
+    }
+
+    public function cancelServiceRequest(){
+        $result = $this->model->cancelServiceRequestModel($_POST);
+        print_r($result);
+    }
+
+    public function rateServiceProvider(){
+        // validation of rating
+        $val = new myDetailValidation($_POST);
+        $res = $val->rateValidation();
+        if(empty($res)){
+            $result = $this->model->rateServiceProviderModel($_POST);
+            print_r($result);
+        }else{
+            echo 0;
+            exit;
+        }
+        // print_r($_POST);
+    }
+
     public function myDetailUpdate(){
         $val = new myDetailValidation($_POST);
         $result = $val->Validation();
