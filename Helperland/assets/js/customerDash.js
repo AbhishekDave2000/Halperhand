@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var id = $('.userid-div').html();
     var url = "http://localhost/Halperhand/Helperland/";
+
     function convertDate(dateString) {
         var p = dateString.split(/\D/g)
         return [p[2], p[1], p[0]].join("-")
@@ -290,21 +291,71 @@ $(document).ready(function () {
             }
         });
     });
-    
-    $('.nav-link-favpros').on('click', function(e){
+
+    $(".favpro-data").ready(function () {
         var uid = $('#user-id-span-val').html();
         $.ajax({
-            url : url + '?controller=customerDash&function=getFavProviderData',
-            type : 'post',
-            data : {
-                id : uid
+            url: url + '?controller=customerDash&function=getFavProviderData',
+            type: 'post',
+            data: {
+                id: uid
             },
-            success : function(result){
-                console.log(result);
+            success: function (result) {
+                var data = JSON.parse(result);
+                showFavProData(data);
             }
         });
-        e.preventDefault();
     });
+
+    function showFavProData(data) {
+        var fphtml = "";
+        data.forEach(function (dt) {
+            var rate = dt.AvarageRating;
+            var or = 0;
+            ratehtml = "";
+            for (var i = 0; i < parseInt(rate); i++) {
+                ratehtml += `<i class="fas fa-star i-con"></i>`;
+            }
+            for (var i = 0; i < 1; i++) {
+                if (rate != null) {
+                    if (rate.substr(2, 1) != 0) {
+                        ratehtml += `<i class="fa-solid fa-star-half-stroke"></i>`;
+                        or = 1;
+                    }
+                } else {
+                    rate = 0;
+                }
+            }
+            for (var i = 5; i > (parseInt(rate) + or); i--) {
+                ratehtml += `<i class="fas fa-star i-con-e"></i>`;
+            }
+            fphtml += `<tr class="m-2" style="border: none !important;">
+                                    <td>
+                                        <div class="card fav-pro-card pb-4 m-1">
+                                            <div class="row pb-2 pt-4">
+                                                <div class="avtar-fav-pro-card">
+                                                    <img src="assets/Img/customer/cap.png" alt="avatar" srcset="">
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <span style=" font-size: 18px;">${dt.FullName} <br>
+                                                    <span style="font-size: 15px;">
+                                                        ${ratehtml}
+                                                        ${dt.AvarageRating.substring(0, 4)}
+                                                    </span>
+                                                </span><br>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <button type="submit" value="${dt.IsFavorite}" name="remove" class="btn remove-fav-pro-btn mr-2">Remove</button>
+                                                <button type="submit" value="${dt.IsBlocked}" name="block" class="btn block-fav-pro-btn ml-2">Block</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="display: none;"></td><td style="display: none;"></td><td style="display: none;"></td><td style="display: none;"></td>
+                                </tr>`;
+        });
+        $('.favpro-data').html(fphtml);
+    }
 
     function getUserAddressData(id) {
         $.ajax({

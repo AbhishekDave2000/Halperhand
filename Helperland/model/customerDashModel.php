@@ -87,7 +87,25 @@ class customerDashModel
     }
 
     public function getFavProviderDataModel($id){
-        
+        $sql = "SELECT fb.*, CONCAT(user.FirstName,' ', user.LastName) as FullName, user.UserProfilePicture FROM favoriteandblocked as fb 
+                JOIN user 
+                    ON user.UserId = fb.TargetUserId 
+                WHERE fb.UserId=1 ";
+        $result = $this->conn->query($sql);
+        $favpro = [];
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                if(!is_null($row['TargetUserId'])){
+                    $target = $row['TargetUserId'];
+                    $sprating = $this->getRatingBySpId($target);
+                    if(count($sprating) > 0){
+                        $row = $row + $sprating;
+                    }
+                }
+                array_push($favpro, $row);
+            }
+        }
+        return $favpro;
     }
 
     public function getUserAddressDataModel($data)

@@ -181,6 +181,7 @@
             </nav>
 
             <main class="container__main">
+                <!-- <div class="parameter-show-div" id="parameter-show-div-id" style="display: none;"><?php $para; ?></div> -->
                 <?php
                 $_POST['userid'] = $_SESSION['user']['UserId'];
                 switch ($para) {
