@@ -86,6 +86,84 @@ class customerDashModel
         return $this->conn->query($sql);
     }
 
+    public function getUserAddressDataModel($data)
+    {
+        $rows = array();
+        $sql = "SELECT ua.*,c.CityName,c.Id as CityId FROM useraddress as ua
+                JOIN zipcode as zc
+                    ON zc.ZipcodeValue = ua.PostalCode
+                JOIN city as c 
+                    ON zc.CityId = c.Id
+                WHERE UserId = $data AND IsDeleted = 0";
+        $result = $this->conn->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
+
+    public function getUserCityDataModel($data)
+    {
+        $sql = "SELECT c.* FROM zipcode as zc JOIN city as c ON zc.CityId = c.Id WHERE zc.ZipcodeValue = $data";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        }
+    }
+
+    public function getCityStateOfUser($cid, $pc)
+    {
+        $sql = "SELECT zc.ZipcodeValue,c.Id as CityId,c.CityName,s.StateName FROM `zipcode` as zc JOIN city as c ON zc.CityId = c.Id JOIN state as s ON s.Id = c.StateId WHERE zc.ZipcodeValue = '$pc' AND c.Id = '$cid'";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            $res = $result->fetch_assoc();
+        }
+        return $res;
+    }
+
+    public function userAddressupdateModel($data)
+    {
+        $al1 = $data['house'];
+        $al2 = $data['street'];
+        $pc = $data['PostalCode'];
+        $cid = $data['AddressCity'];
+        $phone = $data['phone'];
+        $email = $data['Email'];
+        $id = $data['data'];
+        $uaid = $data['add-data'];
+        $res = $this->getCityStateOfUser($cid, $pc);
+        $state = $res['StateName'];
+        $city = $res['CityName'];
+        $sql = "UPDATE useraddress SET AddressLine1 = '$al1', AddressLine2 = '$al2', City = '$city', State = '$state', PostalCode = '$pc', Mobile = '$phone', Email = '$email'
+                WHERE useraddress.UserId = $id AND AddressId = $uaid";
+        return $this->conn->query($sql);
+    }
+
+    public function addNewUserAddressModel($data)
+    {
+        $al1 = $data['house'];
+        $al2 = $data['street'];
+        $pc = $data['PostalCode'];
+        $cid = $data['AddressCity'];
+        $phone = $data['phone'];
+        $email = $data['Email'];
+        $id = $data['data'];
+        $res = $this->getCityStateOfUser($cid, $pc);
+        $state = $res['StateName'];
+        $city = $res['CityName'];
+        $sql = "INSERT INTO useraddress ( `UserId`, `AddressLine1`, `AddressLine2`, `City`, `State`, `PostalCode`, `IsDefault`, `IsDeleted`, `Mobile`, `Email`) 
+                VALUES ($id,'$al1','$al2','$city','$state','$pc',0,0,'$phone','$email')";
+        return $this->conn->query($sql);
+    }
+
+    public function deleteUserAddressModel($data)
+    {
+        $uid = $data['uid'];
+        $id = $data['id'];
+        $sql = "UPDATE useraddress SET IsDeleted = 1 WHERE AddressId = '$id' AND UserId = '$uid' ";
+        return $this->conn->query($sql);
+    }
+
     public function getMyDetailModel($id)
     {
         $sql = "SELECT * FROM user WHERE UserId = '$id' AND UserTypeId = 1";

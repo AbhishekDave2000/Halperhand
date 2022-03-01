@@ -261,42 +261,47 @@
     <div class="modal-dialog modal-dialog-centered addressMD">
         <div class="modal-content addressMC">
             <div class="modal-header addressMH">
-                <h5 class="modal-title">Add New Address</h5>
+                <h5 class="modal-title" id="aeaddresstitle">Add New Address</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body addressMB">
-                <form action="" method="post">
+                <form class="add-edit-address-form" action="" method="post">
+                    <input type="hidden" name="data" class="user-id-address" value="<?= $_SESSION['user']['UserId']; ?>">
+                    <input type="hidden" name="add-data" class="user-address-id">
+                    <input type="hidden" name="Email" value="<?= $_SESSION['user']['Email']; ?>" class="user-email-address">
                     <div class="row pb-3">
                         <div class="col-md-6">
-                            <label for="" class="form-label">Street Name</label>
-                            <input type="text" class="form-control" placeholder="Street Name">
+                            <label for="address-street-name" class="form-label">Street Name</label>
+                            <input type="text" name="street" id="address-street-name" class="form-control address-street-name" placeholder="Street Name">
                         </div>
                         <div class="col-md-6">
-                            <label for="" class="form-label">House Number</label>
-                            <input type="text" class="form-control" placeholder="House Number">
+                            <label for="address-house-name" class="form-label">House Number</label>
+                            <input type="text" name="house" id="address-house-name" class="form-control address-house-name" placeholder="House Number">
                         </div>
                     </div>
                     <div class="row pb-3">
                         <div class="col-md-6">
-                            <label for="" class="form-label">Postal Code</label>
-                            <input type="text" class="form-control" placeholder="Postal Code">
+                            <label for="address-postal-code" class="form-label">Postal Code</label>
+                            <input type="text" name="PostalCode" id="address-postal-code" class="form-control address-postal-code" placeholder="Postal Code">
                         </div>
                         <div class="col-md-6">
-                            <label for="" class="form-label">City</label>
-                            <input type="text" class="form-control" placeholder="City">
+                            <label for="address-city" class="form-label">City</label>
+                            <select class="form-select address-city" name="AddressCity" id="address-city">
+                                <option selected></option>
+                            </select>
                         </div>
                     </div>
                     <div class="row pb-3">
-                        <div class="col-md-6">
-                            <label for="" class="form-label">Phone Number</label>
+                        <div class="col-md-6 address-user-phone-div">
+                            <label for="address-user-phone" class="form-label">Phone Number</label>
                             <div class="input-group">
                                 <div class="input-group-text">+49</div>
-                                <input type="tel" class="form-control" placeholder="Phone Number">
+                                <input type="tel" id="address-user-phone" name="phone" class="form-control address-user-phone" placeholder="Phone Number">
                             </div>
                         </div>
                     </div>
                     <div class="row btn-row-add pb-2 pt-1">
-                        <button class="btn new-address-btn" type="submit">Edit</button>
+                        <button class="btn new-address-btn" type="button">Add</button>
                     </div>
                 </form>
             </div>

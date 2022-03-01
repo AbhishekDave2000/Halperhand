@@ -29,18 +29,6 @@ class contactModel
             header("Location: ../errors.php?error=inserting failed!");
             exit;
         }
-        
-        // if (!empty($UploadFileName)) {
-        //     $last_id = $this->conn->insert_id;
-        //     $FilePath = $this->data['filepath'];
-        //     $sql = "INSERT INTO contactusattachment (ContactUsId, Name, FileName)
-        //             VALUES ($last_id, '$UploadFileName', '$FilePath')";
-
-        //     $result = $this->conn->query($sql);
-        //     if (!$result) {
-        //         header("Location: ../errors.php?error=attachment inserting failed!");
-        //     }
-        // }
         return ($result);
     }
 }

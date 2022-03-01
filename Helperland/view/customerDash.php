@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="assets/Css/ratespmodal.css">
     <link rel="stylesheet" href="assets/Css/servicerequestmodal.css">
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="assets/js/uparr.js"></script>
     <script src="assets/js/customerDash.js"></script>
 </head>
@@ -125,7 +126,7 @@
                                     }
                                     ?>
                                     <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function=' . $function . '&parameter=' . $parameter ?>">My Dashboard</a>
-                                    <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function=customerDash&parameter=' . $setting ?>">My Settings</a>
+                                    <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function=customerDash&parameter=' . $setting ?>" >My Settings</a>
                                     <a class="dropdown-item" href="<?= $base_url . '?controller=Authentication&function=Logout' ?>">Logout</a>
                                 </div>
                             </li>
@@ -142,7 +143,8 @@
         <div class="container-fluid name-header">
             <span class="Welcome-name">
                 Welcome,
-                <span class="text-style-1">Abhishek Dave!</span>
+                <span class="text-style-1"><?= $_SESSION['user']['FirstName']." ".$_SESSION['user']['LastName']."!"; ?></span>
+                <span id="user-id-span-val" style="display: none;"><?= $_SESSION['user']['UserId']; ?></span>
             </span>
         </div>
     </section>

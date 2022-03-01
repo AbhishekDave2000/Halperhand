@@ -288,10 +288,10 @@ table.dataTable {
 }
 table.dataTable tbody .even, table.dataTable tbody .odd{
     background-color: #fff;
-    border-bottom: 1px solid #e1e1e1 !important;
+    border-bottom: 0px !important;
 }
 table thead{
-    background-color: #e1e1e1;
+    background: #e0e0e0 !important;
 }
 .servicedetail{
     color: #646464;
@@ -495,20 +495,31 @@ table thead{
 /* setting page end */
 
 /* fav pros */
-.fav-pro-main-div{
-    display: flex;
-    flex-wrap: wrap;
-}
 .fav-pro-card{
-    width: 300px;
+    width: 320px;
     height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: roboto;
+    min-width: 100%;
 }
-
+.favpro-data{
+    min-width: fit-content !important;
+}
+.favpro-data-table{
+    border: none !important;
+    min-width: 100%;
+}
+.favpro-data-table tbody tr{
+    display: inline-flex;
+}
+.favpro-data-table tbody tr td{
+    display: inline;
+    border:none !important;
+    outline:none !important;
+}
 .fav-pro-card .row{
     text-align: center;
 }
@@ -768,6 +779,7 @@ table thead{
         min-width: 120px;
     }
  }
+
  @media(max-width:820px){
     .set-address-table tbody,.set-address-table{
         border: 0px !important;
@@ -778,14 +790,11 @@ table thead{
     .Service-History-span img{
         display: block;
     }
-    .customerservicehistory{
-        width: 98% !important;
-    }
-    .content{
-        width: 100% !important;
+    .service-button{
+        display: flex;
+        flex-direction: column;
     }
     .container__main{
-        width: 100% ;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -795,20 +804,16 @@ table thead{
     }
     table tbody tr{
         border-bottom: 0;
-    }
-    table tbody tr{
         display: flex;
         flex-direction: column;
-        height: fit-content !important; 
         margin: 20px 0px;
-        box-shadow: 2px 2px 10px gray;
+        /* border: 1px solid #e1e1e1; */
+        box-shadow: 2px 2px 10px #d6d6d6;
         border-radius: 5px;
     }
     table tbody tr td{
-        padding: 15px 10px;
-        height: fit-content;
+        padding: 10px 10px;
         border-bottom: 1px solid #e1e1e1;
-        width: 95% !important;
         margin-left: 5px;
         margin-right: 5px;
     }
@@ -818,7 +823,12 @@ table thead{
     .setting-nav-tabs  .nav-link{
         width: 33%;
     }
-    
+ }
+
+ @media(max-width:650px){
+    #example_wrapper .bottom {
+        flex-direction: column;
+    }
  }
  @media(max-width:500px){
     .setting-nav-tabs  .nav-link{
@@ -829,7 +839,6 @@ table thead{
     .set-address-body{
         padding: 5px 5px 5px 5px;
     }
-    
  }
 
 #example_wrapper .bottom {

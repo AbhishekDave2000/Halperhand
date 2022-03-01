@@ -36,8 +36,6 @@ class AuthenticationModel{
         }elseif($UserTypeId == 2){
             $approved = 0;
         }
-        // $approved = $this->data['IsApproved'];
-
         $sql = "INSERT INTO user (FirstName,LastName,Email,Password,Mobile, UserTypeId, CreatedDate, IsApproved) 
                             VALUES ('$firstname' , '$lastname', '$email','$password', '$phone', $UserTypeId, now(), $approved)";
 
@@ -47,7 +45,6 @@ class AuthenticationModel{
 
     public function forgotPasswordModel(){
         $email = trim($this->data['email']);
-
         $sql = "SELECT `Email` FROM user WHERE Email = '$email'";
 
         $result = $this->conn->query($sql);

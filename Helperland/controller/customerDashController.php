@@ -1,5 +1,6 @@
 <?php
 include("controller/validation/myDetailValidation.php");
+include("controller/validation/ServiceValidator.php");
 require_once("model/customerDashModel.php");
 class customerDashController{
     public $data;
@@ -42,7 +43,61 @@ class customerDashController{
             echo 0;
             exit;
         }
-        // print_r($_POST);
+    }
+
+    public function getUserAddressData(){
+        $id = $_POST['data'];
+        $result = $this->model->getUserAddressDataModel($id);
+        echo json_encode($result);
+    }
+
+    public function getUserCityData(){
+        $postal = $_POST['postal'];
+        $result = $this->model->getUserCityDataModel($postal);
+        if(!empty($result)){
+            echo json_encode($result);
+        }else{
+            echo 0;
+        }
+    }
+
+    public function userAddressupdate(){
+        $val = new ServiceValidator();
+        $result = $val->userNewAddressValidator($_POST);
+        if(empty($result)){
+            $result = $this->model->userAddressupdateModel($_POST);
+            if($result){
+                $id = $_POST['data'];
+                $res = $this->model->getUserAddressDataModel($id);
+                echo json_encode($res);
+            }else{
+                echo 0;
+            }
+        }
+    }
+
+    public function addNewUserAddress(){
+        $val = new ServiceValidator();
+        $result = $val->userNewAddressValidator($_POST);
+        if(empty($result)){
+            $result = $this->model->addNewUserAddressModel($_POST);
+            if($result){
+                $id = $_POST['data'];
+                $res = $this->model->getUserAddressDataModel($id);
+                echo json_encode($res);
+            }else{
+                echo 0;
+            }
+        }
+    }
+
+    public function deleteUserAddress(){
+        $result = $this->model->deleteUserAddressModel($_POST);
+        if($result){
+            echo 1;
+        }else{
+            echo 0;
+        }
     }
 
     public function myDetailUpdate(){

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#change-sservice-dt-div').hide();
     var id = $('.userid-div').html();
-
+    var url = "http://localhost/Halperhand/Helperland/";
     function convertDate(dateString) {
         var p = dateString.split(/\D/g)
         return [p[2], p[1], p[0]].join("-")
@@ -87,9 +87,9 @@ $(document).ready(function () {
             type: 'post',
             data: data,
             success: function (result) {
-                if(!result){
+                if (!result) {
                     $('.feedbackonsp').before('<span class="error pl-2">Please provide all three ratings!</span>');
-                }else{
+                } else {
                     window.location.href = "http://localhost/Halperhand/Helperland/?controller=Default&function=customerDash&parameter=service-history";
                 }
             }
@@ -122,12 +122,12 @@ $(document).ready(function () {
                 ratehtml += `<i class="fas fa-star i-con"></i>`;
             }
             for (var i = 0; i < 1; i++) {
-                if(rate != null){
+                if (rate != null) {
                     if (rate.substr(2, 1) != 0) {
                         ratehtml += `<i class="fa-solid fa-star-half-stroke"></i>`;
                         or = 1;
                     }
-                }else{
+                } else {
                     rate = 0;
                 }
             }
@@ -136,25 +136,6 @@ $(document).ready(function () {
             }
             $('.rating-of-sp').html(ratehtml);
             $('.ratings-sp-no').text(rate.substr(0, 4));
-        }
-    });
-
-    $('.save-pass-btn').on("click", function () {
-        var opass = $('.oldpass').val();
-        var npass = $('.newpass').val();
-        var ncpass = $('.cnewpass').val();
-        $(".error").remove();
-        if (opass.length < 1) {
-            $('.oldpass').after('<span class="error">This field is required</span>');
-            return false;
-        }
-        if (npass.length < 1) {
-            $('.newpass').after('<span class="error">This field is required</span>');
-            return false;
-        }
-        if (ncpass.length < 1) {
-            $('.cnewpass').after('<span class="error">This field is required</span>');
-            return false;
         }
     });
 
@@ -200,23 +181,227 @@ $(document).ready(function () {
         }
     }
 
+    // to get tommorrow's date for service
+    function getTommorrowDate() {
+        var myDate = new Date();
+        myDate.setDate(myDate.getDate() + 1);
+        var dt =
+            myDate.getFullYear() +
+            "-" +
+            ("0" + (myDate.getMonth() + 1)).slice(-2) +
+            "-" +
+            ("0" + myDate.getDate()).slice(-2);
+        return dt;
+    }
+
+    $('.myAddress-Details').on("click", function () {
+        var id = $('#user-id-span-val').html();
+        getUserAddressData(id);
+    });
+
+    $('.set-address-table').on('click', ".edit-user-add-ms", function (e) {
+        var addrdata = $(e.target).closest("tr").find("input").val().split(",");
+        $('.new-address-btn').addClass("edit-address-btn");
+        $('.user-id-address').val($('#user-id-span-val').html());
+        $('#aeaddresstitle').html("Edit Your Address");
+        $('.new-address-btn').html('Edit');
+        $('#address-street-name').val(addrdata[1]);
+        $('#address-house-name').val(addrdata[0]);
+        $('#address-postal-code').val(addrdata[2]);
+        $('#address-city option:selected').val(addrdata[5]);
+        $("#address-city option:selected").html(addrdata[6]);
+        $('#address-user-phone').val(addrdata[4]);
+        $('.user-address-id').val(addrdata[7]);
+        findPostalCodeData();
+    });
+
+    $(".add-edit-address-form").on("click", ".edit-address-btn", function (e) {
+        if (!userAddressValidate()) {
+            var data = $('.add-edit-address-form').serialize();
+            $.ajax({
+                url: url + "?controller=customerDash&function=userAddressupdate",
+                type: 'post',
+                data: data,
+                success: function (result) {
+                    if (result) {
+                        $('.modal-backdrop').remove();
+                        $('#add-address-modal').modal("hide");
+                        var addressData = JSON.parse(result);
+                        showUserAddress(addressData);
+                    }
+                    $('.new-address-btn').removeClass("edit-address-btn");
+                }
+            });
+        }
+        e.preventDefault();
+    });
+
+    $(".add-address-btn").click(function () {
+        $('#aeaddresstitle').html("Add New Address");
+        $('.new-address-btn').html('Add');
+        $('.address-street-name,.address-house-name,.address-postal-code,.address-user-phone,.address-city').val('');
+        $('.new-address-btn').addClass("new-address-add-btn");
+        findPostalCodeData();
+    });
+
+    $(".add-edit-address-form").on("click", ".new-address-add-btn", function (e) {
+        if (!userAddressValidate()) {
+            var data = $('.add-edit-address-form').serialize();
+            $.ajax({
+                url: url + "?controller=customerDash&function=addNewUserAddress",
+                type: 'post',
+                data: data,
+                success: function (result) {
+                    if (result) {
+                        var id = $('#user-id-span-val').html();
+                        getUserAddressData(id);
+                        $('.modal-backdrop').remove();
+                        $('#add-address-modal').modal("hide");
+                    }
+                    $('.new-address-btn').removeClass("new-address-add-btn");
+                }
+            });
+        }
+        e.preventDefault();
+    });
+
+    $('.set-address-table').on("click", ".delete-user-address-btn", function (e) {
+        var addrdata = $(e.target).closest("tr").find("input").val().split(",");
+        var id = addrdata[7];
+        var uid = $('#user-id-span-val').html();
+        $.ajax({
+            url: url + "?controller=customerDash&function=deleteUserAddress",
+            type: 'post',
+            data: {
+                uid: uid,
+                id: id
+            },
+            success: function (result) {
+                if (result) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Your Address is Deleted.',
+                        text : 'Address Id : '+id,
+                        showConfirmButton: true,
+                        confirmButtonColor: 'green'
+                    });
+                    getUserAddressData(uid);
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Deletion Failed!',
+                    });
+                }
+            }
+        });
+    });
+
+    function getUserAddressData(id) {
+        $.ajax({
+            url: 'http://localhost/Halperhand/Helperland/?controller=customerDash&function=getUserAddressData',
+            type: 'post',
+            data: {
+                data: id
+            },
+            success: function (result) {
+                var address = JSON.parse(result);
+                showUserAddress(address);
+            }
+        });
+    }
+
+    function findPostalCodeData() {
+        $('.address-postal-code').on("input", function () {
+            var postal = $(this).val();
+            $.ajax({
+                url: url + "?controller=customerDash&function=getUserCityData",
+                type: 'post',
+                data: {
+                    postal: postal
+                },
+                success: function (result) {
+                    $(".error").remove();
+                    if (result != 0) {
+                        var cn = JSON.parse(result);
+                        $('.address-city option:selected').val(cn.Id);
+                        $(".address-city option:selected").html(cn.CityName);
+                    } else {
+                        $('.address-postal-code').after("<span class='error'>service isn't available in this area!</span>");
+                    }
+                }
+            });
+        });
+    }
+
+    function showUserAddress(address) {
+        var addhtml = "";
+        address.forEach(function (dt) {
+            addhtml += `<tr class="set-address-table-row" style="border-bottom: 1px solid #e0e0e0;">
+                            <input id="address-mysetting" type="hidden" value='${dt.AddressLine1},${dt.AddressLine2},${dt.PostalCode},${dt.City},${dt.Mobile},${dt.CityId},${dt.CityName},${dt.AddressId}' >
+                                <td class="set-address-body">
+                                    <span class="set-addres-span">
+                                        <b>Address : </b>
+                                        ${dt.AddressLine1} , ${dt.AddressLine2} , ${dt.City} , ${dt.State}.
+                                    </span>
+                                    <span class="set-addres-span">
+                                        <b>Phone Number : </b>
+                                        ${dt.Mobile}
+                                    </span>
+                                </td>
+                                <td class="set-action-body">
+                                    <a class="btn edit-user-add-ms" data-bs-toggle="modal" data-bs-target="#add-address-modal"><i class="fas fa-edit"></i></a>
+                                    <a class="btn delete-user-address-btn"><i class="far fa-trash-alt"></i></a>
+                                </td>
+                            </tr>`;
+        });
+        $('.my-setting-address-details').html(addhtml);
+    }
+
+    function userAddressValidate() {
+        var streetName = $('.address-street-name').val();
+        var houseName = $('.address-house-name').val();
+        var postalCode = $('.address-postal-code').val();
+        var phoneNo = $('.address-user-phone').val();
+
+        $(".error").remove();
+
+        if (streetName.length < 1) {
+            $('.address-street-name').after('<span class="error">This field is required</span>');
+            return false;
+        }
+        if (houseName.length < 1) {
+            $('.address-house-name').after('<span class="error">This field is required</span>');
+            return false;
+        }
+        if (postalCode.length < 1) {
+            $('.address-postal-code').after('<span class="error">This field is required</span>');
+            return false;
+        } else if (postalCode.length < 5 && postalCode.length > 6) {
+            $('.address-postal-code').after('<span class="error">This field is required</span>');
+            return false;
+        }
+        if (phoneNo.length < 1) {
+            $('.address-user-phone-div').after('<span class="error">This field is required</span>');
+            return false;
+        }
+    }
+
     $('.detail-save-btn').on("click", function () {
         var fname = $('.my-setting-FN').val();
         var lname = $('.my-setting-LN').val();
         var email = $('.my-setting-Email').val();
         var phone = $('.my-setting-Phone').val();
         $(".error").remove();
-
         if (fname.length < 1) {
             $('.my-setting-FN').after('<span class="error">This field is required</span>');
             return false;
         }
-
         if (lname.length < 1) {
             $('.my-setting-LN').after('<span class="error">This field is required</span>');
             return false;
         }
-
         if (email.length < 1) {
             $('.my-setting-Email').after('<span class="error">This field is required</span>');
             return false;
@@ -228,7 +413,6 @@ $(document).ready(function () {
                 return false;
             }
         }
-
         if (phone.length < 1) {
             $('.phone-no-div').after('<span class="error">This field is required</span>');
             return false;
@@ -244,20 +428,25 @@ $(document).ready(function () {
                 return false;
             }
         }
-
     });
 
-    // to get tommorrow's date for service
-    function getTommorrowDate() {
-        var myDate = new Date();
-        myDate.setDate(myDate.getDate() + 1);
-        var dt =
-            myDate.getFullYear() +
-            "-" +
-            ("0" + (myDate.getMonth() + 1)).slice(-2) +
-            "-" +
-            ("0" + myDate.getDate()).slice(-2);
-        return dt;
-    }
+    $('.save-pass-btn').on("click", function () {
+        var opass = $('.oldpass').val();
+        var npass = $('.newpass').val();
+        var ncpass = $('.cnewpass').val();
+        $(".error").remove();
+        if (opass.length < 1) {
+            $('.oldpass').after('<span class="error">This field is required</span>');
+            return false;
+        }
+        if (npass.length < 1) {
+            $('.newpass').after('<span class="error">This field is required</span>');
+            return false;
+        }
+        if (ncpass.length < 1) {
+            $('.cnewpass').after('<span class="error">This field is required</span>');
+            return false;
+        }
+    });
 
 });

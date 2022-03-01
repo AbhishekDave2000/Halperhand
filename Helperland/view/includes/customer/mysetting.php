@@ -1,10 +1,11 @@
 <nav>
     <div class="nav nav-tabs setting-nav-tabs" id="nav-tab" role="tablist">
         <button class="nav-link active setting-btn-tab" id="nav-detail-tab" data-bs-toggle="tab" data-bs-target="#nav-detail" type="button" role="tab" aria-controls="nav-home" aria-selected="true">My Detail</button>
-        <button class="nav-link setting-btn-tab" id="nav-address-tab" data-bs-toggle="tab" data-bs-target="#nav-address" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">My Address</button>
+        <button class="nav-link setting-btn-tab myAddress-Details"  id="nav-address-tab" data-bs-toggle="tab" data-bs-target="#nav-address" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">My Address</button>
         <button class="nav-link setting-btn-tab" id="nav-password-tab" data-bs-toggle="tab" data-bs-target="#nav-password" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">My Password</button>
     </div>
 </nav>
+<!-- onclick="mySettingLoad();" -->
 <div class="tab-content setting-tab-content" id="nav-tabContent">
 
     <div class="tab-pane fade show active" id="nav-detail" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -305,6 +306,7 @@
         </form>
     </div>
 
+    <!-- remove show active and add to first tab=========================================================================== -->
     <div class="tab-pane fade pt-4" id="nav-address" role="tabpanel" aria-labelledby="nav-profile-tab">
         <table class="table-data set-address-table" style="width:100%">
             <thead>
@@ -313,23 +315,8 @@
                     <th class="set-action-head">Action</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="set-address-table-row">
-                    <td class="set-address-body">
-                        <span class="set-addres-span">
-                            <b>Address : </b>
-                            hjadgsa 12, Gujarat, India.
-                        </span>
-                        <span class="set-addres-span">
-                            <b>Phone Number : </b>
-                            6546546541
-                        </span>
-                    </td>
-                    <td class="set-action-body">
-                        <button class="btn" data-bs-toggle="modal" data-bs-target="#add-address-modal"><i class="fas fa-edit"></i></button>
-                        <button class="btn"><i class="far fa-trash-alt"></i></button>
-                    </td>
-                </tr>
+            <tbody class="my-setting-address-details">
+                    
             </tbody>
         </table>
         <div class="row">
@@ -339,9 +326,10 @@
         </div>
     </div>
 
+
     <div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-contact-tab">
         <form action="<?= Config::base_url . '?controller=customerDash&function=myPasswordUpdate' ?>" method="post" class="pt-1">
-        <input type="hidden" name="user-logged-in-id" id="user-logged-id" value="<?= $_SESSION['user']['UserId']; ?>">
+            <input type="hidden" name="user-logged-in-id" id="user-logged-id" value="<?= $_SESSION['user']['UserId']; ?>">
             <div class="row pt-3">
                 <div class="col-md-4">
                     <label class="form-label">Old Password</label>
