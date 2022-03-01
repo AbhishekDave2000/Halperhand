@@ -197,10 +197,10 @@
                         </div>
                         <div class="col-md-6">
                             <select class="form-select" name="rescheduled-time" id="service-reshedule-time" aria-label="Default select example">
-                                <option value="8:00">8:00 AM</option>
-                                <option value="8:30">8:30 AM</option>
-                                <option value="9:00">9:00 AM</option>
-                                <option value="9:30">9:30 AM</option>
+                                <option value="08:00">8:00 AM</option>
+                                <option value="08:30">8:30 AM</option>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="09:30">9:30 AM</option>
                                 <option value="10:00">10:00 AM</option>
                                 <option value="10:30">10:30 AM</option>
                                 <option value="11:00">11:00 AM</option>

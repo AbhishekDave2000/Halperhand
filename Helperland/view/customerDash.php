@@ -80,7 +80,7 @@
                                 <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=customerDash&parameter=dashboard' ?>">Service Schedule</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=customerDash&parameter=favpros' ?>">Favourite Pros</a>
+                                <a class="nav-link nav-link-favpros" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=customerDash&parameter=favpros' ?>">Favourite Pros</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="#">Invoices</a>
@@ -167,7 +167,7 @@
                                 <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=customerDash&parameter=dashboard' ?>">Service Schedule</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=customerDash&parameter=favpros' ?>">Favourite Pros</a>
+                                <a class="nav-link nav-link-favpros" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=customerDash&parameter=favpros' ?>">Favourite Pros</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="#">Invoices</a>

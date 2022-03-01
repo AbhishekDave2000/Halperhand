@@ -1,6 +1,6 @@
 <table id="example" class="table-data favpro-data-table pl-4 pr-4" style="width:100%;">
     <thead style="display: none;"></thead>
-    <tbody class="favpro-data" >
+    <tbody class="favpro-data">
         <tr class="m-2" style="border: none !important;">
             <td>
                 <div class="card fav-pro-card pb-4 m-1">

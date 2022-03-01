@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    $('#change-sservice-dt-div').hide();
     var id = $('.userid-div').html();
     var url = "http://localhost/Halperhand/Helperland/";
     function convertDate(dateString) {
@@ -29,7 +28,9 @@ $(document).ready(function () {
     $('.reshedule-btn,.cancel-btn').on("click", function (ev) {
         const serviceDetail = JSON.parse($(ev.target).closest('tr').find("input").val());
         $('.service-id-input').val(serviceDetail.ServiceRequestId);
+        // $('#rdate').val(serviceDetail.ServiceStartDate.substring(0, 10));
         $('#rdate').val(getTommorrowDate());
+        $('#service-reshedule-time').val(serviceDetail.ServiceStartDate.substring(11, 16));
 
         $('.Update-btn-reschedule').on('click', function (e) {
             $(".error").remove();
@@ -46,13 +47,8 @@ $(document).ready(function () {
                     data: data,
                     success: function (result) {
                         if (result) {
-                            $('#change-sservice-dt-div').addClass('alert-success').text('Service has successfully Rescheduled!');
-                            $('#change-sservice-dt-div').removeClass('alert-danger');
-                        } else {
-                            $('#change-sservice-dt-div').addClass('alert-danger').text('Service was not Rescheduled try again!');
-                            $('#change-sservice-dt-div').removeClass('alert-success');
+                            window.location.href = "http://localhost/Halperhand/Helperland/?controller=Default&function=customerDash&parameter=dashboard";
                         }
-                        $('#change-sservice-dt-div').show("normal").delay(5000).hide("normal");
                     }
                 });
             }
@@ -68,10 +64,6 @@ $(document).ready(function () {
                 success: function (result) {
                     if (result) {
                         window.location.href = "http://localhost/Halperhand/Helperland/?controller=Default&function=customerDash&parameter=dashboard";
-                    } else {
-                        $('#change-sservice-dt-div').show("normal").delay(5000).hide("normal");
-                        $('#change-sservice-dt-div').addClass('alert-danger').text('Service is not Canceled try again!');
-                        $('#change-sservice-dt-div').removeClass('alert-success');
                     }
                 }
             });
@@ -141,11 +133,12 @@ $(document).ready(function () {
 
     $('.dashboard-data-table').on('click', function (e) {
         const service = $(e.target).closest('tr').find("input").val();
-        serviceDetailsPopup(JSON.parse(service));
+        if (service.length > 0) {
+            serviceDetailsPopup(JSON.parse(service));
+        }
     });
 
     function serviceDetailsPopup(service) {
-        console.log(service);
         extrahtml = "";
         var extra = ["Inside Cabinates", "Inside Oven", "Laundry wash & dry", "Interior Windows", "Inside Fridge"];
         var elength = service.ServiceExtraId.length;
@@ -282,7 +275,7 @@ $(document).ready(function () {
                         position: 'center',
                         icon: 'success',
                         title: 'Your Address is Deleted.',
-                        text : 'Address Id : '+id,
+                        text: 'Address Id : ' + id,
                         showConfirmButton: true,
                         confirmButtonColor: 'green'
                     });
@@ -296,6 +289,21 @@ $(document).ready(function () {
                 }
             }
         });
+    });
+    
+    $('.nav-link-favpros').on('click', function(e){
+        var uid = $('#user-id-span-val').html();
+        $.ajax({
+            url : url + '?controller=customerDash&function=getFavProviderData',
+            type : 'post',
+            data : {
+                id : uid
+            },
+            success : function(result){
+                console.log(result);
+            }
+        });
+        e.preventDefault();
     });
 
     function getUserAddressData(id) {

@@ -86,6 +86,10 @@ class customerDashModel
         return $this->conn->query($sql);
     }
 
+    public function getFavProviderDataModel($id){
+        
+    }
+
     public function getUserAddressDataModel($data)
     {
         $rows = array();

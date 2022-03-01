@@ -6,7 +6,6 @@
         Add new Service Request
     </a>
 </div>
-<div class="alert" id="change-sservice-dt-div" role="alert"></div>
 <table id="example" class="table-data dashboard-data-table" style="width:100%">
     <thead>
         <tr>
