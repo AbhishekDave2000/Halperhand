@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var id = $('.userid-div').html();
-    var url = url + "";
+    var url = "http://localhost/Halperhand/Helperland/";
 
     function convertDate(dateString) {
         var p = dateString.split(/\D/g)
@@ -29,6 +29,7 @@ $(document).ready(function () {
     $('.reshedule-btn,.cancel-btn').on("click", function (ev) {
         const serviceDetail = JSON.parse($(ev.target).closest('tr').find("input").val());
         $('.service-id-input').val(serviceDetail.ServiceRequestId);
+        $('.service-pro-email').val(serviceDetail.SPEmail);
         // $('#rdate').val(serviceDetail.ServiceStartDate.substring(0, 10));
         $('#rdate').val(getTommorrowDate());
         $('#service-reshedule-time').val(serviceDetail.ServiceStartDate.substring(11, 16));
@@ -41,6 +42,7 @@ $(document).ready(function () {
                 $('.reschedule-dat-div').after("<span class='error'>Service Provider must be able to complete work till 9:00PM!</span>");
                 return false;
             } else {
+                $('.Update-btn-reschedule').attr("disabled", true).html("Processing......");
                 var data = $('#reshedule-service-form').serialize();
                 $.ajax({
                     url: url + '?controller=customerDash&function=resheduleDateAndTime',
@@ -48,6 +50,7 @@ $(document).ready(function () {
                     data: data,
                     success: function (result) {
                         if (result) {
+                            $('.Update-btn-reschedule').attr("disabled", false).html("Update");
                             window.location.href = url + "?controller=Default&function=customerDash&parameter=dashboard";
                         }
                     }
@@ -314,6 +317,8 @@ $(document).ready(function () {
             },
             success: function (result) {
                 var data = JSON.parse(result);
+                // console.log(result);
+                // console.log(data);
                 showFavProData(data);
             }
         });
@@ -330,6 +335,7 @@ $(document).ready(function () {
 
     function showFavProData(data) {
         var fphtml = "";
+        // var table = $('#favpro-datatable').DataTable();
         data.forEach(function (dt) {
             var result = jsontoArray(dt);
             var rate = dt.AvarageRating;

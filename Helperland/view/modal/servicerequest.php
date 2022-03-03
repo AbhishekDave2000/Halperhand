@@ -192,6 +192,7 @@
                     <label for="form" class="Reschedule-form-label">Select New Date And Time</label>
                     <div class="row reschedule-dat-div">
                         <input type="hidden" name="service-id" class="service-id-input">
+                        <input type="hidden" name="sp-email" class="service-pro-email">
                         <div class="col-md-6">
                             <input type="date" id="rdate" name="rescheduled-date" class="form-control" placeholder="DD/MM/YYYY" aria-label="Date">
                         </div>

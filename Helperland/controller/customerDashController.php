@@ -2,6 +2,7 @@
 include("controller/validation/myDetailValidation.php");
 include("controller/validation/ServiceValidator.php");
 require_once("model/customerDashModel.php");
+require_once("phpmailer/mail.php");
 class customerDashController
 {
     public $data;
@@ -29,6 +30,13 @@ class customerDashController
     public function resheduleDateAndTime()
     {
         $result = $this->model->resheduleDateAndTimeModel($_POST);
+        $SPEmail = $_POST['sp-email'];
+        if($result){
+            $html = "<span>Resheduled Service Id :{$_POST['service-id']}</span><br>
+                    <span>New Service Date is : {$_POST['rescheduled-date']}</span><br>
+                    <span>New Servie Time is : {$_POST['rescheduled-time']}</span><br>";
+            sendmail($SPEmail,'Customer\'s Service has been Rescheduled!',$html);
+        }
         print_r($result);
     }
 

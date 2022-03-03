@@ -14,7 +14,7 @@ class customerDashModel
     public function getServiceRequestDataModel($id, $status)
     {
         $sql = "SELECT sr.ServiceRequestId,sr.UserId,sr.ServiceStartDate,sr.ZipCode,sr.ServiceHourlyRate,sr.ServiceHours,sr.ExtraHours,sr.SubTotal,
-                sr.TotalCost,sr.Comments,sr.ServiceProviderId,sr.SPAcceptedDate,sr.HasPets,sr.Status,sr.HasIssue,sra.AddressLine1,sra.AddressLine2,sra.City,sra.State,sra.PostalCode,sra.Mobile,sra.Email,sre.ServiceExtraId,CONCAT(u.FirstName,' ',u.LastName) as FullName FROM `servicerequest` AS sr 
+                sr.TotalCost,sr.Comments,sr.ServiceProviderId,sr.SPAcceptedDate,sr.HasPets,sr.Status,sr.HasIssue,sra.AddressLine1,sra.AddressLine2,sra.City,sra.State,sra.PostalCode,sra.Mobile,sra.Email,sre.ServiceExtraId,u.Email as SPEmail,CONCAT(u.FirstName,' ',u.LastName) as FullName FROM `servicerequest` AS sr 
                 JOIN servicerequestaddress AS sra
                     ON sra.ServiceRequestId = sr.ServiceRequestId
                 LEFT JOIN servicerequestextra AS sre

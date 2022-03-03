@@ -3,6 +3,7 @@ session_start();
 include("./model/AuthenticationModel.php");
 include("validation/userValidator.php");
 require("phpmailer/mail.php");
+
 class AuthenticationController
 {
     public $data;
