@@ -90,7 +90,7 @@ class customerDashModel
         $sql = "SELECT fb.*, CONCAT(user.FirstName,' ', user.LastName) as FullName, user.UserProfilePicture FROM favoriteandblocked as fb 
                 JOIN user 
                     ON user.UserId = fb.TargetUserId 
-                WHERE fb.UserId=1 ";
+                WHERE fb.UserId = $id ";
         $result = $this->conn->query($sql);
         $favpro = [];
         if($result->num_rows > 0){
@@ -106,6 +106,13 @@ class customerDashModel
             }
         }
         return $favpro;
+    }
+
+    public function addRemoveFavBlockModel($favstatus,$blockstatus){
+        $uid = $_POST['uid'];
+        $tid = $_POST['tid'];
+        $sql = "UPDATE favoriteandblocked SET IsFavorite = $favstatus , IsBlocked = $blockstatus WHERE UserId = $uid AND TargetUserId = $tid";
+        return $this->conn->query($sql);
     }
 
     public function getUserAddressDataModel($data)

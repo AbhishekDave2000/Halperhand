@@ -15,20 +15,18 @@ class contactController
         //validate the data
         $validate = new contactValidator($this->post);
         $errors = $validate->Validator();
-
         if (!count($errors) > 0) {
             //attachment file
             $filepath = "";
             $filename = "";
-
-            if (isset($_FILES['attachment'])) {
+            
+            if (isset($_FILES['attachment']) && !empty($_FILES['attachment']['name'])) {
                 $filerrors = $validate->isFileValidate($_FILES);
                 if (!count($filerrors) > 0) {
                     $filename = $_FILES['attachment']['name'];
                     $filepath = "assets/attachments/" . $filename;
                     $temp_file_path = $_FILES['attachment']['tmp_name'];
                     if (!move_uploaded_file($temp_file_path, $filepath)) {
-                        exit;
                         header("Location: errors.php?error=file not uploaded!");
                         exit();
                     }
@@ -39,9 +37,10 @@ class contactController
             //insert data into table
             $_POST['filepath'] = $filepath;
             $_POST['filename'] = $filename;
-
+            
             $contactus = new contactModel($_POST);
             $result = $contactus->insertContactData();
+            
             if ($result) {
                 //send mail
                 $this->contactMail();
@@ -54,6 +53,7 @@ class contactController
             exit();
         }
     }
+
     public function contactMail()
     {
         $subject = $this->post['subject'];
@@ -66,10 +66,11 @@ class contactController
                 <p style='font-size:16px;'>{$message}</p>";
 
         sendmail(Config::ADMIN_EMAIL, $name, $html, $filepath);
-    }
+    }   
 }
 
 $contact = new contactController($_POST);
 if (isset($_POST['submit'])) {
     $contact->insertContact();
+    
 }

@@ -247,35 +247,7 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                "dom": '<"top"i>rt<"bottom"flp><"clear">',
-                "columnDefs": [{
-                    "orderable": false,
-                    "targets": 5
-                }],
-                "bFilter": false, //hide Search bar
-                "pagingType": "full_numbers",
-                paging: true,
-                "pagingType": "full_numbers",
-                // bFilter: false,
-                ordering: true,
-                searching: false,
-                info: true,
-                "columnDefs": [{
-                    "orderable": false,
-                    "targets": 4
-                }],
-                "oLanguage": {
-                    "sInfo": "Total Records: _TOTAL_"
-                },
-                "dom": '<"top">rt<"bottom"lip><"clear">',
-                responsive: true,
-                "order": []
-            });
-        });
-    </script>
+    <script src="assets/js/table-data.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,9 @@
-<table id="example" class="table-data favpro-data-table pl-4 pr-4" style="width:100%;">
-    <thead style="display: none;"></thead>
+<table id="favpro-datatable" class="table-data favpro-data-table pl-4 pr-4" style="width:100%;">
+    <thead style="display: none;">
+        <tr>
+            <th>FavData</th>
+        </tr>
+    </thead>
     <tbody class="favpro-data">
         <!-- <tr class="m-2" style="border: none !important;">
             <td>

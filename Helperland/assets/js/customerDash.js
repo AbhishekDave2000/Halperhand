@@ -2,6 +2,7 @@ $(document).ready(function () {
     var id = $('.userid-div').html();
     var url = "http://localhost/Halperhand/Helperland/";
 
+
     function convertDate(dateString) {
         var p = dateString.split(/\D/g)
         return [p[2], p[1], p[0]].join("-")
@@ -132,9 +133,9 @@ $(document).ready(function () {
         }
     });
 
-    $('.dashboard-data-table').on('click', function (e) {
+    $('.dashboard-data').on('click', function (e) {
         const service = $(e.target).closest('tr').find("input").val();
-        if (service.length > 0) {
+        if (service != "") {
             serviceDetailsPopup(JSON.parse(service));
         }
     });
@@ -210,7 +211,7 @@ $(document).ready(function () {
     });
 
     $(".add-edit-address-form").on("click", ".edit-address-btn", function (e) {
-        if (!userAddressValidate()) {
+        if (userAddressValidate()) {
             var data = $('.add-edit-address-form').serialize();
             $.ajax({
                 url: url + "?controller=customerDash&function=userAddressupdate",
@@ -233,13 +234,13 @@ $(document).ready(function () {
     $(".add-address-btn").click(function () {
         $('#aeaddresstitle').html("Add New Address");
         $('.new-address-btn').html('Add');
-        $('.address-street-name,.address-house-name,.address-postal-code,.address-user-phone,.address-city').val('');
+        $('.address-street-name,.address-house-name,.address-postal-code,.address-user-phone').val('');
         $('.new-address-btn').addClass("new-address-add-btn");
         findPostalCodeData();
     });
 
     $(".add-edit-address-form").on("click", ".new-address-add-btn", function (e) {
-        if (!userAddressValidate()) {
+        if (userAddressValidate()) {
             var data = $('.add-edit-address-form').serialize();
             $.ajax({
                 url: url + "?controller=customerDash&function=addNewUserAddress",
@@ -307,9 +308,19 @@ $(document).ready(function () {
         });
     });
 
+    function jsontoArray(dt) {
+        var result = [];
+        var keys = Object.keys(dt);
+        keys.forEach(function (key) {
+            result.push(dt[key]);
+        });
+        return result;
+    }
+
     function showFavProData(data) {
         var fphtml = "";
         data.forEach(function (dt) {
+            var result = jsontoArray(dt);
             var rate = dt.AvarageRating;
             var or = 0;
             ratehtml = "";
@@ -337,6 +348,8 @@ $(document).ready(function () {
                                                     <img src="assets/Img/customer/cap.png" alt="avatar" srcset="">
                                                 </div>
                                             </div>
+                                            <input type="hidden" class="fav-pro-data" value="${result}" />
+                                            <input type="hidden" class="fav-pro-id" value="${dt.TargetUserId}" />
                                             <div class="row pt-3">
                                                 <span style=" font-size: 18px;">${dt.FullName} <br>
                                                     <span style="font-size: 15px;">
@@ -346,15 +359,73 @@ $(document).ready(function () {
                                                 </span><br>
                                             </div>
                                             <div class="row pt-3">
-                                                <button type="submit" value="${dt.IsFavorite}" name="remove" class="btn remove-fav-pro-btn mr-2">Remove</button>
-                                                <button type="submit" value="${dt.IsBlocked}" name="block" class="btn block-fav-pro-btn ml-2">Block</button>
+                                                <button class="btn remove-fav-pro-btn mr-2" id="remove-fav-pro-btn${dt.IsFavorite}" type="submit" data-arfav-pro="${dt.IsFavorite}" value="0" ></button>
+                                                <button class="btn block-fav-pro-btn ml-2" id="block-fav-pro-btn${dt.IsBlocked}" type="submit" data-bubfav-pro="${dt.IsBlocked}" value="0"></button>
                                             </div>
                                         </div>
                                     </td>
-                                    <td style="display: none;"></td><td style="display: none;"></td><td style="display: none;"></td><td style="display: none;"></td>
                                 </tr>`;
+            $('#remove-fav-pro-btn1').html('Remove');
+            $('#remove-fav-pro-btn0').html('Add');
+            $('#block-fav-pro-btn1').html('Unblock');
+            $('#block-fav-pro-btn0').html('Block');
         });
         $('.favpro-data').html(fphtml);
+
+    }
+
+    $('body').on("click", ".remove-fav-pro-btn", function (e) {
+        var prodata = $(e.target).closest("tr").find(".fav-pro-id").val().split(",");
+        var profavdata = $(e.target).closest("tr").find(".fav-pro-data").val().split(",");
+        $('.remove-fav-pro-btn').val(1);
+        favblockFunction(prodata[0], profavdata[3], profavdata[4]);
+    });
+
+    $('body').on("click", ".block-fav-pro-btn", function (e) {
+        var prodata = $(e.target).closest("tr").find(".fav-pro-id").val().split(",");
+        var profavdata = $(e.target).closest("tr").find(".fav-pro-data").val().split(",");
+        $('.block-fav-pro-btn').val(1);
+        favblockFunction(prodata[0], profavdata[3], profavdata[4]);
+    });
+
+    function favblockFunction(prodata, profav, problock) {
+        var uid = $('#user-id-span-val').html();
+        var favbtn = $('.remove-fav-pro-btn').val();
+        var blockbtn = $('.block-fav-pro-btn').val();
+        var favstatus = profav;
+        var blockstatus = problock;
+        $.ajax({
+            url: url + '?controller=customerDash&function=addRemoveFavBlock',
+            type: 'post',
+            data: {
+                uid: uid,
+                tid: prodata,
+                fav: favstatus,
+                block: blockstatus,
+                favbtn: favbtn,
+                blockbtn: blockbtn
+            },
+            success: function (result) {
+                showFavProPageData();
+                $('.block-fav-pro-btn').val(0);
+                $('.remove-fav-pro-btn').val(0);
+            }
+        });
+    }
+
+    function showFavProPageData() {
+        var uid = $('#user-id-span-val').html();
+        $.ajax({
+            url: url + '?controller=customerDash&function=getFavProviderData',
+            type: 'post',
+            data: {
+                id: uid
+            },
+            success: function (result) {
+                var data = JSON.parse(result);
+                showFavProData(data);
+            }
+        });
     }
 
     function getUserAddressData(id) {
@@ -430,20 +501,22 @@ $(document).ready(function () {
             $('.address-street-name').after('<span class="error">This field is required</span>');
             return false;
         }
-        if (houseName.length < 1) {
+        else if (houseName.length < 1) {
             $('.address-house-name').after('<span class="error">This field is required</span>');
             return false;
         }
-        if (postalCode.length < 1) {
+        else if (postalCode.length < 1) {
             $('.address-postal-code').after('<span class="error">This field is required</span>');
             return false;
         } else if (postalCode.length < 5 && postalCode.length > 6) {
             $('.address-postal-code').after('<span class="error">This field is required</span>');
             return false;
         }
-        if (phoneNo.length < 1) {
+        else if (phoneNo.length < 1) {
             $('.address-user-phone-div').after('<span class="error">This field is required</span>');
             return false;
+        }else{
+            return true;
         }
     }
 

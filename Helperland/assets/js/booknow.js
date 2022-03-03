@@ -121,6 +121,8 @@ $(document).ready(function () {
                         }
                     }
                 });
+            }else{
+                $('.save-address-btn').after("<span class='error'>Some error have occurd!</span>");
             }
             e.preventDefault();
         });

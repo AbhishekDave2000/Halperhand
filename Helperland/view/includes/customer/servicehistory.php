@@ -7,7 +7,7 @@
     </button>
 </div>
 
-<table id="example" class="table-data" style="width:100%">
+<table id="service-history-datatable" class="table-data" style="width:100%">
     <thead>
         <tr>
             <th>Service Id</th>

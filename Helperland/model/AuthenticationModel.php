@@ -16,7 +16,7 @@ class AuthenticationModel{
         $password = trim($this->data['Password']);
 
         $sql = "SELECT * FROM user WHERE Email = '$email' 
-                                   OR Password = '$password'";
+                                   AND Password = '$password'";
                                    
         $result = $this->conn->query($sql);
         if($result->num_rows > 0){

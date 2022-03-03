@@ -7,9 +7,9 @@ class contactModel
     public $conn;
     public function __construct($data)
     {
-        $this->data = $data;
         $connect = new DBConnection();
         $this->conn = $connect->Connection();
+        $this->data = $data;
     }
     public function insertContactData()
     {
@@ -22,9 +22,10 @@ class contactModel
         $FileName = $this->data['filepath'];
 
         $sql = "INSERT INTO contactus (Name, Email, Subject, PhoneNumber, Message, UploadFileName, FileName) 
-        VALUES ('$Name', '$Email', '$SubjectType', '$PhoneNumber', '$Message', '$UploadFileName', '$FileName')";
+                VALUES ('$Name', '$Email', '$SubjectType', '$PhoneNumber', '$Message', '$UploadFileName', '$FileName')";
 
         $result = $this->conn->query($sql);
+        // die($result);
         if (!$result) {
             header("Location: ../errors.php?error=inserting failed!");
             exit;

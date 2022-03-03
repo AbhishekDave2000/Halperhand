@@ -60,7 +60,6 @@ class AuthenticationController
         }
     }
 
-
     //user signup controller
     public function Signup()
     {

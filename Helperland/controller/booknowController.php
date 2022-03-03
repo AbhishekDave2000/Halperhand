@@ -67,6 +67,7 @@ class booknowController
         } else {
             echo $err['addfield'];
         }
+        // print_r($_POST);
     }
 
 

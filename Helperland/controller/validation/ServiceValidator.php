@@ -36,7 +36,7 @@ class ServiceValidator
         $house = trim($post['house']);
         $city = trim($post['city']);
         $phone = trim($post['phone']);
-        $postal = trim($post['PostalCode']);
+        $postal = trim($post['postal']);
         
         $this->streetValidator($street);
         $this->houseValidator($house);

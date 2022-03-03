@@ -52,6 +52,30 @@ class customerDashController
         }
     }
 
+    public function addRemoveFavBlock(){
+        $btn = array($_POST['favbtn'],$_POST['blockbtn']);
+        $favstatus = $_POST['fav'];
+        $blockstatus = $_POST['block'];
+        $op = "";
+        if($btn[0] == 1){
+            $op = "IsFavorite";
+            if($favstatus == 1){
+                $favstatus = 0;
+            } else if($favstatus == 0){
+                $favstatus = 1;
+            }
+        }else if($btn[1] == 1){
+            $op = "IsBlocked";
+            if($blockstatus == 1){
+                $blockstatus = 0;
+            }else if($blockstatus == 0){
+                $blockstatus = 1;
+            }
+        }
+        $result = $this->model->addRemoveFavBlockModel($favstatus,$blockstatus);
+        echo $result;
+    }
+
     public function getFavProviderData()
     {
         $id = $_POST['id'];

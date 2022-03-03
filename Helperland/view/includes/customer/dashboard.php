@@ -6,7 +6,7 @@
         Add new Service Request
     </a>
 </div>
-<table id="example" class="table-data dashboard-data-table" style="width:100%">
+<table id="dashboard-datatable" class="table-data dashboard-data-table" style="width:100%">
     <thead>
         <tr>
             <th>Service Id</th>

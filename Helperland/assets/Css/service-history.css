@@ -551,7 +551,6 @@ table thead{
     width: fit-content;
 }
 .block-fav-pro-btn,.block-fav-pro-btn:hover{
-    background-color: #ff6b6b;
     color: white;
     padding: 3px 15px;
     font-size: 17px;
@@ -560,6 +559,18 @@ table thead{
     justify-content: center;
     align-items: center;
     width: fit-content;
+}
+#block-fav-pro-btn0{
+    background-color: #ff6b6b;
+}
+#block-fav-pro-btn1{
+    background-color: #146371;
+}
+#remove-fav-pro-btn1{
+    background-color: #146371;
+}
+#remove-fav-pro-btn0{
+    background-color: #ff6b6b;
 }
 /* fav pros end */
 /* content end */
@@ -841,7 +852,7 @@ table thead{
     }
  }
 
-#example_wrapper .bottom {
+.bottom {
     padding: 10px 0;
     display: flex;
     justify-content: space-between;

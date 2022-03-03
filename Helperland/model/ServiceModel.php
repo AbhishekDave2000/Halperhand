@@ -80,7 +80,6 @@ class ServiceModel
             $row = $result->fetch_assoc();
         }
         $state = $row['StateName'];
-        
         $sql = "INSERT INTO useraddress (UserId, AddressLine1, AddressLine2, City, State, PostalCode, IsDefault, IsDeleted, Mobile, Email) 
                 VALUES ('$id', '$house', '$street', '$city', '$state', '$postal', 0, 0, '$phone', '$email')";
 
