@@ -1,7 +1,6 @@
 $(document).ready(function () {
     var id = $('.userid-div').html();
-    var url = "http://localhost/Halperhand/Helperland/";
-
+    var url = url + "";
 
     function convertDate(dateString) {
         var p = dateString.split(/\D/g)
@@ -9,7 +8,7 @@ $(document).ready(function () {
     }
 
     $.ajax({
-        url: 'localhost/Halperhand/Helperland/?controller=customerDash&function=getMyDetail',
+        url: url + '?controller=customerDash&function=getMyDetail',
         type: 'post',
         data: {
             id: id
@@ -44,12 +43,12 @@ $(document).ready(function () {
             } else {
                 var data = $('#reshedule-service-form').serialize();
                 $.ajax({
-                    url: 'http://localhost/Halperhand/Helperland/?controller=customerDash&function=resheduleDateAndTime',
+                    url: url + '?controller=customerDash&function=resheduleDateAndTime',
                     type: 'post',
                     data: data,
                     success: function (result) {
                         if (result) {
-                            window.location.href = "http://localhost/Halperhand/Helperland/?controller=Default&function=customerDash&parameter=dashboard";
+                            window.location.href = url + "?controller=Default&function=customerDash&parameter=dashboard";
                         }
                     }
                 });
@@ -60,12 +59,12 @@ $(document).ready(function () {
         $('.cancel-btn-modal').on("click", function (e) {
             var data = $('.cancel-sr-form').serialize();
             $.ajax({
-                url: 'http://localhost/Halperhand/Helperland/?controller=customerDash&function=cancelServiceRequest',
+                url: url + '?controller=customerDash&function=cancelServiceRequest',
                 type: 'post',
                 data: data,
                 success: function (result) {
                     if (result) {
-                        window.location.href = "http://localhost/Halperhand/Helperland/?controller=Default&function=customerDash&parameter=dashboard";
+                        window.location.href = url + "?controller=Default&function=customerDash&parameter=dashboard";
                     }
                 }
             });
@@ -77,14 +76,14 @@ $(document).ready(function () {
         $(".error").remove();
         var data = $('.s-p-rate-form').serialize();
         $.ajax({
-            url: 'http://localhost/Halperhand/Helperland/?controller=customerDash&function=rateServiceProvider',
+            url: url + '?controller=customerDash&function=rateServiceProvider',
             type: 'post',
             data: data,
             success: function (result) {
                 if (!result) {
                     $('.feedbackonsp').before('<span class="error pl-2">Please provide all three ratings!</span>');
                 } else {
-                    window.location.href = "http://localhost/Halperhand/Helperland/?controller=Default&function=customerDash&parameter=service-history";
+                    window.location.href = url + "?controller=Default&function=customerDash&parameter=service-history";
                 }
             }
         });
@@ -319,7 +318,10 @@ $(document).ready(function () {
 
     function showFavProData(data) {
         var fphtml = "";
+        var dataTable = $("#favpro-datatable").DataTable();
+        dataTable.clear().draw();
         data.forEach(function (dt) {
+
             var result = jsontoArray(dt);
             var rate = dt.AvarageRating;
             var or = 0;
@@ -359,19 +361,18 @@ $(document).ready(function () {
                                                 </span><br>
                                             </div>
                                             <div class="row pt-3">
-                                                <button class="btn remove-fav-pro-btn mr-2" id="remove-fav-pro-btn${dt.IsFavorite}" type="submit" data-arfav-pro="${dt.IsFavorite}" value="0" ></button>
-                                                <button class="btn block-fav-pro-btn ml-2" id="block-fav-pro-btn${dt.IsBlocked}" type="submit" data-bubfav-pro="${dt.IsBlocked}" value="0"></button>
+                                                <button class="btn remove-fav-pro-btn remove-fav-pro-btn${dt.IsFavorite} mr-2" type="submit" data-arfav-pro="${dt.IsFavorite}" value="0" ></button>
+                                                <button class="btn block-fav-pro-btn block-fav-pro-btn${dt.IsBlocked} ml-2" type="submit" data-bubfav-pro="${dt.IsBlocked}" value="0"></button>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>`;
-            $('#remove-fav-pro-btn1').html('Remove');
-            $('#remove-fav-pro-btn0').html('Add');
-            $('#block-fav-pro-btn1').html('Unblock');
-            $('#block-fav-pro-btn0').html('Block');
+            $('.favpro-data').html(fphtml);
+            $('.remove-fav-pro-btn1').html('Remove');
+            $('.remove-fav-pro-btn0').html('Add');
+            $('.block-fav-pro-btn1').html('Unblock');
+            $('.block-fav-pro-btn0').html('Block');
         });
-        $('.favpro-data').html(fphtml);
-
     }
 
     $('body').on("click", ".remove-fav-pro-btn", function (e) {
@@ -430,7 +431,7 @@ $(document).ready(function () {
 
     function getUserAddressData(id) {
         $.ajax({
-            url: 'http://localhost/Halperhand/Helperland/?controller=customerDash&function=getUserAddressData',
+            url: url + '?controller=customerDash&function=getUserAddressData',
             type: 'post',
             data: {
                 data: id
@@ -515,7 +516,7 @@ $(document).ready(function () {
         else if (phoneNo.length < 1) {
             $('.address-user-phone-div').after('<span class="error">This field is required</span>');
             return false;
-        }else{
+        } else {
             return true;
         }
     }

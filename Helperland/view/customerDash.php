@@ -217,10 +217,10 @@
             <!-- </div> -->
             <div class="footer-list">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about_us.html">About</a></li>
-                    <li><a href="">Testimonials</a></li>
-                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="<?= $base_url.'?controller=Default&function=homepage' ?>">Home</a></li>
+                    <li><a href="<?= $base_url.'?controller=Default&function=aboutpage' ?>">About</a></li>
+                    <li><a href="<?= $base_url.'?controller=Default&function=homepage' ?>#testis">Testimonials</a></li>
+                    <li><a href="<?= $base_url.'?controller=Default&function=faqpage' ?>">FAQs</a></li>
                     <li><a href="">Insurance Policy</a></li>
                     <li><a href="">Impressum</a></li>
                 </ul>

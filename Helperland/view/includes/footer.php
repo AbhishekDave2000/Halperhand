@@ -6,9 +6,9 @@
       <!-- </div> -->
       <div class="footer-list">
         <ul>
-          <li><a href="home.php">Home</a></li>
+          <li><a href="<?= $base_url.'?controller=Default&function=homepage' ?>">Home</a></li>
           <li><a href="<?= $base_url.'?controller=Default&function=aboutpage' ?>">About</a></li>
-          <li><a href="home.php#testis">Testimonials</a></li>
+          <li><a href="<?= $base_url.'?controller=Default&function=homepage' ?>#testis">Testimonials</a></li>
           <li><a href="<?= $base_url.'?controller=Default&function=faqpage' ?>">FAQs</a></li>
           <li><a href="">Insurance Policy</a></li>
           <li><a href="">Impressum</a></li>
