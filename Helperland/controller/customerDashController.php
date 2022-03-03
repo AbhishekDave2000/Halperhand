@@ -48,7 +48,6 @@ class customerDashController
             print_r($result);
         } else {
             echo 0;
-            exit;
         }
     }
 

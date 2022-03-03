@@ -2,7 +2,7 @@
     <span class="Service-History-span">
         Service History
     </span>
-    <button class="export-button">
+    <button class="export-button" id="SH-export-button">
         Export
     </button>
 </div>
@@ -23,8 +23,8 @@
         foreach ($result as $val) {
         ?>
             <tr>
-                <input type="hidden" name="service-details" class="all-service-detail-input" value='<?php echo json_encode($val); ?>'>
                 <td class="dashserviceid pl-5">
+                    <input type="hidden" name="service-details" class="all-service-detail-input" value='<?php echo json_encode($val); ?>'>
                     <span><?= $val['ServiceRequestId']; ?></span>
                 </td>
                 <td class="servicedetail">
@@ -50,7 +50,7 @@
                                 <i class="fas fa-star i-con"></i>
                                 <?php }
                             $star = 0;
-                            if (substr($val['AvarageRating'], 2, 1) != "") {
+                            if (substr($val['AvarageRating'], 2, 1) != 0 ) {
                                 $star = 1;
                                 for ($i = 0; $i <$star; $i++) { ?>
                                     <i class="fa-solid fa-star-half-stroke"></i>

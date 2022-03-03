@@ -74,13 +74,14 @@ $(document).ready(function () {
 
     $('#rating-submit-btn-pro').on("click", function (e) {
         $(".error").remove();
+
         var data = $('.s-p-rate-form').serialize();
         $.ajax({
             url: url + '?controller=customerDash&function=rateServiceProvider',
             type: 'post',
             data: data,
             success: function (result) {
-                if (!result) {
+                if (result == 0) {
                     $('.feedbackonsp').before('<span class="error pl-2">Please provide all three ratings!</span>');
                 } else {
                     window.location.href = url + "?controller=Default&function=customerDash&parameter=service-history";
@@ -130,6 +131,17 @@ $(document).ready(function () {
             $('.rating-of-sp').html(ratehtml);
             $('.ratings-sp-no').text(rate.substr(0, 4));
         }
+    });
+
+    // export to excel
+    $('#SH-export-button').click(function () {
+        let data = document.getElementById('service-history-datatable');
+        var fp = XLSX.utils.table_to_book(data, { sheet: 'History' });
+        XLSX.write(fp, {
+            bookType: 'xlsx',
+            type: 'base64'
+        });
+        XLSX.writeFile(fp, 'service-history.xlsx');
     });
 
     $('.dashboard-data').on('click', function (e) {
@@ -318,10 +330,7 @@ $(document).ready(function () {
 
     function showFavProData(data) {
         var fphtml = "";
-        var dataTable = $("#favpro-datatable").DataTable();
-        dataTable.clear().draw();
         data.forEach(function (dt) {
-
             var result = jsontoArray(dt);
             var rate = dt.AvarageRating;
             var or = 0;

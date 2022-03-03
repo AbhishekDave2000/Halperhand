@@ -80,7 +80,7 @@ class myDetailValidation{
     }
 
     public function rateValidation(){
-        if(!isset($this->data['ota-rate']) && !isset($this->data['Friendly-rate']) && !isset($this->data['Qos-rate'])){
+        if(!isset($this->data['ota-rate']) || !isset($this->data['Friendly-rate']) || !isset($this->data['Qos-rate'])){
             $this->addErrors("RateError","Please enter all ratinggs!");
         }
         return $this->errors;
