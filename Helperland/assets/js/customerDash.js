@@ -334,8 +334,8 @@ $(document).ready(function () {
     }
 
     function showFavProData(data) {
-        var fphtml = "";
-        // var table = $('#favpro-datatable').DataTable();
+        var table = $('#favpro-datatable').DataTable();
+        table.clear().draw();
         data.forEach(function (dt) {
             var result = jsontoArray(dt);
             var rate = dt.AvarageRating;
@@ -357,32 +357,29 @@ $(document).ready(function () {
             for (var i = 5; i > (parseInt(rate) + or); i--) {
                 ratehtml += `<i class="fas fa-star i-con-e"></i>`;
             }
-            fphtml += `<tr class="m-2" style="border: none !important;">
-                                    <td>
-                                        <div class="card fav-pro-card pb-4 m-1">
-                                            <div class="row pb-2 pt-4">
-                                                <div class="avtar-fav-pro-card">
-                                                    <img src="assets/Img/customer/cap.png" alt="avatar" srcset="">
-                                                </div>
-                                            </div>
-                                            <input type="hidden" class="fav-pro-data" value="${result}" />
-                                            <input type="hidden" class="fav-pro-id" value="${dt.TargetUserId}" />
-                                            <div class="row pt-3">
-                                                <span style=" font-size: 18px;">${dt.FullName} <br>
-                                                    <span style="font-size: 15px;">
-                                                        ${ratehtml}
-                                                        ${dt.AvarageRating.substring(0, 4)}
-                                                    </span>
-                                                </span><br>
-                                            </div>
-                                            <div class="row pt-3">
-                                                <button class="btn remove-fav-pro-btn remove-fav-pro-btn${dt.IsFavorite} mr-2" type="submit" data-arfav-pro="${dt.IsFavorite}" value="0" ></button>
-                                                <button class="btn block-fav-pro-btn block-fav-pro-btn${dt.IsBlocked} ml-2" type="submit" data-bubfav-pro="${dt.IsBlocked}" value="0"></button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>`;
-            $('.favpro-data').html(fphtml);
+            table.row.add($(
+                            '<tr class="m-2" style="border: none !important;"><td><div class="card fav-pro-card pb-4 m-1"><div class="row pb-2 pt-4">'+
+                                '<div class="avtar-fav-pro-card">'+
+                                        '<img src="assets/Img/customer/cap.png" alt="avatar" srcset="">'+
+                                '</div>'+
+                                '</div>'+
+                                '<input type="hidden" class="fav-pro-data" value="'+result+'" />'+
+                                '<input type="hidden" class="fav-pro-id" value="'+dt.TargetUserId+'" />'+
+                                '<div class="row pt-3">'+
+                                    '<span style=" font-size: 18px;">'+dt.FullName+'<br>'+
+                                        '<span style="font-size: 15px;">'
+                                            +ratehtml+
+                                            +dt.AvarageRating.substring(0, 4)+
+                                        '</span>'+
+                                    '</span><br>'+
+                                '</div>'+
+                                '<div class="row pt-3">'+
+                                    '<button class="btn remove-fav-pro-btn remove-fav-pro-btn'+dt.IsFavorite+' mr-2" type="submit" data-arfav-pro="'+dt.IsFavorite+'" value="0" ></button>'+
+                                    '<button class="btn block-fav-pro-btn block-fav-pro-btn'+dt.IsBlocked+' ml-2" type="submit" data-bubfav-pro="'+dt.IsBlocked+'" value="0"></button>'+
+                                '</div>'+
+                                    '</div>'+
+                                '</td>'+
+                            '</tr>' )).draw();
             $('.remove-fav-pro-btn1').html('Remove');
             $('.remove-fav-pro-btn0').html('Add');
             $('.block-fav-pro-btn1').html('Unblock');
