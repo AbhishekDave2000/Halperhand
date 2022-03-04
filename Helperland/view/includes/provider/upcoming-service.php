@@ -1,7 +1,7 @@
 <div class="container-fluid head-us">
     <span class="upcoming-heading">Upcoming Services</span>
 </div>
-<table id="example" class="table-data mt-3" style="width:100%">
+<table id="sp-upcoming-service" class="table-data mt-3" style="width:100%">
     <thead>
         <tr>
             <th class="serviceid">Service ID <img src="assets/Img/spupcoming/sort.png" alt="" class="sorting-img"></th>

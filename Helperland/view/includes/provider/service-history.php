@@ -22,7 +22,7 @@
     </button>
 </div>
 
-<table id="example" class="table-data" style="width:100%">
+<table id="sp-servicehistory" class="table-data" style="width:100%">
     <thead>
         <tr>
             <th class="serviceid">Service ID <img src="assets/Img/spupcoming/sort.png" alt="" class="sorting-img"></th>
@@ -43,57 +43,3 @@
         </tr>
     </tbody>
 </table>
-
-<div class="container-fluid pagination-div">
-    <div class="container-fluid">
-        <span class="span-show">
-            show
-        </span>
-        <div class="btn-group">
-            <!-- <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                10
-                            </button> -->
-            <select class="form-select" aria-label="form-select-sm example">
-                <option selected>10</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-            </select>
-        </div>
-        <span class="span-entries">
-            entries
-        </span>
-        <span class="span-TR">
-            Total Records: 10
-        </span>
-    </div>
-
-    <nav class="pagination-nav" aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <i class="fas fa-caret-left"></i>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <i class="fas fa-chevron-left"></i>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <i class="fas fa-chevron-right"></i>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <i class="fas fa-caret-right"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
