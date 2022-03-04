@@ -360,7 +360,7 @@ $(document).ready(function () {
             table.row.add($(
                             '<tr class="m-2" style="border: none !important;"><td><div class="card fav-pro-card pb-4 m-1"><div class="row pb-2 pt-4">'+
                                 '<div class="avtar-fav-pro-card">'+
-                                        '<img src="assets/Img/customer/cap.png" alt="avatar" srcset="">'+
+                                        '<img src="assets/Img/assets/avatar-'+dt.UserProfilePicture+'.png" alt="avatar" class="favblock-cap">'+
                                 '</div>'+
                                 '</div>'+
                                 '<input type="hidden" class="fav-pro-data" value="'+result+'" />'+

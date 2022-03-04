@@ -38,7 +38,7 @@
         <div class="container-lg-fluid">
             <nav class="navbar navbar-expand-xl">
                 <!-- Brand -->
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="index.php">
                     <img src="assets/Img/logo/white-logo-transparent-background.png" alt="">
                 </a>
                 <!-- assets/Img/logo/white-logo-transparent-background.png -->
@@ -126,7 +126,7 @@
                                     }
                                     ?>
                                     <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function=' . $function . '&parameter=' . $parameter ?>">My Dashboard</a>
-                                    <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function=customerDash&parameter=' . $setting ?>" >My Settings</a>
+                                    <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function=' . $function . '&parameter=' . $setting ?>" >My Settings</a>
                                     <a class="dropdown-item" href="<?= $base_url . '?controller=Authentication&function=Logout' ?>">Logout</a>
                                 </div>
                             </li>

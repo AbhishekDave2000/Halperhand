@@ -12,7 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -33,7 +33,7 @@
         <div class="container-lg-fluid">
             <nav class="navbar navbar-expand-xl">
                 <!-- Brand -->
-                <a class="navbar-brand" href="../index.html">
+                <a class="navbar-brand" href="index.php">
                     <img src="assets/Img/logo/white-logo-transparent-background.png" alt="">
                 </a>
                 <!-- assets/Img/logo/white-logo-transparent-background.png -->
@@ -49,16 +49,16 @@
                     <div class="collapse navbar-collapse" id="collapsibleNavbar">
                         <ul class="navbar-nav ms-auto mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link a" href="prices.html">Prices & services</a>
+                                <a class="nav-link" href="<?= $base_url . '?controller=Default&function=pricespage' ?>">Prices & Service</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link a" href="#">Warranty</a>
+                                <a class="nav-link" href="#">Our Guarantee</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link a" href="index.html#blog-1">Blog</a>
+                                <a class="nav-link" href="<?= $base_url . '?controller=Default&function=homepage' ?>#Blog">Blog</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link a" href="contact.html">Contact us</a>
+                                <a class="nav-link" href="<?= $base_url . '?controller=Default&function=contactpage' ?>">Contact us</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 sidebar-ul-navbar">
@@ -99,22 +99,34 @@
                                 </div>
                             </li>
                             <li class="nav-item" id="user-1">
-                            <a class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                                <img src="assets/Img/spupcoming/user.png" alt="" srcset="">
-                                <img src="assets/Img/spupcoming/sp-arrow-down.png" class="Forma-1-copy">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown" style="width: 180px;">
-                                <div class="label">
-                                    <span style="padding-left: 15px;padding-bottom: 15px; font-size:medium ;">Welcome,<br>
-                                        <!-- <span style="padding-left: 15px; font-weight:600; font-size:medium;"><?= $_SESSION['user']['FirstName']; ?></span> -->
-                                    </span>
+                                <a class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                                    <img src="assets/Img/spupcoming/user.png" alt="" srcset="">
+                                    <img src="assets/Img/spupcoming/sp-arrow-down.png" class="Forma-1-copy">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown" style="width: 180px;">
+                                    <div class="label">
+                                        <span style="padding-left: 15px;padding-bottom: 15px; font-size:medium ;">Welcome,<br>
+                                            <span style="padding-left: 15px; font-weight:600; font-size:medium;"><?= $_SESSION['user']['FirstName']; ?></span>
+                                        </span>
+                                    </div>
+                                    <div class="dropdown-divider" style="display: block;"></div>
+                                    <?php
+                                    if ($_SESSION['user']['UserTypeId'] == 2) {
+                                        $function = 'providerDash';
+                                        $parameter = 'new-service-request';
+                                        $setting = 'my-setting';
+                                    ?>
+                                        <a class="dropdown-item" href="<?= Config::base_url . '?controller=Default&function=' . $function . '&parameter=' . $parameter ?>">My Dashboard</a>
+                                        <a class="dropdown-item" href="<?= Config::base_url . '?controller=Default&function=' . $function . '&parameter=' . $setting ?>">My Settings</a>
+                                        <a class="dropdown-item" href="<?= Config::base_url . '?controller=Authentication&function=Logout' ?>">Logout</a>
+                                    <?php } else {
+                                        echo "Not Happning";
+                                    } ?>
+                                    <!-- <a class="dropdown-item" href="">My Dashboard</a>
+                                    <a class="dropdown-item" href="<?php Config::base_url . '?controller=Default&function=providerDash&parameter=my-setting' ?>">My Settings</a>
+                                    <a class="dropdown-item" href="">Logout</a> -->
                                 </div>
-                                <div class="dropdown-divider" style="display: block;"></div>
-                                    <a class="dropdown-item" href="">My Dashboard</a>
-                                    <a class="dropdown-item" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=my-setting' ?>">My Settings</a>
-                                    <a class="dropdown-item" href="">Logout</a>
-                            </div>
-                        </li>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -127,8 +139,9 @@
     <!-- name header -->
     <div class="container-fluid name-header">
         <span class="Welcome-name">
-            Welcome, 
-            <span class="text-style-1"> Abhishek!</span>
+            Welcome,
+            <span class="text-style-1"><?= $_SESSION['user']['FirstName'] . " " . $_SESSION['user']['LastName'] . "!"; ?></span>
+            <span class="sp-id" style="display: none;"><?= $_SESSION['user']['UserId']; ?></span>
         </span>
     </div>
 
@@ -169,32 +182,32 @@
 
             <main class="container__main">
                 <?php
-                    switch ($para) {
-                        case 'new-service-request':
-                            include("includes/provider/new-service-request.php");
-                            break;
-                        case 'upcoming-service':
-                            include("includes/provider/upcoming-service.php");
-                            break;
-                        case 'serviceschedule':
-                            echo "not yet created";
-                            break;
-                        case 'service-history':
-                            include("includes/provider/service-history.php");
-                            break;
-                        case 'my-rating':
-                            include("includes/provider/my-ratings.php");
-                            break;
-                        case 'block-customer':
-                            include("includes/provider/block-customer.php");
-                            break;
-                        case 'my-setting':
-                            include("includes/provider/my-setting.php");
-                            break;
-                        default:
-                            echo "<h2>404 This page does not exist!</h2>";
-                            break;
-                    }
+                switch ($para) {
+                    case 'new-service-request':
+                        include("includes/provider/new-service-request.php");
+                        break;
+                    case 'upcoming-service':
+                        include("includes/provider/upcoming-service.php");
+                        break;
+                    case 'serviceschedule':
+                        echo "not yet created";
+                        break;
+                    case 'service-history':
+                        include("includes/provider/service-history.php");
+                        break;
+                    case 'my-rating':
+                        include("includes/provider/my-ratings.php");
+                        break;
+                    case 'block-customer':
+                        include("includes/provider/block-customer.php");
+                        break;
+                    case 'my-setting':
+                        include("includes/provider/my-setting.php");
+                        break;
+                    default:
+                        echo "<h2>404 This page does not exist!</h2>";
+                        break;
+                }
                 ?>
             </main>
         </div>
@@ -214,19 +227,9 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                "order": [
-                    [3, "desc"]
-                ],
-                "bPaginate": false, //hide pagination
-                "bFilter": false, //hide Search bar
-                "bInfo": false, // hide showing entries
-
-            });
-        });
-    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="assets/js/table-data.js"></script>
+    <script src="assets/js/providerDash.js"></script>
 </body>
 
 </html>

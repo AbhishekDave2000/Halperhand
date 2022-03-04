@@ -2,6 +2,14 @@
 /* *{
     border: 1px solid red;
 } */
+.error {
+    color: red;
+    margin-left: 5px;
+    display: inline;
+  }
+  label.error {
+    display: inline !important;
+  }
 input,button,select,textarea{
     box-shadow: none !important;  
 }
@@ -472,13 +480,21 @@ table thead{
     align-items: center;
 }
 .avatar-slecting-div{
-    height: 65px;
-    width: 65px;
+    height: 70px;
+    width: 70px;
     border-radius: 50%;
     background-color: #f1f1f1;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 3px solid #f1f1f1;
+}
+.avatar-slecting-div img{
+    height: 100% !important;
+    width: 100% !important;
+}
+.avatar-radio-btn input[type="radio"]:checked + label .avatar-slecting-div{
+    border: 3px solid #2c94a8;
 }
 .gender-radio-div{
     display: flex;

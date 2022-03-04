@@ -43,9 +43,9 @@
                 <td class="serviceprovider d-flex">
                     <?php if (isset($val['FullName'])) { ?>
                         <div class="cap-div">
-                            <img class="cap" src="assets/Img/customer/cap.png" alt="cap">
+                            <img class="cap" src="assets/Img/assets/avatar-<?= $val['UserProfilePicture'] ?>.png" alt="cap">
                         </div>
-                        <span><?= $val['FullName']; ?> <br>
+                        <span style="padding-top:8px;"><?= $val['FullName']; ?> <br>
                             <?php for ($i = 0; $i < substr($val['AvarageRating'], 0, 1); $i++) { ?>
                                 <i class="fas fa-star i-con"></i>
                                 <?php }

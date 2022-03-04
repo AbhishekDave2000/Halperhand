@@ -297,8 +297,8 @@ table thead{
     color: #646464;
 }
 .serviceprovider .cap-div{
-    width: 44px;
-    height: 44px;
+    /* width: 50px;
+    height: 50px; */
     border: solid 1px #aaa;
     border-radius: 50%;
     display: flex;
@@ -307,6 +307,10 @@ table thead{
     margin-right: 6px;
     margin-top: 4px;
     margin-left: 3px;
+}
+.cap{
+    width: 60px;
+    height: 60px;
 }
 .i-con,.fa-star-half-stroke{
     color: #ecb91c !important;
@@ -524,17 +528,18 @@ table thead{
     text-align: center;
 }
 .avtar-fav-pro-card{
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     border: 1px solid #aaaaaa;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0;
 }
-.avtar-fav-pro-card img{
-    height: 27px;
-    width: 37px;
+.favblock-cap{
+    width: 100% !important;
+    height: 100% !important;
 }
 .fav-pro-card .row span{
     color: #646464; 

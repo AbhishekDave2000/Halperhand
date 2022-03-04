@@ -1,4 +1,4 @@
-<div class="div-content">
+<div class="div-content sp-mysetting-content">
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">My Detailes</button>
@@ -14,22 +14,24 @@
             </div>
             <div class="avatar-basic-main-div">
                 <div class="col-md-11 pl-0 mr-2 basic-detail-head">Basic Detail</div>
-                <div class="avatar-image-os-user"><img src="assets/Img/admin/cap.png" alt="avatar" width="42" height="27"></div>
+                <div class="avatar-image-os-user">
+                    <!-- <img src="assets/Img/admin/cap.png" alt="avatar" width="42" height="27"> -->
+                </div>
             </div>
-            <form action="">
+            <form class="mySetting-Detail-Form">
                 <div class="container-fluid pt-2 pb-4" style="border-bottom: 1px solid #acacac;">
                     <div class="row pt-3">
                         <div class="col-md-4 pt-2 pl-0">
                             <label for="" class="form-label">First name</label>
-                            <input type="text" class="form-control" id="">
+                            <input type="text" id="sp-firstname" name="firstname" class="form-control" placeholder="First Name">
                         </div>
                         <div class="col-md-4 pl-0 pt-2">
                             <label for="" class="form-label">Last name</label>
-                            <input type="password" class="form-control" id="">
+                            <input type="text" id="sp-lastname" name="lastname" class="form-control" placeholder="Last Name">
                         </div>
                         <div class="col-md-4 pl-0 pt-2">
                             <label for="" class="form-label">E-mail address</label>
-                            <input type="email" class="form-control" id="">
+                            <input type="email" id="sp-email" name="email" class="form-control" placeholder="Email Address">
                         </div>
                     </div>
                     <div class="row pt-3">
@@ -37,14 +39,14 @@
                             <label class="form-label" for="autoSizingInputGroup">Mobile number</label>
                             <div class="input-group pt-2">
                                 <div class="input-group-text">+49</div>
-                                <input type="tel" class="form-control" id="autoSizingInputGroup" placeholder="">
+                                <input type="tel" id="sp-phone" name="phone" class="form-control" placeholder="Mobile Number" id="autoSizingInputGroup" placeholder="">
                             </div>
                         </div>
                         <div class="col-md-4 pl-0 pt-2">
-                            <label for="" class="form-label">Date Of Birth</label>
+                            <label class="form-label">Date Of Birth</label>
                             <div class="row dob-div-row">
                                 <div class="col-md-3 pt-2">
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" id="sp-dob-d" name="date">
                                         <option value="01">1</option>
                                         <option value="02">2</option>
                                         <option value="03">3</option>
@@ -79,7 +81,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-5 pt-2">
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" id="sp-dob-m" name="month">
                                         <option value="01">January</option>
                                         <option value="02">February</option>
                                         <option value="03">March</option>
@@ -95,7 +97,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4 pt-2">
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" id="sp-dob-y" name="year">
                                         <option value="2022">2022</option>
                                         <option value="2021">2021</option>
                                         <option value="2020">2020</option>
@@ -462,19 +464,19 @@
                             <label class="form-label" for="autoSizingInputGroup">Gender</label>
                             <div class="gender-radio-div">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="radio-male" value="Male" checked>
+                                    <input class="form-check-input gender-input" type="radio" name="gender" id="radio-male" value="1">
                                     <label class="form-check-label" for="radio-male">
                                         Male
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="radio-female" value="Female">
+                                    <input class="form-check-input gender-input" type="radio" name="gender" id="radio-female" value="2">
                                     <label class="form-check-label" for="radio-female">
                                         Female
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="radio-rntsay" value="Rather not to say">
+                                    <input class="form-check-input gender-input" type="radio" name="gender" id="radio-rntsay" value="3">
                                     <label class="form-check-label" for="radio-rntsay">
                                         Rather not to say
                                     </label>
@@ -487,40 +489,40 @@
                     <div class="row">
                         <label class="form-label" for="Selecting-avatar">Select Avatar</label>
                         <div class="d-flex avtar-select-div pt-1">
-                            <div class="form-check form-check-inline pl-0 pr-0">
-                                <input class="form-check-input" type="checkbox" value="1" id="avtar1">
+                            <div class="form-check form-check-inline avatar-radio-btn pl-0 pr-0">
+                                <input class="form-check-input" type="radio" name="avatar-val" value="1" id="avtar1" checked>
                                 <label class="form-check-label" for="avtar1">
-                                    <div class="avatar-slecting-div"><img src="assets/Img/admin/cap.png" alt="avatar" width="40" height="25"></div>
+                                    <div class="avatar-slecting-div"><img src="assets/Img/assets/avatar-1.png" alt="avatar" width="40" height="25"></div>
                                 </label>
                             </div>
-                            <div class="form-check form-check-inline pl-0 pr-0">
-                                <input class="form-check-input" type="checkbox" value="1" id="avtar1">
-                                <label class="form-check-label" for="avtar1">
-                                    <div class="avatar-slecting-div"><img src="assets/Img/admin/cap.png" alt="avatar" width="40" height="25"></div>
+                            <div class="form-check form-check-inline avatar-radio-btn pl-0 pr-0">
+                                <input class="form-check-input" type="radio" name="avatar-val" value="2" id="avtar2">
+                                <label class="form-check-label" for="avtar2">
+                                    <div class="avatar-slecting-div"><img src="assets/Img/assets/avatar-2.png" alt="avatar" width="40" height="25"></div>
                                 </label>
                             </div>
-                            <div class="form-check form-check-inline pl-0 pr-0">
-                                <input class="form-check-input" type="checkbox" value="1" id="avtar1">
-                                <label class="form-check-label" for="avtar1">
-                                    <div class="avatar-slecting-div"><img src="assets/Img/admin/cap.png" alt="avatar" width="40" height="25"></div>
+                            <div class="form-check form-check-inline avatar-radio-btn pl-0 pr-0">
+                                <input class="form-check-input" type="radio" name="avatar-val" value="3" id="avtar3">
+                                <label class="form-check-label" for="avtar3">
+                                    <div class="avatar-slecting-div"><img src="assets/Img/assets/avatar-3.png" alt="avatar" width="40" height="25"></div>
                                 </label>
                             </div>
-                            <div class="form-check form-check-inline pl-0 pr-0">
-                                <input class="form-check-input" type="checkbox" value="1" id="avtar1">
-                                <label class="form-check-label" for="avtar1">
-                                    <div class="avatar-slecting-div"><img src="assets/Img/admin/cap.png" alt="avatar" width="40" height="25"></div>
+                            <div class="form-check form-check-inline avatar-radio-btn pl-0 pr-0">
+                                <input class="form-check-input" type="radio" name="avatar-val" value="4" id="avtar4">
+                                <label class="form-check-label" for="avtar4">
+                                    <div class="avatar-slecting-div"><img src="assets/Img/assets/avatar-4.png" alt="avatar" width="40" height="25"></div>
                                 </label>
                             </div>
-                            <div class="form-check form-check-inline pl-0 pr-0">
-                                <input class="form-check-input" type="checkbox" value="1" id="avtar1">
-                                <label class="form-check-label" for="avtar1">
-                                    <div class="avatar-slecting-div"><img src="assets/Img/admin/cap.png" alt="avatar" width="40" height="25"></div>
+                            <div class="form-check form-check-inline avatar-radio-btn pl-0 pr-0">
+                                <input class="form-check-input" type="radio" name="avatar-val" value="5" id="avtar5">
+                                <label class="form-check-label" for="avtar5">
+                                    <div class="avatar-slecting-div"><img src="assets/Img/assets/avatar-5.png" alt="avatar" width="40" height="25"></div>
                                 </label>
                             </div>
-                            <div class="form-check form-check-inline pl-0 pr-0">
-                                <input class="form-check-input" type="checkbox" value="1" id="avtar1">
-                                <label class="form-check-label" for="avtar1">
-                                    <div class="avatar-slecting-div"><img src="assets/Img/admin/cap.png" alt="avatar" width="40" height="25"></div>
+                            <div class="form-check form-check-inline avatar-radio-btn pl-0 pr-0">
+                                <input class="form-check-input" type="radio" name="avatar-val" value="6" id="avtar6">
+                                <label class="form-check-label" for="avtar6">
+                                    <div class="avatar-slecting-div"><img src="assets/Img/assets/avatar-6.png" alt="avatar" width="40" height="25"></div>
                                 </label>
                             </div>
                         </div>
@@ -531,50 +533,55 @@
                 </div>
                 <div class="row pb-3 m-0 pt-3">
                     <div class="col-md-4 pt-3 pl-0">
-                        <label for="" class="form-label">Street Name</label>
-                        <input type="text" class="form-control" id="" placeholder="Street Name">
+                        <label for="streetname-id" class="form-label">Street Name</label>
+                        <input type="text" name="street" id="streetname-id" class="form-control" placeholder="Street Name">
                     </div>
                     <div class="col-md-4 pt-3 pl-0">
-                        <label for="" class="form-label">House Number</label>
-                        <input type="text" class="form-control" id="" placeholder="House Number">
+                        <label for="housename-id" class="form-label">House Number</label>
+                        <input type="text" name="house" id="housename-id" class="form-control" placeholder="House Number">
                     </div>
                     <div class="col-md-4 pt-3 pl-0">
-                        <label for="" class="form-label">Postal Code</label>
-                        <input type="text" class="form-control" id="" placeholder="Postal Code">
+                        <label for="postalcode-id" class="form-label">Postal Code</label>
+                        <input type="text" name="postal" id="postalcode-id" class="form-control" placeholder="Postal Code">
                     </div>
                 </div>
                 <div class="row pb-3 m-0">
                     <div class="col-md-4 pl-0">
-                        <label for="" class="form-label">City</label>
-                        <input type="text" class="form-control" id="" placeholder="City">
+                        <label for="city-id" class="form-label">City</label>
+                        <!-- <input type="text" name="house" id="city-id" class="form-control" placeholder="City"> -->
+                        <select class="form-control city-select" name="cityname" id="city-id">
+                            <option selected></option>
+                        </select>
                     </div>
                 </div>
-                <button class="btn save-btn-mysetting" type="submit">Save</button>
+                <input type="hidden" name="spid" value="<?= $_SESSION['user']['UserId']; ?>" >
+                <button class="btn save-btn-mysetting" id="save-btn-mysetting-detail" type="submit" value="Save">Save</button>
             </form>
         </div>
-        <div class="tab-pane" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <form action="" method="post" class="pt-1">
+        <div class="tab-pane spmypass" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <form action="" method="post" class="pt-1" id="changepass-form">
                 <div class="row pt-3 m-0">
                     <div class="col-md-4 pl-0">
                         <label for="" class="form-label">Old Password</label>
-                        <input type="password" name="oldpass" class="form-control" id="" placeholder="Old Password">
+                        <input type="password" name="oldpass" class="form-control OldPass" placeholder="Old Password">
                     </div>
                 </div>
                 <div class="row pt-3 m-0">
                     <div class="col-md-4 pl-0">
                         <label for="" class="form-label">New Password</label>
-                        <input type="password" name="newpass" class="form-control" id="" placeholder="Password">
+                        <input type="password" name="newpass" class="form-control NewPass" placeholder="Password">
                     </div>
                 </div>
                 <div class="row pt-3 m-0">
                     <div class="col-md-4 pl-0">
                         <label for="" class="form-label">Confirm Password</label>
-                        <input type="text" name="cpass" class="form-control" id="" placeholder="Confirm Password">
+                        <input type="text" name="cpass" class="form-control NewCPass" placeholder="Confirm Password">
                     </div>
+                    <input type="hidden" name="spid" class="sp-id">
                 </div>
                 <div class="row pt-3 m-0">
                     <div class="col-md-4 pl-0">
-                        <button type="submit" name="save" value="save" class="btn save-btn-mysetting">
+                        <button type="submit" name="save" value="save" id="save-btn-mysetting-pass" class="btn save-btn-mysetting">
                             Save
                         </button>
                     </div>
