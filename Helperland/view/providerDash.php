@@ -20,13 +20,16 @@
     <title>Service Provider Dashbord</title>
     <link rel="stylesheet" href="assets/Css/sp.css">
     <link rel="stylesheet" href="assets/Css/uparr.css">
-
+    <link rel="stylesheet" href="assets/Css/spmodal.css">
     <script src="assets/js/uparr.js"></script>
 </head>
 
 <body>
 
-    <?php include 'includes/uparr.php'; ?>
+    <?php
+        include 'includes/uparr.php';
+        include 'modal/spmodal.php';
+    ?>
 
     <!-- navbar -->
     <section class="navigation">

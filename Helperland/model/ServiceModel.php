@@ -7,15 +7,15 @@ class ServiceModel
 
     public function __construct($data)
     {
+        $this->data = $data;
         $connect = new DBConnection();
         $this->conn = $connect->Connection();
-        $this->data = $data;
     }
 
     public function PostalCheckModel()
     {
         $postal = trim($this->data);
-        $sql = "SELECT * FROM zipcode WHERE ZipcodeValue = '$postal'";
+        $sql = "SELECT * FROM zipcode as zc JOIN city as c ON c.Id = zc.CityId WHERE ZipcodeValue = '$postal'";
 
         $result = $this->conn->query($sql);
         if ($result->num_rows > 0) {
@@ -41,8 +41,8 @@ class ServiceModel
 
     public function AddressModel()
     {
-        $id = $this->data['userid'];
-        $postal = $this->data['postal'];
+        $id = $_POST['userid'];
+        $postal = $_POST['postal'];
         $rows = array();
         // change the query logic
         $sql = "SELECT user.UserTypeId, useraddress.* FROM user JOIN useraddress
@@ -66,15 +66,12 @@ class ServiceModel
         $postal = trim($_POST['postal']);
         $email = trim($_POST['email']);
 
-        $sql = "SELECT state.StateName FROM useraddress
-                    JOIN zipcode 
-                            ON  useraddress.PostalCode = zipcode.ZipcodeValue  
-                    JOIN city
-                            ON zipcode.CityId = city.Id
-                    JOIN state
-                            ON city.StateId = state.Id
-                    WHERE useraddress.PostalCode = '$postal'
-                    LIMIT 1";
+        $sql = "SELECT s.StateName FROM zipcode as zc 
+                JOIN city as c
+                        ON zc.CityId = c.Id
+                JOIN state as s
+                        ON c.StateId = s.Id
+                WHERE zc.ZipcodeValue =  '$postal'";
         $result = $this->conn->query($sql);
         if($result->num_rows > 0){
             $row = $result->fetch_assoc();
@@ -83,9 +80,9 @@ class ServiceModel
         $sql = "INSERT INTO useraddress (UserId, AddressLine1, AddressLine2, City, State, PostalCode, IsDefault, IsDeleted, Mobile, Email) 
                 VALUES ('$id', '$house', '$street', '$city', '$state', '$postal', 0, 0, '$phone', '$email')";
 
-        $result = $this->conn->query($sql);
+        $this->conn->query($sql);
         if($result){
-            return 1;
+            return $this->AddressModel();
         }else{
             return 0;
         }
@@ -108,11 +105,10 @@ class ServiceModel
 
     public function getFavProForEmail(){
         $pro_id = $_POST['favrioute-provider'];
-        
         $sql = "SELECT * FROM favoriteandblocked fb
                     JOIN user u
                         ON fb.TargetUserId = u.UserId
-                    WHERE u.ZipCode = '11111' AND u.UserId = '$pro_id' ";
+                    WHERE u.UserId = $pro_id";
         $res = $this->conn->query($sql);
         if($res->num_rows > 0){
             return $res->fetch_assoc();
@@ -120,11 +116,12 @@ class ServiceModel
     }
 
     public function getFavMultiProForEmail(){
+        $postal = $_POST['postalcode'];
         $rows = array();
         $sql = "SELECT * FROM favoriteandblocked fb
                     JOIN user u
                         ON fb.TargetUserId = u.UserId
-                    WHERE u.ZipCode = '11111' ";
+                    WHERE u.ZipCode =  '$postal'";
         $res = $this->conn->query($sql);
         while ($row = $res->fetch_assoc()) {
             array_push($rows, $row);
@@ -144,14 +141,16 @@ class ServiceModel
         $Comments = $_POST['service-comments-text'];
         $HasPets = $_POST['pets-at-home'];
         $sprovider = 'null';
+        $status = 0;
         if(isset($_POST['favrioute-provider'])){
-            $sprovider = $_POST['favrioute-provider']; 
+            $sprovider = $_POST['favrioute-provider'];
+            $status = 1; 
         }
 
         $sql = "INSERT INTO servicerequest 
                     (UserId, ServiceStartDate, ZipCode, ServiceHourlyRate, ServiceHours, ExtraHours, SubTotal, TotalCost, Comments, PaymentDue, HasPets, Status, CreatedDate, PaymentDone, ServiceProviderId) 
                 VALUES 
-                    ( $UserId, '$ServiceStartDate', '$ZipCode', 18, $ServiceHours, $ExtraHours, $SubTotal, $TotalCost, '$Comments', 0, $HasPets, 0, now(), 1, $sprovider)";
+                    ( $UserId, '$ServiceStartDate', '$ZipCode', 18, $ServiceHours, $ExtraHours, $SubTotal, $TotalCost, '$Comments', 0, $HasPets, $status, now(), 1, $sprovider)";
         $result = $this->conn->query($sql);
         if($result){
             $last_id = $this->conn->insert_id;

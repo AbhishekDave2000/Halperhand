@@ -353,11 +353,11 @@ $base_url = Config::base_url;
                                         <div class="row">
                                             <div class="col">
                                                 <label class="form-label">Postal Code</label>
-                                                <input type="text"  name="form-address-postal" id="address-postalcode" class="form-control postalcode-address" placeholder="Postal Code" aria-label="Postal Code">
+                                                <input type="text"  name="form-address-postal" id="address-postalcode" class="form-control postalcode-address" placeholder="Postal Code" aria-label="Postal Code" disabled>
                                             </div>
                                             <div class="col">
                                                 <label class="form-label">City</label>
-                                                <input type="text" id="citynm" class="form-control city-name-address" placeholder="City" aria-label="City">
+                                                <input type="text" id="citynm" class="form-control city-name-address" placeholder="City" aria-label="City" disabled>
                                             </div>
                                         </div>
 

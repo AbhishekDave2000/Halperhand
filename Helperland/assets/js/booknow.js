@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $('#s1,#s2,#s3,#s4,#s5,#postal-alert,.s').hide();
-    
+
     function setClickableOnNavTabs() {
         var clslist = document.getElementById("myTab").getElementsByClassName("nav-link");
         for (var i = 0; i < clslist.length; i++) {
@@ -39,9 +39,11 @@ $(document).ready(function () {
                 type: type,
                 data: data,
                 success: function (result) {
-                    // alert(result);
+                    var data = JSON.parse(result);
+                    // console.log(data);
                     len = result.length;
-                    if (result == postalcode) {
+                    if (data.ZipcodeValue == postalcode) {
+                        $('.city-name-address').val(data.CityName);
                         // switch tabs
                         switchTheTab(
                             "servicesetup-tab",
@@ -58,7 +60,6 @@ $(document).ready(function () {
                         $('#postal-alert').show();
                     }
                 }
-
             });
         }
         e.preventDefault();
@@ -77,7 +78,6 @@ $(document).ready(function () {
             "yourdeatil"
         );
 
-
         var sess_var = $('#user-session-val').text();
         var postalcode = $('#postalcode').val();
         $.ajax({
@@ -88,8 +88,10 @@ $(document).ready(function () {
                 postal: postalcode
             },
             success: function (result) {
-                var address = JSON.parse(result);
-                showAddress(address);
+                if (result != 0) {
+                    var address = JSON.parse(result);
+                    showAddress(address);
+                }
             }
         });
 
@@ -113,15 +115,13 @@ $(document).ready(function () {
                         email: email
                     },
                     success: function (result) {
-                        if (result) {
+                        if(result != 0){
                             var address = JSON.parse(result);
-                            showAddress(address);
-                        } else {
-                            alert('result is not added!');
+                            showAddress(address);   
                         }
                     }
                 });
-            }else{
+            } else {
                 $('.save-address-btn').after("<span class='error'>Some error have occurd!</span>");
             }
             e.preventDefault();
@@ -200,6 +200,7 @@ $(document).ready(function () {
         e.preventDefault();
         setClickableOnNavTabs();
     });
+
 
     // show address function
     function showAddress(address) {
@@ -341,8 +342,8 @@ $(document).ready(function () {
         if (len <= 0) {
             $(".postalcode-division").after("<span class='error'>Field can`t be empty</span>");
             return false;
-        } else if (len != 5) {
-            $(".postalcode-division").after("<span class='error'>Postal code must be 5 characters long</span>"
+        } else if (len < 5) {
+            $(".postalcode-division").after("<span class='error'>Postal code must be 6 characters long</span>"
             );
             return false;
         } else {

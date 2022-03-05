@@ -2,15 +2,6 @@ $(document).ready(function () {
     var url = "http://localhost/Halperhand/Helperland/";
     var spid = $('.sp-id').text();
 
-    function jsontoArray(dt) {
-        var result = [];
-        var keys = Object.keys(dt);
-        keys.forEach(function (key) {
-            result.push(dt[key]);
-        });
-        return result;
-    }
-
     //mysetting data load 
     $('.sp-mysetting-content').ready(function () {
         setMyDetailSet();
@@ -66,7 +57,7 @@ $(document).ready(function () {
                         $('.NewCPass,.OldPass,.NewPass').val('');
                     } else if (result == 2) {
                         $('.spmypass').after("<span class='error'>Old Password Does not match with your password Enter correct password!</span>");
-                    } else if(result.length > 10) {
+                    } else if (result.length > 10) {
                         $('.spmypass').after("<span class='error'>" + result + "</span>");
                     }
                 }
@@ -74,37 +65,89 @@ $(document).ready(function () {
         }
     });
 
-    function passwordValidation() {
-        var opass = $('.OldPass').val();
-        var npass = $('.NewPass').val();
-        var ncpass = $('.NewCPass').val();
-        $(".error").remove();
-        if (opass.length < 1) {
-            $('.OldPass').after('<span class="error">This field is required</span>');
-            return false;
-        } else if (opass.length < 7) {
-            $('.OldPass').after('<span class="error">password must be 8 characters long</span>');
-            return false;
-        }
-        else if (npass.length < 1) {
-            $('.NewPass').after('<span class="error">This field is required</span>');
-            return false;
-        } else if (npass.length < 7) {
-            $('.NewPass').after('<span class="error">password must be 8 characters long</span>');
-            return false;
-        }
-        else if (ncpass.length < 1) {
-            $('.NewCPass').after('<span class="error">This field is required</span>');
-            return false;
-        } else if (ncpass.length < 7) {
-            $('.NewCPass').after('<span class="error">password must be 8 characters long</span>');
-            return false;
-        } else if (npass != ncpass) {
-            $('.NewPass,.NewCPass').after('<span class="error">Please enter same password!</span>');
-            return false;
-        } else {
-            return true;
-        }
+    $('#sp-ns-table:visible').ready(function () {
+        var fn = showNewServiceReq;
+        getServiceReqData(fn);
+    });
+
+    $('#sp-upcoming-service').ready(function () {
+        var fn = showUpcomingService;
+        getServiceReqData(fn);
+    });
+
+    function getServiceReqData(fn) {
+        $.ajax({
+            url: url + '?controller=providerDash&function=getServiceRequestData',
+            type: 'post',
+            data: {
+                spid: spid
+            },
+            success: function (result) {
+                var data = JSON.parse(result);
+                fn(data);
+                // console.log(data);
+            }
+        });
+    }
+
+    function showUpcomingService(data) {
+        var myTable = $('#sp-upcoming-service').DataTable();
+        myTable.clear().draw();
+        data.forEach(function (dt) {
+            var starttime = dt.ServiceStartDate.substr(11, 5).replace(':', '.').replace('3', '5');
+            var endtotal = parseFloat(starttime) + parseFloat(dt.SubTotal);
+            var endtime = endtotal.toString().replace('.', ':').replace('5', '30');
+            if (endtime.length <= 2) { endtime = endtime + ":00"; }
+            myTable.row.add($(
+                `<tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel">
+                    <td class="serviceid">`+ dt.ServiceRequestId + `</td>
+                    <td class="servicedata"><img src="assets/Img/spupcoming/calendar2.png" alt="">
+                        <span>`+dt.ServiceStartDate.substr(0,10)+`</span> <br>
+                        <img src="assets/Img/spupcoming/layer-14.png" alt=""> `+ dt.ServiceStartDate.substr(11, 5) + `-` + endtime + ` 
+                    </td>
+                    <td class="customerdetail">`+ dt.CFName + `  ` + dt.CLName + ` <br>
+                        <img src="assets/Img/spupcoming/layer-15.png" alt=""> `+ dt.AddressLine1 + ` , ` + dt.ZipCode + ` , ` + dt.City + `
+                    </td>
+                    <td class="servicedistance">15km</td>
+                <td class="serviceaction"><button class="btn btn-danger btn-rounded-17" value="Cancel">Cancel</button></td>`
+            )).draw();
+        });
+    }
+
+    function showNewServiceReq(data) {
+        var table = $('#sp-ns-table').DataTable();
+        table.clear().draw();
+        data.forEach(function (dt) {
+            var starttime = dt.ServiceStartDate.substr(11, 5).replace(':', '.').replace('3', '5');
+            var endtotal = parseFloat(starttime) + parseFloat(dt.SubTotal);
+            var endtime = endtotal.toString().replace('.', ':').replace('5', '30');
+            if (endtime.length <= 2) { endtime = endtime + ":00"; }
+            table.row.add($(
+                `<tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel" value='` + jsontoArray(dt) + `' > 
+                    <input type="hidden" name="srdata" class="SReqData">
+                    <td class="serviceid">`+ dt.ServiceRequestId + `</td> 
+                    <td class="servicedata"><img src="assets/Img/spupcoming/calendar2.png" alt=""> 
+                        <span class="mt-2"> `+ dt.ServiceStartDate.substr(0, 10) + ` </span> <br> 
+                        <img src="assets/Img/spupcoming/layer-14.png" alt=""> `+ dt.ServiceStartDate.substr(11, 5) + `-` + endtime + ` 
+                    </td> 
+                    <td class="customerdetail"> `+ dt.CFName + `  ` + dt.CLName + `<br> 
+                        <img src="assets/Img/spupcoming/layer-15.png" alt=""> `+ dt.AddressLine1 + ` , ` + dt.ZipCode + ` , ` + dt.City + `
+                    </td> 
+                    <td style="font-size:18px;">`+dt.TotalCost+` <i class="fa-solid fa-euro-sign"></i></td> 
+                    <td class="timeconflict"></td> 
+                    <td class="serviceactions-body"><button class="btn btn-rounded-17" value="Cancel">Accept</button></td> 
+                </tr>`
+            )).draw();
+        });
+    }
+
+    function jsontoArray(dt) {
+        var result = [];
+        var keys = Object.keys(dt);
+        keys.forEach(function (key) {
+            result.push(dt[key]);
+        });
+        return result;
     }
 
     function setMyDetailSet() {
@@ -173,4 +216,38 @@ $(document).ready(function () {
             }
         });
     }
+
+    function passwordValidation() {
+        var opass = $('.OldPass').val();
+        var npass = $('.NewPass').val();
+        var ncpass = $('.NewCPass').val();
+        $(".error").remove();
+        if (opass.length < 1) {
+            $('.OldPass').after('<span class="error">This field is required</span>');
+            return false;
+        } else if (opass.length < 7) {
+            $('.OldPass').after('<span class="error">password must be 8 characters long</span>');
+            return false;
+        }
+        else if (npass.length < 1) {
+            $('.NewPass').after('<span class="error">This field is required</span>');
+            return false;
+        } else if (npass.length < 7) {
+            $('.NewPass').after('<span class="error">password must be 8 characters long</span>');
+            return false;
+        }
+        else if (ncpass.length < 1) {
+            $('.NewCPass').after('<span class="error">This field is required</span>');
+            return false;
+        } else if (ncpass.length < 7) {
+            $('.NewCPass').after('<span class="error">password must be 8 characters long</span>');
+            return false;
+        } else if (npass != ncpass) {
+            $('.NewPass,.NewCPass').after('<span class="error">Please enter same password!</span>');
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 });

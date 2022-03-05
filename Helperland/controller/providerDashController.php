@@ -29,6 +29,7 @@ class providerDashController
         }
     }
 
+    // save service provider Details of Tab 1
     public function saveProviderDetail()
     {
         // validation
@@ -43,6 +44,7 @@ class providerDashController
         }
     }
 
+    // save service provider password
     public function myPasswordUpdate()
     {
         $val = new myDetailValidation($_POST);
@@ -54,4 +56,11 @@ class providerDashController
             echo $result['password'];
         }
     }
+
+    public function getServiceRequestData(){
+        $status = '(0,1)';
+        $result = $this->model->getServiceRequestDataModel($status);
+        echo json_encode($result);
+    }
+
 }

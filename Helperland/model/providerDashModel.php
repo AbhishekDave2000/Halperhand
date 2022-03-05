@@ -111,4 +111,26 @@ class providerDashModel
             return 2;
         }
     }
+
+    public function getServiceRequestDataModel($status){
+        $rows = array();
+        $spid = $_POST['spid'];
+        $sql = "SELECT sr.ServiceRequestId,sr.ServiceStartDate,sr.ZipCode,sr.ServiceHours,sr.ExtraHours,sr.SubTotal,sr.Discount,sr.TotalCost,sr.Comments,
+                        sr.ServiceProviderId,sr.JobStatus,sr.HasPets,sr.Status,sr.CreatedDate,sr.Distance,sr.HasIssue,sra.AddressLine1,sra.AddressLine2,sra.City,sra.State,
+                        sra.Mobile,sra.Email,sre.ServiceExtraId,u.FirstName as CFName, u.LastName as CLName,u.Gender,u.UserProfilePicture FROM servicerequest as sr
+                JOIN servicerequestaddress as sra
+                    ON sr.ServiceRequestId = sra.ServiceRequestId
+                JOIN servicerequestextra as sre
+                    ON sr.ServiceRequestId = sre.ServiceRequestId
+                JOIN user as u
+                    ON u.UserId = sr.UserId
+                WHERE (sr.ServiceProviderId = $spid OR sr.ServiceProviderId IS NULL) AND sr.Status IN $status";
+        $result = $this->conn->query($sql);
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                array_push($rows,$row);
+            }
+            return $rows;
+        }
+    }
 }

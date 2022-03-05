@@ -288,7 +288,7 @@ table.dataTable {
 }
 table.dataTable tbody .even, table.dataTable tbody .odd{
     background-color: #fff;
-    border-bottom: 0px !important;
+    border-bottom: 1px solid #e1e1e1 !important;
 }
 table thead{
     background: #e0e0e0 !important;
@@ -373,9 +373,7 @@ table thead{
 }
 .dash-action{
     display: flex;
-    justify-content: right;
-    width: fit-content;
-    height: 52px;
+    justify-content: center;
     align-items: center;
 }
 .reshedule-btn,
@@ -391,14 +389,12 @@ table thead{
     justify-content: center;
     align-items: center;
     padding: 5px 20px;
-    height: fit-content;
     margin: 0px 3px;
 }
 .cancel-btn,.cancel-btn:hover,.cancel-btn:focus{
     box-shadow: none;
     background-color: #ff6b6b;
     border-radius: 23px;
-    height: fit-content;
     opacity: 1;
     color: white;
     border: 0px;
@@ -408,8 +404,8 @@ table thead{
     padding: 5px 20px;
     margin: 0px 3px;
 }
-.sction-head-dash,.dash-action{
-    width: 230px;
+.sction-head-dash{
+    text-align: center;
 }
 /* dashboard page end */
 

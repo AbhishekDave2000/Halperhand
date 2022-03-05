@@ -93,8 +93,8 @@ class ServiceValidator
     {
         if (empty($postal)) {
             $this->addErrors("addfield", "Postal Code can not be empty!");
-        } else if (strlen($postal) > 6 || strlen($postal) < 5) {
-            $this->addErrors("addfield", "Postal Code must be 5 char long!");
+        } else if (strlen($postal) < 5) {
+            $this->addErrors("addfield", "Postal Code must be 6 char long!");
         }
     }
 

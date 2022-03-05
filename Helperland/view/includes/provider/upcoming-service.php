@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <!-- <tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel">
             <td class="serviceid">323431</td>
             <td class="servicedata"><img src="assets/Img/spupcoming/calendar2.png" alt="">
                 <span>09/04/2018</span> <br>
@@ -24,7 +24,7 @@
                 <img src="assets/Img/spupcoming/layer-15.png" alt=""> Musterstrabe 5,12345 Bonn
             </td>
             <td class="servicedistance">15km</td>
-            <td class="serviceaction"><button class="btn btn-danger btn-rounded-17" value="Cancel">Cancel</button></td>
+            <td class="serviceaction"><button class="btn btn-danger btn-rounded-17" value="Cancel">Cancel</button></td> -->
         </tr>
     </tbody>
 </table>

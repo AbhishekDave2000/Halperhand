@@ -24,7 +24,8 @@ class booknowController
                 $m = new ServiceModel($zip);
                 $result = $m->PostalCheckModel();
                 if (!empty($result)) {
-                    echo $result['ZipcodeValue'];
+                    // echo $result['ZipcodeValue'];
+                    echo json_encode($result);
                 } else {
                     echo 0;
                 }
@@ -58,16 +59,14 @@ class booknowController
             // add to the database
             $m = new ServiceModel($_POST);
             $result = $m->addAddressModel();
-            if (!empty($result)) {
-                $address = $m->AddressModel();
-                echo json_encode($address);
+            if ($result != 0) {
+                echo json_encode($result);
             } else {
                 echo "Address is not added";
             }
         } else {
             echo $err['addfield'];
         }
-        // print_r($_POST);
     }
 
 
