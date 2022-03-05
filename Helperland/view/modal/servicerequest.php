@@ -7,7 +7,7 @@
             <div class="modal-header rate-sp-modal-header">
                 <div class="name-sp d-flex">
                     <div class="cap-div cap-div-avatar-modal">
-                        <img class="cap" src="assets/Img/customer/cap.png" alt="cap">
+                        <!-- <img class="cap" src="assets/Img/customer/cap.png" alt="cap"> -->
                     </div>
                     <div style="display: flex; flex-direction:column;">
                         <span class="sp-rate-name" style="font-size: 18px;"></span>

@@ -96,7 +96,7 @@ $(document).ready(function () {
 
     $('.Rate-Service-Provider-btn').on("click", function (e) {
         const spd = JSON.parse($(e.target).closest('tr').find("input").val());
-        console.log(spd);
+        // console.log(spd);
         if (spd.FullName == "" || spd.FullName == null) {
             $('.rating-submit-btn').attr('disabled', true);
             $('.cap-div-avatar-modal').hide();
@@ -108,6 +108,7 @@ $(document).ready(function () {
             $('.ratings-sp-no').text(rate);
         } else {
             $('.cap-div-avatar-modal').show();
+            $('.cap-div-avatar-modal').html('<img class="cap" src="assets/Img/assets/avatar-'+spd.UserProfilePicture+'.png" alt="cap">');
             $('.sp_rating_name').val(spd.ServiceProviderId);
             $('.sp_service_id').val(spd.ServiceRequestId);
             $('.rating-submit-btn').attr('disabled', false);
@@ -317,8 +318,6 @@ $(document).ready(function () {
             },
             success: function (result) {
                 var data = JSON.parse(result);
-                // console.log(result);
-                // console.log(data);
                 showFavProData(data);
             }
         });

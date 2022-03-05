@@ -371,11 +371,6 @@ table thead{
     padding: 8px 15px;
     text-decoration: none;
 }
-.dash-action{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .reshedule-btn,
 .reshedule-btn:hover,
 .reshedule-btn:focus{

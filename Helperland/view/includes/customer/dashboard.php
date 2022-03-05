@@ -47,7 +47,7 @@
                         <div class="cap-div">
                             <img class="cap" src='assets/Img/assets/avatar-<?= $val['UserProfilePicture'] ?>.png' alt="avatar">
                         </div>
-                        <span style="padding-top:8px;" ><?= $val['FullName']; ?> <br>
+                        <span style="padding-top:8px;"><?= $val['FullName']; ?> <br>
                             <?php for ($i = 0; $i < substr($val['AvarageRating'], 0, 1); $i++) { ?>
                                 <i class="fas fa-star i-con"></i>
                                 <?php }
@@ -71,8 +71,10 @@
                     <i class="fas fa-euro-sign"></i> <?= $val['TotalCost']; ?><br>
                 </td>
                 <td class="dash-action">
-                    <a href="#" type="button" data-bs-dismiss="modal" data-bs-toggle="modal" class="btn reshedule-btn" data-bs-target="#Reschedule-Request">Reshedule</a>
-                    <a href="#" type="button" data-bs-dismiss="modal" data-bs-toggle="modal" class="btn cancel-btn" data-bs-target="#cancel-request">Cancel</a>
+                    <div class="container-fluid d-flex">
+                        <button type="button" data-bs-dismiss="modal" data-bs-toggle="modal" class="btn reshedule-btn" data-bs-target="#Reschedule-Request">Reshedule</button>
+                        <button type="button" data-bs-dismiss="modal" data-bs-toggle="modal" class="btn cancel-btn" data-bs-target="#cancel-request">Cancel</button>
+                    </div>
                 </td>
             </tr>
         <?php } ?>
