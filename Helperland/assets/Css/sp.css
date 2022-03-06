@@ -307,6 +307,15 @@ table thead{
     background-color: #22707e;
     color: white;
 }
+.accept-sr-btn,.accept-sr-btn:hover{
+    background-color: #1D7A8C;
+    color: white;
+}
+.accept-btn{
+    background-color: yellowgreen;
+    color: white;
+    border-radius: 23px;
+}
 /* new service request end*/
 
 /* service history */

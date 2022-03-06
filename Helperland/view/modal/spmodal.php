@@ -10,36 +10,36 @@
                 <div class="container-fluid mr-3 p-0">
                     <div class="container-fluid modatl-time">
                         <div class="date-time">
-                            <strong><span class="s-start-date">sdadsadsds</span> &nbsp; <span class="start-end-time-service">sdadasasasd sdasd</span></strong>
+                            <strong><span class="s-start-date"></span> &nbsp; <span class="start-end-time-service"></span></strong>
                         </div>
                         <div class="modal-duration">
-                            <span>Duration : </span><span class="model-service-duration">654</span> hrs
+                            <span>Duration : </span><span class="model-service-duration"></span> hrs
                         </div>
                     </div>
                     <div class="container-fluid service-info">
                         <div>
                             <span class="service-info-heading">Service Id:</span>
-                            <span class="modal-s-id">654654</span>
+                            <span class="modal-s-id"></span>
                         </div>
                         <div>
                             <span class="service-info-heading">Extras:</span>
-                            <span class="extra-service-modal-show">shdgasdg</span>
+                            <span class="extra-service-modal-show"></span>
                         </div>
                         <div>
                             <span class="service-info-heading">
                                 Total Payment:
                             </span>
-                            <span class="modal-amount"><i class="fas fa-euro-sign"></i> <span class="modal-totalcost-show">654</span></span>
+                            <span class="modal-amount"><i class="fas fa-euro-sign"></i> <span class="modal-totalcost-show"></span></span>
                         </div>
                     </div>
                     <div class="container-fluid service-address-modal">
                         <div>
                             <span class="address-detail-head">Customer Name:</span>
-                            <span class="address-modal-show-detail">sadasdsd asdds asdas</span>
+                            <span class="customer-name-show"></span>
                         </div>
                         <div>
                             <span class="address-detail-head">Service Address:</span>
-                            <span class="billing-address-ddetail-show">sadasdsd asdds asdas</span>
+                            <span class="service-address-detail-show"></span>
                         </div>
                         <!-- <div>
                         <span class="address-detail-head">Phone:</span>
@@ -71,12 +71,17 @@
                             <i class="fas fa-times"></i>Cancel
                         </button>
                         <button type="button" class="btn Reschedule-btn m-1" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#Reschedule-Request">
-                        <i class="fa fa-check"></i> Complete
+                            <i class="fa fa-check"></i> Complete
+                        </button>
+                        <button type="button" class="btn accept-btn m-1" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#Reschedule-Request">
+                            <i class="fa fa-check"></i> Accept
                         </button>
                     </div>
                 </div>
                 <div class="mapouter container-fluid pb-2 pl-0 pr-0">
-                    <div class="gmap_canvas"><iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=11 pratham vatika opp.RutuVilla&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div>
+                    <div class="gmap_canvas">
+                        <!-- <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=11 pratham vatika opp.RutuVilla&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe> -->
+                    </div>
                 </div>
             </div>
         </div>

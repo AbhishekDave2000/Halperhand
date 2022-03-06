@@ -13,7 +13,10 @@
 }
 .MCccmodal{
     padding: 20px;
+    max-width: 700px;
+    min-width: 300px;
 }
+
 .MHcc{
     border: 0px;
     color: #5c5c5c;
@@ -31,6 +34,31 @@
     display: flex;
     flex-direction: row; 
     min-width: fit-content !important;
+}
+@media(max-width:700px){
+    .MBcc{
+        flex-direction: column !important;
+        width: fit-content;
+    }
+    .MBcc .container-fluid{
+        width: auto;
+    }
+    .gmap_canvas {
+        overflow: hidden;
+        background: none !important;
+        width: 280px;
+    }
+    .gmap_iframe {
+        width: 280px;
+    } 
+    .modal-content {
+        top: 35px;
+    }
+}
+@media(max-width:400px){
+    .modal-content {
+        top: 35px;
+    }
 }
 .modatl-time{
     margin: 0;
@@ -113,11 +141,13 @@
 .gmap_canvas {
     overflow: hidden;
     background: none !important;
-    width: 100%;
     height: 100%;
+    width: fit-content;
 }
- 
+.mapouter{
+    width: fit-content;
+}
 .gmap_iframe {
-    width: 100%;
+    width: 300px;
     height: 100%;
 } 

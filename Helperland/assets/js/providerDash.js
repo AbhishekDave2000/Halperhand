@@ -65,7 +65,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#sp-ns-table:visible').ready(function () {
+    $('#sp-ns-table').ready(function () {
         var fn = showNewServiceReq;
         getServiceReqData(fn);
     });
@@ -74,6 +74,53 @@ $(document).ready(function () {
         var fn = showUpcomingService;
         getServiceReqData(fn);
     });
+
+    $('#sp-ns-table').on("click","tbody tr", function (e) {
+        const nsr = $(e.target).closest('tr').find("input").val().split(',');
+        setSRModalDetail(nsr);
+        $('.Cancel-btn,.Reschedule-btn').hide();
+    });
+
+    $('#sp-ns-table').on("click",".accept-sr-btn",function(e){
+        const nsr = $(e.target).closest('tr').find("input").val().split(',');
+        
+    });
+
+    function setSRModalDetail(data) {
+        starttime = data[1].substr(11, 5);
+        endtime = (parseFloat(starttime.replace(':', '.').replace('3', '5')) + parseFloat(data[5])).toString().replace('.5', ':30').replace('.', ':');
+        if (endtime.length <= 2) { endtime = endtime + ":00"; }
+        var extra = ["Inside Cabinates", "Inside Oven", "Laundry wash & dry", "Interior Windows", "Inside Fridge"];
+        var elength = data[22].length;
+        var edata = data[22].split('');
+        var extrahtml = "";
+        if(data[22] != 0){
+            for (var i = 0; i < elength; i++) {
+                if (i != elength-1) {
+                    extrahtml += extra[(edata[i])-1] + '  ,  ';
+                } else {
+                    extrahtml += extra[(edata[i])-1] + '.';
+                }
+            }
+        }
+        var address = data[16]+' , '+data[17]+' , '+data[18]+'.';
+        $('.s-start-date').html(data[1].substr(0, 10));
+        $('.start-end-time-service').html(starttime + ' - ' + endtime);
+        $('.model-service-duration').html(data[5]);
+        $('.modal-s-id').html(data[0]);
+        $('.extra-service-modal-show').html(extrahtml);
+        $('.modal-totalcost-show').html(data[7]);
+        $('.customer-name-show').html(data[23]+' '+data[24]);
+        $('.service-address-detail-show').html(address);
+        if(data[11] != 0){
+            $('.hpts').hide();
+            $('.nhpets').show();
+        }else{
+            $('.hpts').show();
+            $('.nhpets').hide();
+        }
+        $('.gmap_canvas').html('<iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=11 '+address+'&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>');
+    }
 
     function getServiceReqData(fn) {
         $.ajax({
@@ -85,7 +132,6 @@ $(document).ready(function () {
             success: function (result) {
                 var data = JSON.parse(result);
                 fn(data);
-                // console.log(data);
             }
         });
     }
@@ -100,9 +146,10 @@ $(document).ready(function () {
             if (endtime.length <= 2) { endtime = endtime + ":00"; }
             myTable.row.add($(
                 `<tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel">
+                    <input type="hidden" name="srdata" class="USReqData" value='` + jsontoArray(dt) + `'>
                     <td class="serviceid">`+ dt.ServiceRequestId + `</td>
                     <td class="servicedata"><img src="assets/Img/spupcoming/calendar2.png" alt="">
-                        <span>`+dt.ServiceStartDate.substr(0,10)+`</span> <br>
+                        <span>`+ dt.ServiceStartDate.substr(0, 10) + `</span> <br>
                         <img src="assets/Img/spupcoming/layer-14.png" alt=""> `+ dt.ServiceStartDate.substr(11, 5) + `-` + endtime + ` 
                     </td>
                     <td class="customerdetail">`+ dt.CFName + `  ` + dt.CLName + ` <br>
@@ -116,6 +163,7 @@ $(document).ready(function () {
 
     function showNewServiceReq(data) {
         var table = $('#sp-ns-table').DataTable();
+        console.log(data);
         table.clear().draw();
         data.forEach(function (dt) {
             var starttime = dt.ServiceStartDate.substr(11, 5).replace(':', '.').replace('3', '5');
@@ -123,19 +171,19 @@ $(document).ready(function () {
             var endtime = endtotal.toString().replace('.', ':').replace('5', '30');
             if (endtime.length <= 2) { endtime = endtime + ":00"; }
             table.row.add($(
-                `<tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel" value='` + jsontoArray(dt) + `' > 
-                    <input type="hidden" name="srdata" class="SReqData">
-                    <td class="serviceid">`+ dt.ServiceRequestId + `</td> 
-                    <td class="servicedata"><img src="assets/Img/spupcoming/calendar2.png" alt=""> 
+                `<tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel"> 
+                    <input type="hidden" name="srdata" class="SReqData" value='` + jsontoArray(dt) + `'>
+                    <td>`+ dt.ServiceRequestId + `</td> 
+                    <td><img src="assets/Img/spupcoming/calendar2.png" alt=""> 
                         <span class="mt-2"> `+ dt.ServiceStartDate.substr(0, 10) + ` </span> <br> 
                         <img src="assets/Img/spupcoming/layer-14.png" alt=""> `+ dt.ServiceStartDate.substr(11, 5) + `-` + endtime + ` 
                     </td> 
                     <td class="customerdetail"> `+ dt.CFName + `  ` + dt.CLName + `<br> 
                         <img src="assets/Img/spupcoming/layer-15.png" alt=""> `+ dt.AddressLine1 + ` , ` + dt.ZipCode + ` , ` + dt.City + `
                     </td> 
-                    <td style="font-size:18px;">`+dt.TotalCost+` <i class="fa-solid fa-euro-sign"></i></td> 
-                    <td class="timeconflict"></td> 
-                    <td class="serviceactions-body"><button class="btn btn-rounded-17" value="Cancel">Accept</button></td> 
+                    <td style="font-size:18px;">`+ dt.TotalCost + ` <i class="fa-solid fa-euro-sign"></i></td> 
+                    <td></td> 
+                    <td><button class="btn btn-rounded-17 accept-sr-btn" value="1">Accept</button></td> 
                 </tr>`
             )).draw();
         });
