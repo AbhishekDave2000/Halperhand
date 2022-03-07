@@ -67,13 +67,13 @@
                         </span>
                     </div>
                     <div class="d-flex pt-1 pb-1">
-                        <button type="button" class="btn Cancel-btn m-1" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#cancel-request">
+                        <button type="button" class="btn Cancel-btn m-1" id="cancel-serreq-btn" data-bs-dismiss="modal" >
                             <i class="fas fa-times"></i>Cancel
                         </button>
-                        <button type="button" class="btn Reschedule-btn m-1" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#Reschedule-Request">
+                        <button type="button" class="btn Reschedule-btn m-1" id="complete-serreq-btn" data-bs-dismiss="modal">
                             <i class="fa fa-check"></i> Complete
                         </button>
-                        <button type="button" class="btn accept-btn m-1" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#Reschedule-Request">
+                        <button type="button" class="btn accept-btn m-1" id="accept-sr-btn" data-bs-dismiss="modal">
                             <i class="fa fa-check"></i> Accept
                         </button>
                     </div>

@@ -15,9 +15,9 @@ class Config{
     /*------------- FOR SMTP --------------*/
     const SMTP_HOST = "smtp.gmail.com";
     const SMTP_EMAIL = "abhishekweb2108@gmail.com";
-    const SMTP_PASS = "abhishek2108!";
+    const SMTP_PASS = "";
     const ADMIN_EMAIL = "abhishekweb2108@gmail.com";
-    
+    // abhishek2108!
     /*-------------Contact US ------------*/
     const SUBJECT_TYPE = ['subject', 'inquiry', 'complaint', 'help'];
     const MESSAGE_MAX_LENGTH = 250; // 250 characters long

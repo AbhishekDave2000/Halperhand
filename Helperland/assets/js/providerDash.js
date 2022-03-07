@@ -2,18 +2,16 @@ $(document).ready(function () {
     var url = "http://localhost/Halperhand/Helperland/";
     var spid = $('.sp-id').text();
 
-    //mysetting data load 
+    //mysetting page operations Start___________________________________________________________________________________
     $('.sp-mysetting-content').ready(function () {
         setMyDetailSet();
     });
-
     $('#postalcode-id').on("input", function () {
         var postal = $(this).val();
         if (postal != "") {
             findCityFromPostal(postal);
         }
     });
-
     $('#save-btn-mysetting-detail').on("click", function (e) {
         e.preventDefault();
         var data = $('.mySetting-Detail-Form').serialize();
@@ -35,7 +33,6 @@ $(document).ready(function () {
             }
         });
     });
-
     $('#save-btn-mysetting-pass').on("click", function (e) {
         e.preventDefault();
         if (passwordValidation()) {
@@ -64,65 +61,62 @@ $(document).ready(function () {
             });
         }
     });
+    //mysetting page operations end
 
+    // New Service Request Operations Start_____________________________________________________________________________
     $('#sp-ns-table').ready(function () {
-        var fn = showNewServiceReq;
-        getServiceReqData(fn);
+        getServiceRequestDetail();
     });
-
-    $('#sp-upcoming-service').ready(function () {
-        var fn = showUpcomingService;
-        getServiceReqData(fn);
-    });
-
-    $('#sp-ns-table').on("click","tbody tr", function (e) {
+    $('#sp-ns-table').on("click", "tbody tr td:not(:last-child)", function (e) {
         const nsr = $(e.target).closest('tr').find("input").val().split(',');
         setSRModalDetail(nsr);
         $('.Cancel-btn,.Reschedule-btn').hide();
+        $('#complete-cancel').modal('show');
+        $('.accept-btn').click(function () {
+            acceptServiceRequest(e);
+        });
     });
-
-    $('#sp-ns-table').on("click",".accept-sr-btn",function(e){
-        const nsr = $(e.target).closest('tr').find("input").val().split(',');
-        
+    $('#sp-ns-table').on("click", ".accept-sr-btn", function (e) {
+        acceptServiceRequest(e);
     });
+    // New Service Request Operations End
 
-    function setSRModalDetail(data) {
-        starttime = data[1].substr(11, 5);
-        endtime = (parseFloat(starttime.replace(':', '.').replace('3', '5')) + parseFloat(data[5])).toString().replace('.5', ':30').replace('.', ':');
-        if (endtime.length <= 2) { endtime = endtime + ":00"; }
-        var extra = ["Inside Cabinates", "Inside Oven", "Laundry wash & dry", "Interior Windows", "Inside Fridge"];
-        var elength = data[22].length;
-        var edata = data[22].split('');
-        var extrahtml = "";
-        if(data[22] != 0){
-            for (var i = 0; i < elength; i++) {
-                if (i != elength-1) {
-                    extrahtml += extra[(edata[i])-1] + '  ,  ';
+    // Upcoming Service Request Strat___________________________________________________________________________________
+    $('#sp-upcoming-service').ready(function () {
+        getUpcomingServiceDetail();
+    });
+    $('#sp-upcoming-service').on("click", "tbody tr td:not(:last-child)", function (e) {
+        const usr = $(e.target).closest('tr').find("input").val().split(',');
+        setUCSRModalDetail(usr);
+        $('.accept-btn,#complete-serreq-btn').hide();
+        $('#complete-cancel').modal('show');
+    });
+    $('#sp-upcoming-service').on("click", "#cancel-serreq-btn", function (e) {
+        const usr = $(e.target).closest('tr').find("input").val().split(',');
+        $.ajax({
+            url: url + "?controller=providerDash&function=cancelServiceRequest",
+            type: 'post',
+            data: {
+                data: usr
+            },
+            success: function (result) {
+                if (result == 1) {
+                    getUpcomingServiceDetail();
                 } else {
-                    extrahtml += extra[(edata[i])-1] + '.';
+                    $("#myElem").fadeIn('slow').delay(2500).fadeOut('slow');
                 }
             }
-        }
-        var address = data[16]+' , '+data[17]+' , '+data[18]+'.';
-        $('.s-start-date').html(data[1].substr(0, 10));
-        $('.start-end-time-service').html(starttime + ' - ' + endtime);
-        $('.model-service-duration').html(data[5]);
-        $('.modal-s-id').html(data[0]);
-        $('.extra-service-modal-show').html(extrahtml);
-        $('.modal-totalcost-show').html(data[7]);
-        $('.customer-name-show').html(data[23]+' '+data[24]);
-        $('.service-address-detail-show').html(address);
-        if(data[11] != 0){
-            $('.hpts').hide();
-            $('.nhpets').show();
-        }else{
-            $('.hpts').show();
-            $('.nhpets').hide();
-        }
-        $('.gmap_canvas').html('<iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=11 '+address+'&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>');
-    }
+        });
+    });
+    // Upcoming Service Request End
 
-    function getServiceReqData(fn) {
+    // service Provider's Service History Page Start
+    $('#sp-service-history').ready(function () {
+        getServiceHistoryDetail();
+    });
+    // service Provider's Service History Page end
+
+    function getServiceRequestDetail() {
         $.ajax({
             url: url + '?controller=providerDash&function=getServiceRequestData',
             type: 'post',
@@ -130,8 +124,52 @@ $(document).ready(function () {
                 spid: spid
             },
             success: function (result) {
-                var data = JSON.parse(result);
-                fn(data);
+                if (result != 0) {
+                    var data = JSON.parse(result);
+                    showNewServiceReq(data);
+                } else {
+                    var table = $('#sp-ns-table').DataTable();
+                    table.draw().clear();
+                }
+            }
+        });
+    }
+
+    function getUpcomingServiceDetail() {
+        $.ajax({
+            url: url + '?controller=providerDash&function=getUpcomingServiceRequestData',
+            type: 'post',
+            data: {
+                spid: spid
+            },
+            success: function (result) {
+                if (result != 0) {
+                    var data = JSON.parse(result);
+                    showUpcomingService(data);
+                } else {
+                    var myTable = $('#sp-upcoming-service').DataTable();
+                    myTable.clear().draw();
+                }
+            }
+        });
+    }
+
+    function getServiceHistoryDetail() {
+        $.ajax({
+            url: url + "?controller=providerDash&function=getServiceHistoryData",
+            type: 'post',
+            data: {
+                spid: spid
+            },
+            success: function (result) {
+                if (result != 0) {
+                    var data = JSON.parse(result);
+                    showServiceHistory(data);
+                }
+                else {
+                    var historyTable = $('#sp-service-history').DataTable();
+                    historyTable.clear().draw();
+                }
             }
         });
     }
@@ -142,60 +180,211 @@ $(document).ready(function () {
         data.forEach(function (dt) {
             var starttime = dt.ServiceStartDate.substr(11, 5).replace(':', '.').replace('3', '5');
             var endtotal = parseFloat(starttime) + parseFloat(dt.SubTotal);
-            var endtime = endtotal.toString().replace('.', ':').replace('5', '30');
-            if (endtime.length <= 2) { endtime = endtime + ":00"; }
+            var endtime = endtotal.toString().replace('.5', ':30').replace('.', ':');
+            if (endtime.length == 2) { endtime = endtime + ":00"; }
+            else if (endtime.length == 1) { endtime = "0" + endtime + ":00"; }
             myTable.row.add($(
-                `<tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel">
+                `<tr>
                     <input type="hidden" name="srdata" class="USReqData" value='` + jsontoArray(dt) + `'>
-                    <td class="serviceid">`+ dt.ServiceRequestId + `</td>
-                    <td class="servicedata"><img src="assets/Img/spupcoming/calendar2.png" alt="">
+                    <td>`+ dt.ServiceRequestId + `</td>
+                    <td><img src="assets/Img/spupcoming/calendar2.png" alt="">
                         <span>`+ dt.ServiceStartDate.substr(0, 10) + `</span> <br>
                         <img src="assets/Img/spupcoming/layer-14.png" alt=""> `+ dt.ServiceStartDate.substr(11, 5) + `-` + endtime + ` 
                     </td>
-                    <td class="customerdetail">`+ dt.CFName + `  ` + dt.CLName + ` <br>
+                    <td>`+ dt.CFName + `  ` + dt.CLName + ` <br>
                         <img src="assets/Img/spupcoming/layer-15.png" alt=""> `+ dt.AddressLine1 + ` , ` + dt.ZipCode + ` , ` + dt.City + `
                     </td>
-                    <td class="servicedistance">15km</td>
-                <td class="serviceaction"><button class="btn btn-danger btn-rounded-17" value="Cancel">Cancel</button></td>`
+                    <td>15km</td>
+                <td><button class="btn btn-danger btn-rounded-17" id="cancel-serreq-btn" value="Cancel">Cancel</button></td>`
             )).draw();
         });
     }
 
     function showNewServiceReq(data) {
         var table = $('#sp-ns-table').DataTable();
-        console.log(data);
         table.clear().draw();
         data.forEach(function (dt) {
             var starttime = dt.ServiceStartDate.substr(11, 5).replace(':', '.').replace('3', '5');
             var endtotal = parseFloat(starttime) + parseFloat(dt.SubTotal);
-            var endtime = endtotal.toString().replace('.', ':').replace('5', '30');
+            var endtime = endtotal.toString().replace('.5', ':30').replace('.', ':');
             if (endtime.length <= 2) { endtime = endtime + ":00"; }
+            else if (endtime.length == 1) { endtime = "0" + endtime + ":00"; }
             table.row.add($(
-                `<tr data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel"> 
+                `<tr> 
                     <input type="hidden" name="srdata" class="SReqData" value='` + jsontoArray(dt) + `'>
-                    <td>`+ dt.ServiceRequestId + `</td> 
-                    <td><img src="assets/Img/spupcoming/calendar2.png" alt=""> 
+                    <td data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel">`+ dt.ServiceRequestId + `</td> 
+                    <td data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel"><img src="assets/Img/spupcoming/calendar2.png" alt=""> 
                         <span class="mt-2"> `+ dt.ServiceStartDate.substr(0, 10) + ` </span> <br> 
                         <img src="assets/Img/spupcoming/layer-14.png" alt=""> `+ dt.ServiceStartDate.substr(11, 5) + `-` + endtime + ` 
                     </td> 
-                    <td class="customerdetail"> `+ dt.CFName + `  ` + dt.CLName + `<br> 
+                    <td data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel" class="customerdetail"> `+ dt.CFName + `  ` + dt.CLName + `<br> 
                         <img src="assets/Img/spupcoming/layer-15.png" alt=""> `+ dt.AddressLine1 + ` , ` + dt.ZipCode + ` , ` + dt.City + `
                     </td> 
-                    <td style="font-size:18px;">`+ dt.TotalCost + ` <i class="fa-solid fa-euro-sign"></i></td> 
-                    <td></td> 
-                    <td><button class="btn btn-rounded-17 accept-sr-btn" value="1">Accept</button></td> 
+                    <td data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel" style="font-size:18px;">`+ dt.TotalCost + ` <i class="fa-solid fa-euro-sign"></i></td> 
+                    <td data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel"></td> 
+                    <td><button class="btn btn-rounded-17 accept-sr-btn no-modal" value="1">Accept</button></td> 
                 </tr>`
             )).draw();
         });
     }
 
-    function jsontoArray(dt) {
-        var result = [];
-        var keys = Object.keys(dt);
-        keys.forEach(function (key) {
-            result.push(dt[key]);
+    function showServiceHistory(data) {
+        var historyTable = $('#sp-service-history').DataTable();
+        historyTable.clear().draw();
+        data.forEach(function (dt) {
+            var starttime = dt.ServiceStartDate.substr(11, 5).replace(':', '.').replace('3', '5');
+            var endtotal = parseFloat(starttime) + parseFloat(dt.SubTotal);
+            var endtime = endtotal.toString().replace('.5', ':30').replace('.', ':');
+            if (endtime.length <= 2) { endtime = endtime + ":00"; }
+            else if (endtime.length == 1) { endtime = "0" + endtime + ":00"; }
+            historyTable.row.add($(
+                `<tr>
+                    <td>`+ dt.ServiceRequestId + `</td>
+                    <td style="display:flex;flex-direction:column;">
+                        <span><img src="assets/Img/spupcoming/calendar2.png" alt=""> `+ dt.ServiceStartDate.substr(0, 10) + `  </span>
+                        <span><img src="assets/Img/spupcoming/layer-14.png" alt=""> `+ dt.ServiceStartDate.substr(11, 5) + `-` + endtime + ` </span>
+                    </td>
+                    <td>`+ dt.CFName + `  ` + dt.CLName + ` <br>
+                        <img src="assets/Img/spupcoming/layer-15.png" alt=""> `+ dt.AddressLine1 + `, ` + dt.AddressLine2 + ` , ` + dt.ZipCode + ` , ` + dt.City + `
+                    </td>
+                </tr>`
+            )).draw();
         });
-        return result;
+    }
+
+    function setSRModalDetail(data) {
+        starttime = data[1].substr(11, 5);
+        endtime = (parseFloat(starttime.replace(':', '.').replace('3', '5')) + parseFloat(data[5])).toString().replace('.5', ':30').replace('.', ':');
+        if (endtime.length == 2) { endtime = endtime + ":00"; }
+        else if (endtime.length == 1) { endtime = "0" + endtime + ":00"; }
+        var extra = ["Inside Cabinates", "Inside Oven", "Laundry wash & dry", "Interior Windows", "Inside Fridge"];
+        var elength = data[22].length;
+        var edata = data[22].split('');
+        var extrahtml = "";
+        if (data[22] != 0) {
+            for (var i = 0; i < elength; i++) {
+                if (i != elength - 1) {
+                    extrahtml += extra[(edata[i]) - 1] + '  ,  ';
+                } else {
+                    extrahtml += extra[(edata[i]) - 1] + '.';
+                }
+            }
+        }
+        var address = data[16] + ' , ' + data[17] + ' , ' + data[18] + '.';
+        $('.s-start-date').html(data[1].substr(0, 10));
+        $('.start-end-time-service').html(starttime + ' - ' + endtime);
+        $('.model-service-duration').html(data[5]);
+        $('.modal-s-id').html(data[0]);
+        $('.extra-service-modal-show').html(extrahtml);
+        $('.modal-totalcost-show').html(data[7]);
+        $('.customer-name-show').html(data[23] + ' ' + data[24]);
+        $('.service-address-detail-show').html(address);
+        if (data[11] != 0) {
+            $('.hpts').hide();
+            $('.nhpets').show();
+        } else {
+            $('.hpts').show();
+            $('.nhpets').hide();
+        }
+        $('.gmap_canvas').html('<iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=11 ' + address + '&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>');
+    }
+
+    function setUCSRModalDetail(data) {
+        starttime = data[1].substr(11, 5);
+        endtime = (parseFloat(starttime.replace(':', '.').replace('3', '5')) + parseFloat(data[5])).toString().replace('.5', ':30').replace('.', ':');
+        if (endtime.length == 2) { endtime = endtime + ":00"; }
+        else if (endtime.length == 1) { endtime = "0" + endtime + ":00"; }
+        enddatetime = data[1].substr(0, 10) + " " + endtime + ":00.000";
+        var extra = ["Inside Cabinates", "Inside Oven", "Laundry wash & dry", "Interior Windows", "Inside Fridge"];
+        var elength = data[22].length;
+        var edata = data[22].split('');
+        var extrahtml = "";
+        if (data[22] != 0) {
+            for (var i = 0; i < elength; i++) {
+                if (i != elength - 1) {
+                    extrahtml += extra[(edata[i]) - 1] + '  ,  ';
+                } else {
+                    extrahtml += extra[(edata[i]) - 1] + '.';
+                }
+            }
+        }
+        var address = data[16] + ' , ' + data[17] + ' , ' + data[18] + '.';
+        $('.s-start-date').html(data[1].substr(0, 10));
+        $('.start-end-time-service').html(starttime + ' - ' + endtime);
+        $('.model-service-duration').html(data[5]);
+        $('.modal-s-id').html(data[0]);
+        $('.extra-service-modal-show').html(extrahtml);
+        $('.modal-totalcost-show').html(data[7]);
+        $('.customer-name-show').html(data[23] + ' ' + data[24]);
+        $('.service-address-detail-show').html(address);
+        if (data[11] != 0) {
+            $('.hpts').hide();
+            $('.nhpets').show();
+        } else {
+            $('.hpts').show();
+            $('.nhpets').hide();
+        }
+        $('.gmap_canvas').html('<iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=11 ' + address + '&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>');
+        if (compareServiceReqTime(data)) {
+            $('#complete-serreq-btn').show();
+        }
+    }
+
+    function acceptServiceRequest(e) {
+        const nsr = $(e.target).closest('tr').find("input").val().split(',');
+        $.ajax({
+            url: url + '?controller=providerDash&function=acceptServiceRequest',
+            type: 'post',
+            data: {
+                data: nsr
+            },
+            success: function (result) {
+                if (result == 1) {
+                    getServiceRequestDetail();
+                } else if (result == 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something Went Wrong! Try Again!',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: 'green'
+                    });
+                } else {
+                    data = JSON.parse(result);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Another service request ' + data.ServiceRequestId + ' has already been assigned which has time overlap with this service request. You can’t pick this one!',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#1D7A8C'
+                    });
+                }
+            }
+        });
+    }
+
+    function compareServiceReqTime(data) {
+        var today = new Date();
+        var y = today.getFullYear();
+        var month = today.getMonth();
+        var date = today.getDate();
+        var hr = today.getHours();
+        var min = today.getMinutes();
+        if (data[1].substr(0, 4) > y) {
+            return false;
+        } else if (data[1].substr(5, 2) > month) {
+            return false;
+        } else if (data[1].substr(8, 2) > date) {
+            return false;
+        } else if (data[1].substr(11, 2) > hr) {
+            return false;
+        } else if (data[1].substr(14, 2) > min) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     function setMyDetailSet() {
@@ -298,4 +487,23 @@ $(document).ready(function () {
         }
     }
 
+    function jsontoArray(dt) {
+        var result = [];
+        var keys = Object.keys(dt);
+        keys.forEach(function (key) {
+            result.push(dt[key]);
+        });
+        return result;
+    }
+
+    // export to excel
+    $('#SPS-SH-export-btn').click(function () {
+        let data = document.getElementById('sp-service-history');
+        var fp = XLSX.utils.table_to_book(data, { sheet: 'History' });
+        XLSX.write(fp, {
+            bookType: 'xlsx',
+            type: 'base64'
+        });
+        XLSX.writeFile(fp, 'service-history.xlsx');
+    });
 });

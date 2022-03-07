@@ -17,21 +17,21 @@
         </div>
     </span>
     <!-- <img src="images/sort.png" alt="" class="sorting-img"> -->
-    <button class="export-button">
+    <button class="export-button" id="SPS-SH-export-btn">
         Export
     </button>
 </div>
 
-<table id="sp-servicehistory" class="table-data" style="width:100%">
+<table id="sp-service-history" class="table-data" style="width:100%">
     <thead>
         <tr>
-            <th class="serviceid">Service ID <img src="assets/Img/spupcoming/sort.png" alt="" class="sorting-img"></th>
-            <th class="servicedata">Service data</th>
-            <th class="customerdetail">Customer details</th>
+            <th>Service ID</th>
+            <th>Service date</th>
+            <th>Customer details</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <!-- <tr>
             <td class="serviceid">323431</td>
             <td class="servicedata"><img src="assets/Img/spupcoming/calendar2.png" alt="">
                 <span>09/04/2018</span> <br>
@@ -40,6 +40,6 @@
             <td class="customerdetail">David Bough <br>
                 <img src="assets/Img/spupcoming/layer-15.png" alt=""> Musterstrabe 5,12345 Bonn
             </td>
-        </tr>
+        </tr> -->
     </tbody>
 </table>

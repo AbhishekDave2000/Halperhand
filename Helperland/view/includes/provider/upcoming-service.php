@@ -1,16 +1,17 @@
 <div class="container-fluid head-us">
     <span class="upcoming-heading">Upcoming Services</span>
 </div>
+<div id="myElem" class="alert alert-danger mt-2" style="display: none;" role="alert">
+    There was some problem in canceling the service try again!
+</div>
 <table id="sp-upcoming-service" class="table-data mt-3" style="width:100%">
     <thead>
         <tr>
-            <th class="serviceid">Service ID <img src="assets/Img/spupcoming/sort.png" alt="" class="sorting-img"></th>
-            <th class="servicedata">Service data <img src="assets/Img/spupcoming/sort.png" alt="" class="sorting-img">
-            </th>
-            <th class="customerdetail">Customer details <img src="assets/Img/spupcoming/sort.png" alt="" class="sorting-img"></th>
-            <th class="servicedistance">Distance <img src="assets/Img/spupcoming/sort.png" alt="" class="sorting-img">
-            </th>
-            <th class="serviceaction">Action</th>
+            <th>Service ID</th>
+            <th>Service data</th>
+            <th>Customer details</th>
+            <th>Distance</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>

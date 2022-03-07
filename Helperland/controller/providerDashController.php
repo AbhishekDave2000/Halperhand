@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("model/providerDashModel.php");
 include("controller/validation/userValidator.php");
 include("controller/validation/myDetailValidation.php");
@@ -57,9 +58,84 @@ class providerDashController
         }
     }
 
-    public function getServiceRequestData(){
+    // get service requests data of this service provider
+    public function getServiceRequestData()
+    {
         $status = '(0,1)';
-        $result = $this->model->getServiceRequestDataModel($status);
+        $NS = 'IS NULL';
+        $result = $this->model->getServiceRequestDataModel($status,$NS);
+        echo json_encode($result);
+    }
+
+    // get upcoming service request data
+    public function getUpcomingServiceRequestData()
+    {
+        $status = '(1,2)';
+        $NS = 'IS NOT NULL';
+        $result = $this->model->getServiceRequestDataModel($status,$NS);
+        echo json_encode($result);
+    }
+
+    // accept service request from new service request page
+    public function acceptServiceRequest()
+    {
+        $st = $_POST['data'][1];
+        $stsr = new DateTime($st);
+        $newSST = floatval(str_replace('30', '5', str_replace(':', '.', substr($_POST['data'][1], 11, 5))));
+        $newSET = str_replace('5', '30', str_replace('.', ':', ($newSST + floatval($_POST['data'][5]) + 1)));
+        if (strlen($newSET) == 2) {
+            $newSET = $newSET . ":00";
+        } else if (strlen($newSET) == 1) {
+            $newSET = "0" . $newSET . ":00";
+        }
+        $newSEDT = substr($_POST['data'][1], 0, 10) . " " . $newSET . ":00.000";
+        $newSEDT = new DateTime($newSEDT);
+
+        $_POST['spid'] = $_SESSION['user']['UserId'];
+        $_POST['srid'] = $_POST['data'][0];
+        $res = $this->model->checkServiceRequestModel();
+        if (!empty($res)) {
+            foreach ($res as $val) {
+                $ASST = "";
+                $ASET = "";
+                $ASST = floatval(str_replace('30', '5', str_replace(':', '.', substr($val['ServiceStartDate'], 11, 5))));
+                $ASET = str_replace('5', '30', str_replace('.', ':', (1 + $ASST + floatval($val['SubTotal']))));
+                if (strlen($ASET) == 2) {
+                    $ASET = $ASET . ":00";
+                } else if (strlen($ASET) == 1) {
+                    $ASET = "0" . $ASET . ":00";
+                }
+                $enddatetime = substr($val['ServiceStartDate'], 0, 10) . ' ' . $ASET . ':00.000';
+                $startdatetime = $val['ServiceStartDate'];
+                $sdt = new DateTime($startdatetime);
+                $edt = new DateTime($enddatetime);
+                if ($stsr >= $edt || $sdt >= $newSEDT) {
+                    $result = $this->model->acceptServiceRequestModel();
+                    echo $result;
+                } else {
+                    echo json_encode($val);
+                    break;
+                }
+            }
+        } else if (!$res) {
+            $result = $this->model->acceptServiceRequestModel();
+            echo $result;
+        }
+    }
+
+    // cancel Service Request from Upcoming services page
+    public function cancelServiceRequest()
+    {
+        $_POST['srid'] = $_POST['data'][0];
+        $result = $this->model->cancelServiceRequestModel();
+        echo $result;
+    }
+
+    // get Service Provider's History of Service Requests
+    public function getServiceHistoryData(){
+        $status = '(4)';
+        $NS = 'IS NOT NULL';
+        $result = $this->model->getServiceRequestDataModel($status,$NS);
         echo json_encode($result);
     }
 

@@ -3,7 +3,6 @@ $(document).ready(function() {
     $('#dashboard-datatable').DataTable({
         "dom": '<"top"i>rt<"bottom"flp><"clear">',
         "bFilter": false, //hide Search bar
-        "pagingType": "full_numbers",
         paging: true,
         "pagingType": "full_numbers",
         // bFilter: false,
@@ -25,7 +24,6 @@ $(document).ready(function() {
     $('#service-history-datatable').DataTable({
         "dom": '<"top"i>rt<"bottom"flp><"clear">',
         "bFilter": false, //hide Search bar
-        "pagingType": "full_numbers",
         paging: true,
         "pagingType": "full_numbers",
         bFilter: false,
@@ -61,10 +59,11 @@ $(document).ready(function() {
         "order": []
     });
     
+
+    // Provider Dash Data Tables Start___________________________________________________________________________________
     $('#sp-ns-table').DataTable({
         "dom": '<"top"i>rt<"bottom"flp><"clear">',
         "bFilter": false, //hide Search bar
-        "pagingType": "full_numbers",
         paging: true,
         "pagingType": "full_numbers",
         bFilter: false,
@@ -86,7 +85,6 @@ $(document).ready(function() {
     $('#sp-upcoming-service').DataTable({
         "dom": '<"top"i>rt<"bottom"flp><"clear">',
         "bFilter": false, //hide Search bar
-        "pagingType": "full_numbers",
         paging: true,
         "pagingType": "full_numbers",
         bFilter: false,
@@ -99,16 +97,15 @@ $(document).ready(function() {
         }],
         "oLanguage": {
             "sInfo": "Total Records: _TOTAL_"
-        },
+        },  
         "dom": '<"top">rt<"bottom"lip><"clear">',
         responsive: true,
         "order": []
     });
 
-    $('#sp-servicehistory').DataTable({
+    $('#sp-service-history').DataTable({
         "dom": '<"top"i>rt<"bottom"flp><"clear">',
         "bFilter": false, //hide Search bar
-        "pagingType": "full_numbers",
         paging: true,
         "pagingType": "full_numbers",   
         bFilter: false,
@@ -158,5 +155,6 @@ $(document).ready(function() {
         responsive: true,
         "order": []
     });
+    // Provider Dash Data Tables End
     
 });

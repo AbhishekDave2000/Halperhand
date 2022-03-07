@@ -32,7 +32,7 @@ class providerDashModel
         }
     }
 
-    // get PostalCode Data
+    // get city from PostalCode Data
     public function getUserCityDataModel($data)
     {
         $sql = "SELECT c.*,s.StateName FROM zipcode as zc JOIN city as c ON zc.CityId = c.Id JOIN state as s ON s.Id = c.StateId WHERE zc.ZipcodeValue = $data";
@@ -42,7 +42,7 @@ class providerDashModel
         }
     }
 
-    // save service provider data
+    // save service provider data of mydetail
     public function saveProviderDetailModel()
     {
         $id = $_POST['spid'];
@@ -83,6 +83,7 @@ class providerDashModel
         }
     }
 
+    // Service Provider Address My Detail Page
     public function getServiceProviderAddress()
     {
         $id = $_POST['spid'];
@@ -94,6 +95,7 @@ class providerDashModel
         }
     }
 
+    // Set New Password Of service Provider
     public function setNewPasswordModel()
     {
         $id = $_POST['spid'];
@@ -112,7 +114,9 @@ class providerDashModel
         }
     }
 
-    public function getServiceRequestDataModel($status){
+    // Get Service Request and upcoming service request data
+    public function getServiceRequestDataModel($status,$NS)
+    {
         $rows = array();
         $spid = $_POST['spid'];
         $sql = "SELECT sr.ServiceRequestId,sr.ServiceStartDate,sr.ZipCode,sr.ServiceHours,sr.ExtraHours,sr.SubTotal,sr.Discount,sr.TotalCost,sr.Comments,
@@ -124,13 +128,51 @@ class providerDashModel
                     ON sr.ServiceRequestId = sre.ServiceRequestId
                 JOIN user as u
                     ON u.UserId = sr.UserId
-                WHERE (sr.ServiceProviderId = $spid OR sr.ServiceProviderId IS NULL) AND sr.Status IN $status";
+                WHERE (sr.ServiceProviderId = $spid OR sr.ServiceProviderId $NS) AND sr.Status IN $status";
         $result = $this->conn->query($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                array_push($rows,$row);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($rows, $row);
             }
             return $rows;
+        } else {
+            return 0;
         }
     }
+
+    // get all service request of this provider
+    public function checkServiceRequestModel()
+    {
+        $rows = array();
+        $spid = $_POST['spid'];
+        $sql = "SELECT * FROM servicerequest as sr WHERE sr.Status = 2 AND sr.ServiceProviderId = $spid";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($rows, $row);
+            }
+            return $rows;
+        } else {
+            return 0;
+        }
+    }
+
+    // accept the service request if time is not overlapping
+    public function acceptServiceRequestModel()
+    {
+        $srid = $_POST['srid'];
+        $spid = $_POST['spid'];
+        $sql = "UPDATE servicerequest as sr SET sr.ServiceProviderId = $spid, sr.SPAcceptedDate = now(),sr.Status = 2 WHERE sr.ServiceRequestId =$srid";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+
+    public function cancelServiceRequestModel()
+    {
+        $srid = $_POST['srid'];
+        $sql = "UPDATE servicerequest as sr SET sr.ServiceProviderId = Null, sr.SPAcceptedDate = Null,sr.Status = 0 WHERE sr.ServiceRequestId =$srid";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+
 }

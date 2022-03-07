@@ -316,6 +316,10 @@ table thead{
     color: white;
     border-radius: 23px;
 }
+.swal2-styled.swal2-confirm {
+    border-radius: 23px !important;
+    padding: 8px 25px !important;
+}
 /* new service request end*/
 
 /* service history */
