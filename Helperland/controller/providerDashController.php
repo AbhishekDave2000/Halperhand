@@ -85,6 +85,11 @@ class providerDashController
         echo json_encode($result);
     }
 
+    // get Service Provider's Ratings
+    public function getServiceProviderReatings(){
+        print_r($_POST);
+    }
+
     // accept service request from new service request page
     public function acceptServiceRequest()
     {

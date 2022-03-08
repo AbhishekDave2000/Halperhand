@@ -45,24 +45,26 @@
                 <td class="serviceprovider d-flex">
                     <?php if (isset($val['FullName'])) { ?>
                         <div class="cap-div">
-                            <img class="cap" src='assets/Img/assets/avatar-<?= $val['UserProfilePicture'] ?>.png' alt="avatar">
+                            <img class="cap" src="assets/Img/assets/avatar-<?= $val['UserProfilePicture']; ?>.png" alt="cap">
                         </div>
                         <span style="padding-top:8px;"><?= $val['FullName']; ?> <br>
-                            <?php for ($i = 0; $i < substr($val['AvarageRating'], 0, 1); $i++) { ?>
-                                <i class="fas fa-star i-con"></i>
-                                <?php }
-                            $star = 0;
-                            if (substr($val['AvarageRating'], 2, 1) != "") {
-                                $star = 1;
-                                for ($i = 0; $i < 1; $i++) { ?>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                <?php }
-                            }
-                            for ($i = 0; $i < (5 - (floatval(substr($val['AvarageRating'], 0, 1)) + $star)); $i++) { ?>
-                                <i class="fas fa-star i-con-e"></i>
-                            <?php } ?>
                             <?php if (isset($val['AvarageRating'])) {
-                                echo substr($val['AvarageRating'], 0, 4);
+                                for ($i = 0; $i < substr($val['AvarageRating'], 0, 1); $i++) { ?>
+                                    <i class="fas fa-star i-con"></i>
+                                    <?php }
+                                $star = 0;
+                                if (substr($val['AvarageRating'], 2, 1) != 0) {
+                                    $star = 1;
+                                    for ($i = 0; $i < $star; $i++) { ?>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                    <?php }
+                                }
+                                for ($i = 0; $i < (5 - (floatval(substr($val['AvarageRating'], 0, 1)) + $star)); $i++) { ?>
+                                    <i class="fas fa-star i-con-e"></i>
+                                <?php } ?>
+                            <?php if (isset($val['AvarageRating'])) {
+                                    echo substr($val['AvarageRating'], 0, 4);
+                                }
                             } ?>
                         </span>
                     <?php } ?>

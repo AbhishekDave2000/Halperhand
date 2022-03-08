@@ -339,7 +339,7 @@ $(document).ready(function () {
             var result = jsontoArray(dt);
             var rate = dt.AvarageRating;
             var or = 0;
-            ratehtml = "";
+            var ratehtml,ratings,FullName = "";
             for (var i = 0; i < parseInt(rate); i++) {
                 ratehtml += `<i class="fas fa-star i-con"></i>`;
             }
@@ -356,6 +356,11 @@ $(document).ready(function () {
             for (var i = 5; i > (parseInt(rate) + or); i--) {
                 ratehtml += `<i class="fas fa-star i-con-e"></i>`;
             }
+            if(dt.AvarageRating != null){
+                ratings = dt.AvarageRating.substring(0, 4);
+            }if(dt.FullName != null){
+                FullName = dt.FullName;
+            }
             table.row.add($(
                             '<tr class="m-2" style="border: none !important;"><td><div class="card fav-pro-card pb-4 m-1"><div class="row pb-2 pt-4">'+
                                 '<div class="avtar-fav-pro-card">'+
@@ -365,10 +370,10 @@ $(document).ready(function () {
                                 '<input type="hidden" class="fav-pro-data" value="'+result+'" />'+
                                 '<input type="hidden" class="fav-pro-id" value="'+dt.TargetUserId+'" />'+
                                 '<div class="row pt-3">'+
-                                    '<span style=" font-size: 18px;">'+dt.FullName+'<br>'+
+                                    '<span style=" font-size: 18px;">'+FullName+'<br>'+
                                         '<span style="font-size: 15px;">'
                                             +ratehtml+
-                                            +dt.AvarageRating.substring(0, 4)+
+                                            +ratings+
                                         '</span>'+
                                     '</span><br>'+
                                 '</div>'+

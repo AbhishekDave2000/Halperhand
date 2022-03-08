@@ -116,6 +116,21 @@ $(document).ready(function () {
     });
     // service Provider's Service History Page end
 
+    // Service Provider Rating page Start
+    $('#sp-myratings').ready(function(){
+        $.ajax({
+            url: url + '?controller=providerDash&function=getServiceProviderReatings',
+            type: 'post',
+            data: {
+                spid: spid
+            },
+            success : function (result){
+                console.log(result);
+            }
+        });
+    });
+    // Service Provider Rating page end
+
     function getServiceRequestDetail() {
         $.ajax({
             url: url + '?controller=providerDash&function=getServiceRequestData',
