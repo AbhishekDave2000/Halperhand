@@ -141,6 +141,50 @@ class providerDashModel
         }
     }
 
+    // get Provider's service request detail for Rating
+    public function getServiceProviderRatingsModel()
+    {
+        $id = $_POST['spid'];
+        $sql = "SELECT sr.ServiceRequestId,sr.ServiceStartDate,sr.ZipCode,sr.ServiceHours,sr.ExtraHours,sr.SubTotal,sr.Discount,sr.TotalCost,sr.Comments,
+                    sr.ServiceProviderId,sr.JobStatus,sr.HasPets,sr.Status,sr.CreatedDate,sr.Distance,sr.HasIssue,sra.AddressLine1,sra.AddressLine2,sra.City,sra.State,
+                    sra.Mobile,sra.Email,sre.ServiceExtraId,u.FirstName as CFName, u.LastName as CLName,u.Gender,u.UserProfilePicture FROM servicerequest as sr
+                JOIN servicerequestaddress as sra
+                    ON sr.ServiceRequestId = sra.ServiceRequestId
+                JOIN servicerequestextra as sre
+                    ON sr.ServiceRequestId = sre.ServiceRequestId
+                JOIN user as u
+                    ON u.UserId = sr.UserId
+                WHERE sr.ServiceProviderId = $id AND sr.Status IN (3,4)";
+        $result = $this->conn->query($sql);
+        $service = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $res = $this->getSPReatingsModel();
+                if(count($res) > 0){
+                    $row = $row + $res;
+                }
+                array_push($service,$row);
+            }
+            return $service;
+        } 
+    }
+
+    public function getSPReatingsModel()
+    {
+        $id = $_POST['spid'];
+        $sql = "SELECT COUNT(*) as TotalRating,AVG(rating.Ratings) as AvarageRating, CONCAT(user.FirstName,' ',user.LastName) as FullName,user.UserProfilePicture FROM rating 
+                JOIN user
+                    ON user.UserId = rating.RatingTo
+                WHERE rating.RatingTo = '$id'";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            $result = $result->fetch_assoc();
+        } else {
+            $result = [];
+        }
+        return $result;
+    }
+
     // get all service request of this provider
     public function checkServiceRequestModel()
     {
@@ -179,6 +223,16 @@ class providerDashModel
     {
         $srid = $_POST['srid'];
         $sql = "UPDATE servicerequest as sr SET sr.ServiceProviderId = Null, sr.SPAcceptedDate = Null,sr.Status = 0 WHERE sr.ServiceRequestId =$srid";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+
+    // complete service request from service provider Upcoming service page
+    public function completeServiceRequestModel()
+    {
+        $id = $_POST['id'];
+        $spid = $_POST['SPid'];
+        $sql = "UPDATE servicerequest as sr SET sr.ServiceProviderId = $spid ,sr.Status = 4 WHERE sr.ServiceRequestId = $id ";
         $result = $this->conn->query($sql);
         return $result;
     }

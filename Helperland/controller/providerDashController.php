@@ -86,8 +86,10 @@ class providerDashController
     }
 
     // get Service Provider's Ratings
-    public function getServiceProviderReatings(){
-        print_r($_POST);
+    public function getServiceProviderReatings()
+    {
+        $result = $this->model->getServiceProviderRatingsModel();
+        echo json_encode($result);
     }
 
     // accept service request from new service request page
@@ -149,6 +151,14 @@ class providerDashController
     {
         $_POST['srid'] = $_POST['data'][0];
         $result = $this->model->cancelServiceRequestModel();
+        echo $result;
+    }
+
+    // complete service request if completed
+    public function completeServiceRequest()
+    {
+        $_POST['SPid'] = $_SESSION['user']['UserId'];
+        $result = $this->model->completeServiceRequestModel();
         echo $result;
     }
 }

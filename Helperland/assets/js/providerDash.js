@@ -1,6 +1,8 @@
 $(document).ready(function () {
     var url = "http://localhost/Halperhand/Helperland/";
     var spid = $('.sp-id').text();
+    $('#complete-serreq-btn-row').hide();
+    // setInterval(displayCompleteButton, 1000);
 
     //mysetting page operations Start___________________________________________________________________________________
     $('.sp-mysetting-content').ready(function () {
@@ -88,7 +90,7 @@ $(document).ready(function () {
     $('#sp-upcoming-service').on("click", "tbody tr td:not(:last-child)", function (e) {
         const usr = $(e.target).closest('tr').find("input").val().split(',');
         setUCSRModalDetail(usr);
-        $('.accept-btn,#complete-serreq-btn').hide();
+        $('.accept-btn').hide();
         $('#complete-cancel').modal('show');
     });
     $('#sp-upcoming-service').on("click", "#cancel-serreq-btn", function (e) {
@@ -108,6 +110,28 @@ $(document).ready(function () {
             }
         });
     });
+    $('#sp-upcoming-service').on('click','#complete-serreq-btn-row',function(e){
+        const usr = $(e.target).closest('tr').find("input").val().split(',');
+        var srid = usr[0];
+        $.ajax({
+            url : url + '?controller=providerDash&function=completeServiceRequest',
+            type : 'post',
+            data : {
+                id : srid
+            },
+            success : function (result){
+                if(result == 1){
+                    getUpcomingServiceDetail();
+                }else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something wnet Wrong! Try agian!'
+                    });
+                }
+            }
+        });
+    });
     // Upcoming Service Request End
 
     // service Provider's Service History Page Start
@@ -117,15 +141,21 @@ $(document).ready(function () {
     // service Provider's Service History Page end
 
     // Service Provider Rating page Start
-    $('#sp-myratings').ready(function(){
+    $('#sp-myratings').ready(function () {
         $.ajax({
             url: url + '?controller=providerDash&function=getServiceProviderReatings',
             type: 'post',
             data: {
                 spid: spid
             },
-            success : function (result){
-                console.log(result);
+            success: function (result) {
+                if (result.length != 0) {
+                    var data = JSON.parse(result);
+                    showSPRatings(data);
+                } else {
+                    var SPRatingTable = $('#sp-myratings').DataTable();
+                    SPRatingTable.clear().draw();
+                }
             }
         });
     });
@@ -198,6 +228,9 @@ $(document).ready(function () {
             var endtime = endtotal.toString().replace('.5', ':30').replace('.', ':');
             if (endtime.length == 2) { endtime = endtime + ":00"; }
             else if (endtime.length == 1) { endtime = "0" + endtime + ":00"; }
+            var ED = dt.ServiceStartDate.substr(0, 10) + ' ' + endtime;
+            var endDate = new Date(ED);
+            var today = new Date();
             myTable.row.add($(
                 `<tr>
                     <input type="hidden" name="srdata" class="USReqData" value='` + jsontoArray(dt) + `'>
@@ -210,8 +243,19 @@ $(document).ready(function () {
                         <img src="assets/Img/spupcoming/layer-15.png" alt=""> `+ dt.AddressLine1 + ` , ` + dt.ZipCode + ` , ` + dt.City + `
                     </td>
                     <td>15km</td>
-                <td><button class="btn btn-danger btn-rounded-17" id="cancel-serreq-btn" value="Cancel">Cancel</button></td>`
+                    <td class="UCSCAC-btn">
+                        <button type="button" style="display:none;" class="btn Reschedule-btn m-1" id="complete-serreq-btn-row"><i class="fa fa-check"></i> Complete</button>
+                        <button class="btn btn-rounded-17" id="cancel-serreq-btn" value="Cancel">Cancel</button>
+                    </td>`
             )).draw();
+            if(today > endDate){
+                $('#complete-serreq-btn-row').show();
+            }
+            // setInterval(function () {
+            //     if(today > endDate){
+            //         $('#complete-serreq-btn-row').show();
+            //     }
+            // }, 1000);
         });
     }
 
@@ -267,6 +311,84 @@ $(document).ready(function () {
         });
     }
 
+    function showSPRatings(data) {
+        var SPRatingTable = $('#sp-myratings').DataTable();
+        SPRatingTable.clear().draw();
+
+        data.forEach(function (dt) {
+            var starttime = dt.ServiceStartDate.substr(11, 5).replace(':', '.').replace('3', '5');
+            var endtotal = parseFloat(starttime) + parseFloat(dt.SubTotal);
+            var endtime = endtotal.toString().replace('.5', ':30').replace('.', ':');
+            if (endtime.length <= 2) { endtime = endtime + ":00"; }
+            else if (endtime.length == 1) { endtime = "0" + endtime + ":00"; }
+            var rate = dt.AvarageRating;
+            var rhtml = "";
+            if (parseFloat(rate) <= 1) {
+                rhtml = "Bad";
+            } else if (parseFloat(rate) <= 3 && parseFloat(rate) > 1) {
+                rhtml = "Good";
+            } else if (parseFloat(rate) <= 4 && parseFloat(rate) > 3) {
+                rhtml = "Very Good";
+            } else if (parseFloat(rate) <= 5 && parseFloat(rate) > 4) {
+                rhtml = "Excellent";
+            }
+            var or = 0;
+            ratehtml = "";
+            for (var i = 0; i < parseInt(rate); i++) {
+                ratehtml += `<i class="fas fa-star i-con"></i>`;
+            }
+            for (var i = 0; i < 1; i++) {
+                if (rate != null) {
+                    if (rate.substr(2, 1) != 0) {
+                        ratehtml += `<i class="fa-solid fa-star-half-stroke"></i>`;
+                        or = 1;
+                    }
+                } else {
+                    rate = 0;
+                }
+            }
+            for (var i = 5; i > (parseInt(rate) + or); i--) {
+                ratehtml += `<i class="fas fa-star i-con-e"></i>`;
+            }
+
+            SPRatingTable.row.add($(
+                `<tr class="myRating-row-table">
+                    <td style="padding: 0;">
+                        <div class="col customer-rating-main-div pb-3 mb-3">
+                            <div class="row data-mr-row pb-2 pl-1 pr-1 pt-3">
+                                <div class="col">
+                                    `+ dt.ServiceRequestId + ` <br><span class="rate-customer-name" style="font-weight: 600;">` + dt.CFName + ` ` + dt.CLName + `</span>
+                                </div>
+                                <div class="col">
+                                    <img src="assets/Img/spupcoming/calendar2.png" alt="">
+                                    <span class="c-s-r-d">`+ dt.ServiceStartDate.substr(0, 10) + `</span> <br>
+                                    <img src="assets/Img/spupcoming/layer-14.png" alt=""> `+ dt.ServiceStartDate.substr(11, 5) + `-` + endtime + `
+                                </div>
+                                <div class="col">
+                                    <span><span style="font-weight: 500;" class="your-ratings-provider">ratings</span> <br>
+                                        `+ ratehtml + `
+                                        `+ rhtml + `
+                                    </span>
+                                </div>
+                            </div>
+                            <hr class="rc-divider-line">
+                            <div class="row">
+                                <div class="col customer-comments-main-div">
+                                    <span class="comments-heading-div">
+                                        Customer Comments
+                                    </span>
+                                    <span class="customer-comment-div">
+                                        `+ dt.Comments + `
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>`
+            )).draw();
+        });
+    }
+
     function setSRModalDetail(data) {
         starttime = data[1].substr(11, 5);
         endtime = (parseFloat(starttime.replace(':', '.').replace('3', '5')) + parseFloat(data[5])).toString().replace('.5', ':30').replace('.', ':');
@@ -305,6 +427,7 @@ $(document).ready(function () {
     }
 
     function setUCSRModalDetail(data) {
+        $('#complete-serreq-btn').hide();
         starttime = data[1].substr(11, 5);
         endtime = (parseFloat(starttime.replace(':', '.').replace('3', '5')) + parseFloat(data[5])).toString().replace('.5', ':30').replace('.', ':');
         if (endtime.length == 2) { endtime = endtime + ":00"; }
@@ -340,9 +463,15 @@ $(document).ready(function () {
             $('.nhpets').hide();
         }
         $('.gmap_canvas').html('<iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=11 ' + address + '&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>');
-        if (compareServiceReqTime(data)) {
+        // if (compareServiceReqTime(data)) {
+        //     $('#complete-serreq-btn').show();
+        // }
+        var today = new Date();
+        var endDate = new Date(enddatetime);
+        if (today > endDate) {
             $('#complete-serreq-btn').show();
         }
+        // $('#complete-serreq-btn').show();
     }
 
     function acceptServiceRequest(e) {
@@ -378,28 +507,6 @@ $(document).ready(function () {
                 }
             }
         });
-    }
-
-    function compareServiceReqTime(data) {
-        var today = new Date();
-        var y = today.getFullYear();
-        var month = today.getMonth();
-        var date = today.getDate();
-        var hr = today.getHours();
-        var min = today.getMinutes();
-        if (data[1].substr(0, 4) > y) {
-            return false;
-        } else if (data[1].substr(5, 2) > month) {
-            return false;
-        } else if (data[1].substr(8, 2) > date) {
-            return false;
-        } else if (data[1].substr(11, 2) > hr) {
-            return false;
-        } else if (data[1].substr(14, 2) > min) {
-            return false;
-        } else {
-            return true;
-        }
     }
 
     function setMyDetailSet() {
@@ -521,4 +628,5 @@ $(document).ready(function () {
         });
         XLSX.writeFile(fp, 'service-history.xlsx');
     });
+
 });

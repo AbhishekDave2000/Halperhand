@@ -320,6 +320,23 @@ table thead{
     border-radius: 23px !important;
     padding: 8px 25px !important;
 }
+.UCSCAC-btn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* #complete-serreq-btn-row{
+    display: none;
+} */
+#cancel-serreq-btn{
+    background-color: tomato;
+    color: white;
+    border-radius: 23px;
+    height: fit-content;
+    width: fit-content;
+    padding: 8px 20px;
+    margin: 4px;
+}
 /* new service request end*/
 
 /* service history */
@@ -364,7 +381,7 @@ table thead{
     color: #646464;
     height: fit-content;
 }
-.i-con{
+.i-con,.fa-star-half-stroke{
     color: #ecb91c;
 }
 .i-con-e{

@@ -33,7 +33,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="myRating-row-table">
+            <!-- <tr class="myRating-row-table">
                 <td style="padding: 0;">
                     <div class="col customer-rating-main-div pb-3 mb-3">
                         <div class="row data-mr-row pb-2 pl-1 pr-1 pt-3">
@@ -69,84 +69,7 @@
                         </div>
                     </div>
                 </td>
-            </tr>
-
-            <tr class="myRating-row-table">
-                <td style="padding: 0;">
-                    <div class="col customer-rating-main-div pb-3 mb-3">
-                        <div class="row data-mr-row pb-2 pl-1 pr-1 pt-3">
-                            <div class="col">
-                                323431 <br><span class="rate-customer-name" style="font-weight: 600;">Abhishek Dave</span>
-                            </div>
-                            <div class="col">
-                                <img src="assets/Img/spupcoming/calendar2.png" alt="">
-                                <span class="c-s-r-d">09/04/2018</span> <br>
-                                <img src="assets/Img/spupcoming/layer-14.png" alt=""> 12:00 - 18:00
-                            </div>
-                            <div class="col">
-                                <span><span style="font-weight: 500;" class="your-ratings-provider">ratings</span> <br>
-                                    <i class="fas fa-star i-con"></i>
-                                    <i class="fas fa-star i-con"></i>
-                                    <i class="fas fa-star i-con"></i>
-                                    <i class="fas fa-star i-con"></i>
-                                    <i class="fas fa-star i-con-e"></i>
-                                    Very Good
-                                </span>
-                            </div>
-                        </div>
-                        <hr class="rc-divider-line">
-                        <div class="row">
-                            <div class="col customer-comments-main-div">
-                                <span class="comments-heading-div">
-                                    Customer Comments
-                                </span>
-                                <span class="customer-comment-div">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, eum.
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr class="myRating-row-table">
-                <td style="padding: 0;">
-                    <div class="col customer-rating-main-div pb-3 mb-3">
-                        <div class="row data-mr-row pb-2 pl-1 pr-1 pt-3">
-                            <div class="col">
-                                323431 <br><span class="rate-customer-name" style="font-weight: 600;">Abhishek Dave</span>
-                            </div>
-                            <div class="col">
-                                <img src="assets/Img/spupcoming/calendar2.png" alt="">
-                                <span class="c-s-r-d">09/04/2018</span> <br>
-                                <img src="assets/Img/spupcoming/layer-14.png" alt=""> 12:00 - 18:00
-                            </div>
-                            <div class="col">
-                                <span><span style="font-weight: 500;" class="your-ratings-provider">ratings</span> <br>
-                                    <i class="fas fa-star i-con"></i>
-                                    <i class="fas fa-star i-con"></i>
-                                    <i class="fas fa-star i-con"></i>
-                                    <i class="fas fa-star i-con"></i>
-                                    <i class="fas fa-star i-con-e"></i>
-                                    Very Good
-                                </span>
-                            </div>
-                        </div>
-                        <hr class="rc-divider-line">
-                        <div class="row">
-                            <div class="col customer-comments-main-div">
-                                <span class="comments-heading-div">
-                                    Customer Comments
-                                </span>
-                                <span class="customer-comment-div">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, eum.
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
+            </tr> -->
         </tbody>
     </table>
 </div>

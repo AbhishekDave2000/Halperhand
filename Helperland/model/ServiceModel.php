@@ -73,7 +73,7 @@ class ServiceModel
                         ON c.StateId = s.Id
                 WHERE zc.ZipcodeValue =  '$postal'";
         $result = $this->conn->query($sql);
-        if($result->num_rows > 0){
+        if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
         }
         $state = $row['StateName'];
@@ -81,14 +81,15 @@ class ServiceModel
                 VALUES ('$id', '$house', '$street', '$city', '$state', '$postal', 0, 0, '$phone', '$email')";
 
         $this->conn->query($sql);
-        if($result){
+        if ($result) {
             return $this->AddressModel();
-        }else{
+        } else {
             return 0;
         }
     }
 
-    public function getFavProsModel(){
+    public function getFavProsModel()
+    {
         $id = $_POST['userid'];
         $rows = array();
         $sql = "SELECT user.* FROM favoriteandblocked
@@ -103,19 +104,21 @@ class ServiceModel
         return $rows;
     }
 
-    public function getFavProForEmail(){
+    public function getFavProForEmail()
+    {
         $pro_id = $_POST['favrioute-provider'];
         $sql = "SELECT * FROM favoriteandblocked fb
                     JOIN user u
                         ON fb.TargetUserId = u.UserId
                     WHERE u.UserId = $pro_id";
         $res = $this->conn->query($sql);
-        if($res->num_rows > 0){
+        if ($res->num_rows > 0) {
             return $res->fetch_assoc();
         }
     }
 
-    public function getFavMultiProForEmail(){
+    public function getFavMultiProForEmail()
+    {
         $postal = $_POST['postalcode'];
         $rows = array();
         $sql = "SELECT * FROM favoriteandblocked fb
@@ -129,10 +132,11 @@ class ServiceModel
         return $rows;
     }
 
-    public function addServiceRequest(){
+    public function addServiceRequest()
+    {
         $UserId = $_POST['customer-userid'];
         // $ServiceStartDate = $_POST['date-of-cleaning']; 
-        $ServiceStartDate = $_POST['service-start-date-time'];  
+        $ServiceStartDate = $_POST['service-start-date-time'];
         $ZipCode = $_POST['postalcode'];
         $ServiceHours = $_POST['service-hours-select'];
         $ExtraHours = $_POST['extra-hours'];
@@ -142,9 +146,9 @@ class ServiceModel
         $HasPets = $_POST['pets-at-home'];
         $sprovider = 'null';
         $status = 0;
-        if(isset($_POST['favrioute-provider'])){
+        if (isset($_POST['favrioute-provider'])) {
             $sprovider = $_POST['favrioute-provider'];
-            $status = 1; 
+            $status = 1;
         }
 
         $sql = "INSERT INTO servicerequest 
@@ -152,20 +156,21 @@ class ServiceModel
                 VALUES 
                     ( $UserId, '$ServiceStartDate', '$ZipCode', 18, $ServiceHours, $ExtraHours, $SubTotal, $TotalCost, '$Comments', 0, $HasPets, $status, now(), 1, $sprovider)";
         $result = $this->conn->query($sql);
-        if($result){
+        if ($result) {
             $last_id = $this->conn->insert_id;
             return $last_id;
-        }else{
+        } else {
             return 0;
         }
     }
 
-    public function addServiceRequestAddress($id){
+    public function addServiceRequestAddress($id)
+    {
         // Select Address from useraddress table
-        $AddressId = $_POST['address-radio']; 
+        $AddressId = $_POST['address-radio'];
         $sql = "SELECT * FROM useraddress WHERE AddressId = '$AddressId'";
         $result = $this->conn->query($sql);
-        if($result->num_rows > 0){
+        if ($result->num_rows > 0) {
             $address = $result->fetch_assoc();
         }
         // add Address to servicerequest table
@@ -182,14 +187,14 @@ class ServiceModel
         return $result;
     }
 
-    public function addExtraServices($data){
+    public function addExtraServices($data)
+    {
         // Add ExtraServices into table
         $id = $this->data;
-        $extarid = implode("",$data);
+        $extarid = implode("", $data);
         $sql = "INSERT INTO servicerequestextra (`ServiceRequestId`, `ServiceExtraId`) 
                 VALUES ($id, $extarid)";
         $result = $this->conn->query($sql);
         return $result;
     }
-
 }

@@ -1,9 +1,7 @@
 <!-- rate SP Modal -->
 <div class="modal fade" id="RateSP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
     <div class="modal-dialog modal-dialog-centered rate-sp-model-dialog">
         <div class="modal-content rate-sp-modal-content">
-
             <div class="modal-header rate-sp-modal-header">
                 <div class="name-sp d-flex">
                     <div class="cap-div cap-div-avatar-modal">
