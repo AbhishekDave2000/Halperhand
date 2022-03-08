@@ -31,11 +31,11 @@ class customerDashController
     {
         $result = $this->model->resheduleDateAndTimeModel($_POST);
         $SPEmail = $_POST['sp-email'];
-        if($result){
+        if ($result) {
             $html = "<span>Resheduled Service Id :{$_POST['service-id']}</span><br>
                     <span>New Service Date is : {$_POST['rescheduled-date']}</span><br>
                     <span>New Servie Time is : {$_POST['rescheduled-time']}</span><br>";
-            sendmail($SPEmail,'Customer\'s Service has been Rescheduled!',$html);
+            sendmail($SPEmail, 'Customer\'s Service has been Rescheduled!', $html);
         }
         print_r($result);
     }
@@ -59,27 +59,28 @@ class customerDashController
         }
     }
 
-    public function addRemoveFavBlock(){
-        $btn = array($_POST['favbtn'],$_POST['blockbtn']);
+    public function addRemoveFavBlock()
+    {
+        $btn = array($_POST['favbtn'], $_POST['blockbtn']);
         $favstatus = $_POST['fav'];
         $blockstatus = $_POST['block'];
         $op = "";
-        if($btn[0] == 1){
+        if ($btn[0] == 1) {
             $op = "IsFavorite";
-            if($favstatus == 1){
+            if ($favstatus == 1) {
                 $favstatus = 0;
-            } else if($favstatus == 0){
+            } else if ($favstatus == 0) {
                 $favstatus = 1;
             }
-        }else if($btn[1] == 1){
+        } else if ($btn[1] == 1) {
             $op = "IsBlocked";
-            if($blockstatus == 1){
+            if ($blockstatus == 1) {
                 $blockstatus = 0;
-            }else if($blockstatus == 0){
+            } else if ($blockstatus == 0) {
                 $blockstatus = 1;
             }
         }
-        $result = $this->model->addRemoveFavBlockModel($favstatus,$blockstatus);
+        $result = $this->model->addRemoveFavBlockModel($favstatus, $blockstatus);
         echo $result;
     }
 
@@ -191,5 +192,4 @@ class customerDashController
             exit();
         }
     }
-    
 }

@@ -464,7 +464,7 @@
                             <label class="form-label" for="autoSizingInputGroup">Gender</label>
                             <div class="gender-radio-div">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input gender-input" type="radio" name="gender" id="radio-male" value="1">
+                                    <input class="form-check-input gender-input" type="radio" name="gender" id="radio-male" value="1" checked>
                                     <label class="form-check-label" for="radio-male">
                                         Male
                                     </label>
@@ -548,7 +548,7 @@
                 <div class="row pb-3 m-0">
                     <div class="col-md-4 pl-0">
                         <label for="city-id" class="form-label">City</label>
-                        <!-- <input type="text" name="house" id="city-id" class="form-control" placeholder="City"> -->
+                        <!-- <input type="text" name="cityname" id="city-id" class="form-control city-select" placeholder="City"> -->
                         <select class="form-control city-select" name="cityname" id="city-id">
                             <option selected></option>
                         </select>

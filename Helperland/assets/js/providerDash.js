@@ -401,7 +401,7 @@ $(document).ready(function () {
                 $('#sp-lastname').val(res[2]);
                 $('#sp-email').val(res[3]);
                 $('#sp-phone').val(res[4]);
-                if (res[6] != '0000-00-00 00:00:000') {
+                if (res[6] != null) {
                     $('#sp-dob-y').val(res[6].substr(0, 4));
                     $('#sp-dob-m').val(res[6].substr(5, 2));
                     $('#sp-dob-d').val(res[6].substr(8, 2));

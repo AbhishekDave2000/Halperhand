@@ -62,17 +62,26 @@ class providerDashController
     public function getServiceRequestData()
     {
         $status = '(0,1)';
-        $NS = 'IS NULL';
-        $result = $this->model->getServiceRequestDataModel($status,$NS);
+        $NS = "OR sr.ServiceProviderId IS NULL";
+        $result = $this->model->getServiceRequestDataModel($status, $NS);
         echo json_encode($result);
     }
 
     // get upcoming service request data
     public function getUpcomingServiceRequestData()
     {
-        $status = '(1,2)';
-        $NS = 'IS NOT NULL';
-        $result = $this->model->getServiceRequestDataModel($status,$NS);
+        $status = '(2)';
+        $NS = "";
+        $result = $this->model->getServiceRequestDataModel($status, $NS);
+        echo json_encode($result);
+    }
+
+    // get Service Provider's History of Service Requests
+    public function getServiceHistoryData()
+    {
+        $status = '(4)';
+        $NS = "";
+        $result = $this->model->getServiceRequestDataModel($status, $NS);
         echo json_encode($result);
     }
 
@@ -123,6 +132,13 @@ class providerDashController
         }
     }
 
+    // send mail to all the provider working in the area
+    public function getAllServiceProviderToMail()
+    {
+        $spid = $_SESSION['user']['UserId'];
+        // return $this->model->getAllServiceProviderToMailModel($spid);
+    }
+
     // cancel Service Request from Upcoming services page
     public function cancelServiceRequest()
     {
@@ -130,13 +146,4 @@ class providerDashController
         $result = $this->model->cancelServiceRequestModel();
         echo $result;
     }
-
-    // get Service Provider's History of Service Requests
-    public function getServiceHistoryData(){
-        $status = '(4)';
-        $NS = 'IS NOT NULL';
-        $result = $this->model->getServiceRequestDataModel($status,$NS);
-        echo json_encode($result);
-    }
-
 }

@@ -57,7 +57,7 @@ class providerDashModel
         $street = $_POST['street'];
         $house = $_POST['house'];
         $postal = $_POST['postal'];
-        $city = $_POST['cityname'];
+        // $city = $_POST['cityname'];
 
         $sql = "UPDATE user SET FirstName = '$Fname',LastName = '$Lname',Email= '$email' ,Mobile= '$phone' ,Gender= $gender ,
                 DateOfBirth= '$date' ,UserProfilePicture= $avatar ,ZipCode= '$postal' ,NationalityId= '$country' ,ModifiedDate=now(),ModifiedBy= $id
@@ -67,6 +67,7 @@ class providerDashModel
             $res = $this->getUserCityDataModel($postal);
             $address = $this->getServiceProviderAddress();
             $state = $res['StateName'];
+            $city = $res['CityName'];
 
             if (empty($address)) {
                 $sql = "INSERT INTO useraddress(`UserId`, `AddressLine1`, `AddressLine2`, `City`, `State`, `PostalCode`, `IsDefault`, `Mobile`, `Email`) 
@@ -115,7 +116,7 @@ class providerDashModel
     }
 
     // Get Service Request and upcoming service request data
-    public function getServiceRequestDataModel($status,$NS)
+    public function getServiceRequestDataModel($status, $NS)
     {
         $rows = array();
         $spid = $_POST['spid'];
@@ -128,7 +129,7 @@ class providerDashModel
                     ON sr.ServiceRequestId = sre.ServiceRequestId
                 JOIN user as u
                     ON u.UserId = sr.UserId
-                WHERE (sr.ServiceProviderId = $spid OR sr.ServiceProviderId $NS) AND sr.Status IN $status";
+                WHERE (sr.ServiceProviderId = $spid $NS) AND sr.Status IN $status";
         $result = $this->conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -167,6 +168,13 @@ class providerDashModel
         return $result;
     }
 
+    // send mail to all the provider working in the area
+    // public function getAllServiceProviderToMailModel()
+    // {
+    //     $sql = "SELECT * FROM";
+    // }
+
+    // cancel service request from service provider Upcoming service page
     public function cancelServiceRequestModel()
     {
         $srid = $_POST['srid'];
@@ -174,5 +182,4 @@ class providerDashModel
         $result = $this->conn->query($sql);
         return $result;
     }
-
 }
