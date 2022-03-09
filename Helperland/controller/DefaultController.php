@@ -25,7 +25,7 @@ class DefaultController{
     public function ProviderSignup(){
         include("view/sprovider.php");
     }
-    public function ForgotPasspage(){
+    public function ForgotPasspage($parameter){
         include("view/forgotpasspage.php");
     }
     public function BookNowpage(){

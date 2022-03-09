@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    var url = 'http://localhost/Halperhand/Helperland/';
     $('#submit').click(function () {
 
         var firstname = $('#firstname').val();
@@ -76,60 +76,81 @@ $(document).ready(function () {
         }
 
     });
-});
 
-$(document).ready(function () {
-    $('#login-btn').click(function () {
-        var Lemail = $('#login-Email').val();
-        var Lpass = $('#login-Password').val();
-
-        $(".error").remove();
-
-        if (Lemail.length < 1) {
-            $('#login-Email').after('<span class="error">This field is required</span>');
-            return false;
-        } else {
-            var regEx = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            var validEmail = regEx.test(Lemail);
-            if (!validEmail) {
-                $('#login-Email').after('<span class="error">Enter a valid email</span>');
-                return false;
-            }
+    $('#login-btn').on('click', function (e) {
+        var data = $('#login-form-modal').serialize();
+        if (loginValidate() != false) {
+            $.ajax({
+                url: url + '?controller=Authentication&function=Login',
+                type: 'post',
+                data: data,
+                success: function (result) {
+                    $(".error").remove();
+                    if (result == 1) {
+                        window.location.href = "http://localhost/Halperhand/Helperland/";
+                    } else if (result == 2) {
+                        $('#login-btn').before('<span class="error">You are not approved wait till you get approval!</span>');
+                    } else if (result == 3) {
+                        $('#login-btn').before('<span class="error">Incorrect email or password please try again with correct ones!</span>');
+                    } else {
+                        $('#login-btn').before('<span class="error">Something Went Wrong!</span>');
+                    }
+                }
+            });
         }
-
-        if (Lpass.length < 1) {
-            $('#login-Password').after('<span class="error">This field is required</span>');
-            return false;
-        } else if (Lpass.length > 1 && Lpass.length < 7) {
-            $('#login-Password').after('<span class="error">Password must be greater than 8 character!</span>');
-            return false;
-        }
+        e.preventDefault();
     });
-});
 
-$(document).ready(function(){
-    $('#E-send').click(function(){
-        var Semail = $('#F-send-Email').val();
-
+    $('#E-send').click(function (e) {
+        var data = $('.SendEmail-Form').serialize();
         $(".error").remove();
-
-        if (Semail.length < 1) {
-            $('#F-send-Email').after('<span class="error">This field is required</span>');
-            return false;
-        } else {
-            var regEx = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            var validEmail = regEx.test(Semail);
-            if (!validEmail) {
-                $('#F-send-Email').after('<span class="error">Enter a valid email</span>');
-                return false;
-            }
+        $('#E-send').html("Sending Mail!...").attr('disabled', true);
+        if (emailSendvalidate() != false) {
+            $.ajax({
+                url: url + '?controller=Authentication&function=forgotPassword',
+                type: 'post',
+                data: data,
+                success: function (result) {
+                    if (result == 1) {
+                        $('#E-send').html("Send").attr('disabled', false);
+                        window.location.href = "http://localhost/Halperhand/Helperland/";
+                    } else if (result == 2) {
+                        $('#F-send-Email').after('<span class="error">This email is not registered!</span>');
+                    } else {
+                        alert("Something Went Wrong!");
+                    }
+                }
+            });
         }
+        e.preventDefault();
     });
-});
 
+    $('#set-new-Pass-btn').click(function (e) {
+        var data = $('.setPassForm').serialize();
+        var para = $('.forgotpage-parameter').html();
+        if (newPasswordValidate() != false) {
+            $.ajax({
+                url: url + '?controller=Authentication&function=setPass&parameter=' + para,
+                type: 'post',
+                data: data,
+                success: function (result) {
+                    if (result == 1) {
+                        window.location.href = "http://localhost/Halperhand/Helperland/";
+                    }
+                    else if (result == 2) {
+                        $('#set-new-Pass-btn').before('<span class="error">Password did not change try again!</span>');
+                    } else if (result == 3) {
+                        $('#set-new-Pass-btn').before('<span class="error">Enter Same passwords in both fields!</span>');
+                    } else {
+                        alert('Something Went Wrong!');
+                    }
+                }
+            });
+        }
+        e.preventDefault();
+    });
 
-$(document).ready(function(){
-    $('#set-new-Pass-btn').click(function(){
+    function newPasswordValidate() {
         var newpass = $('#set-new-Pass').val();
         var newcpass = $('#set-confirm-Pass').val();
 
@@ -155,5 +176,46 @@ $(document).ready(function(){
             $('.pass').after('<span class="error">Both Passwords must be same!</span>');
             return false;
         }
-    });
+    }
+
+    function emailSendvalidate() {
+        var Semail = $('#F-send-Email').val();
+        $(".error").remove();
+
+        if (Semail.length < 1) {
+            $('#F-send-Email').after('<span class="error">This field is required</span>');
+            return false;
+        } else {
+            var regEx = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            var validEmail = regEx.test(Semail);
+            if (!validEmail) {
+                $('#F-send-Email').after('<span class="error">Enter a valid email</span>');
+                return false;
+            }
+        }
+    }
+
+    function loginValidate() {
+        var Lemail = $('#login-Email').val();
+        var Lpass = $('#login-Password').val();
+        $(".error").remove();
+        if (Lemail.length < 1) {
+            $('#login-Email').after('<span class="error">This field is required</span>');
+            return false;
+        } else {
+            var regEx = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            var validEmail = regEx.test(Lemail);
+            if (!validEmail) {
+                $('#login-Email').after('<span class="error">Enter a valid email</span>');
+                return false;
+            }
+        }
+        if (Lpass.length <= 0) {
+            $('#login-Password').after('<span class="error">This field is required</span>');
+            return false;
+        } else if (Lpass.length > 1 && Lpass.length < 7) {
+            $('#login-Password').after('<span class="error">Password must be greater than 8 character!</span>');
+            return false;
+        }
+    }
 });

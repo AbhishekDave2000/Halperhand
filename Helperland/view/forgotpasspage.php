@@ -1,3 +1,8 @@
+<?php 
+if(!isset($_SESSION['email'])){
+    header("Location: " . Config::base_url . '?controller=Default&function=homepage');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +34,8 @@
 <body>
     <section class="fpasssection">
         <div class="container-fluid d-flex">
-            <form action="<?= Config::base_url . '?controller=Authentication&function=setPass' ?>" method="POST">
+            <div style="display: none;" class="forgotpage-parameter"><?= $parameter ?></div>
+            <form class="setPassForm" action="<?= Config::base_url . '?controller=Authentication&function=setPass&parameter='.$parameter ?>" method="POST">
                 <label for="form" class="form-label p-2 pass">
                     <h3>Set Your Password</h3>
                 </label>
@@ -49,7 +55,7 @@
                 </div>
 
                 <div class="row btn-div">
-                    <button type="submit" value="set" name="set" id="set-new-Pass-btn" class="btn set-pass">Set Password</button>
+                    <button type="button" value="set" name="set" id="set-new-Pass-btn" class="btn set-pass">Set Password</button>
                 </div>
 
             </form>

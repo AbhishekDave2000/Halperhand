@@ -7,7 +7,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body forgot-body">
-          <form action="<?= $base_url.'?controller=Authentication&function=forgotPassword' ?>" method="POST">
+          <form action="<?= $base_url.'?controller=Authentication&function=forgotPassword' ?>" method="POST" class="SendEmail-Form">
             <div class="col">
               <div class="row">
                 <input type="text" name="email" id="F-send-Email" class="form-control" placeholder="Email Address" aria-label="Email">

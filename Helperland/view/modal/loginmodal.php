@@ -34,7 +34,7 @@
                 <i class="fa fa-user" aria-hidden="true"></i>
               </div>
               <div class="row">
-                <input type="password" class="form-control" id="login-Password" name="Password" placeholder="Password" aria-label="Password" value="<?php if(isset($_COOKIE['pass'])){echo $_COOKIE['pass'];} ?>">
+                <input type="password" class="form-control login-Password" id="login-Password" name="Password" placeholder="Password" aria-label="Password" value="<?php if(isset($_COOKIE['pass'])){echo $_COOKIE['pass'];} ?>">
                 <i class="fas fa-lock" aria-hidden="true"></i>
               </div>
               <div class="row">
@@ -46,7 +46,7 @@
                 </div>
               </div>
               <div class="row">
-                <button type="submit" name="Login" id="login-btn" value="Login" class="btn">Login</button>
+                <button type="button" name="Login" id="login-btn" value="Login" class="btn">Login</button>
               </div>
               <div class="row">
                 <p><a href="" data-bs-toggle="modal" data-bs-target="#forgotpass" data-bs-dismiss="modal">Forgot Password</a></p>
