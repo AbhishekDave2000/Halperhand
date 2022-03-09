@@ -256,7 +256,6 @@ $(document).ready(function () {
                 spid: spid
             },
             success: function (result) {
-                // console.log(result);
                 if (result.length != 0) {
                     var data = JSON.parse(result);
                     showBlockCustomerData(data);
@@ -280,6 +279,9 @@ $(document).ready(function () {
             var ED = dt.ServiceStartDate.substr(0, 10) + ' ' + endtime;
             var endDate = new Date(ED);
             var today = new Date();
+            if (today > endDate) {
+                $('#complete-serreq-btn-row').show();
+            }
             myTable.row.add($(
                 `<tr>
                     <input type="hidden" name="srdata" class="USReqData" value='` + jsontoArray(dt) + `'>
@@ -297,9 +299,7 @@ $(document).ready(function () {
                         <button class="btn btn-rounded-17" id="cancel-serreq-btn" value="Cancel">Cancel</button>
                     </td>`
             )).draw();
-            if (today > endDate) {
-                $('#complete-serreq-btn-row').show();
-            }
+
             // setInterval(function () {
             //     if(today > endDate){
             //         $('#complete-serreq-btn-row').show();
@@ -331,7 +331,6 @@ $(document).ready(function () {
                     <td data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel" style="font-size:18px;">`+ dt.TotalCost + ` <i class="fa-solid fa-euro-sign"></i></td> 
                     <td data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel"></td> 
                     <td><button class="btn btn-rounded-17 accept-sr-btn no-modal" value="1">Accept</button></td> 
-                    <td  style="display: none;">`+ dt.HasPets + `</td>
                 </tr>`
             )).draw();
         });
@@ -582,15 +581,17 @@ $(document).ready(function () {
                         confirmButtonColor: 'green'
                     });
                 } else {
-                    data = JSON.parse(result);
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Another service request ' + data.ServiceRequestId + ' has already been assigned which has time overlap with this service request. You can’t pick this one!',
-                        showConfirmButton: true,
-                        confirmButtonText: 'OK',
-                        confirmButtonColor: '#1D7A8C'
-                    });
+                    if (result != null) {
+                        var data = JSON.parse(result);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Another service request ' + data.ServiceRequestId + ' has already been assigned which has time overlap with this service request. You can’t pick this one!',
+                            showConfirmButton: true,
+                            confirmButtonText: 'OK',
+                            confirmButtonColor: '#1D7A8C'
+                        });
+                    }
                 }
             }
         });

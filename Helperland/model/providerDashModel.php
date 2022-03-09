@@ -213,10 +213,8 @@ class providerDashModel
             while ($row = $result->fetch_assoc()) {
                 array_push($rows, $row);
             }
-            return $rows;
-        } else {
-            return 0;
-        }
+        } 
+        return $rows;
     }
 
     // accept the service request if time is not overlapping
@@ -230,7 +228,7 @@ class providerDashModel
     }
 
     // send mail to all the provider working in the area
-    
+
 
     // cancel service request from service provider Upcoming service page
     public function cancelServiceRequestModel()
@@ -260,5 +258,4 @@ class providerDashModel
         $sql = "UPDATE favoriteandblocked SET IsBlocked = $bc WHERE UserId = $spid AND TargetUserId = $cid";
         return $this->conn->query($sql);
     }
-    
 }

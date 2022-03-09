@@ -91,7 +91,7 @@ $(document).ready(function () {
                     } else if (result == 2) {
                         $('#login-btn').before('<span class="error">You are not approved wait till you get approval!</span>');
                     } else if (result == 3) {
-                        $('#login-btn').before('<span class="error">Incorrect email or password please try again with correct ones!</span>');
+                        $('#login-btn').before('<span class="error">Incorrect email or password!</span>');
                     } else {
                         $('#login-btn').before('<span class="error">Something Went Wrong!</span>');
                     }

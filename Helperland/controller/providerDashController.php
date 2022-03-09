@@ -93,7 +93,8 @@ class providerDashController
     }
 
     // get Customer Data Fro Block Page
-    public function getCustomerBlockPage(){
+    public function getCustomerBlockPage()
+    {
         $result = $this->model->getCustomerBlockPageModel();
         echo json_encode($result);
     }
@@ -104,7 +105,7 @@ class providerDashController
         $st = $_POST['data'][1];
         $stsr = new DateTime($st);
         $newSST = floatval(str_replace('30', '5', str_replace(':', '.', substr($_POST['data'][1], 11, 5))));
-        $newSET = str_replace('5', '30', str_replace('.', ':', ($newSST + floatval($_POST['data'][5]) + 1)));
+        $newSET = str_replace('.', ':', str_replace('.5', ':30', ($newSST + floatval($_POST['data'][5]) + 1)));
         if (strlen($newSET) == 2) {
             $newSET = $newSET . ":00";
         } else if (strlen($newSET) == 1) {
@@ -112,16 +113,14 @@ class providerDashController
         }
         $newSEDT = substr($_POST['data'][1], 0, 10) . " " . $newSET . ":00.000";
         $newSEDT = new DateTime($newSEDT);
-
+        
         $_POST['spid'] = $_SESSION['user']['UserId'];
         $_POST['srid'] = $_POST['data'][0];
         $res = $this->model->checkServiceRequestModel();
         if (!empty($res)) {
             foreach ($res as $val) {
-                $ASST = "";
-                $ASET = "";
                 $ASST = floatval(str_replace('30', '5', str_replace(':', '.', substr($val['ServiceStartDate'], 11, 5))));
-                $ASET = str_replace('5', '30', str_replace('.', ':', (1 + $ASST + floatval($val['SubTotal']))));
+                $ASET = str_replace('.', ':', str_replace('.5', ':30', (1 + $ASST + floatval($val['SubTotal']))));
                 if (strlen($ASET) == 2) {
                     $ASET = $ASET . ":00";
                 } else if (strlen($ASET) == 1) {
@@ -136,12 +135,14 @@ class providerDashController
                     echo $result;
                 } else {
                     echo json_encode($val);
-                    break;
+                    exit;
                 }
             }
-        } else if (!$res) {
+        } else if(empty($res)){
             $result = $this->model->acceptServiceRequestModel();
             echo $result;
+        } else{
+            echo 0;
         }
     }
 
@@ -169,11 +170,14 @@ class providerDashController
     }
 
     // Block Customer
-    public function blockCustomer(){
-        if($_POST['bc'] == 1){ $_POST['bc'] = 0; }
-        else if($_POST['bc'] == 0){ $_POST['bc'] = 1; }
+    public function blockCustomer()
+    {
+        if ($_POST['bc'] == 1) {
+            $_POST['bc'] = 0;
+        } else if ($_POST['bc'] == 0) {
+            $_POST['bc'] = 1;
+        }
         $result = $this->model->blockCustomerModel();
         echo $result;
     }
-    
 }
