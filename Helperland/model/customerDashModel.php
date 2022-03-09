@@ -1,5 +1,4 @@
 <?php
-// include("dbconnection.php");
 require_once("dbconnection.php");
 class customerDashModel
 {
@@ -86,19 +85,20 @@ class customerDashModel
         return $this->conn->query($sql);
     }
 
-    public function getFavProviderDataModel($id){
+    public function getFavProviderDataModel($id)
+    {
         $sql = "SELECT fb.*, CONCAT(user.FirstName,' ', user.LastName) as FullName, user.UserProfilePicture FROM favoriteandblocked as fb 
                 JOIN user 
                     ON user.UserId = fb.TargetUserId 
                 WHERE fb.UserId = $id ";
         $result = $this->conn->query($sql);
         $favpro = [];
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                if(!is_null($row['TargetUserId'])){
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if (!is_null($row['TargetUserId'])) {
                     $target = $row['TargetUserId'];
                     $sprating = $this->getRatingBySpId($target);
-                    if(count($sprating) > 0){
+                    if (count($sprating) > 0) {
                         $row = $row + $sprating;
                     }
                 }
@@ -108,7 +108,8 @@ class customerDashModel
         return $favpro;
     }
 
-    public function addRemoveFavBlockModel($favstatus,$blockstatus){
+    public function addRemoveFavBlockModel($favstatus, $blockstatus)
+    {
         $uid = $_POST['uid'];
         $tid = $_POST['tid'];
         $sql = "UPDATE favoriteandblocked SET IsFavorite = $favstatus , IsBlocked = $blockstatus WHERE UserId = $uid AND TargetUserId = $tid";
@@ -238,5 +239,5 @@ class customerDashModel
             return False;
         }
     }
-    
 }
+?>

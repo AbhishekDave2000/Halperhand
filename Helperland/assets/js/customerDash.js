@@ -61,14 +61,17 @@ $(document).ready(function () {
 
         $('.cancel-btn-modal').on("click", function (e) {
             var data = $('.cancel-sr-form').serialize();
+            $('.cancel-btn-modal').attr("disabled", true).html("Processing......");
             $.ajax({
                 url: url + '?controller=customerDash&function=cancelServiceRequest',
                 type: 'post',
                 data: data,
                 success: function (result) {
                     if (result) {
+                        $('.cancel-btn-modal').attr("disabled", false).html("Cancel Now");
                         window.location.href = url + "?controller=Default&function=customerDash&parameter=dashboard";
                     }
+                    // console.log(result);
                 }
             });
             e.preventDefault();

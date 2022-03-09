@@ -159,23 +159,22 @@ class providerDashModel
         $service = [];
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $res = $this->getSPReatingsModel();
-                if(count($res) > 0){
+                $res = $this->getSPReatingsModel($row['ServiceRequestId']);
+                if (count($res) > 0) {
                     $row = $row + $res;
                 }
-                array_push($service,$row);
+                array_push($service, $row);
             }
             return $service;
-        } 
+        }
     }
-
-    public function getSPReatingsModel()
+    public function getSPReatingsModel($srid)
     {
         $id = $_POST['spid'];
         $sql = "SELECT COUNT(*) as TotalRating,AVG(rating.Ratings) as AvarageRating, CONCAT(user.FirstName,' ',user.LastName) as FullName,user.UserProfilePicture FROM rating 
                 JOIN user
                     ON user.UserId = rating.RatingTo
-                WHERE rating.RatingTo = '$id'";
+                WHERE rating.ServiceRequestId = $srid AND rating.RatingTo = $id";
         $result = $this->conn->query($sql);
         if ($result->num_rows > 0) {
             $result = $result->fetch_assoc();
@@ -183,6 +182,24 @@ class providerDashModel
             $result = [];
         }
         return $result;
+    }
+
+    // get Customer Block Page Data
+    public function getCustomerBlockPageModel()
+    {
+        $id = $_POST['spid'];
+        $rows = array();
+        $sql = "SELECT fb.*, CONCAT(user.FirstName,' ', user.LastName) as FullName, user.UserProfilePicture FROM favoriteandblocked as fb 
+            JOIN user 
+                ON user.UserId = fb.TargetUserId 
+            WHERE fb.UserId = $id";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($rows, $row);
+            }
+            return $rows;
+        }
     }
 
     // get all service request of this provider
@@ -213,10 +230,7 @@ class providerDashModel
     }
 
     // send mail to all the provider working in the area
-    // public function getAllServiceProviderToMailModel()
-    // {
-    //     $sql = "SELECT * FROM";
-    // }
+    
 
     // cancel service request from service provider Upcoming service page
     public function cancelServiceRequestModel()
@@ -236,4 +250,15 @@ class providerDashModel
         $result = $this->conn->query($sql);
         return $result;
     }
+
+    // block customer
+    public function blockCustomerModel()
+    {
+        $spid = $_POST['spid'];
+        $cid = $_POST['cid'];
+        $bc = $_POST['bc'];
+        $sql = "UPDATE favoriteandblocked SET IsBlocked = $bc WHERE UserId = $spid AND TargetUserId = $cid";
+        return $this->conn->query($sql);
+    }
+    
 }

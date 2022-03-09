@@ -4,7 +4,7 @@
 
 <div class="container-fluid service-button pb-2 pt-3">
     <span class="service-history-head">
-        <div class="row">
+        <div class="row" style="display: none;">
             <div class="col ps-head">Payment Status</div>
             <div class="col">
                 <select class="form-select ph-col-select" aria-label="">

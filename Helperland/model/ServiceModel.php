@@ -98,8 +98,15 @@ class ServiceModel
                     WHERE favoriteandblocked.UserId = '$id'";
 
         $result = $this->conn->query($sql);
-        while ($row = $result->fetch_assoc()) {
-            array_push($rows, $row);
+        if($result->num_rows > 0){
+            while ($row = $result->fetch_assoc()) {
+                $uid = $row['UserId'];
+                $sql = "SELECT * FROM favoriteandblocked as fb WHERE fb.UserId = $uid AND fb.IsBlocked = 1";
+                $block = $this->conn->query($sql);
+                if($block->num_rows <= 0){
+                    array_push($rows, $row);
+                }
+            }
         }
         return $rows;
     }
@@ -126,8 +133,15 @@ class ServiceModel
                         ON fb.TargetUserId = u.UserId
                     WHERE u.ZipCode =  '$postal'";
         $res = $this->conn->query($sql);
-        while ($row = $res->fetch_assoc()) {
-            array_push($rows, $row);
+        if($res->num_rows > 0){
+            while ($row = $res->fetch_assoc()) {
+                $uid = $row['UserId'];
+                $sql = "SELECT * FROM favoriteandblocked as fb WHERE fb.UserId = $uid AND fb.IsBlocked = 1";
+                $block = $this->conn->query($sql);
+                if($block->num_rows <= 0){
+                    array_push($rows, $row);
+                }
+            }
         }
         return $rows;
     }

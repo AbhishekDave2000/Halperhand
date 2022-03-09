@@ -229,7 +229,6 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>
@@ -245,8 +244,9 @@
             <div class="modal-body">
                 <form action="" class="cancel-sr-form">
                     <input type="hidden" name="service-id" class="service-id-input">
+                    <input type="hidden" name="sp-email" class="service-pro-email">
                     <label for="form" class="cancel-form-label">Why you want to cancel the request?</label>
-                    <textarea name="Has-issue-text" class="form-control" aria-label="With textarea"></textarea>
+                    <textarea name="Has-issue-text" class="form-control Has-issue-text" aria-label="With textarea"></textarea>
                     <button type="submit" class="btn cancel-btn-modal">Cancel Now</button>
                 </form>
             </div>

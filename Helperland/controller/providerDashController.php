@@ -92,6 +92,12 @@ class providerDashController
         echo json_encode($result);
     }
 
+    // get Customer Data Fro Block Page
+    public function getCustomerBlockPage(){
+        $result = $this->model->getCustomerBlockPageModel();
+        echo json_encode($result);
+    }
+
     // accept service request from new service request page
     public function acceptServiceRequest()
     {
@@ -161,4 +167,13 @@ class providerDashController
         $result = $this->model->completeServiceRequestModel();
         echo $result;
     }
+
+    // Block Customer
+    public function blockCustomer(){
+        if($_POST['bc'] == 1){ $_POST['bc'] = 0; }
+        else if($_POST['bc'] == 0){ $_POST['bc'] = 1; }
+        $result = $this->model->blockCustomerModel();
+        echo $result;
+    }
+    
 }

@@ -43,6 +43,12 @@ class customerDashController
     public function cancelServiceRequest()
     {
         $result = $this->model->cancelServiceRequestModel($_POST);
+        $SPEmail = $_POST['sp-email'];
+        if ($result) {
+            $html = "<span>Cancled Service Id :{$_POST['service-id']}</span><br>
+                        <span>Reason for Canceling: {$_POST['Has-issue-text']}</span>";
+            sendmail($SPEmail, 'Customer\'s Service has been Cancled!', $html);
+        }
         print_r($result);
     }
 

@@ -325,6 +325,10 @@ table thead{
     flex-direction: column;
     align-items: center;
 }
+/* .avtar-fav-pro-card img{
+    width: 100%;
+    height: 100%;
+} */
 /* #complete-serreq-btn-row{
     display: none;
 } */
@@ -435,7 +439,8 @@ table thead{
     flex-wrap: wrap;
 }
 .fav-pro-card{
-    width: 300px;
+    width: 240px;
+    margin: 10px;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -456,8 +461,8 @@ table thead{
     justify-content: center;
 }
 .avtar-fav-pro-card img{
-    height: 27px;
-    width: 37px;
+    width: 70px;
+    height: 70px;
 }
 .fav-pro-card .row span{
     color: #646464; 
@@ -474,7 +479,7 @@ table thead{
     width: fit-content;
 }
 .block-fav-pro-btn,.block-fav-pro-btn:hover{
-    background-color: #ff6b6b;
+    /* background-color: #ff6b6b; */
     color: white;
     padding: 3px 15px;
     font-size: 17px;
@@ -483,6 +488,12 @@ table thead{
     justify-content: center;
     align-items: center;
     width: fit-content;
+}
+.unblock-btn{
+    background-color: #1D7A8C;
+}
+.block-btn{
+    background-color: #ff6b6b;
 }
 /* block customer end */
 

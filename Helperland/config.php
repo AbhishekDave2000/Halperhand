@@ -15,7 +15,7 @@ class Config{
     /*------------- FOR SMTP --------------*/
     const SMTP_HOST = "smtp.gmail.com";
     const SMTP_EMAIL = "abhishekweb2108@gmail.com";
-    const SMTP_PASS = "";
+    const SMTP_PASS = "abhishek2108!";
     const ADMIN_EMAIL = "abhishekweb2108@gmail.com";
     // abhishek2108!
     /*-------------Contact US ------------*/

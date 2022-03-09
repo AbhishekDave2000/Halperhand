@@ -110,19 +110,19 @@ $(document).ready(function () {
             }
         });
     });
-    $('#sp-upcoming-service').on('click','#complete-serreq-btn-row',function(e){
+    $('#sp-upcoming-service').on('click', '#complete-serreq-btn-row', function (e) {
         const usr = $(e.target).closest('tr').find("input").val().split(',');
         var srid = usr[0];
         $.ajax({
-            url : url + '?controller=providerDash&function=completeServiceRequest',
-            type : 'post',
-            data : {
-                id : srid
+            url: url + '?controller=providerDash&function=completeServiceRequest',
+            type: 'post',
+            data: {
+                id: srid
             },
-            success : function (result){
-                if(result == 1){
+            success: function (result) {
+                if (result == 1) {
                     getUpcomingServiceDetail();
-                }else {
+                } else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -161,6 +161,34 @@ $(document).ready(function () {
     });
     // Service Provider Rating page end
 
+    // Block Customer page start
+    $('#sp-cblock').ready(function () {
+        getCustomerBlockPage();
+    });
+    $('#sp-cblock').on("click", ".block-fav-pro-btn", function (e) {
+        const blockCus = $(e.target).closest('tr').find("input").val().split(',');
+        var cid = blockCus[2];
+        var spid = blockCus[1];
+        var bc = blockCus[4];
+        $.ajax({
+            url: url + '?controller=providerDash&function=blockCustomer',
+            type: 'post',
+            data: {
+                cid: cid,
+                spid: spid,
+                bc: bc
+            },
+            success: function (result) {
+                if (result) {
+                    getCustomerBlockPage();
+                } else {
+                    alert('Something went Wrong!');
+                }
+            }
+        });
+    });
+    // Block Customer page end
+
     function getServiceRequestDetail() {
         $.ajax({
             url: url + '?controller=providerDash&function=getServiceRequestData',
@@ -174,8 +202,9 @@ $(document).ready(function () {
                     showNewServiceReq(data);
                 } else {
                     var table = $('#sp-ns-table').DataTable();
-                    table.draw().clear();
+                    table.clear().draw();
                 }
+
             }
         });
     }
@@ -219,6 +248,26 @@ $(document).ready(function () {
         });
     }
 
+    function getCustomerBlockPage() {
+        $.ajax({
+            url: url + '?controller=providerDash&function=getCustomerBlockPage',
+            type: 'post',
+            data: {
+                spid: spid
+            },
+            success: function (result) {
+                // console.log(result);
+                if (result.length != 0) {
+                    var data = JSON.parse(result);
+                    showBlockCustomerData(data);
+                } else {
+                    var SPCBlockTable = $('#sp-cblock').DataTable();
+                    SPCBlockTable.clear().draw();
+                }
+            }
+        });
+    }
+
     function showUpcomingService(data) {
         var myTable = $('#sp-upcoming-service').DataTable();
         myTable.clear().draw();
@@ -248,7 +297,7 @@ $(document).ready(function () {
                         <button class="btn btn-rounded-17" id="cancel-serreq-btn" value="Cancel">Cancel</button>
                     </td>`
             )).draw();
-            if(today > endDate){
+            if (today > endDate) {
                 $('#complete-serreq-btn-row').show();
             }
             // setInterval(function () {
@@ -282,6 +331,7 @@ $(document).ready(function () {
                     <td data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel" style="font-size:18px;">`+ dt.TotalCost + ` <i class="fa-solid fa-euro-sign"></i></td> 
                     <td data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel"></td> 
                     <td><button class="btn btn-rounded-17 accept-sr-btn no-modal" value="1">Accept</button></td> 
+                    <td  style="display: none;">`+ dt.HasPets + `</td>
                 </tr>`
             )).draw();
         });
@@ -386,6 +436,43 @@ $(document).ready(function () {
                     </td>
                 </tr>`
             )).draw();
+        });
+    }
+
+    function showBlockCustomerData(data) {
+        var SPCBlockTable = $('#sp-cblock').DataTable();
+        SPCBlockTable.clear().draw();
+
+        data.forEach(function (dt) {
+            SPCBlockTable.row.add($(
+                `<tr>
+                    <td>
+                        <input type="hidden" value="`+ jsontoArray(dt) + `">
+                        <div class="card fav-pro-card pb-4 m-4">
+                            <div class="row pb-2 pt-4">
+                                <div class="avtar-fav-pro-card">
+                                    <img src="assets/Img/assets/avatar-1.png" alt="avatar" srcset="">
+                                </div>
+                            </div>
+                            <div class="row pt-3">
+                                <span style=" font-size: 18px; font-weight:500;">`+ dt.FullName + `</span>
+                            </div>
+                            <div class="row pt-3">
+                                <button type="submit" value="block" name="block" class="btn block-fav-pro-btn ml-2"></button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>`
+            )).draw();
+            if (dt.IsBlocked == 1) {
+                $('.block-fav-pro-btn').html("Unblock");
+                $('.block-fav-pro-btn').addClass('unblock-btn');
+                $('.block-fav-pro-btn').removeClass('block-btn');
+            } else {
+                $('.block-fav-pro-btn').html("Block");
+                $('.block-fav-pro-btn').removeClass('unblock-btn');
+                $('.block-fav-pro-btn').addClass('block-btn');
+            }
         });
     }
 
