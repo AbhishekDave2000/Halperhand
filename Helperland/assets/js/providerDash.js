@@ -75,11 +75,12 @@ $(document).ready(function () {
         $('.Cancel-btn,.Reschedule-btn').hide();
         $('#complete-cancel').modal('show');
         $('.accept-btn').click(function () {
-            acceptServiceRequest(e);
+            acceptServiceRequest(nsr);
         });
     });
     $('#sp-ns-table').on("click", ".accept-sr-btn", function (e) {
-        acceptServiceRequest(e);
+        const nsr = $(e.target).closest('tr').find("input").val().split(',');
+        acceptServiceRequest(nsr);
     });
     // New Service Request Operations End
 
@@ -92,45 +93,20 @@ $(document).ready(function () {
         setUCSRModalDetail(usr);
         $('.accept-btn').hide();
         $('#complete-cancel').modal('show');
-    });
-    $('#sp-upcoming-service').on("click", "#cancel-serreq-btn", function (e) {
-        const usr = $(e.target).closest('tr').find("input").val().split(',');
-        $.ajax({
-            url: url + "?controller=providerDash&function=cancelServiceRequest",
-            type: 'post',
-            data: {
-                data: usr
-            },
-            success: function (result) {
-                if (result == 1) {
-                    getUpcomingServiceDetail();
-                } else {
-                    $("#myElem").fadeIn('slow').delay(2500).fadeOut('slow');
-                }
-            }
+        $('html').on('click', '#cancel-serreq-btn', function () {
+            cancelServiceRequest(usr);
         });
+        $('html').on("click",'#complete-serreq-btn',function(){
+            completeServiceRequest(usr);
+        });
+    });
+    $('#sp-upcoming-service').on("click", ".Cancel-btn", function (e) {
+        const usr = $(e.target).closest('tr').find("input").val().split(',');
+        cancelServiceRequest(usr);
     });
     $('#sp-upcoming-service').on('click', '#complete-serreq-btn-row', function (e) {
         const usr = $(e.target).closest('tr').find("input").val().split(',');
-        var srid = usr[0];
-        $.ajax({
-            url: url + '?controller=providerDash&function=completeServiceRequest',
-            type: 'post',
-            data: {
-                id: srid
-            },
-            success: function (result) {
-                if (result == 1) {
-                    getUpcomingServiceDetail();
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something wnet Wrong! Try agian!'
-                    });
-                }
-            }
-        });
+        completeServiceRequest(usr);
     });
     // Upcoming Service Request End
 
@@ -282,8 +258,8 @@ $(document).ready(function () {
             var btnhtml = '';
             if (today < endDate) {
                 btnhtml = '';
-            }else{
-                btnhtml = `<button type="button" class="btn Reschedule-btn complete-serreq-btn-row m-1" id="complete-serreq-btn-row"><i class="fa fa-check"></i> Complete</button>`;            
+            } else {
+                btnhtml = `<button type="button" class="btn Reschedule-btn complete-serreq-btn-row m-1" id="complete-serreq-btn-row"><i class="fa fa-check"></i> Complete</button>`;
             }
             myTable.row.add($(
                 `<tr>
@@ -298,8 +274,8 @@ $(document).ready(function () {
                     </td>
                     <td>15km</td>
                     <td class="UCSCAC-btn">
-                    `+ btnhtml +`
-                        <button class="btn btn-rounded-17" id="cancel-serreq-btn" value="Cancel">Cancel</button>
+                    `+ btnhtml + `
+                        <button class="btn btn-rounded-17 Cancel-btn cancel-serreq-btn`+ dt.ServiceRequestId + `" id="cancel-serreq-btn" value="Cancel">Cancel</button>
                     </td>`
             )).draw();
         });
@@ -327,7 +303,7 @@ $(document).ready(function () {
                     </td> 
                     <td data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel" style="font-size:18px;">`+ dt.TotalCost + ` <i class="fa-solid fa-euro-sign"></i></td> 
                     <td data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel"></td> 
-                    <td><button class="btn btn-rounded-17 accept-sr-btn no-modal" value="1">Accept</button></td> 
+                    <td><button class="btn btn-rounded-17 accept-sr-btn accept-sr-btn`+dt.ServiceRequestId+`" value="1">Accept</button></td> 
                 </tr>`
             )).draw();
         });
@@ -510,6 +486,7 @@ $(document).ready(function () {
     }
 
     function setUCSRModalDetail(data) {
+        $('.Cancel-btn').addClass('.cancel-serreq-btn' + data[0]);
         $('#complete-serreq-btn').hide();
         starttime = data[1].substr(11, 5);
         endtime = (parseFloat(starttime.replace(':', '.').replace('3', '5')) + parseFloat(data[5])).toString().replace('.5', ':30').replace('.', ':');
@@ -546,19 +523,15 @@ $(document).ready(function () {
             $('.nhpets').hide();
         }
         $('.gmap_canvas').html('<iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=11 ' + address + '&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>');
-        // if (compareServiceReqTime(data)) {
-        //     $('#complete-serreq-btn').show();
-        // }
         var today = new Date();
         var endDate = new Date(enddatetime);
         if (today > endDate) {
             $('#complete-serreq-btn').show();
         }
-        // $('#complete-serreq-btn').show();
     }
 
-    function acceptServiceRequest(e) {
-        const nsr = $(e.target).closest('tr').find("input").val().split(',');
+    function acceptServiceRequest(nsr) {
+        $('.accept-sr-btn'+nsr[0]).attr('disabled', true).html('Wait!...');
         $.ajax({
             url: url + '?controller=providerDash&function=acceptServiceRequest',
             type: 'post',
@@ -566,6 +539,7 @@ $(document).ready(function () {
                 data: nsr
             },
             success: function (result) {
+                $('.accept-sr-btn'+nsr[0]).attr('disabled', false).html('Accept');
                 if (result == 1) {
                     getServiceRequestDetail();
                 } else if (result == 0) {
@@ -590,8 +564,54 @@ $(document).ready(function () {
                         });
                     }
                 }
+                // console.log(result);
             }
         });
+    }
+
+    function cancelServiceRequest(usr) {
+        var btn = $('.cancel-serreq-btn' + usr[0]);
+        btn.attr('disabled', true).html('Wait! ...');
+        $.ajax({
+            url: url + "?controller=providerDash&function=cancelServiceRequest",
+            type: 'post',
+            data: {
+                data: usr
+            },
+            success: function (result) {
+                btn.attr('disabled', false).html('Cancel');
+                if (result == 1) {
+                    getUpcomingServiceDetail();
+                } else {
+                    $("#myElem").fadeIn('slow').delay(2500).fadeOut('slow');
+                }
+            }
+        });
+    }
+
+    function completeServiceRequest(usr){
+        var srid = usr[0];
+        var cid = usr[27];
+        $.ajax({
+            url: url + '?controller=providerDash&function=completeServiceRequest',
+            type: 'post',
+            data: {
+                id: srid,
+                cid : cid
+            },
+            success: function (result) {
+                if (result == 1) {
+                    getUpcomingServiceDetail();
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something wnet Wrong! Try agian!'
+                    });
+                }
+            }
+        });
+        // console.log(usr);
     }
 
     function setMyDetailSet() {

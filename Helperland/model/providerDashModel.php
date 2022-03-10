@@ -122,7 +122,7 @@ class providerDashModel
         $spid = $_POST['spid'];
         $sql = "SELECT sr.ServiceRequestId,sr.ServiceStartDate,sr.ZipCode,sr.ServiceHours,sr.ExtraHours,sr.SubTotal,sr.Discount,sr.TotalCost,sr.Comments,
                         sr.ServiceProviderId,sr.JobStatus,sr.HasPets,sr.Status,sr.CreatedDate,sr.Distance,sr.HasIssue,sra.AddressLine1,sra.AddressLine2,sra.City,sra.State,
-                        sra.Mobile,sra.Email,sre.ServiceExtraId,u.FirstName as CFName, u.LastName as CLName,u.Gender,u.UserProfilePicture FROM servicerequest as sr
+                        sra.Mobile,sra.Email,sre.ServiceExtraId,u.FirstName as CFName, u.LastName as CLName,u.Gender,u.UserProfilePicture,sr.UserId as CustomerId FROM servicerequest as sr
                 JOIN servicerequestaddress as sra
                     ON sr.ServiceRequestId = sra.ServiceRequestId
                 JOIN servicerequestextra as sre
@@ -213,7 +213,7 @@ class providerDashModel
             while ($row = $result->fetch_assoc()) {
                 array_push($rows, $row);
             }
-        } 
+        }
         return $rows;
     }
 
@@ -227,9 +227,6 @@ class providerDashModel
         return $result;
     }
 
-    // send mail to all the provider working in the area
-
-
     // cancel service request from service provider Upcoming service page
     public function cancelServiceRequestModel()
     {
@@ -239,14 +236,39 @@ class providerDashModel
         return $result;
     }
 
+    // send mail to all the provider working in the area
+    public function sendMailToProvidersModel($postal)
+    {
+        $rows = array();
+        $spid = $_POST['spid'];
+        $sql = "SELECT Email From user WHERE UserId != $spid AND UserTypeId = 2 AND ZipCode = '$postal' ";
+        $result = $this->conn->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
+
     // complete service request from service provider Upcoming service page
     public function completeServiceRequestModel()
     {
         $id = $_POST['id'];
         $spid = $_POST['SPid'];
+        $cid = $_POST['cid'];
         $sql = "UPDATE servicerequest as sr SET sr.ServiceProviderId = $spid ,sr.Status = 4 WHERE sr.ServiceRequestId = $id ";
         $result = $this->conn->query($sql);
+        $this->addFavAndBlock($cid,$spid);
+        $this->addFavAndBlock($spid,$cid);
         return $result;
+    }
+
+    public function addFavAndBlock($id1,$id2){
+        $sql = "SELECT * FROM favoriteandblocked as fb WHERE fb.UserId = $id1 AND fb.TargetUserId = $id2";
+        $ccount = $this->conn->query($sql);
+        if($ccount->num_rows < 1){
+            $sql = "INSERT INTO favoriteandblocked(UserId, TargetUserId, IsFavorite, IsBlocked) VALUES ($id1,$id2,0,0)";
+            $this->conn->query($sql); 
+        }
     }
 
     // block customer

@@ -1,6 +1,6 @@
+<?php include('view/includes/sessionCheck.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
-
 
 <head>
     <meta charset="UTF-8">

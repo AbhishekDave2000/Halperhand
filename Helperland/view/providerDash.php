@@ -1,3 +1,4 @@
+<?php include('view/includes/sessionCheck.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 

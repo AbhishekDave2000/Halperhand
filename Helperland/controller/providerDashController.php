@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("model/providerDashModel.php");
+include("controller/phpmailer/mail.php");
 include("controller/validation/userValidator.php");
 include("controller/validation/myDetailValidation.php");
 class providerDashController
@@ -118,7 +119,6 @@ class providerDashController
         $_POST['srid'] = $_POST['data'][0];
         $res = $this->model->checkServiceRequestModel();
         if (!empty($res)) {
-
             foreach ($res as $val) {
                 $status = 0;
                 $ASST = floatval(str_replace(':', '.', str_replace(':3', '.5', substr($val['ServiceStartDate'], 11, 5))));
@@ -147,32 +147,58 @@ class providerDashController
             }
             if ($status == 1) {
                 $result = $this->model->acceptServiceRequestModel();
-                echo $result;
-                exit;
+                $mail = $this->getAllServiceProviderToMail('accepted');
+                if ($mail == 1) {
+                    echo $result;
+                    exit;
+                }
             }
         } else if (empty($res)) {
             $result = $this->model->acceptServiceRequestModel();
-            echo $result;
-            exit;
+            $mail = $this->getAllServiceProviderToMail('accepted');
+            if ($mail == 1) {
+                echo $result;
+                exit;
+            }
         } else {
             echo 0;
             exit;
         }
     }
 
-    // send mail to all the provider working in the area
-    public function getAllServiceProviderToMail()
-    {
-        $spid = $_SESSION['user']['UserId'];
-        // return $this->model->getAllServiceProviderToMailModel($spid);
-    }
-
     // cancel Service Request from Upcoming services page
     public function cancelServiceRequest()
     {
         $_POST['srid'] = $_POST['data'][0];
+        $_POST['spid'] = $_SESSION['user']['UserId'];
         $result = $this->model->cancelServiceRequestModel();
-        echo $result;
+        $mail = $this->getAllServiceProviderToMail('canceled');
+        if ($mail == 1) {
+            echo $result;
+        }
+    }
+
+    // send mail to all the provider working in the area
+    public function getAllServiceProviderToMail($status)
+    {
+        $SP_mail = $this->model->sendMailToProvidersModel($_POST['data'][2]);
+        if (count($SP_mail) > 0) {
+            $mailhtml = 'There is some problem in mail!';
+            foreach ($SP_mail as $sp) {
+                switch ($status) {
+                    case 'accepted':
+                        $mailsub = 'Service has been Accepted!';
+                        $mailhtml = '<span>The Service with Service Id : <u><strong>' . $_POST['srid'] . '</strong></u> Has been <strong>accepted</strong> by other service provider and it is <b style="color:red;">no more available!</b></span>';
+                        break;
+                    case 'canceled':
+                        $mailsub = 'Service has been Canceled!';
+                        $mailhtml = '<span>The Service with Service Id : <u><strong>' . $_POST['srid'] . '</strong></u> Has been <strong>canceled</strong> by other service provider and it is <b style="color:green;">available!</b></span>';
+                        break;
+                }
+                sendmail($sp['Email'],$mailsub, $mailhtml);
+            }
+            return 1;
+        }
     }
 
     // complete service request if completed
