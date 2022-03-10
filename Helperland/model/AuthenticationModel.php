@@ -17,22 +17,20 @@ class AuthenticationModel
         $email = trim($this->data['Email']);
         $password = trim($this->data['Password']);
 
-        $sql = "SELECT * FROM user WHERE Email = '$email' 
-                                   AND Password = '$password'";
-
+        $sql = "SELECT * FROM user WHERE Email = '$email'";
+        // AND Password = '$password'
         $result = $this->conn->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_assoc();
         }
     }
 
-    public function SignupModel()
+    public function SignupModel($password)
     {
         $firstname  = trim($this->data['firstname']);
         $lastname = trim($this->data['lastname']);
         $email = trim($this->data['email']);
         $phone = trim($this->data['phone']);
-        $password = trim($this->data['password']);
         $UserTypeId = $this->data['UserTypeId'];
         if ($UserTypeId == 1) {
             $approved = 1;

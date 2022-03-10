@@ -1,5 +1,7 @@
 $(document).ready(function () {
+    
     var url = 'http://localhost/Halperhand/Helperland/';
+
     $('#submit').click(function () {
 
         var firstname = $('#firstname').val();
@@ -218,4 +220,5 @@ $(document).ready(function () {
             return false;
         }
     }
+
 });

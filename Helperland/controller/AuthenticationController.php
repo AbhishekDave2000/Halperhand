@@ -24,7 +24,7 @@ class AuthenticationController
             echo "Email or Password is not valid!";
         } else {
             $email = $_POST['Email'];
-            $pass = $_POST['Password'];
+            $pass = trim($_POST['Password']);
             if (isset($_POST['check'])) {
                 $check = $_POST['check'];
             } else {
@@ -32,7 +32,7 @@ class AuthenticationController
             }
             $result = $this->auth->LoginModel();
             if ($result) {
-                if ($result['Email'] == $email && $result['Password'] == $pass) {
+                if ($result['Email'] == $email && password_verify($pass, $result['Password'])) {
                     if ($result['UserTypeId'] == 1 || $result['UserTypeId'] == 2 && $result['IsApproved'] == 1) {
                         $_SESSION['user'] = $result;
                         if ($check == 1) {
@@ -44,6 +44,8 @@ class AuthenticationController
                     } else {
                         echo 2;
                     }
+                } else {
+                    echo 'Not happening';
                 }
             } else {
                 echo 3;
@@ -54,27 +56,22 @@ class AuthenticationController
     //user signup controller
     public function Signup()
     {
-        if (isset($_POST['register'])) {
-            //validate data
-            $validate = new userValidator($_POST);
-            $errors = $validate->Validator();
-            if (!count($errors) > 0) {
-                // insert data
-                $result = $this->auth->SignupModel();
-                if ($result) {
-                    header("Location: " . Config::base_url . '?controller=Default&function=homepage');
-                    exit;
-                } else {
-                    echo "fail";
-                    exit;
-                }
-            } else {
-                header("Location: errors.php?error=something went wrong with validation of form");
+        // validate data
+        $validate = new userValidator($_POST);
+        $errors = $validate->Validator();
+        if (!count($errors) > 0) {
+            $_POST['pass'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            // insert data
+            $result = $this->auth->SignupModel($_POST['pass']);
+            if ($result) {
+                header("Location: " . Config::base_url . '?controller=Default&function=homepage');
                 exit;
             }
+        } else {
+            header("Location: errors.php?error=something went wrong with validation of form");
+            exit;
         }
     }
-
 
     //forgot password
     public function forgotPassword()
@@ -98,7 +95,6 @@ class AuthenticationController
             echo 2;
         }
     }
-
 
     //password set function
     public function setPass($id)
