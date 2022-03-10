@@ -2,7 +2,7 @@
     <span class="upcoming-heading">Service History</span>
 </div>
 
-<div class="container-fluid service-button pb-2 pt-3">
+<!-- <div class="container-fluid service-button pb-2 pt-3">
     <span class="service-history-head">
         <div class="row">
             <div class="col ps-head">Payment Status</div>
@@ -23,13 +23,36 @@
             <button class="btn" style="padding:0;"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
         </span>
     </span>
-</div>
+</div> -->
 
 <div class="data-of-myrating container-fluid">
     <table id="sp-myratings" class="table-data" style="width:100%; border:0; border-collapse: separate;">
-        <thead style="display: none;">
+        <thead class="my-rating-thead">
             <tr>
-                <th></th>
+                <th>
+                    <div class="container-fluid service-button pb-2 pt-3">
+                        <span class="service-history-head">
+                            <div class="row">
+                                <div class="col ps-head">Payment Status</div>
+                                <div class="col">
+                                    <select class="form-select ph-col-select" aria-label="">
+                                        <option selected>All</option>
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </span>
+
+                        <span>
+                            <span class="sorting-text pr-1">Sorting</span>
+                            <span class="sorting-logo">
+                                <button class="btn" style="padding:0;"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
+                            </span>
+                        </span>
+                    </div>
+                </th>
             </tr>
         </thead>
         <tbody>

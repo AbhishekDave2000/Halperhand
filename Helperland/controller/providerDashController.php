@@ -103,8 +103,7 @@ class providerDashController
     public function acceptServiceRequest()
     {
         $st = $_POST['data'][1];
-        $stsr = new DateTime($st);
-        $newSST = floatval(str_replace('30', '5', str_replace(':', '.', substr($_POST['data'][1], 11, 5))));
+        $newSST = floatval(str_replace(':', '.', str_replace(':3', '.5', substr($_POST['data'][1], 11, 5))));
         $newSET = str_replace('.', ':', str_replace('.5', ':30', ($newSST + floatval($_POST['data'][5]) + 1)));
         if (strlen($newSET) == 2) {
             $newSET = $newSET . ":00";
@@ -113,13 +112,16 @@ class providerDashController
         }
         $newSEDT = substr($_POST['data'][1], 0, 10) . " " . $newSET . ":00.000";
         $newSEDT = new DateTime($newSEDT);
-        
+        $stsr = new DateTime($st);
+
         $_POST['spid'] = $_SESSION['user']['UserId'];
         $_POST['srid'] = $_POST['data'][0];
         $res = $this->model->checkServiceRequestModel();
         if (!empty($res)) {
+
             foreach ($res as $val) {
-                $ASST = floatval(str_replace('30', '5', str_replace(':', '.', substr($val['ServiceStartDate'], 11, 5))));
+                $status = 0;
+                $ASST = floatval(str_replace(':', '.', str_replace(':3', '.5', substr($val['ServiceStartDate'], 11, 5))));
                 $ASET = str_replace('.', ':', str_replace('.5', ':30', (1 + $ASST + floatval($val['SubTotal']))));
                 if (strlen($ASET) == 2) {
                     $ASET = $ASET . ":00";
@@ -130,19 +132,31 @@ class providerDashController
                 $startdatetime = $val['ServiceStartDate'];
                 $sdt = new DateTime($startdatetime);
                 $edt = new DateTime($enddatetime);
-                if ($stsr >= $edt || $sdt >= $newSEDT) {
-                    $result = $this->model->acceptServiceRequestModel();
-                    echo $result;
+                $asd = date_create(substr($val['ServiceStartDate'], 0, 10));
+                $nsd = date_create(substr($_POST['data'][1], 0, 10));
+                if ($asd == $nsd) {
+                    if ($stsr > $edt || $sdt > $newSEDT) {
+                        $status = 1;
+                    } else {
+                        echo json_encode($val);
+                        exit;
+                    }
                 } else {
-                    echo json_encode($val);
-                    exit;
+                    $status = 1;
                 }
             }
-        } else if(empty($res)){
+            if ($status == 1) {
+                $result = $this->model->acceptServiceRequestModel();
+                echo $result;
+                exit;
+            }
+        } else if (empty($res)) {
             $result = $this->model->acceptServiceRequestModel();
             echo $result;
-        } else{
+            exit;
+        } else {
             echo 0;
+            exit;
         }
     }
 

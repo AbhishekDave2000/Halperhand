@@ -431,6 +431,12 @@ table thead{
 .data-mr-row .col{
     min-width: 230px;
 }
+.my-rating-thead{
+    background-color: white;
+}
+th.sorting{
+    border-bottom: 0 !important;
+}
 /* my ratings end */
 
 /* block customer */
@@ -962,4 +968,10 @@ table thead{
 }
 .dataTables_wrapper .dataTables_length select {
     color: black;
+}
+table.dataTable thead .sorting_asc ,table.dataTable thead .sorting_desc{    
+    background-image: none !important;
+}
+table.dataTable thead .sorting {
+    background-image: none;
 }

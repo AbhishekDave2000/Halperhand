@@ -271,7 +271,7 @@ $(document).ready(function () {
         var myTable = $('#sp-upcoming-service').DataTable();
         myTable.clear().draw();
         data.forEach(function (dt) {
-            var starttime = dt.ServiceStartDate.substr(11, 5).replace(':', '.').replace('3', '5');
+            var starttime = dt.ServiceStartDate.substr(11, 5).replace(':3', '.5').replace(':', '.');
             var endtotal = parseFloat(starttime) + parseFloat(dt.SubTotal);
             var endtime = endtotal.toString().replace('.5', ':30').replace('.', ':');
             if (endtime.length == 2) { endtime = endtime + ":00"; }
@@ -279,8 +279,11 @@ $(document).ready(function () {
             var ED = dt.ServiceStartDate.substr(0, 10) + ' ' + endtime;
             var endDate = new Date(ED);
             var today = new Date();
-            if (today > endDate) {
-                $('#complete-serreq-btn-row').show();
+            var btnhtml = '';
+            if (today < endDate) {
+                btnhtml = '';
+            }else{
+                btnhtml = `<button type="button" class="btn Reschedule-btn complete-serreq-btn-row m-1" id="complete-serreq-btn-row"><i class="fa fa-check"></i> Complete</button>`;            
             }
             myTable.row.add($(
                 `<tr>
@@ -295,16 +298,10 @@ $(document).ready(function () {
                     </td>
                     <td>15km</td>
                     <td class="UCSCAC-btn">
-                        <button type="button" style="display:none;" class="btn Reschedule-btn m-1" id="complete-serreq-btn-row"><i class="fa fa-check"></i> Complete</button>
+                    `+ btnhtml +`
                         <button class="btn btn-rounded-17" id="cancel-serreq-btn" value="Cancel">Cancel</button>
                     </td>`
             )).draw();
-
-            // setInterval(function () {
-            //     if(today > endDate){
-            //         $('#complete-serreq-btn-row').show();
-            //     }
-            // }, 1000);
         });
     }
 
@@ -312,7 +309,7 @@ $(document).ready(function () {
         var table = $('#sp-ns-table').DataTable();
         table.clear().draw();
         data.forEach(function (dt) {
-            var starttime = dt.ServiceStartDate.substr(11, 5).replace(':', '.').replace('3', '5');
+            var starttime = dt.ServiceStartDate.substr(11, 5).replace(':3', '.5').replace(':', '.');
             var endtotal = parseFloat(starttime) + parseFloat(dt.SubTotal);
             var endtime = endtotal.toString().replace('.5', ':30').replace('.', ':');
             if (endtime.length <= 2) { endtime = endtime + ":00"; }
