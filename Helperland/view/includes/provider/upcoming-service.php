@@ -25,7 +25,7 @@
                 <img src="assets/Img/spupcoming/layer-15.png" alt=""> Musterstrabe 5,12345 Bonn
             </td>
             <td class="servicedistance">15km</td>
-            <td class="serviceaction"><button class="btn btn-danger btn-rounded-17" value="Cancel">Cancel</button></td> -->
-        </tr>
+            <td class="serviceaction"><button class="btn btn-danger btn-rounded-17" value="Cancel">Cancel</button></td>
+        </tr> -->
     </tbody>
 </table>

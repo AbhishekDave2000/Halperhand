@@ -37,8 +37,8 @@ class AuthenticationModel
         } elseif ($UserTypeId == 2) {
             $approved = 0;
         }
-        $sql = "INSERT INTO user (FirstName,LastName,Email,Password,Mobile, UserTypeId, CreatedDate, IsApproved) 
-                            VALUES ('$firstname' , '$lastname', '$email','$password', '$phone', $UserTypeId, now(), $approved)";
+        $sql = "INSERT INTO user (FirstName,LastName,Email,Password,Mobile, UserTypeId, CreatedDate, IsApproved, UserProfilePicture) 
+                            VALUES ('$firstname' , '$lastname', '$email','$password', '$phone', $UserTypeId, now(), $approved, 1)";
 
         $result = $this->conn->query($sql);
         return $result;

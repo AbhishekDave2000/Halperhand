@@ -13,11 +13,7 @@ class providerDashModel
     public function getMySettingDataModel()
     {
         $spid = $_POST['spid'];
-        $sql = "SELECT u.UserId,u.FirstName,u.LastName,u.Email,u.Mobile,u.Gender,u.DateOfBirth,u.UserProfilePicture,u.ZipCode,u.WorksWithPets,u.LanguageId,u.NationalityId,u.CreatedDate,u.ModifiedDate,ua.AddressId,ua.AddressLine1,ua.AddressLine2,ua.City,ua.State,ua.PostalCode,s.StateName,c.CityName FROM user as u
-                LEFT JOIN useraddress as ua ON u.UserId = ua.UserId
-                JOIN ZipCode as zc ON u.ZipCode = zc.ZipcodeValue
-                JOIN city as c  ON c.Id = zc.CityId
-                JOIN state as s  ON s.Id = c.StateId
+        $sql = "SELECT u.UserId,u.FirstName,u.LastName,u.Email,u.Mobile,u.Gender,u.DateOfBirth,u.UserProfilePicture,u.ZipCode,u.WorksWithPets,u.LanguageId,u.NationalityId,u.CreatedDate,u.ModifiedDate FROM user as u
                 WHERE u.UserId = $spid";
         $result = $this->conn->query($sql);
         if ($result->num_rows > 0) {
@@ -257,17 +253,18 @@ class providerDashModel
         $cid = $_POST['cid'];
         $sql = "UPDATE servicerequest as sr SET sr.ServiceProviderId = $spid ,sr.Status = 4 WHERE sr.ServiceRequestId = $id ";
         $result = $this->conn->query($sql);
-        $this->addFavAndBlock($cid,$spid);
-        $this->addFavAndBlock($spid,$cid);
+        $this->addFavAndBlock($cid, $spid);
+        $this->addFavAndBlock($spid, $cid);
         return $result;
     }
 
-    public function addFavAndBlock($id1,$id2){
+    public function addFavAndBlock($id1, $id2)
+    {
         $sql = "SELECT * FROM favoriteandblocked as fb WHERE fb.UserId = $id1 AND fb.TargetUserId = $id2";
         $ccount = $this->conn->query($sql);
-        if($ccount->num_rows < 1){
+        if ($ccount->num_rows < 1) {
             $sql = "INSERT INTO favoriteandblocked(UserId, TargetUserId, IsFavorite, IsBlocked) VALUES ($id1,$id2,0,0)";
-            $this->conn->query($sql); 
+            $this->conn->query($sql);
         }
     }
 

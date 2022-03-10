@@ -96,7 +96,7 @@ $(document).ready(function () {
         $('html').on('click', '#cancel-serreq-btn', function () {
             cancelServiceRequest(usr);
         });
-        $('html').on("click",'#complete-serreq-btn',function(){
+        $('html').on("click", '#complete-serreq-btn', function () {
             completeServiceRequest(usr);
         });
     });
@@ -276,7 +276,8 @@ $(document).ready(function () {
                     <td class="UCSCAC-btn">
                     `+ btnhtml + `
                         <button class="btn btn-rounded-17 Cancel-btn cancel-serreq-btn`+ dt.ServiceRequestId + `" id="cancel-serreq-btn" value="Cancel">Cancel</button>
-                    </td>`
+                    </td>
+                </tr>`
             )).draw();
         });
     }
@@ -303,7 +304,7 @@ $(document).ready(function () {
                     </td> 
                     <td data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel" style="font-size:18px;">`+ dt.TotalCost + ` <i class="fa-solid fa-euro-sign"></i></td> 
                     <td data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#complete-cancel"></td> 
-                    <td><button class="btn btn-rounded-17 accept-sr-btn accept-sr-btn`+dt.ServiceRequestId+`" value="1">Accept</button></td> 
+                    <td><button class="btn btn-rounded-17 accept-sr-btn accept-sr-btn`+ dt.ServiceRequestId + `" value="1">Accept</button></td> 
                 </tr>`
             )).draw();
         });
@@ -531,7 +532,7 @@ $(document).ready(function () {
     }
 
     function acceptServiceRequest(nsr) {
-        $('.accept-sr-btn'+nsr[0]).attr('disabled', true).html('Wait!...');
+        $('.accept-sr-btn' + nsr[0]).attr('disabled', true).html('Wait!...');
         $.ajax({
             url: url + '?controller=providerDash&function=acceptServiceRequest',
             type: 'post',
@@ -539,7 +540,7 @@ $(document).ready(function () {
                 data: nsr
             },
             success: function (result) {
-                $('.accept-sr-btn'+nsr[0]).attr('disabled', false).html('Accept');
+                $('.accept-sr-btn' + nsr[0]).attr('disabled', false).html('Accept');
                 if (result == 1) {
                     getServiceRequestDetail();
                 } else if (result == 0) {
@@ -589,7 +590,7 @@ $(document).ready(function () {
         });
     }
 
-    function completeServiceRequest(usr){
+    function completeServiceRequest(usr) {
         var srid = usr[0];
         var cid = usr[27];
         $.ajax({
@@ -597,7 +598,7 @@ $(document).ready(function () {
             type: 'post',
             data: {
                 id: srid,
-                cid : cid
+                cid: cid
             },
             success: function (result) {
                 if (result == 1) {
@@ -622,41 +623,42 @@ $(document).ready(function () {
                 spid: spid
             },
             success: function (result) {
-                var myData = JSON.parse(result);
-                var res = jsontoArray(myData);
-                $('#sp-firstname').val(res[1]);
-                $('#sp-lastname').val(res[2]);
-                $('#sp-email').val(res[3]);
-                $('#sp-phone').val(res[4]);
-                if (res[6] != null) {
-                    $('#sp-dob-y').val(res[6].substr(0, 4));
-                    $('#sp-dob-m').val(res[6].substr(5, 2));
-                    $('#sp-dob-d').val(res[6].substr(8, 2));
+                var data = JSON.parse(result);
+                $('#sp-firstname').val(data.FirstName);
+                $('#sp-lastname').val(data.LastName);
+                $('#sp-email').val(data.Email);
+                $('#sp-phone').val(data.Mobile);
+                if (data.DateOfBirth != null) {
+                    $('#sp-dob-y').val(data.DateOfBirth.substr(0, 4));
+                    $('#sp-dob-m').val(data.DateOfBirth.substr(5, 2));
+                    $('#sp-dob-d').val(data.DateOfBirth.substr(8, 2));
                 }
-                if (res[11] != null) {
-                    $('#country').val(res[11]);
+                if (data.NationalityId != null) {
+                    $('#country').val(data.NationalityId);
                 }
-                if (res[5] != null) {
-                    $("input[name=gender][value=" + res[5] + "]").prop('checked', true);
+                if (data.Gender != null) {
+                    $("input[name=gender][value=" + data.Gender + "]").prop('checked', true);
                 } else {
                     $("input[name=gender][value=" + 1 + "]").prop('checked', true);
                 }
-                if (res[7] != null) {
-                    $("input[name=avatar-val][value=" + res[7] + "]").prop('checked', true);
+                var av = 1;
+                if (data.UserProfilePicture != null) {
+                    av = data.UserProfilePicture;
+                    $("input[name=avatar-val][value=" + data.UserProfilePicture + "]").prop('checked', true);
                 } else {
                     $("input[name=avatar-val][value=" + 1 + "]").prop('checked', true);
                 }
-                if (res[16] != null) {
-                    $('#streetname-id').val(res[16]);
+                if (data.AddressLine2 != null) {
+                    $('#streetname-id').val(data.AddressLine2);
                 }
-                if (res[15] != null) {
-                    $('#housename-id').val(res[15]);
+                if (data.AddressLine1 != null) {
+                    $('#housename-id').val(data.AddressLine1);
                 }
-                if (res[8] != null) {
-                    $('#postalcode-id').val(res[8]);
-                    findCityFromPostal(res[8]);
+                if (data.ZipCode != null) {
+                    $('#postalcode-id').val(data.ZipCode);
+                    findCityFromPostal(data.ZipCode);
                 }
-                $('.avatar-image-os-user').html(`<img src="assets/Img/assets/avatar-${res[7]}.png" alt="avatar" width="100%" height="100%">`);
+                $('.avatar-image-os-user').html(`<img src="assets/Img/assets/avatar-${av}.png" alt="avatar" width="100%" height="100%">`);
             }
         });
     }

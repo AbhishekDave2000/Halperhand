@@ -19,9 +19,11 @@ $(document).ready(function () {
             $('.my-setting-LN').val(detail.LastName);
             $('.my-setting-Email').val(detail.Email);
             $('.my-setting-Phone').val(detail.Mobile);
-            $('.my-setting-DOB-D').val(detail.DateOfBirth.substr(8, 2));
-            $('.my-setting-DOB-M').val(detail.DateOfBirth.substr(5, 2));
-            $('.my-setting-DOB-Y').val(detail.DateOfBirth.substr(0, 4));
+            if (detail.DateOfBirth != null) {
+                $('.my-setting-DOB-D').val(detail.DateOfBirth.substr(8, 2));
+                $('.my-setting-DOB-M').val(detail.DateOfBirth.substr(5, 2));
+                $('.my-setting-DOB-Y').val(detail.DateOfBirth.substr(0, 4));
+            }
             $('.my-setting-Language').val(detail.LanguageId);
         }
     });
@@ -71,7 +73,6 @@ $(document).ready(function () {
                         $('.cancel-btn-modal').attr("disabled", false).html("Cancel Now");
                         window.location.href = url + "?controller=Default&function=customerDash&parameter=dashboard";
                     }
-                    // console.log(result);
                 }
             });
             e.preventDefault();
@@ -111,7 +112,7 @@ $(document).ready(function () {
             $('.ratings-sp-no').text(rate);
         } else {
             $('.cap-div-avatar-modal').show();
-            $('.cap-div-avatar-modal').html('<img class="cap" src="assets/Img/assets/avatar-'+spd.UserProfilePicture+'.png" alt="cap">');
+            $('.cap-div-avatar-modal').html('<img class="cap" src="assets/Img/assets/avatar-' + spd.UserProfilePicture + '.png" alt="cap">');
             $('.sp_rating_name').val(spd.ServiceProviderId);
             $('.sp_service_id').val(spd.ServiceRequestId);
             $('.rating-submit-btn').attr('disabled', false);
@@ -342,7 +343,7 @@ $(document).ready(function () {
             var result = jsontoArray(dt);
             var rate = dt.AvarageRating;
             var or = 0;
-            var ratehtml,ratings,FullName = "";
+            var ratehtml, ratings, FullName = "";
             for (var i = 0; i < parseInt(rate); i++) {
                 ratehtml += `<i class="fas fa-star i-con"></i>`;
             }
@@ -359,34 +360,34 @@ $(document).ready(function () {
             for (var i = 5; i > (parseInt(rate) + or); i--) {
                 ratehtml += `<i class="fas fa-star i-con-e"></i>`;
             }
-            if(dt.AvarageRating != null){
+            if (dt.AvarageRating != null) {
                 ratings = dt.AvarageRating.substring(0, 4);
-            }if(dt.FullName != null){
+            } if (dt.FullName != null) {
                 FullName = dt.FullName;
             }
             table.row.add($(
-                            '<tr class="m-2" style="border: none !important;"><td><div class="card fav-pro-card pb-4 m-1"><div class="row pb-2 pt-4">'+
-                                '<div class="avtar-fav-pro-card">'+
-                                        '<img src="assets/Img/assets/avatar-'+dt.UserProfilePicture+'.png" alt="avatar" class="favblock-cap">'+
-                                '</div>'+
-                                '</div>'+
-                                '<input type="hidden" class="fav-pro-data" value="'+result+'" />'+
-                                '<input type="hidden" class="fav-pro-id" value="'+dt.TargetUserId+'" />'+
-                                '<div class="row pt-3">'+
-                                    '<span style=" font-size: 18px;">'+FullName+'<br>'+
-                                        '<span style="font-size: 15px;">'
-                                            +ratehtml+
-                                            +ratings+
-                                        '</span>'+
-                                    '</span><br>'+
-                                '</div>'+
-                                '<div class="row pt-3">'+
-                                    '<button class="btn remove-fav-pro-btn remove-fav-pro-btn'+dt.IsFavorite+' mr-2" type="submit" data-arfav-pro="'+dt.IsFavorite+'" value="0" ></button>'+
-                                    '<button class="btn block-fav-pro-btn block-fav-pro-btn'+dt.IsBlocked+' ml-2" type="submit" data-bubfav-pro="'+dt.IsBlocked+'" value="0"></button>'+
-                                '</div>'+
-                                    '</div>'+
-                                '</td>'+
-                            '</tr>' )).draw();
+                '<tr class="m-2" style="border: none !important;"><td><div class="card fav-pro-card pb-4 m-1"><div class="row pb-2 pt-4">' +
+                '<div class="avtar-fav-pro-card">' +
+                '<img src="assets/Img/assets/avatar-' + dt.UserProfilePicture + '.png" alt="avatar" class="favblock-cap">' +
+                '</div>' +
+                '</div>' +
+                '<input type="hidden" class="fav-pro-data" value="' + result + '" />' +
+                '<input type="hidden" class="fav-pro-id" value="' + dt.TargetUserId + '" />' +
+                '<div class="row pt-3">' +
+                '<span style=" font-size: 18px;">' + FullName + '<br>' +
+                '<span style="font-size: 15px;">'
+                + ratehtml +
+                +ratings +
+                '</span>' +
+                '</span><br>' +
+                '</div>' +
+                '<div class="row pt-3">' +
+                '<button class="btn remove-fav-pro-btn remove-fav-pro-btn' + dt.IsFavorite + ' mr-2" type="submit" data-arfav-pro="' + dt.IsFavorite + '" value="0" ></button>' +
+                '<button class="btn block-fav-pro-btn block-fav-pro-btn' + dt.IsBlocked + ' ml-2" type="submit" data-bubfav-pro="' + dt.IsBlocked + '" value="0"></button>' +
+                '</div>' +
+                '</div>' +
+                '</td>' +
+                '</tr>')).draw();
             $('.remove-fav-pro-btn1').html('Remove');
             $('.remove-fav-pro-btn0').html('Add');
             $('.block-fav-pro-btn1').html('Unblock');

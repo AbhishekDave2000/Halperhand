@@ -104,6 +104,7 @@ class AuthenticationController
             $cpass = $_POST['cpass'];
             $email = $_SESSION['email'];
             if ($pass == $cpass) {
+                $_POST['pass'] = password_hash($_POST['pass'], PASSWORD_BCRYPT);
                 $result = $this->auth->setPassModel($id);
                 if ($result) {
                     unset($_SESSION['email']);
