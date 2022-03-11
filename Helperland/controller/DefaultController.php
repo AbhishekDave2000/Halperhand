@@ -41,7 +41,8 @@ class DefaultController{
         $para = $_GET['parameter']; 
         include("view/providerDash.php");
     }
-    public function adminDash(){
-        include("view/usermanagement.php");
+    public function adminDash($parameter){
+        $para = $_GET['parameter']; 
+        include("view/adminDash.php");
     }
 }

@@ -33,7 +33,7 @@ class AuthenticationController
             $result = $this->auth->LoginModel();
             if ($result) {
                 if ($result['Email'] == $email && password_verify($pass, $result['Password'])) {
-                    if ($result['UserTypeId'] == 1 || $result['UserTypeId'] == 2 && $result['IsApproved'] == 1) {
+                    if ($result['UserTypeId'] == 1 || $result['UserTypeId'] == 2 && $result['IsApproved'] == 1 || $result['UserTypeId'] == 3) {
                         $_SESSION['user'] = $result;
                         if ($check == 1) {
                             setcookie('user', $email, time() + (86400 * 30), "/");

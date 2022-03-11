@@ -71,7 +71,8 @@
                                 <div class="dropdown-divider" style="display: block;"></div>
                                 <?php
                                     if($_SESSION['user']['UserTypeId'] == 1){ $function = 'customerDash'; $parameter = 'dashboard'; $setting = 'mysetting';}
-                                    else if($_SESSION['user']['UserTypeId'] == 2){ $function = 'providerDash'; $parameter = 'new-service-request'; $setting='my-setting';}  
+                                    else if($_SESSION['user']['UserTypeId'] == 2){ $function = 'providerDash'; $parameter = 'new-service-request'; $setting='my-setting';}    
+                                    else if($_SESSION['user']['UserTypeId'] == 3){ $function = 'adminDash'; $parameter = 'usermanagement';}    
                                 ?>
                                 <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function='.$function.'&parameter='.$parameter ?>">My Dashboard</a>
                                 <a class="dropdown-item" href="<?= $base_url . '?controller=Default&function='.$function.'&parameter='.$setting ?>">My Settings</a>
