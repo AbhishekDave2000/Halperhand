@@ -5,53 +5,50 @@
             </div>
 
             <div class="second-div container-fluid">
-                <form>
+                <form class="sr-search-form">
                     <div class="sr-main-div-form">
                         <div class="sr-div">
-                            <div class="">
-                                <input type="text" class="form-control s-first-input" placeholder="Service ID">
+                            <div class="col-md-2">
+                                <input type="text" name="SIS" class="form-control s-first-input" placeholder="Service ID">
                             </div>
-                            <div class="">
-                                <select class="form-control s-second-input" name="Customer">
-                                    <option>Customer</option>
-                                    <option>Inquiry Manager</option>
-                                    <option>Content Manager</option>
-                                    <option>Finance Manager</option>
+                            <div class="col-md-2">
+                                <!-- <input class="form-control" type="text" placeholder="Customer" name="CS"> -->
+                                <select class="form-control s-second--input" name="CS">
+                                
                                 </select>
                             </div>
 
-                            <div class="">
-                                <select class="form-control s-third-input" name="Service Provider">
-                                    <option>Service Provider</option>
-                                    <option>Inquiry Manager</option>
-                                    <option>Content Manager</option>
-                                    <option>Finance Manager</option>
+                            <div class="col-md-2">
+                                <!-- <input class="form-control" type="text" placeholder="Provider" name="PS"> -->
+                                <select class="form-control s-third--input" name="PS">
+
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <select class="form-control s-fourth--input" name="status">
+                                    <option value="" selected>Status</option>
+                                    <option value="0">New</option>
+                                    <option value="1">Assigned</option>
+                                    <option value="2">Accepted</option>
+                                    <option value="3">Canceled</option>
+                                    <option value="4">Completed</option>
                                 </select>
                             </div>
 
-                            <div class="">
-                                <select class="form-control s-fourth--input" name="Status">
-                                    <option>Status</option>
-                                    <option>Inquiry Manager</option>
-                                    <option>Content Manager</option>
-                                    <option>Finance Manager</option>
-                                </select>
+                            <div class="date-pick col-md-2">
+                                <input type="date" name="DOS-FROM" class="form-control s-fifth-input" placeholder="From">
                             </div>
 
-                            <div class="">
-                                <input type="date" class="form-control s-fifth-input" placeholder="From">
-                            </div>
-
-                            <div class="">
-                                <input type="datetime" class="form-control s-sixth-input" placeholder="To">
+                            <div class="date-pick col-md-2">
+                                <input type="date" name="DOS-TO" class="form-control s-sixth-input" placeholder="To">
                             </div>
                         </div>
                         <div class="sr-btn-div">
-                            <div class="">
-                                <button type="submit" class="btn submit-btn">Search</button>
+                            <div class="col">
+                                <button type="button" id="search-btn" class="btn submit-btn">Search</button>
                             </div>
 
-                            <div class="col-reset">
+                            <div class="col col-reset">
                                 <button type="Reset" class="btn clear-btn">Clear</button>
                             </div>
                         </div>
@@ -66,17 +63,15 @@
                     <thead>
                         <tr>
                             <th class="serviceid">Service ID <img src="assets/Img/admin/sort.png" alt="" class="sorting-img"></th>
-                            <th class="servicedate">Service date <img src="assets/Img/admin/sort.png" alt="" class="sorting-img">
-                            </th>
+                            <th class="servicedate">Service date <img src="assets/Img/admin/sort.png" alt="" class="sorting-img"></th>
                             <th class="customerdetails">Customer details</th>
-                            <th class="serviceprovider">Service provider <img src="assets/Img/admin/sort.png" alt="" class="sorting-img">
-                            </th>
-                            <th class="status">Status</th>
+                            <th class="serviceprovider">Service provider <img src="assets/Img/admin/sort.png" alt="" class="sorting-img"></th>
+                            <th>Status</th>
                             <th class="action">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <!-- <tr>
                             <td class="serviceid-data">
                                 323434
                             </td>
@@ -125,46 +120,9 @@
                                     </div>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
-
-                <!-- <div class="pagination-div container-fluid">
-                    <div class="entry-show">
-                        <span class="span-show">
-                            show
-                        </span>
-                        <select class="form-select" aria-label=".form-select-sm example">
-                            <option selected>10</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                        </select>
-                        <span class="span-entry">
-                            Entries
-                        </span>
-                    </div>
-
-                    <nav class="pagination-nav" aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <i class="fas fa-caret-left"></i>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <i class="fas fa-caret-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div> -->
             </div>
 
             <div class="footer container-fluid">

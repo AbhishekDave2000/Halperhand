@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php $base_url = 'http://localhost/Halperhand/Helperland/'; ?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,9 +19,12 @@
         crossorigin="anonymous"></script> -->
     <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">    
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
     <link rel="stylesheet" href="assets/Css/uparr.css">
     <script src="assets/js/uparr.js"></script>
+    <script src="assets/js/adminDash.js"></script>
 </head>
 
 <body>
@@ -52,10 +55,11 @@
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <img class="admin-img" src="assets/Img/admin/admin-user.png" alt="">
-                                <span>Abhishek Dave</span>
+                                <span><?= $_SESSION['user']['FirstName'].' '.$_SESSION['user']['LastName'] ?></span>
+                                <span class="admin-id" style="display: none;"><?= $_SESSION['user']['UserId'] ?></span>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="<?= $base_url . '?controller=Authentication&function=Logout' ?>">
                                     <img src="assets/Img/admin/logout.png" alt="">
                                 </a>
                             </li>
