@@ -56,6 +56,8 @@ $(document).ready(function () {
                         $('.NewCPass,.OldPass,.NewPass').val('');
                     } else if (result == 2) {
                         $('.spmypass').after("<span class='error'>Old Password Does not match with your password Enter correct password!</span>");
+                    }else if (result == 3) {
+                        $('.spmypass').after("<span class='error'>Register Your self first!</span>");
                     } else if (result.length > 10) {
                         $('.spmypass').after("<span class='error'>" + result + "</span>");
                     }

@@ -226,18 +226,22 @@ class customerDashModel
     {
         $id = $data['user-logged-in-id'];
         $oldpass = trim($data['oldpass']);
-        $pass = trim($data['newpass']);
+        $pass = password_hash($data['newpass'], PASSWORD_BCRYPT);
 
-        $sql = "SELECT Password FROM user WHERE UserId = '$id' AND Password = '$oldpass'";
+        $sql = "SELECT * FROM user WHERE UserId = '$id'";
         $result = $this->conn->query($sql);
+
         if ($result->num_rows > 0) {
-            $sql = "UPDATE user 
-                    SET Password = '$pass'
-                    WHERE UserId = '$id'";
-            return $this->conn->query($sql);
+            while ($row = $result->fetch_assoc()) {
+                if (password_verify($oldpass, $row['Password'])) {
+                    $sql = "UPDATE user 
+                        SET Password = '$pass'
+                        WHERE UserId = '$id'";
+                    return $this->conn->query($sql);
+                }
+            }
         } else {
-            return False;
+            return false;
         }
     }
 }
-?>

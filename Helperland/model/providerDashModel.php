@@ -97,18 +97,24 @@ class providerDashModel
     {
         $id = $_POST['spid'];
         $oldpass = trim($_POST['oldpass']);
-        $pass = trim($_POST['newpass']);
+        $pass = password_hash($_POST['newpass'], PASSWORD_BCRYPT);
 
-        $sql = "SELECT Password FROM user WHERE UserId = '$id' AND Password = '$oldpass'";
+        $sql = "SELECT Password FROM user WHERE UserId = '$id'";
         $result = $this->conn->query($sql);
         if ($result->num_rows > 0) {
-            $sql = "UPDATE user 
-                    SET Password = '$pass'
-                    WHERE UserId = '$id'";
-            return $this->conn->query($sql);
-        } else {
-            return 2;
-        }
+            while ($row = $result->fetch_assoc()) {
+                if (password_verify($oldpass, $row['Password'])) {
+                    $sql = "UPDATE user 
+                        SET Password = '$pass'
+                        WHERE UserId = '$id'";
+                    return $this->conn->query($sql);
+                }else {
+                    return 2;
+                }
+            }
+        }else{
+            return 3;
+        } 
     }
 
     // Get Service Request and upcoming service request data

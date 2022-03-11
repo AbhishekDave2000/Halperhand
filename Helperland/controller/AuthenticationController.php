@@ -45,10 +45,10 @@ class AuthenticationController
                         echo 2;
                     }
                 } else {
-                    echo 'Not happening';
+                    echo 3;
                 }
-            } else {
-                echo 3;
+            } else{
+                echo 4;
             }
         }
     }

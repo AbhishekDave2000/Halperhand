@@ -95,7 +95,7 @@ $(document).ready(function () {
                     } else if (result == 3) {
                         $('#login-btn').before('<span class="error">Incorrect email or password!</span>');
                     } else {
-                        $('#login-btn').before('<span class="error">Something Went Wrong!</span>');
+                        $('#login-btn').before('<span class="error">Please Register Youself!</span>');
                     }
                 }
             });

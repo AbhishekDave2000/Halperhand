@@ -49,6 +49,7 @@ class providerDashController
     // save service provider password
     public function myPasswordUpdate()
     {
+        
         $val = new myDetailValidation($_POST);
         $result = $val->passwordValidate();
         if (empty($result)) {
