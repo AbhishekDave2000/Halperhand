@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 .modal-dialog-rcmodal{
-    width: 600px;
+    max-width: 600px;
     color: #424242;
 }
 .modal-content {
@@ -121,7 +121,7 @@
 
 /* second modal */
 .reshedule-request-modal-dialog{
-    width: 420px;
+    padding: 10px;
     color: #424242;  
 }
 .Reschedule-form-label,
@@ -137,17 +137,22 @@
     height: 43px;
     margin-top: 20px;
     margin-bottom: 10px;
-    width: 360px;
 }
 .btn-row{
     display: flex;
     justify-content: center;
 }
+.r-MC{
+    padding: 10px;
+}
+@media(max-width:800){
+
+}
 
 
 /* third modal */
 .cancel-modal{
-    width: 350px;
+    max-width: 350px;
 }
 .cancel-btn-modal,
 .cancel-btn-modal:hover{
@@ -157,16 +162,11 @@
     height: 43px;
     margin-top: 20px;
     margin-bottom: 10px;
-    /* width: 250px; */
     width: 100%;
 }
 
 
 /* add address modal */
-/* .add-address-modal{
-    position: fixed;
-    top: 10% !important;
-} */
 .addressMD{
     max-width: 600px;
     min-width: 300px;

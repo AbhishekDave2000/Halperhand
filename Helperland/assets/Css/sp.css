@@ -903,6 +903,9 @@ th.sorting{
     .service-history-head{
         padding-bottom: 8px;
     }
+    .bottom {
+        flex-direction: column;
+    }
 }
 
 .bottom {

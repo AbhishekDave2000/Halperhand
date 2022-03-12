@@ -343,7 +343,7 @@ $(document).ready(function () {
             var result = jsontoArray(dt);
             var rate = dt.AvarageRating;
             var or = 0;
-            var ratehtml, ratings, FullName = "";
+            var ratehtml = "";var ratings = "";var FullName = "";
             for (var i = 0; i < parseInt(rate); i++) {
                 ratehtml += `<i class="fas fa-star i-con"></i>`;
             }
@@ -377,7 +377,7 @@ $(document).ready(function () {
                 '<span style=" font-size: 18px;">' + FullName + '<br>' +
                 '<span style="font-size: 15px;">'
                 + ratehtml +
-                +ratings +
+                + ratings +
                 '</span>' +
                 '</span><br>' +
                 '</div>' +

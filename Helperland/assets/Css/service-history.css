@@ -845,6 +845,9 @@ table thead{
     .set-address-body{
         padding: 5px 5px 5px 5px;
     }
+    .bottom {
+        flex-direction: column;
+    }
  }
 
 .bottom {

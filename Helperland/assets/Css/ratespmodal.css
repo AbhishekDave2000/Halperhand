@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 .rate-sp-model-dialog{
-    width: 450px !important;
+    max-width: 450px !important;
     color: #838383;
 }
 .rate-sp-modal-content{
@@ -22,7 +22,7 @@
     font-size: 16px;
 }
 .rate-sp-modal-header div .cap-div{
-    width: 55px;
+    max-width: 55px;
     height: 55px;
     border: solid 1px #aaa;
     border-radius: 50%;
@@ -37,11 +37,14 @@
 .rate-sp-modal-body .col .row span{
     display: flex !important;
     flex-direction: row;
-    height: 45px;
     align-items: center;
 }
 .Quali{
     width: 130px;
+}
+.Quali-span-main{
+    display: flex;
+    flex-wrap: wrap;
 }
 .feedbackonsp{
     margin: 10px;
@@ -57,7 +60,7 @@
     border-radius: 23px;
     height: 35px;
     font-size: 18px;
-    width: 100px;
+    max-width: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,6 +68,9 @@
 
 @media(max-width:550px){
     .rate-sp-model-dialog{
-        width: 95vw !important;
+        max-width: 95vw !important;
     }
+}
+.rate-sp-modal-content{
+    top : 46px !important;
 }

@@ -26,7 +26,7 @@
                     <input type="hidden" name="sr-id" class="sp_service_id">
                     <div class="col">
                         <div class="row">
-                            <span>
+                            <span class="Quali-span-main">
                                 <div class="Quali">On time arrival</div>
                                 <div class="rate">
                                     <input type="radio" id="ota-star5" name="ota-rate" class="OTA-rate" value="5" />
@@ -43,7 +43,7 @@
                             </span>
                         </div>
                         <div class="row">
-                            <span>
+                            <span class="Quali-span-main">
                                 <div class="Quali">Friendly</div>
                                 <div class="rate">
                                     <input type="radio" id="Friendly-star5" name="Friendly-rate" class="F-rate" value="5" />
@@ -60,7 +60,7 @@
                             </span>
                         </div>
                         <div class="row">
-                            <span>
+                            <span class="Quali-span-main">
                                 <div class="Quali">Quality of service</div>
                                 <div class="rate">
                                     <input type="radio" id="Qos-star5" name="Qos-rate" class="QOS-rate" value="5" />
@@ -179,7 +179,7 @@
 <!-- Modal -->
 <div class="modal fade" id="Reschedule-Request" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered reshedule-request-modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content r-MC">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Reschedule Service Request</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -191,10 +191,10 @@
                     <div class="row reschedule-dat-div">
                         <input type="hidden" name="service-id" class="service-id-input">
                         <input type="hidden" name="sp-email" class="service-pro-email">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-2">
                             <input type="date" id="rdate" name="rescheduled-date" class="form-control" placeholder="DD/MM/YYYY" aria-label="Date">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-2">
                             <select class="form-select" name="rescheduled-time" id="service-reshedule-time" aria-label="Default select example">
                                 <option value="08:00">8:00 AM</option>
                                 <option value="08:30">8:30 AM</option>
