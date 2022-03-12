@@ -1,5 +1,6 @@
 <?php 
 include('model/adminDashModel.php');
+include('controller/validation/adminvalidate.php');
 class adminDashController{
     public $model;
 
@@ -31,6 +32,18 @@ class adminDashController{
     public function getSearchOptionDataSR(){
         $result = $this->model->getSearchOptionDataModel();
         echo json_encode($result);
+    }
+
+    // edit service request data
+    public function editServiceRequest(){
+        $val = new adminValidate();
+        $error = $val->editServicevalidate();
+        if(count($error) <= 0){
+            $result = $this->model->editServiceRequestModel();
+            echo $result;
+        }else{
+            echo $error['error'];
+        }
     }
 
 }

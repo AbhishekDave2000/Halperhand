@@ -1,0 +1,19 @@
+.res-service-update,.res-service-update:hover{
+    width: 100%;
+    color: white;
+    background-color: #1fb6ff;
+}
+input,textarea,button{
+    box-shadow: none !important;
+}
+.modal-header{
+    border : 0 !important;
+}
+.error {
+    color: red;
+    margin-left: 5px;
+    display: inline;
+  }
+  label.error {
+    display: inline !important;
+  }

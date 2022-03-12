@@ -18,7 +18,7 @@ $(document).ready(function () {
                 if (result == null) {
                     var SRAtable = $('#servicerequest-admin-table').DataTable();
                     SRAtable.clear().draw();
-                }else {
+                } else {
                     var data = JSON.parse(result);
                     showServiceRequestDataAdmin(data);
                 }
@@ -26,7 +26,30 @@ $(document).ready(function () {
         });
         e.preventDefault();
     });
-    // ServiceRequest Page end
+    $('html').on('click', '.edit-reshedule-admin-btn', function (e) {
+        const data = $(e.target).closest('tr').find("input").val().split(',');
+        console.log(data);
+        $('#SR-ID-Form').val(data[0]);
+        $('#Res-date').val(data[2].substr(0, 10));
+        $('#service-reshedule-time').val(data[2].substr(11, 5));
+        $('#Street-name').val(data[19]);
+        $('#House-Number').val(data[18]);
+        $('#Postal-code').val(data[3]);
+        $('#city-select').val(data[20]);
+        findPostalCodeData();
+    });
+    $('html').on('click','.res-service-update',function(){
+        var data = $('.admin-form-EditService').serialize();
+        $.ajax({
+            url: url + '?controller=adminDash&function=editServiceRequest',
+            type: 'post',
+            data: data,
+            success : function (result){
+                console.group(result);
+            }
+        });
+    });
+    //  ServiceRequest Page end
 
     function getServiceRequestData() {
         $.ajax({
@@ -117,7 +140,7 @@ $(document).ready(function () {
                     <td class="action-data">
                         <div class="dropdown">
                             <button class="btn action-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="assets/Img/admin/group-38.png" alt="">
+                                <img src="assets/Img/admin/group-38.png" alt="action">
                             </button>
                             <div class="dropdown-menu dropdown-menu-sr-admin-page" aria-labelledby="dropdownMenuButton">
                                 `+ showDropDown(dt.Status) + `
@@ -132,14 +155,36 @@ $(document).ready(function () {
     function setSearchOptionData(data) {
         var cusoption = "<option value='' selected>Customer</option>", prooption = "<option value='' selected>Provider</option>";
         data.forEach(function (dt) {
-            if(dt.UserTypeId == 1){
+            if (dt.UserTypeId == 1) {
                 cusoption += `<option value="` + dt.UserId + `">` + dt.Name + `</option>`;
-            }else if(dt.UserTypeId == 2){
+            } else if (dt.UserTypeId == 2) {
                 prooption += `<option value="` + dt.UserId + `">` + dt.Name + `</option>`;
             }
         });
         $('.s-second--input').html(cusoption);
         $('.s-third--input').html(prooption);
+    }
+
+    function findPostalCodeData() {
+        $('#Postal-code').on("input", function () {
+            var postal = $(this).val();
+            $.ajax({
+                url: url + "?controller=customerDash&function=getUserCityData",
+                type: 'post',
+                data: {
+                    postal: postal
+                },
+                success: function (result) {
+                    $(".error").remove();
+                    if (result != 0 || result != null) {
+                        var cn = JSON.parse(result);
+                        $('#city-select').val(cn.CityName);
+                    } else {
+                        $('#city-select').after("<span class='error'>service isn't available in this area!</span>");
+                    }
+                }
+            });
+        });
     }
 
     function ratingShow(rate) {
@@ -192,7 +237,7 @@ $(document).ready(function () {
     function showDropDown(status) {
         ddmenu = "";
         if (status == 0 || status == 1 || status == 2) {
-            ddmenu = `<a class="dropdown-item" href="#">Edit & Reschedule</a>
+            ddmenu = `<a class="dropdown-item edit-reshedule-admin-btn" href="#" data-bs-toggle="modal" data-bs-target="#aminModel-1">Edit & Reschedule</a>
                       <a class="dropdown-item" href="#">Cancel</a>
                       <a class="dropdown-item" href="#">Change SP</a>
                       <a class="dropdown-item" href="#">History Log</a>

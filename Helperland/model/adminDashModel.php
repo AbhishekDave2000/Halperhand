@@ -81,6 +81,17 @@ class adminDashModel
         }
         return $result;
     }
+    public function getUserCityDataModel($data)
+    {
+        $sql = "SELECT c.CityName as CityName,c.Id as CityId,s.StateName FROM zipcode as zc JOIN city as c ON zc.CityId = c.Id JOIN state as s ON s.Id = c.StateId WHERE zc.ZipcodeValue = '$data'";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0 && $result != false) {
+            return $result->fetch_assoc();
+        }else{
+            return [];
+        }
+    }
+
 
     public function getSearchOptionDataModel()
     {
@@ -93,5 +104,9 @@ class adminDashModel
             }
             return $rows;
         }
+    }
+
+    public function editServiceRequestModel(){
+        
     }
 }
