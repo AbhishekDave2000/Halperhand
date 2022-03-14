@@ -316,6 +316,20 @@ tbody tr td{
     width: 100px !important;
     text-align: center;
 }
+.userstatus-data>.status-1{
+    padding: 7px 7px 7px 7px;
+    color: white;
+    background-color: #67b644;
+    font-family: Roboto;
+    font-size: 13px;
+}
+.userstatus-data>.status-0{
+    padding: 7px 7px 7px 7px;
+    color: white;
+    background-color: rgb(255, 91, 91);
+    font-family: Roboto;
+    font-size: 13px;
+}
 
 .action-data,.action{
     text-align: center;
@@ -416,13 +430,7 @@ tbody tr td{
 /* service request page================== */
 
 
-.userstatus-data .active{
-  padding: 7px 7px 7px 7px;
-  color: white;
-  background-color: #67b644;
-  font-family: Roboto;
-  font-size: 13px;
-}
+
 .inactive{
     padding: 7px 7px 7px 7px;
     color: white;

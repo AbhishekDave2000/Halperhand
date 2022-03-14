@@ -9,13 +9,13 @@ class adminDashModel
         $this->conn = $conn->Connection();
     }
 
-    // get service request data model
+    // service request page model start
     public function getAdminServiceRequestDataModel()
     {
         $rows = [];
         $sql = "SELECT sr.ServiceRequestId,sr.UserId,sr.ServiceStartDate,sr.ZipCode,sr.ServiceHours,sr.ExtraHours,sr.SubTotal,sr.Discount,sr.TotalCost,sr.Comments,sr.JobStatus,
                     sr.ServiceProviderId,sr.HasPets,sr.Status,sr.ModifiedDate,sr.ModifiedBy,sr.RefundedAmount,sr.HasIssue,sra.AddressLine1,sra.AddressLine2,sra.City,sra.State,
-                    sra.Mobile,sra.Email,sre.ServiceExtraId,CONCAT(u.FirstName,' ',u.LastName) as CusName FROM servicerequest as sr 
+                    sra.Mobile,sra.Email,sre.ServiceExtraId,CONCAT(u.FirstName,' ',u.LastName) as CusName,sr.RefundedAmount,sr.RefundReason FROM servicerequest as sr 
                 JOIN servicerequestaddress as sra 
                     ON sr.ServiceRequestId = sra.ServiceRequestId
                 JOIN servicerequestextra as sre
@@ -39,8 +39,8 @@ class adminDashModel
         $sid = $_POST['SIS'];
         $cid = $_POST['CS'];
         $pid = $_POST['PS'];
-        $sdate = $_POST['DOS-FROM']; 
-        $edate = $_POST['DOS-TO']; 
+        $sdate = $_POST['DOS-FROM'];
+        $edate = $_POST['DOS-TO'];
         $status = $_POST['status'];
         $rows = [];
         $sql = "SELECT sr.ServiceRequestId,sr.UserId,sr.ServiceStartDate,sr.ZipCode,sr.ServiceHours,sr.ExtraHours,sr.SubTotal,sr.Discount,sr.TotalCost,sr.Comments,sr.JobStatus,
@@ -52,8 +52,7 @@ class adminDashModel
                     ON sr.ServiceRequestId = sre.ServiceRequestExtraId
                 JOIN user as u 
                     ON u.UserId = sr.UserId
-                WHERE sr.UserId LIKE '%$cid%' AND sr.ServiceProviderId LIKE '%$pid%' AND sr.ServiceRequestId LIKE '%$sid%' AND sr.Status LIKE '%$status%'";
-        // AND sr.ServiceStartDate BETWEEN (`$sdate`,`$edate`)
+                WHERE sr.UserId LIKE '%$cid%' AND sr.ServiceProviderId LIKE '%$pid%' AND sr.ServiceRequestId LIKE '%$sid%' AND sr.ServiceStartDate BETWEEN '$sdate' AND '$edate' AND sr.Status LIKE '%$status%'";
         $result = $this->conn->query($sql);
         if ($result !== false && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -87,12 +86,10 @@ class adminDashModel
         $result = $this->conn->query($sql);
         if ($result->num_rows > 0 && $result != false) {
             return $result->fetch_assoc();
-        }else{
+        } else {
             return [];
         }
     }
-
-
     public function getSearchOptionDataModel()
     {
         $rows = array();
@@ -105,8 +102,69 @@ class adminDashModel
             return $rows;
         }
     }
+    public function editServiceRequestModel()
+    {
+        $admin = $_POST['admin'];
+        $sr = $_POST['Service-id'];
+        $date = $_POST['DT'];
+        $street = $_POST['street'];
+        $house = $_POST['house'];
+        $postal = $_POST['postal'];
+        $city = $_POST['city'];
+        $reason = $_POST['Reason-Res'];
 
-    public function editServiceRequestModel(){
-        
+        $sql = "UPDATE servicerequest SET ServiceStartDate = '$date',ZipCode = '$postal', ModifiedDate = now(), HasIssue = '$reason',ModifiedBy = '$admin' WHERE ServiceRequestId = '$sr'";
+        $result = $this->conn->query($sql);
+        if ($result) {
+            $add = $this->getUserCityDataModel($postal);
+            $state = $add['StateName'];
+
+            $sql = "UPDATE servicerequestaddress SET AddressLine1 = '$house' , AddressLine2 = '$street' , City = '$city' , State = '$state' , PostalCode = '$postal' WHERE ServiceRequestId = '$sr' ";
+            $res = $this->conn->query($sql);
+            return $res;
+        } else {
+            return $result;
+        }
     }
+    public function refundServiceRequestAmountModel()
+    {
+        $srid = $_POST['srid'];
+        $refund = $_POST['ramount'];
+        $comment = $_POST['comment'];
+
+        $sql = "UPDATE servicerequest SET RefundedAmount = '$refund' , RefundReason = '$comment' WHERE ServiceRequestId = '$srid'";
+        return $this->conn->query($sql);
+    }
+    // service request page model end
+
+    // user management page model start
+    public function getAdminPageUserModel()
+    {
+        $rows = array();
+        $sql = "SELECT u.UserId,u.FirstName,u.LastName,u.Email,u.Mobile,u.UserTypeId,u.RoleId,u.Gender,u.DateOfBirth,u.UserProfilePicture,
+                u.ZipCode,u.LanguageId,u.NationalityId,u.IsApproved,u.IsActive,u.IsDeleted,u.Status,c.CityName FROM `user` as u
+                LEFT JOIN zipcode as zc
+                    ON zc.ZipcodeValue = u.ZipCode
+                LEFT JOIN city as c
+                    ON c.Id = zc.CityId
+                WHERE u.UserTypeId != 3";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($rows, $row);
+            }
+            return $rows;
+        }
+    }
+    public function setUserStatusesModel()
+    {
+        $uid = $_POST['uid'];
+        $active = $_POST['active'];
+        $approve = $_POST['approve'];
+        $delete = $_POST['delete'];
+        $sql = "UPDATE user SET IsActive = $active , IsApproved = $approve , IsDeleted = $delete WHERE UserId = $uid ";
+        return $this->conn->query($sql);
+    }
+    // user management page model end
+
 }

@@ -1,9 +1,9 @@
-.res-service-update,.res-service-update:hover{
+.res-service-update,.res-service-update:hover,.refund-amount-btn,.refund-amount-btn:hover{
     width: 100%;
     color: white;
     background-color: #1fb6ff;
 }
-input,textarea,button{
+input,textarea,button,select{
     box-shadow: none !important;
 }
 .modal-header{
@@ -13,7 +13,19 @@ input,textarea,button{
     color: red;
     margin-left: 5px;
     display: inline;
-  }
-  label.error {
+}
+label.error {
     display: inline !important;
-  }
+}
+#exampleModalRedund{
+    top :30px;
+}
+#exampleModalRedund .modal-dialog .modal-content{
+    min-width: fit-content !important;
+    max-width: 600px;
+}
+.modal-dialog {
+    max-width: fit-content;
+    margin: 1.75rem auto;
+    /* min-width: fit-content; */
+}

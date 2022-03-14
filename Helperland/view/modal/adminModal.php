@@ -8,6 +8,7 @@
             <div class="modal-body">
                 <form class="admin-form-EditService" action="">
                     <input type="hidden" name="Service-id" id="SR-ID-Form">
+                    <input type="hidden" name="Service-end" id="SR-end-time">
                     <div class="row">
                         <div class="col-md-6">
                             <label for="Res-date" class="form-label">Date</label>
@@ -64,7 +65,7 @@
                             </div>
                             <div class="col-md-6 pb-2">
                                 <label for="city-select" class="form-label">City</label>
-                                <input type="text" class="form-control" name="city" id="city-select" readonly> 
+                                <input type="text" class="form-control" name="city" id="city-select" readonly>
                             </div>
                         </div>
 
@@ -75,7 +76,7 @@
                             </div>
                         </div>
 
-                        <div class="row pb-2">
+                        <div class="row pb-2 update-btn-div">
                             <div class="col-md-12">
                                 <button type="button" class="btn res-service-update">Update</button>
                             </div>
@@ -86,3 +87,88 @@
         </div>
     </div>
 </div>
+
+
+<!-- Model For Refund Amount -->
+<div class="modal fade" id="exampleModalRedund" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="staticBackdropLabel">Refund Amount</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" class="refund-form">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-6 pr-0 mr-0">
+                                    Paid Amount<br>
+                                    <span class="paid-amt"></span>€
+                                </div>
+                                <div class="col-6 pr-0 mr-0">
+                                    Refunded Amount<br>
+                                    <span class="refund-amt"></span>€
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            In Balance Amount<br>
+                            <span class="balance-amt"></span>€
+                        </div>
+                    </div>
+                    <input type="hidden" name="srid" class="SR-ID">
+                    <input type="hidden" name="previous-refund" class="SR-PP">
+                    <div class="row pt-3 payment-main">
+                        <div class="col-6 ">
+                            <div class="form-group">
+                                <label for="">Amount</label>
+                                <div class="input-group mb-3 payment-div">
+                                    <input type="text" class="form-control" id="payment-inp" name="payment">
+                                    <select class="form-select select-percentage" name="percentage" aria-label="Default select example">
+                                        <option value="" selected>Percentage</option>
+                                        <option value="0.05">5%</option>
+                                        <option value="0.10">10%</option>
+                                        <option value="0.20">20%</option>
+                                        <option value="0.25">25%</option>
+                                        <option value="0.50">50%</option>
+                                        <option value="0.75">75%</option>
+                                        <option value="1">100%</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="calculate">Calculate</label>
+                                <input type="text" class="form-control" name="refund" id="calculate" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="divtitle">Why you want to refund amount?</div>
+                    <div class="row">
+                        <div class="col">
+                            <textarea name="comment" id="reason-of-refund" rows="3" class="form-control" placeholder="Why you want to refund amount?"></textarea>
+                        </div>
+                    </div>
+
+                    <br>
+                    <!-- <div class="divtitle">Call Center EMP notes</div>
+                    <div class="row">
+                        <div class="col">
+                            <textarea name="" id="" rows="3" class="form-control" placeholder="Enter Notes?"></textarea>
+                        </div>
+                    </div> -->
+
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn refund-amount-btn mt-3 mb-2" name="refund">Refund</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Model -->
