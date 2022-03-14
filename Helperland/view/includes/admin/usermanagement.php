@@ -56,21 +56,19 @@
             <div class="container-fluid third-div">
                 <table id="usermanage-admin-table" class="table-data" style="width:100%">
                     <thead>
-                        <tr>
-                            <th class="username">User Name<img src="assets/Img/admin/sort.png" alt="" class="sorting-img"></th>
-                            <th class="usertype">User Type <img src="assets/Img/admin/sort.png" alt="" class="sorting-img">
-                            </th>
-                            <th class="role">Role</th>
-                            <th class="postalcode">Postal Code <img src="assets/Img/admin/sort.png" alt="" class="sorting-img">
-                            </th>
-                            <th class="city">City</th>
-                            <th class="radius">Radius <img src="assets/Img/admin/sort.png" alt="" class="sorting-img"></th>
-                            <th class="userstatus">User Status</th>
-                            <th class="action">Action</th>
+                        <tr class="um-th">
+                            <th>User Name<img src="assets/Img/admin/sort.png" alt="" class="sorting-img"></th>
+                            <th>User Type <img src="assets/Img/admin/sort.png" alt="" class="sorting-img"></th>
+                            <!-- <th>Role</th> -->
+                            <th>Postal Code <img src="assets/Img/admin/sort.png" alt="" class="sorting-img"></th>
+                            <th>City</th>
+                            <th>Approval<img src="assets/Img/admin/sort.png" alt="" class="sorting-img"></th>
+                            <th>User Status</th>
+                            <th style="text-align: center;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <!-- <tr>
                             <td class="username-data">
                                 Lyum watson
                             </td>
@@ -107,46 +105,10 @@
                                 </div>
 
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
 
-                <!-- <div class="pagination-div container-fluid">
-                    <div class="entry-show">
-                        <span class="span-show">
-                            show
-                        </span>
-                        <select class="form-select" aria-label=".form-select-sm example">
-                            <option selected>10</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                        </select>
-                        <span class="span-entry">
-                            Entries
-                        </span>
-                    </div>
-
-                    <nav class="pagination-nav" aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <i class="fas fa-caret-left"></i>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <i class="fas fa-caret-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div> -->
             </div>
 
             <div class="footer container-fluid">

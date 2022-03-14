@@ -100,10 +100,8 @@
 
 /* main container */
 .container__main {
-    /* Take the remaining width */
     flex: 1;
     width: 100% !important;
-    /* Make it scrollable */
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -119,7 +117,6 @@
 }
 #heading-div{
     width: 100%;
-    /* padding: 34px 0px 16px 0px; */
     display: flex;
     align-items: center;
 }
@@ -153,20 +150,15 @@
 
 /* form div second division */
 .second-div{
-    /* height: 86px; */
     padding: 20px 15px 20px 15px !important;
     border: solid 1px var(--white-four);
     background-color: var(--white);
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
 }
 .second-div form div{
     display: flex;
     flex-direction: row;
     padding-right: 8px;
     padding-left: 8px;
-    /* justify-content: space-between !important; */
 }
 .second-div form div{
     display: flex;
@@ -255,9 +247,7 @@
 thead{
     border-bottom: solid 1px #e1e1e1;
     background-color: #f9f9f9;
-    height: 56px;
 }
-
 thead tr th{
     font-family: Roboto;
     font-size: 16px;
@@ -268,14 +258,16 @@ thead tr th{
     letter-spacing: normal;
     text-align: left;
     color: #646464;
-    padding-left: 15px;
+    padding-left: 10px 8px !important;
+}
+.um-th th,.um-tb td{
+    text-align: center;
 }
 tbody{
     border: solid 1px var(--white-four);
     background-color: var(--white);  
 }
 tbody tr{
-    height: 64px;
     border-bottom: solid 1px #e1e1e1;
 }
 tbody tr td{
@@ -288,33 +280,6 @@ tbody tr td{
     letter-spacing: normal;
     text-align: left;
     color: #646464;
-    padding-left: 15px;
-}
-.username,.username-data{
-    width: 180px !important;
-    padding: 0px;
-    padding-left: 15px;
-    
-}
-.usertype,.usertype-data{
-    width: 180px !important;
-}
-.role,.role-data{
-    width: 200px !important;
-}
-.postalcode,.postalcode-data{
-    width: 140px !important;
-}
-.city,.city-data{
-    width: 120px !important;
-}
-.radius,.radius-data{
-    width: 120px !important;
-    text-align: center;
-}
-.userstatus,.userstatus-data{
-    width: 100px !important;
-    text-align: center;
 }
 .userstatus-data>.status-1{
     padding: 7px 7px 7px 7px;
@@ -333,30 +298,14 @@ tbody tr td{
 
 .action-data,.action{
     text-align: center;
-    width: 120px !important;
 }
 .action-data .dropdown .dropdown-menu{
     top: 10px !important;
     left: -30px !important;
 }
 
-
 /* service request page ====================*/
-.serviceid-data,.serviceid{
-    width: 170px;
-}
-.servicedate-data,.servicedate{
-    width: 200px;
-}
-.customerdetails,.customerdetails-data{
-    width: 300px;
-    text-align: left;
-}
-.serviceprovider-data,.serviceprovider{
-    width: 240px;
-}
 .serviceprovider-data{
-    width: 240px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -384,9 +333,7 @@ tbody tr td{
     color: #d4d4d4;
 }
 .status,.status-data{
-    /* width: 0px !important; */
     text-align: center;
-    width: 150px !important;
 }
 .status-data{
     padding: 5px 5px 5px 5px;
@@ -395,7 +342,6 @@ tbody tr td{
     font-size: 13px;
 }
 .status{
-    /* background-color: #f2bb37; */
     padding: 7px 7px 7px 7px;
     color: white;
     font-family: Roboto;
@@ -423,21 +369,8 @@ tbody tr td{
     font-family: Roboto;
     font-size: 13px;
 }
-/* add class active if completed 
-    and add class inactive if cencelled
-*/
-
 /* service request page================== */
 
-
-
-.inactive{
-    padding: 7px 7px 7px 7px;
-    color: white;
-    font-family: Roboto;
-    font-size: 13px;
-    background-color: #ff6b6b;
-}
 .action-dropdown{
     background-color: #f4f4f4;
     width: 36px;
@@ -447,31 +380,6 @@ tbody tr td{
     align-items: center;
     justify-content: center;
 }
-/* .acion-data .dropdown .dropdown-menu{
-    position: absolute;
-    top: 10px !important;
-    left: -38px !important;
-} */
-/* .acion-data .dropdown .dropdown-menu::before{
-    position: absolute;
-    content: "";
-    border-width: 0 9px 14px 9px;
-    border-style: solid;
-    border-color: transparent transparent #ccc transparent;
-    top: -14px;
-    right: 24px;
-}
-.acion-data .dropdown .dropdown-menu::after{
-    position: absolute;
-    top: 0;
-    content: "";
-    border-width: 0 8px 12px 8px;
-    border-style: solid;
-    border-color: transparent transparent #fff transparent;
-    top: -12px;
-    right: 25px;
-} */
-
 .pagination-div{
     height: 70px;
     display: flex;
@@ -630,11 +538,6 @@ tbody tr td{
     
 }
 @media(max-width:572px){
-    /* .navbar-brand{
-        position: absolute;
-        top: 0px;
-        left: 0px;
-    } */
     .navbar-toggler{
         border-color: white !important;    
         display: flex;
@@ -651,16 +554,23 @@ tbody tr td{
     }
     .nav-sp .navbar-toggler{
         position: absolute;
-        right: 3px;
-        top: 14px;
+        right: 3px !important;
+        top: 14px !important;
     }
     .collapse {
         position: absolute;
         top: 64px;
         right: 0;
         background-color: #1fb6ff;
+        width: 100%;
     }
-
+    .collapse .navbar-nav{
+        flex-direction: row !important;
+        justify-content: right;
+    }
+    .collapse .navbar-nav li{
+        margin: 5px 10px !important;
+    }
 }
 @media(max-width: 400px){
     .container__sidebar .nav .nav-item{

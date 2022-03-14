@@ -252,7 +252,7 @@ $(document).ready(function () {
         data.forEach(function (dt) {
             var dataArr = getAllDatatoSet(dt.UserTypeId, dt.RoleId, dt.IsActive, dt.ZipCode, dt.CityName, dt.IsApproved);
             userTable.row.add($(
-                `<tr>
+                `<tr class="um-tb">
                     <td class="username-data">
                     <input type="hidden" name="userdata" class="userManagementData" value='` + jsontoArray(dt) + `'>
                         `+ dt.FirstName + ` ` + dt.LastName + `
@@ -260,9 +260,7 @@ $(document).ready(function () {
                     <td class="usertype-data">
                         `+ dataArr[0] + `
                     </td>
-                    <td class="role-data">
-                        `+ dataArr[1] + `
-                    </td>
+                    
                     <td class="postalcode-data">
                         `+ dataArr[3] + `
                     </td>
@@ -270,7 +268,7 @@ $(document).ready(function () {
                         `+ dataArr[4] + `
                     </td>
                     <td class="radius-data">
-                        
+                        `+ dataArr[6] + `
                     </td>
                     <td class="userstatus-data">
                         <span class="status active status-`+ dt.IsActive + `">
@@ -286,11 +284,13 @@ $(document).ready(function () {
                                 `+ dataArr[5] + `
                             </div>
                         </div>
-
                     </td>
                 </tr>`
             )).draw();
         });
+        // <td class="role-data">
+        //                 `+ dataArr[1] + `
+        //             </td>
     }
 
     function changeUserstatus(e, Changes) {
@@ -303,12 +303,12 @@ $(document).ready(function () {
                 active: data[14],
                 approve: data[13],
                 delete: data[15],
-                set_status : Changes
+                set_status: Changes
             },
-            success : function (result) {
+            success: function (result) {
                 if (result == 1) {
                     getUserManageMentPageData();
-                } else if(result == 0){
+                } else if (result == 0) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -316,7 +316,7 @@ $(document).ready(function () {
                         showConfirmButton: true,
                         confirmButtonColor: '#1fb6ff'
                     });
-                }else{
+                } else {
                     alert('Something went wrong!');
                 }
             }
@@ -324,46 +324,15 @@ $(document).ready(function () {
     }
 
     function getAllDatatoSet(dt1, dt2, dt3, dt4, dt5, dt6) {
-        var dataArr = [];
-        var d5 = "";
-        var ddhtml = "";
-        if (dt1 == 1) {
-            d1 = "Customer";
-        } else if (dt1 == 2) {
-            d1 = "Service Provider";
-        }
-        if (dt2 == null) {
-            d2 = "";
-        }
-        if (dt3 == 1) {
-            d3 = "Active";
-        } else if(dt3 == 0){
-            d3 = "Inactive";
-        }
-        if (dt4 == null) {
-            d4 = "";
-            d5 = "";
-        } else {
-            d4 = dt4;
-            d5 = dt5;
-        }
-        if (dt3 == 1) {
-            ddhtml = `<a class="dropdown-item activate-user active0" href="#">Deactivate</a>`;
-        } else if(dt3 == 0){
-            ddhtml = `<a class="dropdown-item activate-user active1" href="#">Activate</a>`;
-        }
-        if (dt1 == 2 && dt6 == 0) {
-            ddhtml += `<a class="dropdown-item approve-user approve1" href="#">Approve</a>`;
-        } else if (dt1 == 2 && dt6 == 1) {
-            ddhtml += `<a class="dropdown-item approve-user approve0" href="#">Disapprove</a>`;
-        }
-
-        dataArr[0] = d1;
-        dataArr[1] = d2;
-        dataArr[2] = d3;
-        dataArr[3] = d4;
-        dataArr[4] = d5;
-        dataArr[5] = ddhtml;
+        var dataArr = []; var d5 = ""; var ahtml = ""; var ddhtml = "";
+        if (dt1 == 1) { d1 = "Customer"; } else if (dt1 == 2) { d1 = "Service Provider"; }
+        if (dt2 == null) {  d2 = ""; }
+        if (dt3 == 1) {  d3 = "Active"; } else if (dt3 == 0) { d3 = "Inactive"; }
+        if (dt4 == null) { d4 = "";  d5 = ""; } else { d4 = dt4;  d5 = dt5; }
+        if (dt3 == 1) {  ddhtml = `<a class="dropdown-item activate-user active0" href="#">Deactivate</a>`;} else if (dt3 == 0) {  ddhtml = `<a class="dropdown-item activate-user active1" href="#">Activate</a>`; }
+        if (dt1 == 2 && dt6 == 0) {  ddhtml += `<a class="dropdown-item approve-user approve1" href="#">Approve</a>`; } else if (dt1 == 2 && dt6 == 1) { ddhtml += `<a class="dropdown-item approve-user approve0" href="#">Disapprove</a>`; }
+        if (dt6 == 0) { ahtml = 'Not Approved'; } else { ahtml = 'Approved'; }
+        dataArr[0] = d1; dataArr[1] = d2; dataArr[2] = d3; dataArr[3] = d4; dataArr[4] = d5; dataArr[5] = ddhtml; dataArr[6] = ahtml;
         return dataArr;
     }
 
