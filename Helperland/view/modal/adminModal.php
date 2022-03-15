@@ -9,6 +9,7 @@
                 <form class="admin-form-EditService" action="">
                     <input type="hidden" name="Service-id" id="SR-ID-Form">
                     <input type="hidden" name="Service-end" id="SR-end-time">
+                    <input type="hidden" name="SP" id="SR-SP-Name">
                     <div class="row">
                         <div class="col-md-6">
                             <label for="Res-date" class="form-label">Date</label>

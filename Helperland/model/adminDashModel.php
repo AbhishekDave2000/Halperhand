@@ -135,6 +135,38 @@ class adminDashModel
         $sql = "UPDATE servicerequest SET RefundedAmount = '$refund' , RefundReason = '$comment' WHERE ServiceRequestId = '$srid'";
         return $this->conn->query($sql);
     }
+    public function getProviderToMail()
+    {
+        $rows = array();
+        $sr = $_POST['Service-id'];
+        $postal = $_POST['postal'];
+        $sql = "SELECT u.Email FROM `user` as u 
+                RIGHT JOIN servicerequest as sr 
+                    ON u.UserId = sr.ServiceProviderId
+                WHERE u.UserTypeId = 2 AND sr.ServiceRequestId = $sr AND u.ZipCode = '$postal'";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0 && $result != false) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($rows, $row);
+            }
+            return $rows;
+        } else {
+            return 0;
+        }
+    }
+    public function getMultiProviderModel()
+    {
+        $postal = $_POST['postal'];
+        $rows = array();
+        $sql = "SELECT u.Email FROM user as u WHERE u.UserTypeId = 2 AND u.ZipCode = '$postal'";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0 && $result != false) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($rows, $row);
+            }
+            return $rows;
+        }
+    }
     // service request page model end
 
     // user management page model start
@@ -164,6 +196,43 @@ class adminDashModel
         $delete = $_POST['delete'];
         $sql = "UPDATE user SET IsActive = $active , IsApproved = $approve , IsDeleted = $delete WHERE UserId = $uid ";
         return $this->conn->query($sql);
+    }
+    public function getUserManagementSearchDataModel()
+    {
+        $id = $_POST['username'];
+        $type = $_POST['usertype'];
+        $phone = $_POST['phone'];
+        $postal = $_POST['postal'];
+        $email = $_POST['email'];
+        $from = $_POST['from-date'];
+        $to = $_POST['to-date'];
+        $rows = array();
+        $sql = "SELECT u.UserId,u.FirstName,u.LastName,u.Email,u.Mobile,u.UserTypeId,u.RoleId,u.Gender,u.DateOfBirth,u.UserProfilePicture,
+                u.ZipCode,u.LanguageId,u.NationalityId,u.IsApproved,u.IsActive,u.IsDeleted,u.Status,c.CityName FROM `user` as u
+                LEFT JOIN zipcode as zc
+                    ON zc.ZipcodeValue = u.ZipCode
+                LEFT JOIN city as c
+                    ON c.Id = zc.CityId
+                WHERE u.UserTypeId != 3 AND u.UserId LIKE '%$id%' AND u.UserTypeId LIKE '%$type%' AND u.Mobile LIKE '%$phone%' AND u.Email LIKE '%$email%' AND u.ZipCode LIKE '%$postal%' AND u.CreatedDate BETWEEN '$from' AND '$to'";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0 && $result != false) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($rows, $row);
+            }
+            return $rows;
+        }
+    }
+    public function getSearchDataUMModel()
+    {
+        $rows = array();
+        $sql = "SELECT u.FirstName,u.LastName,u.UserId,u.UserTypeId FROM user as u WHERE u.UserTypeId != 3";
+        $result = $this->conn->query($sql);
+        if ($result != false && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($rows, $row);
+            }
+            return $rows;
+        }
     }
     // user management page model end
 

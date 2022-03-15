@@ -27,6 +27,7 @@ $(document).ready(function () {
     });
     $('html').on('click', '.edit-reshedule-admin-btn', function (e) {
         const data = $(e.target).closest('tr').find("input").val().split(',');
+        console.log(data);
         $('#SR-ID-Form').val(data[0]);
         $('#Res-date').val(data[2].substr(0, 10));
         $('#service-reshedule-time').val(data[2].substr(11, 5));
@@ -35,15 +36,18 @@ $(document).ready(function () {
         $('#Postal-code').val(data[3]);
         $('#city-select').val(data[20]);
         $('#SR-end-time').val(data[6]);
+        $('#SR-SP-Name').val(data[4]);
         findPostalCodeData();
     });
     $('html').on('click', '.res-service-update', function () {
         var data = $('.admin-form-EditService').serialize();
+        $('.res-service-update').attr('disabled',true).html('Processing!..');
         $.ajax({
             url: url + '?controller=adminDash&function=editServiceRequest',
             type: 'post',
             data: data,
             success: function (result) {
+                $('.res-service-update').attr('disabled',false).html('Update');
                 $(".error").remove();
                 if (result == 1) {
                     $("#aminModel-1").modal("hide");
@@ -119,12 +123,32 @@ $(document).ready(function () {
     // user management page start
     $('#usermanage-admin-table').ready(function () {
         getUserManageMentPageData();
+        getUMSearchData();
     });
     $('#usermanage-admin-table').on('click', '.activate-user', function (e) {
         changeUserstatus(e, 1);
     });
     $('#usermanage-admin-table').on('click', '.approve-user', function (e) {
         changeUserstatus(e, 2);
+    });
+    $('.um-search-btn').on('click',function(e){
+        var data = $('.um-search-form').serialize();
+        $.ajax({
+            url: url + '?controller=adminDash&function=getUserManagementSearchData',
+            type: 'post',
+            data: data,
+            success: function (result) {
+                if (result != null) {
+                    var data = JSON.parse(result);
+                    showUserManagementData(data);
+                } else {
+                    var userTable = $('#usermanage-admin-table').DataTable();
+                    userTable.clear().draw();
+                }
+                // console.log(result);
+            }
+        });
+        e.preventDefault();
     });
     // user management page end
 
@@ -158,6 +182,20 @@ $(document).ready(function () {
             success: function (result) {
                 var data = JSON.parse(result);
                 setSearchOptionData(data);
+            }
+        });
+    }
+
+    function getUMSearchData(){
+        $.ajax({
+            url: url + '?controller=adminDash&function=getSearchDataUM',
+            type: 'post',
+            data: {
+                aid: adminid
+            },
+            success: function (result) {
+                var data = JSON.parse(result);
+                setUMSearchOptionData(data);
             }
         });
     }
@@ -347,6 +385,14 @@ $(document).ready(function () {
         });
         $('.s-second--input').html(cusoption);
         $('.s-third--input').html(prooption);
+    }
+
+    function setUMSearchOptionData(data){
+        var userName = "<option value='' selected>User Name</option>";
+        data.forEach(function(dt){
+            userName += `<option value='`+dt.UserId+`'>`+dt.FirstName+` `+dt.LastName+`</option>`;
+        });
+        $('.username-um-search').html(userName);
     }
 
     function findPostalCodeData() {

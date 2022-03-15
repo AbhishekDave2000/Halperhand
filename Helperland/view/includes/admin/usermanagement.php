@@ -10,39 +10,49 @@
             </div>
 
             <div class="second-div container-fluid">
-                <form>
+                <form class="um-search-form">
                     <div class="sr-main-div-form">
-                        <div class="sr-div">
-                            <div class="">
-                                <select class="form-control first-input" name="user name">
-                                    <option>User name</option>
+                        <div class="sr-div pb-3">
+                            <div>
+                                <select class="form-control first-input username-um-search" name="username">
+                                    <!-- <option>User name</option>
                                     <option>Abhishek</option>
-                                    <option>Tatvasoft</option>
+                                    <option>Tatvasoft</option> -->
                                 </select>
                             </div>
-                            <div class="">
-                                <select class="form-control second-input" name="user name">
-                                    <option>User Role</option>
-                                    <option>Inquiry Manager</option>
-                                    <option>Content Manager</option>
-                                    <option>Finance Manager</option>
+                            <div>
+                                <select class="form-control second-input" name="usertype">
+                                    <option value ="" selected>User Role</option>
+                                    <option value="1">Customer</option>
+                                    <option value="2">Service Provider</option>
                                 </select>
                             </div>
 
-                            <div class=" p-num">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">+49</div>
-                                </div>
-                                <input type="tel" class="form-control" placeholder="Phone Number">
+                            <div>
+                                <input type="tel" name="phone" class="form-control fourth-input" placeholder="Phone Number">
                             </div>
 
-                            <div class="">
-                                <input type="text" class="form-control fourth-input" placeholder="Zipcode">
+                            <div>
+                                <input type="text" name="postal" class="form-control fourth-input" placeholder="Postal Code">
+                            </div>
+
+                            <div>
+                                <input type="text" name="email" class="form-control fourth-input" placeholder="Email">
+                            </div>
+
+                            <div>
+                                <input type="text" name="from-date" class="form-control fourth-input" placeholder="From Date" onfocus="(this.type='date')"> 
+                                <!-- <input type="date" class="form-control fourth-input" placeholder="Zipcode"> -->
+                            </div>
+
+                            <div>
+                                <input type="text" name="to-date" class="form-control fourth-input" placeholder="To Date" onfocus="(this.type='date')"> 
+                                <!-- <input type="date" class="form-control fourth-input" placeholder="Zipcode"> -->
                             </div>
                         </div>
                         <div class="sr-btn-div">
-                            <div class="">
-                                <button type="submit" class="btn submit-btn">Search</button>
+                            <div>
+                                <button type="button" class="btn submit-btn um-search-btn">Search</button>
                             </div>
 
                             <div class="col-reset">

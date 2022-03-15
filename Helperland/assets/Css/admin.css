@@ -176,20 +176,11 @@
 .input-group-prepend{
     padding-right: 0 !important;
 }
-.second-div form div div button{
-    width: 84px !important;
-}
-.first-input{
-    width: 215px !important;
-}
-.second-input{
-    width: 215px !important;
-}
 .submit-btn{
     background-color: #1fb6ff !important; 
     color: white !important;
     width: 84px !important;
-}
+} 
 .clear-btn{
     border: solid 1px #dedddd !important;
     background-color: var(--white);
@@ -207,35 +198,15 @@
     width: 140px !important;
 }
 
-
 /* service request page third div */
 .sr-main-div-form{
     display: flex;
+    flex-direction: column !important;
     justify-content: space-between;
 }
-.s-first-input{
-    width: 110px !important;
-}
 .sr-btn-div{
-    display: flex;
-    justify-content: right;
+    justify-content: left !important;
 }
-.s-second-input{
-    width: 127px!important;
-}
-.s-third-input{
-    width: 170px!important;
-}
-.s-fourth--input{
-    width: 120px!important;
-}
-.s-fifth-input,.s-sixth-input{
-    width: 135px !important;
-}
-
-
-
-
 /* table part */
 .third-div{
     margin-top: 20px;

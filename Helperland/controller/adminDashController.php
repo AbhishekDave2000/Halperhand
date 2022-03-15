@@ -1,6 +1,7 @@
 <?php
 include('model/adminDashModel.php');
 include('controller/validation/adminvalidate.php');
+include('controller/phpmailer/mail.php');
 session_start();
 class adminDashController
 {
@@ -41,6 +42,32 @@ class adminDashController
         $result = $this->model->getAdminPageUserModel();
         echo json_encode($result);
     }
+
+    // get searched data
+    public function getUserManagementSearchData()
+    {
+        if ($_POST['from-date'] == "" || $_POST['from-date'] == null) {
+            $_POST['from-date'] = '2000-01-01 00:00:00.000';
+        } else {
+            $_POST['from-date'] = $_POST['from-date'] . ' ' . "00:00:00.000";
+        }
+        if ($_POST['to-date'] == "" || $_POST['to-date'] == null) {
+            $_POST['to-date'] = date("Y-m-d") . ' :00:00:00.000';
+        } else {
+            $_POST['to-date'] = $_POST['to-date'] . ' ' . "00:00:00.000";
+        }
+        $result = $this->model->getUserManagementSearchDataModel();
+        echo json_encode($result);
+    }
+
+    // get search option data for user management
+    public function getSearchDataUM()
+    {
+        $result = $this->model->getSearchDataUMModel();
+        echo json_encode($result);
+    }
+
+    // activate and approval of service provider
     public function setUserStatuses()
     {
         $change = $_POST['set_status'];
@@ -80,7 +107,24 @@ class adminDashController
                 $_POST['admin'] = $_SESSION['user']['UserId'];
                 $_POST['DT'] = $_POST['date'] . ' ' . $_POST['rescheduled-time'] . ':00.000';
                 $result = $this->model->editServiceRequestModel();
-                echo $result;
+                if ($result == 1) {
+                    $res = $this->model->getProviderToMail();
+                    if($res == 0){
+                        $mail = $this->model->getMultiProviderModel();
+                    }else{
+                        $mail = $res;
+                    }
+                    foreach($mail as $sp){
+                        $date = substr($_POST['DT'],0,10);
+                        $time = substr($_POST['DT'],11,5);
+                        $html ="<span><strong>Service Request Id : </strong>{$_POST['Service-id']}</span><br>
+                                <span><strong>New Date : </strong>{$date}</span><br>
+                                <span><strong>New Start Time : </strong>{$time}</span><br>
+                                <span><strong>Address : </strong>{$_POST['house']} , {$_POST['street']} , {$_POST['city']} , {$_POST['postal']}.</span>";
+                        sendmail($sp['Email'],'The Service Request Has been Edited and new Details are as follows',$html);
+                    }
+                    echo $result;
+                }
             } else {
                 echo $error['error'];
             }
