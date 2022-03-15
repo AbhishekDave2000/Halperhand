@@ -218,6 +218,7 @@
 thead{
     border-bottom: solid 1px #e1e1e1;
     background-color: #f9f9f9;
+    height: 50px;
 }
 thead tr th{
     font-family: Roboto;
@@ -229,7 +230,7 @@ thead tr th{
     letter-spacing: normal;
     text-align: left;
     color: #646464;
-    padding-left: 10px 8px !important;
+    padding: 10px 8px !important;
 }
 .um-th th,.um-tb td{
     text-align: center;
@@ -240,6 +241,8 @@ tbody{
 }
 tbody tr{
     border-bottom: solid 1px #e1e1e1;
+    min-height: 50px !important;
+    max-height: fit-content !important;
 }
 tbody tr td{
     font-family: Roboto;
@@ -251,6 +254,7 @@ tbody tr td{
     letter-spacing: normal;
     text-align: left;
     color: #646464;
+    padding: 8px !important;
 }
 .userstatus-data>.status-1{
     padding: 7px 7px 7px 7px;
@@ -351,58 +355,7 @@ tbody tr td{
     align-items: center;
     justify-content: center;
 }
-.pagination-div{
-    height: 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.pagination-div .entry-show{
-    display: flex;
-    flex-direction: row;
-}
-.entry-show span{
-    font-family: Roboto;
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 2.29;
-    letter-spacing: normal;
-    text-align: left;
-    color: #646464;
-    
-}
-.entry-show .form-select{
-    width: 58px;
-    height: 40px;
-    margin-left: 5px;
-    margin-right: 5px;
-    border-radius: 4px;
-    border: solid 1px #d6d6d6;
-}
-.pagination-nav{
-    height: 38px !important;
-}
-.pagination-nav ul li{
-    height: 38px;
-    width: 38px;
-    
-}
-.pagination-nav ul li a, .pagination-nav ul li a:hover{
-    text-decoration: none;
-    color: #646464;
-    font-family: Roboto;
-    font-size: 14px;
-}
-.pagination-nav ul li a:active,.pagination-nav ul li a:focus{
-    background-color: #565656;
-    color: white;
-}
-.pagination{
-    margin: 0 !important;
-}
 /* content end */
 
 /* footer */
@@ -460,7 +413,7 @@ tbody tr td{
     }
     .container__main .third-div{
         overflow-x: auto;
-        min-width: 1000px;
+        min-width: 1130px;
     }
     .container__main .heading-class,
     .container__main .second-div,
@@ -574,12 +527,28 @@ tbody tr td{
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover
 {
     background: rgb(58, 58, 58) !important;
-    color: #fff !important;
+    color: white !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 14px;
+    text-decoration: none;
+    color: rgb(58, 58, 58);
+    border: 1px solid #a2a6a8;
+}
+.dataTables_wrapper .dataTables_paginate span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .dataTables_wrapper .dataTables_paginate {
     float: right;
     text-align: right;
     padding-top: 0.25em;
+    display: flex;
+    flex-direction: row;
 }
 .dataTables_paginate {
     display: flex;
@@ -599,28 +568,30 @@ tbody tr td{
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.first {
     content: url(../Img/customer/first-page.png);
-    padding: 8px 8px;
-    border: 1px solid #e1e1e1;
+    padding: 13.2px 14px;
+    border: 1px solid #a2a6a8;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.previous {
     content: url(../img/customer/keyboard-right-arrow-button-copy.png);
-    padding: 8px 8px;
-    border: 1px solid #e1e1e1;
+    padding: 13.2px 14px;
+    border: 1px solid #a2a6a8;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.next {
     content: url(../img/customer/keyboard-right-arrow-button-copy.png);
-    padding: 8px 8px;
-    border: 1px solid #e1e1e1;
+    padding: 13.2px 14px;
+    border: 1px solid #a2a6a8;
     transform: rotate(180deg);
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.last {
     content: url(../img/customer/first-page.png);
-    padding: 8px 8px;
-    border: 1px solid #e1e1e1;
+    padding: 13.2px 14px;
+    border: 1px solid #a2a6a8;
     transform: rotate(180deg);
 }
 .dataTables_wrapper .dataTables_length select {
-    color: black;
+    color: #666;
+    height: 35px;
+    width: 60px;
 }
 table.dataTable,tbody,thead tr{
     border-spacing: 0;
