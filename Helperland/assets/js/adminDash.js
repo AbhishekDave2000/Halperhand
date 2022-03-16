@@ -41,13 +41,13 @@ $(document).ready(function () {
     });
     $('html').on('click', '.res-service-update', function () {
         var data = $('.admin-form-EditService').serialize();
-        $('.res-service-update').attr('disabled',true).html('Processing!..');
+        $('.res-service-update').attr('disabled', true).html('Processing!..');
         $.ajax({
             url: url + '?controller=adminDash&function=editServiceRequest',
             type: 'post',
             data: data,
             success: function (result) {
-                $('.res-service-update').attr('disabled',false).html('Update');
+                $('.res-service-update').attr('disabled', false).html('Update');
                 $(".error").remove();
                 if (result == 1) {
                     $("#aminModel-1").modal("hide");
@@ -131,7 +131,7 @@ $(document).ready(function () {
     $('#usermanage-admin-table').on('click', '.approve-user', function (e) {
         changeUserstatus(e, 2);
     });
-    $('.um-search-btn').on('click',function(e){
+    $('.um-search-btn').on('click', function (e) {
         var data = $('.um-search-form').serialize();
         $.ajax({
             url: url + '?controller=adminDash&function=getUserManagementSearchData',
@@ -186,7 +186,7 @@ $(document).ready(function () {
         });
     }
 
-    function getUMSearchData(){
+    function getUMSearchData() {
         $.ajax({
             url: url + '?controller=adminDash&function=getSearchDataUM',
             type: 'post',
@@ -364,11 +364,11 @@ $(document).ready(function () {
     function getAllDatatoSet(dt1, dt2, dt3, dt4, dt5, dt6) {
         var dataArr = []; var d5 = ""; var ahtml = ""; var ddhtml = "";
         if (dt1 == 1) { d1 = "Customer"; } else if (dt1 == 2) { d1 = "Service Provider"; }
-        if (dt2 == null) {  d2 = ""; }
-        if (dt3 == 1) {  d3 = "Active"; } else if (dt3 == 0) { d3 = "Inactive"; }
-        if (dt4 == null) { d4 = "";  d5 = ""; } else { d4 = dt4;  d5 = dt5; }
-        if (dt3 == 1) {  ddhtml = `<a class="dropdown-item activate-user active0" href="#">Deactivate</a>`;} else if (dt3 == 0) {  ddhtml = `<a class="dropdown-item activate-user active1" href="#">Activate</a>`; }
-        if (dt1 == 2 && dt6 == 0) {  ddhtml += `<a class="dropdown-item approve-user approve1" href="#">Approve</a>`; } else if (dt1 == 2 && dt6 == 1) { ddhtml += `<a class="dropdown-item approve-user approve0" href="#">Disapprove</a>`; }
+        if (dt2 == null) { d2 = ""; }
+        if (dt3 == 1) { d3 = "Active"; } else if (dt3 == 0) { d3 = "Inactive"; }
+        if (dt4 == null) { d4 = ""; d5 = ""; } else { d4 = dt4; d5 = dt5; }
+        if (dt3 == 1) { ddhtml = `<a class="dropdown-item activate-user active0" href="#">Deactivate</a>`; } else if (dt3 == 0) { ddhtml = `<a class="dropdown-item activate-user active1" href="#">Activate</a>`; }
+        if (dt1 == 2 && dt6 == 0) { ddhtml += `<a class="dropdown-item approve-user approve1" href="#">Approve</a>`; } else if (dt1 == 2 && dt6 == 1) { ddhtml += `<a class="dropdown-item approve-user approve0" href="#">Disapprove</a>`; }
         if (dt6 == 0) { ahtml = 'Not Approved'; } else { ahtml = 'Approved'; }
         dataArr[0] = d1; dataArr[1] = d2; dataArr[2] = d3; dataArr[3] = d4; dataArr[4] = d5; dataArr[5] = ddhtml; dataArr[6] = ahtml;
         return dataArr;
@@ -387,10 +387,10 @@ $(document).ready(function () {
         $('.s-third--input').html(prooption);
     }
 
-    function setUMSearchOptionData(data){
+    function setUMSearchOptionData(data) {
         var userName = "<option value='' selected>User Name</option>";
-        data.forEach(function(dt){
-            userName += `<option value='`+dt.UserId+`'>`+dt.FirstName+` `+dt.LastName+`</option>`;
+        data.forEach(function (dt) {
+            userName += `<option value='` + dt.UserId + `'>` + dt.FirstName + ` ` + dt.LastName + `</option>`;
         });
         $('.username-um-search').html(userName);
     }

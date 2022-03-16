@@ -18,7 +18,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
     <link rel="stylesheet" href="assets/Css/uparr.css">
     <script src="assets/js/uparr.js"></script>
     <script src="assets/js/adminDash.js"></script>
@@ -74,7 +74,7 @@
         <aside class="container__sidebar container-fluid">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="http://localhost/Halperhand/Helperland/?controller=Default&function=adminDash&parameter=usermanagement">User Management</a>
+                    <a class="nav-link" href="http://localhost/Halperhand/Helperland/?controller=Default&function=adminDash&parameter=usermanagement">User Management</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="http://localhost/Halperhand/Helperland/?controller=Default&function=adminDash&parameter=servicerequest">Service Requests</a>

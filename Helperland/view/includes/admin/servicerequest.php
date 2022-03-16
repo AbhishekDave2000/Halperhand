@@ -14,7 +14,7 @@
                             <div class="col-md-2">
                                 <!-- <input class="form-control" type="text" placeholder="Customer" name="CS"> -->
                                 <select class="form-control s-second--input" name="CS">
-                                
+
                                 </select>
                             </div>
 
@@ -43,12 +43,12 @@
                                 <input type="date" name="DOS-TO" class="form-control s-sixth-input" placeholder="To">
                             </div>
                         </div>
-                        <div class="sr-btn-div">
-                            <div class="col">
+                        <div class="sr-btn-div pt-2">
+                            <div class="col-1">
                                 <button type="button" id="search-btn" class="btn submit-btn">Search</button>
                             </div>
 
-                            <div class="col col-reset">
+                            <div class="col-1 col-reset">
                                 <button type="Reset" class="btn clear-btn">Clear</button>
                             </div>
                         </div>
