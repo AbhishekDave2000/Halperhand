@@ -83,6 +83,14 @@ $(document).ready(function () {
         const nsr = $(e.target).closest('tr').find("input").val().split(',');
         acceptServiceRequest(nsr);
     });
+    $('body').on("click","#pah-filter",function(){
+        var pet = $('#pah-filter:checked').val();
+        if(pet == 1){
+            getServiceRequestDetailPet();
+        }else{
+            getServiceRequestDetail();
+        }
+    });
     // New Service Request Operations End
 
     // Upcoming Service Request Strat___________________________________________________________________________________
@@ -238,6 +246,25 @@ $(document).ready(function () {
                 } else {
                     var SPCBlockTable = $('#sp-cblock').DataTable();
                     SPCBlockTable.clear().draw();
+                }
+            }
+        });
+    }
+
+    function getServiceRequestDetailPet(){
+        $.ajax({
+            url: url + '?controller=providerDash&function=getServiceRequestPetData',
+            type: 'post',
+            data: {
+                spid: spid
+            },
+            success: function (result) {
+                if (result != 0) {
+                    var data = JSON.parse(result);
+                    showNewServiceReq(data);
+                } else {
+                    var table = $('#sp-ns-table').DataTable();
+                    table.clear().draw();
                 }
             }
         });

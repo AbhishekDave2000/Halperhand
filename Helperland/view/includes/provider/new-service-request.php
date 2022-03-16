@@ -44,7 +44,6 @@
             </th>
             <th class="serviceaction">Time conflict</th>
             <th class="serviceaction">Actions</th>
-            <!-- <th style="display: none;">Haspets</th> -->
         </tr>
     </thead>
     <tbody>

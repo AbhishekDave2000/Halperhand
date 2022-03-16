@@ -49,7 +49,7 @@ class providerDashController
     // save service provider password
     public function myPasswordUpdate()
     {
-        
+
         $val = new myDetailValidation($_POST);
         $result = $val->passwordValidate();
         if (empty($result)) {
@@ -66,6 +66,14 @@ class providerDashController
         $status = '(0,1)';
         $NS = "OR sr.ServiceProviderId IS NULL";
         $result = $this->model->getServiceRequestDataModel($status, $NS);
+        echo json_encode($result);
+    }
+
+    public function getServiceRequestPetData()
+    {
+        $status = '(0,1)';
+        $NS = "OR sr.ServiceProviderId IS NULL";
+        $result = $this->model->getServiceRequestPetDataModel($status, $NS);
         echo json_encode($result);
     }
 
@@ -196,7 +204,7 @@ class providerDashController
                         $mailhtml = '<span>The Service with Service Id : <u><strong>' . $_POST['srid'] . '</strong></u> Has been <strong>canceled</strong> by other service provider and it is <b style="color:green;">available!</b></span>';
                         break;
                 }
-                sendmail($sp['Email'],$mailsub, $mailhtml);
+                sendmail($sp['Email'], $mailsub, $mailhtml);
             }
             return 1;
         }

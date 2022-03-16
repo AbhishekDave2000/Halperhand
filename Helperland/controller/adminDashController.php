@@ -136,7 +136,7 @@ class adminDashController
     // refund amount of service request
     public function refundServiceRequestAmount()
     {
-        $_POST['ramount'] = ($_POST['payment'] * $_POST['percentage']) + $_POST['previous-refund'];
+        $_POST['ramount'] = (floatval($_POST['payment']) * floatval($_POST['percentage'])) + floatval($_POST['previous-refund']);
         $result = $this->model->refundServiceRequestAmountModel();
         echo $result;
     }

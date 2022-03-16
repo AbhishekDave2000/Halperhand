@@ -111,13 +111,13 @@ class providerDashModel
                         SET Password = '$pass'
                         WHERE UserId = '$id'";
                     return $this->conn->query($sql);
-                }else {
+                } else {
                     return 2;
                 }
             }
-        }else{
+        } else {
             return 3;
-        } 
+        }
     }
 
     // Get Service Request and upcoming service request data
@@ -135,6 +135,31 @@ class providerDashModel
                 JOIN user as u
                     ON u.UserId = sr.UserId
                 WHERE (sr.ServiceProviderId = $spid $NS) AND sr.Status IN $status";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($rows, $row);
+            }
+            return $rows;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getServiceRequestPetDataModel($status, $NS)
+    {
+        $rows = array();
+        $spid = $_POST['spid'];
+        $sql = "SELECT sr.ServiceRequestId,sr.ServiceStartDate,sr.ZipCode,sr.ServiceHours,sr.ExtraHours,sr.SubTotal,sr.Discount,sr.TotalCost,sr.Comments,
+                        sr.ServiceProviderId,sr.JobStatus,sr.HasPets,sr.Status,sr.CreatedDate,sr.Distance,sr.HasIssue,sra.AddressLine1,sra.AddressLine2,sra.City,sra.State,
+                        sra.Mobile,sra.Email,sre.ServiceExtraId,u.FirstName as CFName, u.LastName as CLName,u.Gender,u.UserProfilePicture,sr.UserId as CustomerId FROM servicerequest as sr
+                JOIN servicerequestaddress as sra
+                    ON sr.ServiceRequestId = sra.ServiceRequestId
+                JOIN servicerequestextra as sre
+                    ON sr.ServiceRequestId = sre.ServiceRequestId
+                JOIN user as u
+                    ON u.UserId = sr.UserId
+                WHERE (sr.ServiceProviderId = $spid $NS) AND sr.Status IN $status AND sr.HasPets = 1";
         $result = $this->conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {

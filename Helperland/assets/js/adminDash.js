@@ -113,6 +113,7 @@ $(document).ready(function () {
                             confirmButtonColor: '#1fb6ff'
                         });
                     }
+                    console.log(result);
                 }
             });
         }
@@ -438,7 +439,7 @@ $(document).ready(function () {
         }
 
         if (reason.length < 1) {
-            $('#reason-of-refund').after("<span class='error'>Percentage Field can not be empty!</span>");
+            $('#reason-of-refund').after("<span class='error'>Reason Field can not be empty!</span>");
             return false;
         }
     }
