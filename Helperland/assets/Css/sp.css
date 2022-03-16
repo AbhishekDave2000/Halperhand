@@ -517,8 +517,11 @@ th.sorting{
 .div-content .nav-tabs button{
     width: 33%;
 }
-.a-s-text{
+.customer-status .active{
     color: greenyellow;
+}
+.customer-status .inactive{
+    color: tomato;
 }
 .a-s-heading{
     font-size: 20px;

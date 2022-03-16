@@ -51,7 +51,7 @@
             <span class="Register-Now">
                 Register Now!
             </span>
-            <form id="register-form" action="<?= $base_url.'?controller=Authentication&function=Signup' ?>" method="POST">
+            <form id="pro-register-form" class="pro-register-form" action="<?= $base_url.'?controller=Authentication&function=Signup' ?>" method="POST">
             
             <input type="hidden" value="2" name="UserTypeId">
                 <div class="col">
@@ -81,8 +81,8 @@
                             privacy policy
                         </span>
                     </div>
-                    <div class="row">
-                        <button type="submit" value="register" name="register" id="submit" class="btn get-started-btn">Get Started
+                    <div class="row get-started-btn-main-div">
+                        <button type="button" value="register" name="register" id="submit2" class="btn get-started-btn">Get Started
                             <img src="assets/Img/serviceprovider/shape-2.png" alt="arrow">
                         </button>
                     </div>

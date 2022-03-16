@@ -56,20 +56,26 @@ class AuthenticationController
     //user signup controller
     public function Signup()
     {
+        // print_r($_POST);exit;
         // validate data
         $validate = new userValidator($_POST);
         $errors = $validate->Validator();
         if (!count($errors) > 0) {
             $_POST['pass'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $res = $this->auth->checkuserEmailModel();
             // insert data
-            $result = $this->auth->SignupModel($_POST['pass']);
-            if ($result) {
-                header("Location: " . Config::base_url . '?controller=Default&function=homepage');
-                exit;
+            if($res){
+                $result = $this->auth->SignupModel();
+                if ($result) {
+                    echo 1;
+                }else{
+                    echo 0;
+                }
+            }else{
+                echo 2;
             }
         } else {
-            header("Location: errors.php?error=something went wrong with validation of form");
-            exit;
+            echo $errors['error'];
         }
     }
 

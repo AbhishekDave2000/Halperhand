@@ -6,20 +6,16 @@ class contactController
 {
     public $post;
     public $base_url = "localhost/Tatvasoft/Halperland/";
-    public function __construct($post)
-    {
-        $this->post = $post;
-    }
+
     public function insertContact()
     {
         //validate the data
-        $validate = new contactValidator($this->post);
+        $validate = new contactValidator($_POST);
         $errors = $validate->Validator();
         if (!count($errors) > 0) {
             //attachment file
             $filepath = "";
             $filename = "";
-            
             if (isset($_FILES['attachment']) && !empty($_FILES['attachment']['name'])) {
                 $filerrors = $validate->isFileValidate($_FILES);
                 if (!count($filerrors) > 0) {
@@ -27,50 +23,35 @@ class contactController
                     $filepath = "assets/attachments/" . $filename;
                     $temp_file_path = $_FILES['attachment']['tmp_name'];
                     if (!move_uploaded_file($temp_file_path, $filepath)) {
-                        header("Location: errors.php?error=file not uploaded!");
-                        exit();
+                        echo 2;
                     }
                 } else {
-                    header("Location: errors.php?error=File is not valid!");
+                    echo 3;
                 }
             }
-            //insert data into table
             $_POST['filepath'] = $filepath;
             $_POST['filename'] = $filename;
-            
             $contactus = new contactModel($_POST);
             $result = $contactus->insertContactData();
-            
             if ($result) {
-                //send mail
                 $this->contactMail();
             }
-            //redirect to contact page
-            header('Location: ?controller=Default&function=contactpage');
-            exit();
+            echo 1;
         } else {
-            header("Location: errors.php?error=Form is not validated!");
-            exit();
+            echo $errors['error'];
         }
     }
 
     public function contactMail()
     {
-        $subject = $this->post['subject'];
-        $message = $this->post['message'];
-        $name = $this->post['firstname'] . " " . $this->post['lastname'];
+        $subject = $_POST['subject'];
+        $message = $_POST['message'];
+        $name = $_POST['firstname'] . " " . $_POST['lastname'];
         $filepath = $_POST['filepath'];
-        $html = "<p style='font-size:18px;'>You have message from: {$name}</p>
-                <hr>
-                <p style='font-size:18px;'> The subject of message is: {$subject}</p>
-                <p style='font-size:16px;'>{$message}</p>";
+        $html = "<span style='font-size:16px;'><strong>You have message from : </strong>{$name}</span><br>
+                <span style='font-size:16px;'><strong>The subject of message is : </strong>{$subject}</span><br>
+                <span style='font-size:16px;'><strong>Message : </strong>{$message}</span>";
 
-        sendmail(Config::ADMIN_EMAIL, $name, $html, $filepath);
+        sendmail(Config::ADMIN_EMAIL, 'You have been contacted by : '.$name, $html, $filepath);
     }   
-}
-
-$contact = new contactController($_POST);
-if (isset($_POST['submit'])) {
-    $contact->insertContact();
-    
 }

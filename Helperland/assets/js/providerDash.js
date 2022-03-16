@@ -1,8 +1,7 @@
 $(document).ready(function () {
     var url = "http://localhost/Halperhand/Helperland/";
     var spid = $('.sp-id').text();
-    $('#complete-serreq-btn-row').hide();
-    // setInterval(displayCompleteButton, 1000);
+    $('#complete-serreq-btn-row,.customer-status .active,.customer-status .inactive').hide();
 
     //mysetting page operations Start___________________________________________________________________________________
     $('.sp-mysetting-content').ready(function () {
@@ -127,9 +126,8 @@ $(document).ready(function () {
                 spid: spid
             },
             success: function (result) {
-                if (result.length != 0) {
-                    var data = JSON.parse(result);
-                    showSPRatings(data);
+                if (result != null || result.length > 0) {
+                    showSPRatings(result);
                 } else {
                     var SPRatingTable = $('#sp-myratings').DataTable();
                     SPRatingTable.clear().draw();
@@ -336,7 +334,8 @@ $(document).ready(function () {
         });
     }
 
-    function showSPRatings(data) {
+    function showSPRatings(result) {
+        var data = JSON.parse(result);
         var SPRatingTable = $('#sp-myratings').DataTable();
         SPRatingTable.clear().draw();
 
@@ -661,6 +660,13 @@ $(document).ready(function () {
                     findCityFromPostal(data.ZipCode);
                 }
                 $('.avatar-image-os-user').html(`<img src="assets/Img/assets/avatar-${av}.png" alt="avatar" width="100%" height="100%">`);
+                if(data.IsActive == 1){
+                    $('.customer-status .active').show();
+                    $('.customer-status .inactive').hide();
+                }else{
+                    $('.customer-status .active').hide();
+                    $('.customer-status .inactive').show();
+                }
             }
         });
     }

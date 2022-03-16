@@ -11,12 +11,12 @@ class userValidator{
         if(!isset($this->data["agree"])){
             $this->data["agree"] = "";
         }
-        $this->fistnameValidator(trim($this->data["firstname"]));
-        $this->lastnameValidator(trim($this->data["lastname"]));
-        $this->emailValidator(trim($this->data["email"]));
-        $this->phoneValidator(trim($this->data["phone"]));
-        $this->passwordValidator(trim($this->data["password"]),trim($this->data['confirmpassword']));
         $this->policyValidator(trim($this->data["agree"]));
+        $this->passwordValidator(trim($this->data["password"]),trim($this->data['confirmpassword']));
+        $this->phoneValidator(trim($this->data["phone"]));
+        $this->emailValidator(trim($this->data["email"]));
+        $this->lastnameValidator(trim($this->data["lastname"]));
+        $this->fistnameValidator(trim($this->data["firstname"]));
 
         return $this->errors;
     }
@@ -35,7 +35,7 @@ class userValidator{
     
     public function fistnameValidator($fname){
         if(empty($fname)){
-            $this->addErrors("error","field can`t be empty");
+            $this->addErrors("error","Fist-name can`t be empty");
         }else{
             if(!preg_match("/^[^@$!%*#?&]+$/", $fname)){
                 $this->addErrors("error","Special Characters can't be used in FirstName");
@@ -45,7 +45,7 @@ class userValidator{
 
     public function lastnameValidator($lname){
         if(empty($lname)){
-            $this->addErrors("error","field can`t be empty");
+            $this->addErrors("error","Last-name can`t be empty");
         }else{
             if(!preg_match("/^[^@$!%*#?&]+$/", $lname)){
                 $this->addErrors("error","Special Characters can't be used in LastName");
@@ -55,7 +55,7 @@ class userValidator{
 
     public function emailValidator($email){
         if(empty($email)){
-            $this->addErrors("error","field can`t be empty");
+            $this->addErrors("error","Email can`t be empty");
         }else{
             if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
                 $this->addErrors("error","email must be valid email");
@@ -65,7 +65,7 @@ class userValidator{
 
     public function phoneValidator($phone){
         if(empty($phone)){
-            $this->addErrors("error","field can`t be empty");
+            $this->addErrors("error","Mobile No. can`t be empty");
         }else{
             if(!preg_match('/^[0-9]{10}$/',$phone)){
                 $this->addErrors("error","length must be 10 chars & number");

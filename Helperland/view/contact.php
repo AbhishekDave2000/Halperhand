@@ -158,9 +158,9 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row c-submit-div">
                     <div class="col">
-                        <button type="submit" id="c-submit" name="submit" value="submit">Submit</button>
+                        <button type="submit" id="c-submit" class="c-submit" name="submit" value="submit">Submit</button>
                     </div>
                 </div>
             </form>

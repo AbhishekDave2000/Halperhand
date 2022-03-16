@@ -8,9 +8,10 @@
 
     <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-            <div class="cudtomer-status pt-2 pb-2">
+            <div class="customer-status pt-2 pb-2">
                 <span class="a-s-heading">Account Status</span>
-                <span class="a-s-text">Active</span>
+                <span class="a-s-text active">Active</span>
+                <span class="a-s-text inactive">Inactive</span>
             </div>
             <div class="avatar-basic-main-div">
                 <div class="col-md-11 pl-0 mr-2 basic-detail-head">Basic Detail</div>

@@ -13,7 +13,7 @@ class providerDashModel
     public function getMySettingDataModel()
     {
         $spid = $_POST['spid'];
-        $sql = "SELECT u.UserId,u.FirstName,u.LastName,u.Email,u.Mobile,u.Gender,u.DateOfBirth,u.UserProfilePicture,u.ZipCode,u.WorksWithPets,u.LanguageId,u.NationalityId,u.CreatedDate,u.ModifiedDate FROM user as u
+        $sql = "SELECT u.UserId,u.FirstName,u.LastName,u.Email,u.Mobile,u.Gender,u.DateOfBirth,u.UserProfilePicture,u.ZipCode,u.WorksWithPets,u.LanguageId,u.NationalityId,u.CreatedDate,u.ModifiedDate,u.IsActive FROM user as u
                 WHERE u.UserId = $spid";
         $result = $this->conn->query($sql);
         if ($result->num_rows > 0) {
@@ -64,6 +64,9 @@ class providerDashModel
             $address = $this->getServiceProviderAddress();
             $state = $res['StateName'];
             $city = $res['CityName'];
+
+            $sql = "UPDATE user SET ZipCode = '$postal',IsActive = 1 WHERE UserId = '$id'";
+            $this->conn->query($sql);
 
             if (empty($address)) {
                 $sql = "INSERT INTO useraddress(`UserId`, `AddressLine1`, `AddressLine2`, `City`, `State`, `PostalCode`, `IsDefault`, `Mobile`, `Email`) 

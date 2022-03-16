@@ -25,13 +25,25 @@ class AuthenticationModel
         }
     }
 
-    public function SignupModel($password)
+    public function checkuserEmailModel(){
+        $email = trim($this->data['email']);
+        $sql = "SELECT * FROM user WHERE Email = '$email' ";
+        $result = $this->conn->query($sql);
+        if($result->num_rows > 0){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
+    public function SignupModel()
     {
         $firstname  = trim($this->data['firstname']);
         $lastname = trim($this->data['lastname']);
         $email = trim($this->data['email']);
         $phone = trim($this->data['phone']);
         $UserTypeId = $this->data['UserTypeId'];
+        $password = $_POST['pass'];
         if ($UserTypeId == 1) {
             $approved = 1;
         } elseif ($UserTypeId == 2) {

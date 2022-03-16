@@ -40,7 +40,7 @@
 
             <div class="container-fluid form-div">
 
-                <form method="post" action="<?= Config::base_url . '?controller=Authentication&function=Signup' ?>">
+                <form class="customer-register-form" method="post" action="<?= Config::base_url . '?controller=Authentication&function=Signup' ?>">
 
                     <input type="hidden" value="1" name="UserTypeId">
 
@@ -85,9 +85,9 @@
                         </div>
                     </div>
 
-                    <div class="row text-center">
+                    <div class="row text-center submit-btn-main-div">
                         <div class="col">
-                            <button class="btn" id="submit" type="submit" value="register" name="register">Register</button>
+                            <button class="btn" id="submit1" type="button" value="register" name="register">Register</button>
                         </div>
                     </div>
 
