@@ -1,3 +1,4 @@
+<?php include('view/includes/sessionCheck.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php $base_url = 'http://localhost/Halperhand/Helperland/'; ?>

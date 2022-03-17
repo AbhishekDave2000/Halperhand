@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="assets/Css/sp.css">
     <link rel="stylesheet" href="assets/Css/uparr.css">
     <link rel="stylesheet" href="assets/Css/spmodal.css">
+    <link rel="stylesheet" href="assets/Css/calender.css">
     <script src="assets/js/uparr.js"></script>
 </head>
 
@@ -67,7 +68,7 @@
                         </ul>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 sidebar-ul-navbar">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=' ?>">Dashbord</a>
+                                <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=dashboard' ?>">Dashbord</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=new-service-request' ?>">New Service</a>
@@ -76,7 +77,7 @@
                                 <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=upcoming-service' ?>">upcoming Service</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=' ?>">Service Schedule</a>
+                                <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=service-schedule' ?>">Service Schedule</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=service-history' ?>">Service History</a>
@@ -117,7 +118,7 @@
                                     <?php
                                     if ($_SESSION['user']['UserTypeId'] == 2) {
                                         $function = 'providerDash';
-                                        $parameter = 'new-service-request';
+                                        $parameter = 'dashboard';
                                         $setting = 'my-setting';
                                     ?>
                                         <a class="dropdown-item" href="<?= Config::base_url . '?controller=Default&function=' . $function . '&parameter=' . $parameter ?>">My Dashboard</a>
@@ -126,9 +127,6 @@
                                     <?php } else {
                                         echo "Not Happning";
                                     } ?>
-                                    <!-- <a class="dropdown-item" href="">My Dashboard</a>
-                                    <a class="dropdown-item" href="<?php Config::base_url . '?controller=Default&function=providerDash&parameter=my-setting' ?>">My Settings</a>
-                                    <a class="dropdown-item" href="">Logout</a> -->
                                 </div>
                             </li>
                         </ul>
@@ -159,7 +157,7 @@
                     <div class="collapse navbar-collapse sidebar-div-menu" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 sidebar-ul">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=none' ?>">Dashbord</a>
+                                <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=dashboard' ?>">Dashbord</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=new-service-request' ?>">New Service</a>
@@ -168,7 +166,7 @@
                                 <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=upcoming-service' ?>">upcoming Service</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=none' ?>">Service Schedule</a>
+                                <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=service-schedule' ?>">Service Schedule</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="<?= Config::base_url . '?controller=Default&function=providerDash&parameter=service-history' ?>">Service History</a>
@@ -187,14 +185,17 @@
             <main class="container__main">
                 <?php
                 switch ($para) {
+                    case 'dashboard':
+                        include("includes/provider/dashboard.php");
+                        break;
                     case 'new-service-request':
                         include("includes/provider/new-service-request.php");
                         break;
                     case 'upcoming-service':
                         include("includes/provider/upcoming-service.php");
                         break;
-                    case 'serviceschedule':
-                        echo "not yet created";
+                    case 'service-schedule':
+                        include("includes/provider/service-schedule.php");
                         break;
                     case 'service-history':
                         include("includes/provider/service-history.php");

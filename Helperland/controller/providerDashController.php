@@ -1,9 +1,12 @@
 <?php
-session_start();
-include("model/providerDashModel.php");
-include("controller/phpmailer/mail.php");
-include("controller/validation/userValidator.php");
-include("controller/validation/myDetailValidation.php");
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+include_once("model/providerDashModel.php");
+include_once("controller/phpmailer/mail.php");
+include_once("controller/validation/userValidator.php");
+include_once("controller/validation/myDetailValidation.php");
 class providerDashController
 {
     public $model;
@@ -229,4 +232,14 @@ class providerDashController
         $result = $this->model->blockCustomerModel();
         echo $result;
     }
+
+    // scheduling Detail
+    public function getScheduleDetail(){
+        $_POST['spid'] = $_SESSION['user']['UserId'];
+        $status = '(2)';
+        $NS = "";
+        $result = $this->model->getServiceRequestDataModel($status, $NS);
+        return $result;
+    }
+
 }

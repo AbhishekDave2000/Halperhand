@@ -273,7 +273,9 @@ $(document).ready(function () {
     function showUpcomingService(data) {
         var myTable = $('#sp-upcoming-service').DataTable();
         myTable.clear().draw();
+        var count = 0;
         data.forEach(function (dt) {
+            count += 1;
             var starttime = dt.ServiceStartDate.substr(11, 5).replace(':3', '.5').replace(':', '.');
             var endtotal = parseFloat(starttime) + parseFloat(dt.SubTotal);
             var endtime = endtotal.toString().replace('.5', ':30').replace('.', ':');
@@ -307,12 +309,15 @@ $(document).ready(function () {
                 </tr>`
             )).draw();
         });
+        $('.request-count-green').html(count);
     }
 
     function showNewServiceReq(data) {
         var table = $('#sp-ns-table').DataTable();
         table.clear().draw();
+        var count = 0;
         data.forEach(function (dt) {
+            count += 1;
             var starttime = dt.ServiceStartDate.substr(11, 5).replace(':3', '.5').replace(':', '.');
             var endtotal = parseFloat(starttime) + parseFloat(dt.SubTotal);
             var endtime = endtotal.toString().replace('.5', ':30').replace('.', ':');
@@ -335,12 +340,15 @@ $(document).ready(function () {
                 </tr>`
             )).draw();
         });
+        $('.request-count-blue').html(count);
     }
 
     function showServiceHistory(data) {
         var historyTable = $('#sp-service-history').DataTable();
         historyTable.clear().draw();
+        var count = 0;
         data.forEach(function (dt) {
+            count += 1;
             var starttime = dt.ServiceStartDate.substr(11, 5).replace(':', '.').replace('3', '5');
             var endtotal = parseFloat(starttime) + parseFloat(dt.SubTotal);
             var endtime = endtotal.toString().replace('.5', ':30').replace('.', ':');
@@ -359,6 +367,7 @@ $(document).ready(function () {
                 </tr>`
             )).draw();
         });
+        $('.request-count-red').html(count);
     }
 
     function showSPRatings(result) {

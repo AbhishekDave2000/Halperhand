@@ -1,5 +1,5 @@
 <?php
-include('dbconnection.php');
+include_once('dbconnection.php');
 class providerDashModel
 {
     public $conn;
