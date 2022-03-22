@@ -1,31 +1,6 @@
 $(document).ready(function () {
-    var url = 'http://localhost/Halperhand/Helperland/';
 
-    $('#c-submit').click(function (e) {
-        $('.c-submit').prop('disabled',true).html('Processing!...');
-        var data = $('#first_form').serialize();
-        $.ajax({
-            url: url + '?controller=contact&function=insertContact',
-            type: 'post',
-            data: data,
-            success: function (result) {
-                $('.c-submit').prop('disabled',false).html('Submit');
-                $(".error").remove();
-                if (result == 1) {
-                    window.location.href = url + '?controller=Default&function=contactpage';
-                } else if (result == 2) {
-                    $('.c-submit-div').before('<span class="error">file not uploaded Try Again!</span>');
-                } else if (result == 3) {
-                    $('.c-submit-div').before('<span class="error">Please upload valid file!</span>');
-                } else {
-                    $('.c-submit-div').before('<span class="error">' + result + '!</span>');
-                }
-            }
-        });
-        e.preventDefault();
-    });
-
-    function contactFormValdation() {
+    $('#c-submit').click(function () {
         var firstname = $('#c-first-name').val();
         var lastname = $('#c-last-name').val();
         var email = $('#c-email-id').val();
@@ -82,5 +57,6 @@ $(document).ready(function () {
             $('#c-agreed-terms').after('<span class="error">You have to first agrre to terms and condition</span>');
             return false;
         }
-    }
+    });
+
 });

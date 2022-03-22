@@ -12,33 +12,38 @@ class contactController
         //validate the data
         $validate = new contactValidator($_POST);
         $errors = $validate->Validator();
-        if (!count($errors) > 0) {
+        if (count($errors) <= 0) {
             //attachment file
             $filepath = "";
             $filename = "";
             if (isset($_FILES['attachment']) && !empty($_FILES['attachment']['name'])) {
                 $filerrors = $validate->isFileValidate($_FILES);
-                if (!count($filerrors) > 0) {
+                if (count($filerrors) <= 0) {
                     $filename = $_FILES['attachment']['name'];
                     $filepath = "assets/attachments/" . $filename;
                     $temp_file_path = $_FILES['attachment']['tmp_name'];
                     if (!move_uploaded_file($temp_file_path, $filepath)) {
-                        echo 2;
+                        header('Location: errors.php?error=File did not uploaded!');
+                        exit;
                     }
                 } else {
-                    echo 3;
+                    header('Location: errors.php?error=Something wrong with Validation!');
+                    exit;
                 }
             }
             $_POST['filepath'] = $filepath;
             $_POST['filename'] = $filename;
+            
             $contactus = new contactModel($_POST);
             $result = $contactus->insertContactData();
             if ($result) {
                 $this->contactMail();
             }
-            echo 1;
+            header('Location: http://localhost/Halperhand/Helperland/?controller=Default&function=homepage');
+            exit;
         } else {
-            echo $errors['error'];
+            header('Location: errors.php?error='.$errors['error']);
+            exit;
         }
     }
 
