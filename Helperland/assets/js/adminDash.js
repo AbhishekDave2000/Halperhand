@@ -22,6 +22,7 @@ $(document).ready(function () {
                     var SRAtable = $('#servicerequest-admin-table').DataTable();
                     SRAtable.clear().draw();
                 }
+                console.log(result);
             }
         });
         e.preventDefault();
@@ -300,15 +301,14 @@ $(document).ready(function () {
                     <td class="usertype-data">
                         `+ dataArr[0] + `
                     </td>
-                    
+                    <td class="city-data">
+                        `+ dt.Mobile + `
+                    </td>
                     <td class="postalcode-data">
                         `+ dataArr[3] + `
                     </td>
-                    <td class="city-data">
-                        `+ dataArr[4] + `
-                    </td>
                     <td class="radius-data">
-                        `+ dataArr[6] + `
+                        `+ dt.Email + `
                     </td>
                     <td class="userstatus-data">
                         <span class="status active status-`+ dt.IsActive + `">

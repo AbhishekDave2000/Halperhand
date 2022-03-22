@@ -69,10 +69,9 @@
                         <tr class="um-th">
                             <th>User Name<img src="assets/Img/admin/sort.png" alt="" class="sorting-img"></th>
                             <th>User Type <img src="assets/Img/admin/sort.png" alt="" class="sorting-img"></th>
-                            <!-- <th>Role</th> -->
+                            <th>Mobile</th>
                             <th>Postal Code <img src="assets/Img/admin/sort.png" alt="" class="sorting-img"></th>
-                            <th>City</th>
-                            <th>Approval<img src="assets/Img/admin/sort.png" alt="" class="sorting-img"></th>
+                            <th>Email<img src="assets/Img/admin/sort.png" alt="" class="sorting-img"></th>
                             <th>User Status</th>
                             <th style="text-align: center;">Action</th>
                         </tr>

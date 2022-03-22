@@ -29,7 +29,7 @@ class adminDashController
         }
         if ($_POST['DOS-TO'] == "" || $_POST['DOS-TO'] == null) {
             $_POST['DOS-TO'] = date("Y-m-d") . ' 00:00:00.000';
-        } else {
+        } else {    
             $_POST['DOS-TO'] = $_POST['DOS-TO']. " 00:00:00.000";
         }
         if($_POST['PS'] == 'Provider'){
@@ -41,7 +41,6 @@ class adminDashController
         if($_POST['status'] == 'Status'){
             $_POST['status'] = "";
         }
-        // print_r($_POST);exit;
         $result = $this->model->getSearchedDataModel();
         echo json_encode($result);
     }
