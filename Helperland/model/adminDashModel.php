@@ -39,6 +39,9 @@ class adminDashModel
         $sid = $_POST['SIS'];
         $cid = $_POST['CS'];
         $pid = $_POST['PS'];
+        if($pid == Null){
+            $pid2 = ' OR sr.ServiceProviderId IS NULL';
+        }
         $sdate = $_POST['DOS-FROM'];
         $edate = $_POST['DOS-TO'];
         $status = $_POST['status'];
@@ -52,7 +55,7 @@ class adminDashModel
                     ON sr.ServiceRequestId = sre.ServiceRequestExtraId
                 JOIN user as u 
                     ON u.UserId = sr.UserId
-                WHERE sr.UserId LIKE '%$cid%' AND sr.ServiceProviderId LIKE '%$pid%' AND sr.ServiceRequestId LIKE '%$sid%' AND sr.ServiceStartDate BETWEEN '$sdate' AND '$edate' AND sr.Status LIKE '%$status%'";
+                WHERE sr.UserId LIKE '%$cid%' AND (sr.ServiceProviderId LIKE '%$pid%'$pid2) AND sr.ServiceRequestId LIKE '%$sid%' AND sr.Status LIKE '%$status%' AND sr.ServiceStartDate BETWEEN '$sdate' AND '$edate'";
         $result = $this->conn->query($sql);
         if ($result !== false && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {

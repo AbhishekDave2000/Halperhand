@@ -17,6 +17,7 @@ $(document).ready(function () {
                 if (result != null) {
                     var data = JSON.parse(result);
                     showServiceRequestDataAdmin(data);
+                    console.log(data);
                 } else {
                     var SRAtable = $('#servicerequest-admin-table').DataTable();
                     SRAtable.clear().draw();
@@ -376,7 +377,7 @@ $(document).ready(function () {
     }
 
     function setSearchOptionData(data) {
-        var cusoption = "<option value='' selected>Customer</option>", prooption = "<option value='' selected>Provider</option>";
+        var cusoption = `<option selected>Customer</option>`, prooption = `<option selected>Provider</option>`;
         data.forEach(function (dt) {
             if (dt.UserTypeId == 1) {
                 cusoption += `<option value="` + dt.UserId + `">` + dt.Name + `</option>`;

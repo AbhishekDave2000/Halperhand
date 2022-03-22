@@ -26,7 +26,7 @@
                             </div>
                             <div class="col-md-2">
                                 <select class="form-control s-fourth--input" name="status">
-                                    <option value="" selected>Status</option>
+                                    <option selected>Status</option>
                                     <option value="0">New</option>
                                     <option value="1">Assigned</option>
                                     <option value="2">Accepted</option>
@@ -36,19 +36,19 @@
                             </div>
 
                             <div class="date-pick col-md-2">
-                                <input type="date" name="DOS-FROM" class="form-control s-fifth-input" placeholder="From">
+                                <input type="text" name="DOS-FROM" class="form-control s-fifth-input" placeholder="From date" onfocus="(this.type='date')">
                             </div>
 
                             <div class="date-pick col-md-2">
-                                <input type="date" name="DOS-TO" class="form-control s-sixth-input" placeholder="To">
+                                <input type="text" name="DOS-TO" class="form-control s-sixth-input" placeholder="To date" onfocus="(this.type='date')">
                             </div>
                         </div>
                         <div class="sr-btn-div pt-2">
-                            <div class="col-1">
+                            <div>
                                 <button type="button" id="search-btn" class="btn submit-btn">Search</button>
                             </div>
 
-                            <div class="col-1 col-reset">
+                            <div class="col-reset">
                                 <button type="Reset" class="btn clear-btn">Clear</button>
                             </div>
                         </div>

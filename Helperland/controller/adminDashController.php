@@ -23,15 +23,25 @@ class adminDashController
     public function getServiceRequestSearchData()
     {
         if ($_POST['DOS-FROM'] == "" || $_POST['DOS-FROM'] == null) {
-            $_POST['DOS-FROM'] = '2020-01-01 00:00:00.000';
+            $_POST['DOS-FROM'] = '2000-01-01 00:00:00.000';
         } else {
             $_POST['DOS-FROM'] = $_POST['DOS-FROM'] . ' ' . "00:00:00.000";
         }
         if ($_POST['DOS-TO'] == "" || $_POST['DOS-TO'] == null) {
-            $_POST['DOS-TO'] = date("Y-m-d") . ' :00:00:00.000';
+            $_POST['DOS-TO'] = date("Y-m-d") . ' 00:00:00.000';
         } else {
-            $_POST['DOS-TO'] = $_POST['DOS-TO'] . ' ' . "00:00:00.000";
+            $_POST['DOS-TO'] = $_POST['DOS-TO']. " 00:00:00.000";
         }
+        if($_POST['PS'] == 'Provider'){
+            $_POST['PS'] = "";
+        }
+        if($_POST['CS'] == 'Customer'){
+            $_POST['CS'] = "";
+        }
+        if($_POST['status'] == 'Status'){
+            $_POST['status'] = "";
+        }
+        // print_r($_POST);exit;
         $result = $this->model->getSearchedDataModel();
         echo json_encode($result);
     }
