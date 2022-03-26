@@ -77,8 +77,8 @@ $(document).ready(function () {
     $('#E-send').click(function (e) {
         var data = $('.SendEmail-Form').serialize();
         $(".error").remove();
-        $('#E-send').html("Sending Mail!...").attr('disabled', true);
         if (emailSendvalidate() != false) {
+            // $('#E-send').html("Wait!...").attr('disabled', true);
             $.ajax({
                 url: url + '?controller=Authentication&function=forgotPassword',
                 type: 'post',

@@ -47,7 +47,7 @@ class AuthenticationController
                 } else {
                     echo 3;
                 }
-            } else{
+            } else {
                 echo 4;
             }
         }
@@ -64,14 +64,14 @@ class AuthenticationController
             $_POST['pass'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
             $res = $this->auth->checkuserEmailModel();
             // insert data
-            if($res){
+            if ($res) {
                 $result = $this->auth->SignupModel();
                 if ($result) {
                     echo 1;
-                }else{
+                } else {
                     echo 0;
                 }
-            }else{
+            } else {
                 echo 2;
             }
         } else {
@@ -85,9 +85,8 @@ class AuthenticationController
         //email user select from database
         $result = $this->auth->forgotPasswordModel();
         $email = $_POST['email'];
-
         //user exist validate
-        if (!empty($result)) {
+        if (count($result) > 0) {
             if ($result['Email'] == $email) {
                 //send session data
                 $_SESSION['email'] = $email;

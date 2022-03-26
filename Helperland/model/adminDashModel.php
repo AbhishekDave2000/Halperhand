@@ -49,11 +49,11 @@ class adminDashModel
         $sql = "SELECT sr.ServiceRequestId,sr.UserId,sr.ServiceStartDate,sr.ZipCode,sr.ServiceHours,sr.ExtraHours,sr.SubTotal,sr.Discount,sr.TotalCost,sr.Comments,sr.JobStatus,
                 sr.ServiceProviderId,sr.HasPets,sr.Status,sr.ModifiedDate,sr.ModifiedBy,sr.RefundedAmount,sr.HasIssue,sra.AddressLine1,sra.AddressLine2,sra.City,sra.State,
                 sra.Mobile,sra.Email,sre.ServiceExtraId,CONCAT(u.FirstName,' ',u.LastName) as CusName FROM servicerequest as sr 
-                JOIN servicerequestaddress as sra 
+                JOIN servicerequestaddress as sra
                     ON sr.ServiceRequestId = sra.ServiceRequestId
                 JOIN servicerequestextra as sre
                     ON sr.ServiceRequestId = sre.ServiceRequestExtraId
-                JOIN user as u 
+                JOIN user as u
                     ON u.UserId = sr.UserId
                 WHERE sr.UserId LIKE '%$cid%' AND (sr.ServiceProviderId LIKE '%$pid%'$pid2) AND sr.ServiceRequestId LIKE '%$sid%' AND sr.Status LIKE '%$status%' AND sr.ServiceStartDate BETWEEN '$sdate' AND '$edate'";
         $result = $this->conn->query($sql);

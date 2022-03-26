@@ -60,12 +60,12 @@ class AuthenticationModel
     {
         $email = trim($this->data['email']);
         $sql = "SELECT `UserId`,`Email` FROM user WHERE Email = '$email'";
-
+        $row = [];
         $result = $this->conn->query($sql);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            return $row;
         }
+        return $row;
     }
 
     public function setPassModel($id)

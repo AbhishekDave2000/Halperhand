@@ -22,7 +22,7 @@ $(document).ready(function () {
                     var SRAtable = $('#servicerequest-admin-table').DataTable();
                     SRAtable.clear().draw();
                 }
-                console.log(result);
+                // console.log(result);
             }
         });
         e.preventDefault();
